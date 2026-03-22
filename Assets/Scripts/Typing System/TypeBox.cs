@@ -1,30 +1,40 @@
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class TypeBox : MonoBehaviour
 {
-    [SerializeField] private string currentTextToType;
-    [SerializeField] private string remainingTypedText;
-    [SerializeField] private SetTypeBoxEventSO _setTypeBoxEvent;
+    [SerializeField] protected string currentTextToType;
+    [SerializeField] protected string remainingTypedText;
+    public SetTypeBoxEventSO setTypeBoxEvent;
 
     private void Start()
     {
-        _setTypeBoxEvent.Raise(this);
+        setTypeBoxEvent.Raise(this);
     }
     public void SetTextToType(string text)
     {
         currentTextToType = text;
+        remainingTypedText = text;
     }
 
     public virtual void CheckingText(string typing)
     {
-        Debug.Log($"[TypeBox - CheckingText] Is Correct Letter : {IsCorrectLetter(typing)}");
+        
     }
-    private bool IsCorrectLetter(string typedText)
+    protected bool IsCorrectLetter(string typedText)
     {
-        return currentTextToType.Contains(typedText);
+        return remainingTypedText[0].ToString() == typedText;
     }
-    private bool IsTextComplete()
+
+    public void RemoveText()
     {
-        return false;
+        string remainingText = remainingTypedText.Remove(0, 1);
+        remainingTypedText = remainingText;
+        Debug.Log($"[TypeBox - RemoveText] Is Remove Letter! remaining text {remainingText}");
+    }
+
+    public bool IsTextComplete()
+    {
+        return remainingTypedText.Length <= 0;
     }
 }
