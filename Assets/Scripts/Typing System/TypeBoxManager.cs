@@ -17,14 +17,26 @@ public class TypeBoxManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public virtual void CheckTyping(string typedText)
+    public void CheckTyping(string typedText)
     {
         // This method can be overridden by derived classes to implement specific typing logic
-        foreach (TypeBox typeBox in _activeTypeBoxs)
-            typeBox.CheckingText(typedText.ToLower());
+        List<TypeBox> macthingTypeBox = new List<TypeBox>();
+
+        foreach (var typeBox in _activeTypeBoxs)
+        {
+            if (typeBox.CheckingText(typedText.ToLower()))
+            {
+                macthingTypeBox.Add(typeBox);
+            }
+        }
+
+        if (macthingTypeBox.Count == 0)
+        {
+            ResetAllTypeBox();
+        }
     }
 
-    private void SetActiveBox(TypeBox activeTypeBox)
+    private void SetActiveTypeBox(TypeBox activeTypeBox)
     {
         if (!_activeTypeBoxs.Contains(activeTypeBox))
             {
@@ -32,13 +44,27 @@ public class TypeBoxManager : MonoBehaviour
             }
     }
 
+    public void ResetAllTypeBox()
+    {
+        foreach (var typeBox in _activeTypeBoxs)
+        {
+            typeBox.ResetTypeBox();
+        }   
+    }
+
+    public void RemoveTypeBox(TypeBox typeBox)
+    {
+        ResetAllTypeBox();
+        _activeTypeBoxs.Remove(typeBox);
+    }
+
     private void OnEnable()
     {
-        _setTypeBoxEvent.Register(SetActiveBox);
+        _setTypeBoxEvent.Register(SetActiveTypeBox);
     }
 
     private void OnDisable()
     {
-        _setTypeBoxEvent.Unregister(SetActiveBox);
+        _setTypeBoxEvent.Unregister(SetActiveTypeBox);
     }
 }

@@ -5,22 +5,26 @@ public class TypeBox : MonoBehaviour
 {
     [SerializeField] protected string currentTextToType;
     [SerializeField] protected string remainingTypedText;
+    [SerializeField] protected bool _isStillMacthing;
+    public bool IsStillMacthing => _isStillMacthing;
+
     public SetTypeBoxEventSO setTypeBoxEvent;
 
     private void Start()
     {
         setTypeBoxEvent.Raise(this);
     }
-    public void SetTextToType(string text)
+    public virtual void SetTextToType(string text)
     {
         currentTextToType = text;
         remainingTypedText = text;
     }
 
-    public virtual void CheckingText(string typing)
+    public virtual bool CheckingText(string typing)
     {
-        
+        return false;
     }
+
     protected bool IsCorrectLetter(string typedText)
     {
         return remainingTypedText[0].ToString() == typedText;
@@ -36,5 +40,10 @@ public class TypeBox : MonoBehaviour
     public bool IsTextComplete()
     {
         return remainingTypedText.Length <= 0;
+    }
+
+    public virtual void ResetTypeBox()
+    {
+
     }
 }
