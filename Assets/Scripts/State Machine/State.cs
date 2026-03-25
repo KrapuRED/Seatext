@@ -2,15 +2,8 @@ using UnityEngine;
 
 public class State : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public virtual void EnterState()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Code to execute when entering the state
     }
 }

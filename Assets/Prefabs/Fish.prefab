@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 2101408738233833046}
   - component: {fileID: 1022610693690820230}
   - component: {fileID: 6065455181333715308}
+  - component: {fileID: 253391589905115531}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -465,8 +466,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cab1534c947fdd4fbf924ef3fd7dc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTextToType: 
+  currentTextToType: fire
   remainingTypedText: 
+  _isStillMacthing: 0
   setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
   fishData: {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
   fishUI: {fileID: 8893316632414643831}
+--- !u!114 &253391589905115531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488203040944214544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856f50885fe0c0244bd84e8d816195a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitions:
+  - name: Move To Point
+    targetState: {fileID: 0}
+    condition: {fileID: 0}

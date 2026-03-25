@@ -575,10 +575,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6065455181333715308, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: currentTextToType
-      value: fire
-      objectReference: {fileID: 0}
     - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_Name
       value: Fish

@@ -15,3 +15,7 @@ MonoBehaviour:
   fishName: fiish
   fishID: 
   fishSprite: {fileID: 0}
+  StateConditionFish:
+  - name: 
+    targetState: {fileID: 0}
+    condition: {fileID: 0}
