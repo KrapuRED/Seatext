@@ -1,9 +1,8 @@
-using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class TypeBox : MonoBehaviour
 {
-    [SerializeField] protected string currentTextToType;
+    public string currentTextToType;
     [SerializeField] protected string remainingTypedText;
     [SerializeField] protected bool _isStillMacthing;
     public bool IsStillMacthing => _isStillMacthing;

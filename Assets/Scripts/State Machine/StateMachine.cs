@@ -2,26 +2,40 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Transition
+public class DataStateCondtion
 {
-    public string name;
-    public State targetState;
-    public Condition condition;
+    public string nameStateCondition;
+    public string stateConditionID;
+    public StateSO state;
+    public ConditionSO condition;
 }
-
 public class StateMachine : MonoBehaviour
 {
     [Header("State and Condition Config")]
-    [SerializeField] private List<Transition> transitions = new List<Transition>();
+    [SerializeField] private EnemyFish currentFish;
+    [SerializeField] private List<DataStateCondtion> dataStateCondtions = new List<DataStateCondtion>();
+    [SerializeField] private StateSO _activeState;
+
+    private void Awake()
+    {
+        foreach (var data in currentFish.fishData.dataStateCondtions)
+        {
+            dataStateCondtions.Add(data);
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (var transition in transitions)
+        Debug.Log($"[StateMachine - Update] Counting State Machine For Fish : {dataStateCondtions.Count}");
+
+        foreach (var data in dataStateCondtions)
         {
-            if (transition.condition.CheckCondition())
+            if (data.condition.CheckCondition(currentFish.Contex))
             {
-                transition.targetState.EnterState();
+                _activeState = data.state;
+                _activeState.ExcuteState(currentFish.Contex);
+                break; // Exit the loop after finding the first valid state
             }
         }
     }

@@ -8,6 +8,9 @@ public class FishOS : ScriptableObject
     public string fishID;
     public Sprite fishSprite;
 
+    [Header("Fish Movement")]
+    public float speedFish;
+
     [Header("State & Condition Fish")]
-    public List<Transition> StateConditionFish = new List<Transition>();
+    public List<DataStateCondtion> dataStateCondtions = new List<DataStateCondtion>();
 }

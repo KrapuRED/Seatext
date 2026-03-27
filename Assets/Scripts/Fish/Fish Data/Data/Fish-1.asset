@@ -15,7 +15,13 @@ MonoBehaviour:
   fishName: fiish
   fishID: 
   fishSprite: {fileID: 0}
-  StateConditionFish:
-  - name: 
-    targetState: {fileID: 0}
-    condition: {fileID: 0}
+  speedFish: 10
+  dataStateCondtions:
+  - nameStateCondition: End Point State
+    stateConditionID: 
+    state: {fileID: 11400000, guid: 290a53ffaa86e40489a430b5f5ed7a8b, type: 2}
+    condition: {fileID: 11400000, guid: 592aeb46390089d438e8ed58797531e0, type: 2}
+  - nameStateCondition: Roaming State
+    stateConditionID: 
+    state: {fileID: 11400000, guid: 8a13c06465070704d8706cc4940d600a, type: 2}
+    condition: {fileID: 11400000, guid: 8197bfca35b335b47983976b456a98fb, type: 2}
