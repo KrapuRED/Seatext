@@ -15,7 +15,7 @@ MonoBehaviour:
   fishName: fiish
   fishID: 
   fishSprite: {fileID: 0}
-  speedFish: 10
+  speedFish: 1
   dataStateCondtions:
   - nameStateCondition: End Point State
     stateConditionID: 

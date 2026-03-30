@@ -22,6 +22,11 @@ public class TypeBoxManager : MonoBehaviour
         // This method can be overridden by derived classes to implement specific typing logic
         List<TypeBox> macthingTypeBox = new List<TypeBox>();
 
+        if (_activeTypeBoxs.Count == 0)
+        {
+            return;
+        }   
+
         foreach (var typeBox in _activeTypeBoxs)
         {
             if (typeBox.CheckingText(typedText.ToLower()))
