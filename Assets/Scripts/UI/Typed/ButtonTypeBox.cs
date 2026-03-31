@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class ButtonTypeBox : TypeBox
+public class ButtonTypeBox : TypingBox
 {
     public TextMeshProUGUI textUI;
 

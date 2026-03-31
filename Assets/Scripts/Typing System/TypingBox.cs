@@ -1,11 +1,20 @@
 using UnityEngine;
 
-public class TypeBox : MonoBehaviour
+public enum TypeTypingBox
 {
+    none,
+    UI
+}
+                                                                                                                                                                                                            
+public class TypingBox : MonoBehaviour
+{
+    
     public string currentTextToType;
     [SerializeField] protected string remainingTypedText;
     [SerializeField] protected bool _isStillMacthing;
+    [SerializeField] private TypeTypingBox _typeTypingBox;
     public bool IsStillMacthing => _isStillMacthing;
+    public TypeTypingBox typeTypingBox => _typeTypingBox;
 
     public SetTypeBoxEventSO setTypeBoxEvent;
 
@@ -22,7 +31,7 @@ public class TypeBox : MonoBehaviour
     public virtual bool CheckingText(string typing)
     {
         bool isCorrectLetter = IsCorrectLetter(typing);
-        Debug.Log($"[TypeBox - CheckingText] Is Correct Letter : {isCorrectLetter}");
+        Debug.Log($"[TypingBox - CheckingText] Is Correct Letter : {isCorrectLetter}");
 
         if (isCorrectLetter)
         {
@@ -32,7 +41,7 @@ public class TypeBox : MonoBehaviour
         }
         else
         {
-            Debug.Log($"[TypeBox - CheckingText] Wrong Letter! Typed : {typing}, Expected : {remainingTypedText[0]}");
+            Debug.Log($"[TypingBox - CheckingText] Wrong Letter! Typed : {typing}, Expected : {remainingTypedText[0]}");
             _isStillMacthing = false;
         }
 
@@ -42,13 +51,13 @@ public class TypeBox : MonoBehaviour
     protected bool IsCorrectLetter(string typedText)
     {
         return remainingTypedText[0].ToString() == typedText;
-    }
+   }
 
     public void RemoveText()
     {
         string remainingText = remainingTypedText.Remove(0, 1);
         remainingTypedText = remainingText;
-        Debug.Log($"[TypeBox - RemoveText] Is Remove Letter! remaining text {remainingText}");
+        Debug.Log($"[TypingBox - RemoveText] Is Remove Letter! remaining text {remainingText}");
     }
 
     public bool IsTextComplete()

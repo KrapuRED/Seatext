@@ -4,19 +4,19 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "SetTypeBoxEventSO", menuName = "Events/SetTypeBoxEventSO")]
 public class SetTypeBoxEventSO : ScriptableObject
 {
-    public UnityAction<TypeBox> OnSetTypeBox;
+    public UnityAction<TypingBox> OnSetTypeBox;
 
-    public void Raise(TypeBox typeBox)
+    public void Raise(TypingBox typeBox)
     {
         OnSetTypeBox?.Invoke(typeBox);
     }
 
-    public void Register(UnityAction<TypeBox> listener)
+    public void Register(UnityAction<TypingBox> listener)
     {
         OnSetTypeBox += listener;
     }
 
-    public void Unregister(UnityAction<TypeBox> listener)
+    public void Unregister(UnityAction<TypingBox> listener)
     {
         OnSetTypeBox -= listener;
     }

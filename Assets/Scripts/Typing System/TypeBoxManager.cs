@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class TypeBoxManager : MonoBehaviour
 {
     public static TypeBoxManager instance;
 
-    [SerializeField] protected List<TypeBox> _activeTypeBoxs = new List<TypeBox>();
+    [SerializeField] protected List<TypingBox> _activeTypeBoxs = new List<TypingBox>();
 
     [Header("Events")]
     [SerializeField] protected SetTypeBoxEventSO _setTypeBoxEvent;
@@ -20,7 +21,7 @@ public class TypeBoxManager : MonoBehaviour
     public void CheckTyping(string typedText)
     {
         // This method can be overridden by derived classes to implement specific typing logic
-        List<TypeBox> macthingTypeBox = new List<TypeBox>();
+        List<TypingBox> macthingTypeBox = new List<TypingBox>();
 
         if (_activeTypeBoxs.Count == 0)
         {
@@ -41,7 +42,7 @@ public class TypeBoxManager : MonoBehaviour
         }
     }
 
-    private void SetActiveTypeBox(TypeBox activeTypeBox)
+    private void SetActiveTypeBox(TypingBox activeTypeBox)
     {
         if (!_activeTypeBoxs.Contains(activeTypeBox))
             {
@@ -57,7 +58,7 @@ public class TypeBoxManager : MonoBehaviour
         }   
     }
 
-    public void RemoveTypeBox(TypeBox typeBox)
+    public void RemoveTypeBox(TypingBox typeBox)
     {
         ResetAllTypeBox();
         _activeTypeBoxs.Remove(typeBox);

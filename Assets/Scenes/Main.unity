@@ -955,6 +955,7 @@ MonoBehaviour:
   currentTextToType: play
   remainingTypedText: 
   _isStillMacthing: 0
+  _typeTypingBox: 0
   setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
   textUI: {fileID: 631758388}
 --- !u!1 &1300869192
@@ -1035,6 +1036,75 @@ MonoBehaviour:
   m_DefaultActionMap: Typing
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1001 &1439664243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 38333581360968704, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: EndWayPoint
+      value: 
+      objectReference: {fileID: 1981906957}
+    - target: {fileID: 691921141803958203, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1523337293}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Name
+      value: Fish (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
 --- !u!1 &1511018128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,6 +1665,7 @@ SceneRoots:
   - {fileID: 1017440018}
   - {fileID: 1116874978}
   - {fileID: 877559164256203637}
+  - {fileID: 1439664243}
   - {fileID: 298693850}
   - {fileID: 1668892982}
   - {fileID: 1102580528}

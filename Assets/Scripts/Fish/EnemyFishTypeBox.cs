@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyFishTypeBox : TypeBox
+public class EnemyFishTypeBox : TypingBox
 {
     [Header("EnemyFishTypeBox Config")]
     [SerializeField] private FishTextUI fishUI;
@@ -33,6 +33,7 @@ public class EnemyFishTypeBox : TypeBox
             if (IsTextComplete())
             {
                 Debug.Log($"[Fish - CheckingText] Text Is Done : {currentTextToType}");
+                WordBankManager.instance.CheckWordByWordData(_wordData.word);
                 TypeBoxManager.instance.RemoveTypeBox(this);
                 Destroy(gameObject);
             }
