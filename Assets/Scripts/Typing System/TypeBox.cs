@@ -21,7 +21,22 @@ public class TypeBox : MonoBehaviour
 
     public virtual bool CheckingText(string typing)
     {
-        return false;
+        bool isCorrectLetter = IsCorrectLetter(typing);
+        Debug.Log($"[TypeBox - CheckingText] Is Correct Letter : {isCorrectLetter}");
+
+        if (isCorrectLetter)
+        {
+            // Remove the correctly typed letter from the current text
+            _isStillMacthing = true;
+            RemoveText();
+        }
+        else
+        {
+            Debug.Log($"[TypeBox - CheckingText] Wrong Letter! Typed : {typing}, Expected : {remainingTypedText[0]}");
+            _isStillMacthing = false;
+        }
+
+        return isCorrectLetter;
     }
 
     protected bool IsCorrectLetter(string typedText)

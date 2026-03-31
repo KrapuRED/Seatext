@@ -4,6 +4,14 @@ public class EnemyFishTypeBox : TypeBox
 {
     [Header("EnemyFishTypeBox Config")]
     [SerializeField] private FishTextUI fishUI;
+    [SerializeField] private WordData _wordData;
+
+    private void Start()
+    {
+        _wordData = WordBankManager.instance.GetRandomWordData();
+        SetTextToType(_wordData.word);
+        setTypeBoxEvent.Raise(this);
+    }
 
     public override void SetTextToType(string text)
     {

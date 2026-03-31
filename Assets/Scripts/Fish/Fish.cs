@@ -7,5 +7,4 @@ public class Fish : MonoBehaviour
 
     public FishOS fishData => _fishData;
     public FishMovement fishMovement => _fishMovement;
-
 }
