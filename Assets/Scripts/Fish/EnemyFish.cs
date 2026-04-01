@@ -9,13 +9,25 @@ public class EnemyContex
     public FishMovement enemyFishMovement;
 }
 
-public class EnemyFish : Fish
+public class EnemyFish : Fish, IPausable
 {
     [Header("Fish Config")]
     [SerializeField] private Transform EndWayPoint;
     [SerializeField] private EnemyFishTypeBox _enemyFishTypeBox;
 
     public EnemyContex Contex { get; private set; }
+
+    public void OnPause()
+    {
+        enabled = false;
+        fishMovement.SetCanMove(false);
+    }
+
+    public void OnResume()
+    {
+        enabled = true;
+        fishMovement.SetCanMove(true);
+    }
 
     private void Awake()
     {
@@ -37,5 +49,7 @@ public class EnemyFish : Fish
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);
         fishMovement.IntilizaFishMovement(GetComponent<Rigidbody2D>(), fishData);
+
+        PauseManager.instance.Register(this);
     }
 }

@@ -291,6 +291,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &317281104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 317281105}
+  - component: {fileID: 317281106}
+  m_Layer: 0
+  m_Name: Manager - Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &317281105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317281104}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1116874978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &317281106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317281104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfae8186929cee148a91a9368d3fbf6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelTypes:
+  - panelName: Pasue Panel
+    panelID: panel-00
+    isActive: 0
+    panelGO: {fileID: 1450173959}
 --- !u!1 &345865645
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63cef2ad660be6b4682db6494b1c3ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeTypeBoxs: []
+  _currentTypingMode: 2
+  _activeTypingBoxs: []
   _setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
 --- !u!1 &631758386
 GameObject:
@@ -722,7 +772,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1017440018
 RectTransform:
@@ -736,7 +786,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1165707944}
+  - {fileID: 1450173960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -900,6 +950,7 @@ Transform:
   m_Children:
   - {fileID: 574863467}
   - {fileID: 1532572107}
+  - {fileID: 317281105}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165707943
@@ -918,7 +969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1165707944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -926,14 +977,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165707943}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1969556425}
   - {fileID: 631758387}
-  m_Father: {fileID: 1017440018}
+  m_Father: {fileID: 1450173960}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -955,9 +1006,24 @@ MonoBehaviour:
   currentTextToType: play
   remainingTypedText: 
   _isStillMacthing: 0
-  _typeTypingBox: 0
+  _typeTypingBox: 1
   setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
   textUI: {fileID: 631758388}
+  onTextComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450173963}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1300869192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,9 +1097,25 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b8a6b1d2-ac7e-4214-87fc-a48abf200031
     m_ActionName: 'Typing/TypingLetter[/Keyboard/q,/Keyboard/w,/Keyboard/e,/Keyboard/r,/Keyboard/t,/Keyboard/y,/Keyboard/u,/Keyboard/i,/Keyboard/o,/Keyboard/p,/Keyboard/a,/Keyboard/s,/Keyboard/d,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/j,/Keyboard/k,/Keyboard/l,/Keyboard/z,/Keyboard/x,/Keyboard/c,/Keyboard/v,/Keyboard/b,/Keyboard/n,/Keyboard/m]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1575504073}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: PuaseGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cd08c058-4a7b-412a-984f-35ff7e249ab5
+    m_ActionName: 'InGame/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Typing
+  m_DefaultActionMap: 9ff72d5c-d01d-4081-b9c9-68f3806cf384
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1001 &1439664243
@@ -1092,6 +1174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3142005586085829606, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: _typeTypingBox
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_Name
       value: Fish (1)
@@ -1105,6 +1191,96 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+--- !u!1 &1450173959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1450173960}
+  - component: {fileID: 1450173962}
+  - component: {fileID: 1450173961}
+  - component: {fileID: 1450173963}
+  m_Layer: 5
+  m_Name: Panel - Pause
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1450173960
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450173959}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1165707944}
+  m_Father: {fileID: 1017440018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1450173961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450173959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.80784315}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1450173962
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450173959}
+  m_CullTransparentMesh: 1
+--- !u!114 &1450173963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450173959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d55d78d13dc5a4086b13fe99a80a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPaused: 0
 --- !u!1 &1511018128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,6 +1819,10 @@ PrefabInstance:
     - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142005586085829606, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: _typeTypingBox
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_Name

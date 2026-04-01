@@ -1,10 +1,4 @@
 using UnityEngine;
-
-public enum TypeTypingBox
-{
-    none,
-    UI
-}
                                                                                                                                                                                                             
 public class TypingBox : MonoBehaviour
 {

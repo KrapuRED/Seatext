@@ -11,4 +11,10 @@ public class PlayerInput : MonoBehaviour
         TypeBoxManager.instance.CheckTyping(key);
         Debug.Log($"[PlayerInput - OnTypingText] Typed Text : {key}");
     }
+
+    public void PuaseGame(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            PanelManager.instance.OpenPanel("panel-00");
+    }
 }

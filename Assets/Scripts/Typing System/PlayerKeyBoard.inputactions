@@ -3,13 +3,22 @@
     "name": "PlayerKeyBoard",
     "maps": [
         {
-            "name": "Typing",
+            "name": "InGame",
             "id": "9ff72d5c-d01d-4081-b9c9-68f3806cf384",
             "actions": [
                 {
                     "name": "TypingLetter",
                     "type": "Button",
                     "id": "b8a6b1d2-ac7e-4214-87fc-a48abf200031",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "cd08c058-4a7b-412a-984f-35ff7e249ab5",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -300,6 +309,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TypingLetter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "079bb0cf-0bc1-4886-9046-c9ff5c994841",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

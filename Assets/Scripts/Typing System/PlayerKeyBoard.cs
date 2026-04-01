@@ -89,13 +89,22 @@ public partial class @PlayerKeyBoard: IInputActionCollection2, IDisposable
     ""name"": ""PlayerKeyBoard"",
     ""maps"": [
         {
-            ""name"": ""Typing"",
+            ""name"": ""InGame"",
             ""id"": ""9ff72d5c-d01d-4081-b9c9-68f3806cf384"",
             ""actions"": [
                 {
                     ""name"": ""TypingLetter"",
                     ""type"": ""Button"",
                     ""id"": ""b8a6b1d2-ac7e-4214-87fc-a48abf200031"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd08c058-4a7b-412a-984f-35ff7e249ab5"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -388,20 +397,32 @@ public partial class @PlayerKeyBoard: IInputActionCollection2, IDisposable
                     ""action"": ""TypingLetter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""079bb0cf-0bc1-4886-9046-c9ff5c994841"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Typing
-        m_Typing = asset.FindActionMap("Typing", throwIfNotFound: true);
-        m_Typing_TypingLetter = m_Typing.FindAction("TypingLetter", throwIfNotFound: true);
+        // InGame
+        m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
+        m_InGame_TypingLetter = m_InGame.FindAction("TypingLetter", throwIfNotFound: true);
+        m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
     }
 
     ~@PlayerKeyBoard()
     {
-        UnityEngine.Debug.Assert(!m_Typing.enabled, "This will cause a leak and performance issues, PlayerKeyBoard.Typing.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_InGame.enabled, "This will cause a leak and performance issues, PlayerKeyBoard.InGame.Disable() has not been called.");
     }
 
     /// <summary>
@@ -474,29 +495,34 @@ public partial class @PlayerKeyBoard: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Typing
-    private readonly InputActionMap m_Typing;
-    private List<ITypingActions> m_TypingActionsCallbackInterfaces = new List<ITypingActions>();
-    private readonly InputAction m_Typing_TypingLetter;
+    // InGame
+    private readonly InputActionMap m_InGame;
+    private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
+    private readonly InputAction m_InGame_TypingLetter;
+    private readonly InputAction m_InGame_Pause;
     /// <summary>
-    /// Provides access to input actions defined in input action map "Typing".
+    /// Provides access to input actions defined in input action map "InGame".
     /// </summary>
-    public struct TypingActions
+    public struct InGameActions
     {
         private @PlayerKeyBoard m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public TypingActions(@PlayerKeyBoard wrapper) { m_Wrapper = wrapper; }
+        public InGameActions(@PlayerKeyBoard wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Typing/TypingLetter".
+        /// Provides access to the underlying input action "InGame/TypingLetter".
         /// </summary>
-        public InputAction @TypingLetter => m_Wrapper.m_Typing_TypingLetter;
+        public InputAction @TypingLetter => m_Wrapper.m_InGame_TypingLetter;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/Pause".
+        /// </summary>
+        public InputAction @Pause => m_Wrapper.m_InGame_Pause;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Typing; }
+        public InputActionMap Get() { return m_Wrapper.m_InGame; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -504,9 +530,9 @@ public partial class @PlayerKeyBoard: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="TypingActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="InGameActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(TypingActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(InGameActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -514,14 +540,17 @@ public partial class @PlayerKeyBoard: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="TypingActions" />
-        public void AddCallbacks(ITypingActions instance)
+        /// <seealso cref="InGameActions" />
+        public void AddCallbacks(IInGameActions instance)
         {
-            if (instance == null || m_Wrapper.m_TypingActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_TypingActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_InGameActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InGameActionsCallbackInterfaces.Add(instance);
             @TypingLetter.started += instance.OnTypingLetter;
             @TypingLetter.performed += instance.OnTypingLetter;
             @TypingLetter.canceled += instance.OnTypingLetter;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         /// <summary>
@@ -530,21 +559,24 @@ public partial class @PlayerKeyBoard: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="TypingActions" />
-        private void UnregisterCallbacks(ITypingActions instance)
+        /// <seealso cref="InGameActions" />
+        private void UnregisterCallbacks(IInGameActions instance)
         {
             @TypingLetter.started -= instance.OnTypingLetter;
             @TypingLetter.performed -= instance.OnTypingLetter;
             @TypingLetter.canceled -= instance.OnTypingLetter;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TypingActions.UnregisterCallbacks(ITypingActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="InGameActions.UnregisterCallbacks(IInGameActions)" />.
         /// </summary>
-        /// <seealso cref="TypingActions.UnregisterCallbacks(ITypingActions)" />
-        public void RemoveCallbacks(ITypingActions instance)
+        /// <seealso cref="InGameActions.UnregisterCallbacks(IInGameActions)" />
+        public void RemoveCallbacks(IInGameActions instance)
         {
-            if (m_Wrapper.m_TypingActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_InGameActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -554,27 +586,27 @@ public partial class @PlayerKeyBoard: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="TypingActions.AddCallbacks(ITypingActions)" />
-        /// <seealso cref="TypingActions.RemoveCallbacks(ITypingActions)" />
-        /// <seealso cref="TypingActions.UnregisterCallbacks(ITypingActions)" />
-        public void SetCallbacks(ITypingActions instance)
+        /// <seealso cref="InGameActions.AddCallbacks(IInGameActions)" />
+        /// <seealso cref="InGameActions.RemoveCallbacks(IInGameActions)" />
+        /// <seealso cref="InGameActions.UnregisterCallbacks(IInGameActions)" />
+        public void SetCallbacks(IInGameActions instance)
         {
-            foreach (var item in m_Wrapper.m_TypingActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_InGameActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_TypingActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_InGameActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="TypingActions" /> instance referencing this action map.
+    /// Provides a new <see cref="InGameActions" /> instance referencing this action map.
     /// </summary>
-    public TypingActions @Typing => new TypingActions(this);
+    public InGameActions @InGame => new InGameActions(this);
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Typing" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "InGame" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="TypingActions.AddCallbacks(ITypingActions)" />
-    /// <seealso cref="TypingActions.RemoveCallbacks(ITypingActions)" />
-    public interface ITypingActions
+    /// <seealso cref="InGameActions.AddCallbacks(IInGameActions)" />
+    /// <seealso cref="InGameActions.RemoveCallbacks(IInGameActions)" />
+    public interface IInGameActions
     {
         /// <summary>
         /// Method invoked when associated input action "TypingLetter" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -583,5 +615,12 @@ public partial class @PlayerKeyBoard: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTypingLetter(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPause(InputAction.CallbackContext context);
     }
 }

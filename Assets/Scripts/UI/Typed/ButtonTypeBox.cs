@@ -1,9 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ButtonTypeBox : TypingBox
 {
     public TextMeshProUGUI textUI;
+    public UnityEvent onTextComplete;
 
     private void Start()
     {
@@ -29,6 +31,7 @@ public class ButtonTypeBox : TypingBox
             if (IsTextComplete())
             {
                 Debug.Log($"[ButtonTypeBox - CheckingText] Text Is Done : {currentTextToType}");
+                onTextComplete.Invoke();
                 ResetTypeBox();
             }
         }
