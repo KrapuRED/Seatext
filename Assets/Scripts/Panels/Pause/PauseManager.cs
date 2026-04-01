@@ -16,13 +16,6 @@ public class PauseManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void Start()
-    {
-        PanelManager.instance.OpenPanel("panel-00");
-        isPaused = true;
-        SetPause(isPaused);
-    }
-
     public void Register(IPausable p)
     {
         pausables.Add(p);

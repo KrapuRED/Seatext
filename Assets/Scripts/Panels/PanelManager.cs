@@ -5,16 +5,15 @@ using System.Collections.Generic;
 public class PanelData 
 {
     public string panelName;
-    public string panelID;
     public bool isActive;
-    public GameObject panelGO;
+    public Panel panel;
 }
 
 public class PanelManager : MonoBehaviour
 {
     public static PanelManager instance;
 
-    public List<PanelData> panelTypes = new List<PanelData>();
+    public List<PanelData> panelDatas = new List<PanelData>();
 
     private void Awake()
     {
@@ -26,14 +25,15 @@ public class PanelManager : MonoBehaviour
 
     public void OpenPanel(string panelID)
     {
-        foreach (var panel in panelTypes)
+        Debug.Log($"[PanelManager - OpenPanel] try opening panel : {panelID}");
+        foreach (var panelData in panelDatas)
         {
-            if (panel.panelID == panelID && !panel.isActive)
+            if (panelData.panel.panelID == panelID && !panelData.isActive)
             {
-                Debug.Log($"[PanelManager - OpenPanel] Open Panel : {panel.panelName}");
+                Debug.Log($"[PanelManager - OpenPanel] Open Panel : {panelData.panelName}");
                 TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.UI);
-                panel.isActive = true;
-                panel.panelGO.SetActive(panel.isActive);
+                panelData.isActive = true;
+                panelData.panel.OpenPanel();
                 break;
             }
         }
@@ -41,14 +41,14 @@ public class PanelManager : MonoBehaviour
 
     public void ClosePanel(string panelID)
     {
-        foreach (var panel in panelTypes)
+        foreach (var panelData in panelDatas)
         {
-            if (panel.panelID == panelID && panel.isActive)
+            if (panelData.panel.panelID == panelID && panelData.isActive)
             {
-                Debug.Log($"[PanelManager - OpenPanel] Open Panel : {panel.panelName}");
+                Debug.Log($"[PanelManager - OpenPanel] Open Panel : {panelData.panelName}");
                 TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
-                panel.isActive = false;
-                panel.panelGO.SetActive(panel.isActive);
+                panelData.isActive = false;
+                panelData.panel.ClosePanel();
                 break;
             }
         }

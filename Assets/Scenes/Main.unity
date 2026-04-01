@@ -335,11 +335,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfae8186929cee148a91a9368d3fbf6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelTypes:
-  - panelName: Pasue Panel
-    panelID: panel-00
+  panelDatas:
+  - panelName: Pasue
     isActive: 0
-    panelGO: {fileID: 1450173959}
+    panel: {fileID: 1450173963}
 --- !u!1 &345865645
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +785,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1450173960}
+  - {fileID: 2013037806}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -951,6 +950,7 @@ Transform:
   - {fileID: 574863467}
   - {fileID: 1532572107}
   - {fileID: 317281105}
+  - {fileID: 1260353769}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165707943
@@ -1012,7 +1012,7 @@ MonoBehaviour:
   onTextComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1450173963}
+      - m_Target: {fileID: 1260353770}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -1024,6 +1024,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1260353768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1260353769}
+  - component: {fileID: 1260353770}
+  m_Layer: 0
+  m_Name: Manager - Pause
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1260353769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260353768}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1116874978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1260353770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260353768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d55d78d13dc5a4086b13fe99a80a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPaused: 0
 --- !u!1 &1300869192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1160,7 @@ MonoBehaviour:
     m_ActionName: 'InGame/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 9ff72d5c-d01d-4081-b9c9-68f3806cf384
+  m_DefaultActionMap: InGame
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1001 &1439664243
@@ -1203,6 +1248,7 @@ GameObject:
   - component: {fileID: 1450173962}
   - component: {fileID: 1450173961}
   - component: {fileID: 1450173963}
+  - component: {fileID: 1450173964}
   m_Layer: 5
   m_Name: Panel - Pause
   m_TagString: Untagged
@@ -1217,13 +1263,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450173959}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1165707944}
-  m_Father: {fileID: 1017440018}
+  m_Father: {fileID: 2013037806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1277,10 +1323,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1450173959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39d55d78d13dc5a4086b13fe99a80a85, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a2a864fc7586304d9b409963050f09a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 0
+  panelName: Pause Panel
+  panelID: panel-00
+  panelGO: {fileID: 1450173959}
+  cg: {fileID: 1450173964}
+--- !u!225 &1450173964
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450173959}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1511018128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,6 +1792,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1004413459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2013037805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2013037806}
+  m_Layer: 5
+  m_Name: === Panel ===
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2013037806
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013037805}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1450173960}
+  m_Father: {fileID: 1017440018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2049118184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,17 +1917,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3142005586085829606, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: _typeTypingBox
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_Name
       value: Fish
-      objectReference: {fileID: 0}
-    - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

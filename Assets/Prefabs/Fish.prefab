@@ -385,7 +385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2101408738233833046
 Transform:
   m_ObjectHideFlags: 0
@@ -503,6 +503,7 @@ MonoBehaviour:
   currentTextToType: fish
   remainingTypedText: 
   _isStillMacthing: 0
+  _typeTypingBox: 2
   setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
   fishUI: {fileID: 8893316632414643831}
   _wordData:
@@ -521,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedFish: 0
+  isCanMove: 1
 --- !u!50 &5475068481713366027
 Rigidbody2D:
   serializedVersion: 5
