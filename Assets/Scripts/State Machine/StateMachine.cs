@@ -27,7 +27,7 @@ public class StateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"[StateMachine - Update] Counting State Machine For Fish : {dataStateCondtions.Count}");
+        //Debug.Log($"[StateMachine - Update] Counting State Machine For Fish : {dataStateCondtions.Count}");
 
         foreach (var data in dataStateCondtions)
         {

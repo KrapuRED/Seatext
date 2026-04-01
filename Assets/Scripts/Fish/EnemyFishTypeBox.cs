@@ -16,19 +16,25 @@ public class EnemyFishTypeBox : TypingBox
     public override void SetTextToType(string text)
     {
         base.SetTextToType(text);
-        fishUI.SetFishWordText(currentTextToType);
+        fishUI.SetFishWordText(ChangeColorText());
     }
 
     public override bool CheckingText(string typing)
     {
+        if (_indexChar >= fullText.Length)
+        {
+            Debug.Log("Typing already complete!");
+            return false;
+        }
+
         bool isCorrectLetter = IsCorrectLetter(typing);
-        Debug.Log($"[Fish - CheckingText] Is Correct Letter : {isCorrectLetter}");
+        Debug.Log($"[{gameObject.name} - CheckingText] Is Correct Letter : {isCorrectLetter}");
 
         if (isCorrectLetter)
         {
             // Remove the correctly typed letter from the current text
             _isStillMacthing = true;
-            RemoveText();
+            _indexChar++;
 
             if (IsTextComplete())
             {
@@ -39,11 +45,11 @@ public class EnemyFishTypeBox : TypingBox
             }
 
             // Update the UI with the remaining text
-            fishUI.SetFishWordText(remainingTypedText);
+            fishUI.SetFishWordText(ChangeColorText());
         }
         else
         {
-            Debug.Log($"[Fish - CheckingText] Wrong Letter! Typed : {typing}, Expected : {remainingTypedText[0]}");
+            Debug.Log($"[Fish - CheckingText] Wrong Letter! Typed : {typing}, Expected : {fullText[0]}");
             _isStillMacthing = false;
         }
 
@@ -52,6 +58,7 @@ public class EnemyFishTypeBox : TypingBox
 
     public override void ResetTypeBox()
     {
+        _indexChar = 0;
         SetTextToType(currentTextToType);
     }
 }

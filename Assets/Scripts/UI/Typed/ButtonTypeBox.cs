@@ -26,7 +26,7 @@ public class ButtonTypeBox : TypingBox
         if (isCorrectLetter)
         {
             // Update the UI with the remaining text
-            textUI.text = remainingTypedText;
+            textUI.text = fullText;
 
             if (IsTextComplete())
             {
@@ -37,7 +37,7 @@ public class ButtonTypeBox : TypingBox
         }
         else
         {
-            Debug.Log($"[ButtonTypeBox - CheckingText] Wrong Letter! Typed : {typing}, Expected : {remainingTypedText[0]}");
+            Debug.Log($"[ButtonTypeBox - CheckingText] Wrong Letter! Typed : {typing}, Expected : {fullText[0]}");
         }
         return isCorrectLetter;
     }

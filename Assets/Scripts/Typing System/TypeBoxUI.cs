@@ -3,10 +3,10 @@ using TMPro;
 
 public class TypeBoxUI : MonoBehaviour
 {
-    public TextMeshProUGUI fishWordText;
+    public TextMeshProUGUI textUI;
 
     public virtual void SetFishWordText(string text)
     {
-        fishWordText.text = text;
+        textUI.text = text;
     }
 }

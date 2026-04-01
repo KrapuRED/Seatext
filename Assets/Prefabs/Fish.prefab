@@ -110,7 +110,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 2
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695fead8f74065a4f86e92e73320d50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishWordText: {fileID: 2260207888035701432}
+  textUI: {fileID: 2260207888035701432}
 --- !u!1 &8488203040944214544
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,9 +501,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTextToType: fish
-  remainingTypedText: 
+  fullText: 
   _isStillMacthing: 0
   _typeTypingBox: 2
+  _indexChar: 0
   setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
   fishUI: {fileID: 8893316632414643831}
   _wordData:
@@ -522,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedFish: 0
-  isCanMove: 1
+  isCanMove: 0
 --- !u!50 &5475068481713366027
 Rigidbody2D:
   serializedVersion: 5

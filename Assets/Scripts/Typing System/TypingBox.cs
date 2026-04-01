@@ -4,9 +4,10 @@ public class TypingBox : MonoBehaviour
 {
     
     public string currentTextToType;
-    [SerializeField] protected string remainingTypedText;
+    [SerializeField] protected string fullText;
     [SerializeField] protected bool _isStillMacthing;
     [SerializeField] private TypeTypingBox _typeTypingBox;
+    [SerializeField] protected int _indexChar;
     public bool IsStillMacthing => _isStillMacthing;
     public TypeTypingBox typeTypingBox => _typeTypingBox;
 
@@ -19,44 +20,48 @@ public class TypingBox : MonoBehaviour
     public virtual void SetTextToType(string text)
     {
         currentTextToType = text;
-        remainingTypedText = text;
+        fullText = text;
     }
 
-    public virtual bool CheckingText(string typing)
+    public virtual bool CheckingText(string typedText)
     {
-        bool isCorrectLetter = IsCorrectLetter(typing);
-        Debug.Log($"[TypingBox - CheckingText] Is Correct Letter : {isCorrectLetter}");
+        if (_indexChar >= fullText.Length) return false;
 
-        if (isCorrectLetter)
-        {
-            // Remove the correctly typed letter from the current text
-            _isStillMacthing = true;
-            RemoveText();
-        }
-        else
-        {
-            Debug.Log($"[TypingBox - CheckingText] Wrong Letter! Typed : {typing}, Expected : {remainingTypedText[0]}");
-            _isStillMacthing = false;
-        }
-
-        return isCorrectLetter;
+        return fullText[_indexChar].ToString() == typedText;
     }
 
     protected bool IsCorrectLetter(string typedText)
     {
-        return remainingTypedText[0].ToString() == typedText;
-   }
+        if (_indexChar >= fullText.Length)
+            return false;
 
-    public void RemoveText()
-    {
-        string remainingText = remainingTypedText.Remove(0, 1);
-        remainingTypedText = remainingText;
-        Debug.Log($"[TypingBox - RemoveText] Is Remove Letter! remaining text {remainingText}");
+        return fullText[_indexChar].ToString() == typedText;
     }
+
+   public string ChangeColorText()
+{
+    string result = string.Empty;
+
+    for (int i = 0; i < fullText.Length; i++)
+    {
+        char c = fullText[i];
+
+        if (i < _indexChar)
+        {
+            result += $"<color=green>{c}</color>";
+        }
+        else
+        {
+                result += fullText[i];
+        }
+    }
+
+    return result;
+}
 
     public bool IsTextComplete()
     {
-        return remainingTypedText.Length <= 0;
+        return _indexChar >= fullText.Length;
     }
 
     public virtual void ResetTypeBox()
