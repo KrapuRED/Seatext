@@ -3,8 +3,8 @@ using TMPro;
 
 public class FishTextUI : TypeBoxUI
 {
-    public override void SetFishWordText(string text)
+    public override void SetWordTextUI(string text)
     {
-        base.SetFishWordText(text);
+        base.SetWordTextUI(text);
     }
 }

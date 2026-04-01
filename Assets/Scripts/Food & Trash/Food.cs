@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class EnemyFishTypeBox : TypingBox
+public class Food : TypingBox
 {
-    [Header("EnemyFishTypeBox Config")]
+    [Header("Food TypingBox Config")]
     [SerializeField] private WordLevel _wordLevel;
-    [SerializeField] private FishTextUI fishUI;
+    [SerializeField] private TypeBoxUI _typeBoxUI;
     [SerializeField] private WordData _wordData;
 
     private void Start()
@@ -24,7 +24,7 @@ public class EnemyFishTypeBox : TypingBox
     public override void SetTextToType(string text)
     {
         base.SetTextToType(text);
-        fishUI.SetWordTextUI(ChangeColorText());
+        _typeBoxUI.SetWordTextUI(ChangeColorText());
     }
 
     public override bool CheckingText(string typing)
@@ -46,18 +46,18 @@ public class EnemyFishTypeBox : TypingBox
 
             if (IsTextComplete())
             {
-                Debug.Log($"[Fish - CheckingText] Text Is Done : {currentTextToType}");
+                Debug.Log($"[{gameObject.name} - CheckingText] Text Is Done : {currentTextToType}");
                 WordBankManager.instance.CheckWordByWordData(_wordData.word);
                 TypeBoxManager.instance.RemoveTypeBox(this);
                 Destroy(gameObject);
             }
 
             // Update the UI with the remaining text
-            fishUI.SetWordTextUI(ChangeColorText());
+            _typeBoxUI.SetWordTextUI(ChangeColorText());
         }
         else
         {
-            Debug.Log($"[Fish - CheckingText] Wrong Letter! Typed : {typing}, Expected : {fullText[0]}");
+            Debug.Log($"[{gameObject.name} - CheckingText] Wrong Letter! Typed : {typing}, Expected : {fullText[0]}");
             _isStillMacthing = false;
         }
 

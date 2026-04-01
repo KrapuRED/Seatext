@@ -29,7 +29,7 @@ public class EnemyFish : Fish, IPausable
         fishMovement.SetCanMove(true);
     }
 
-    private void Awake()
+    private void Start()
     {
         IntilazeFish();
     }

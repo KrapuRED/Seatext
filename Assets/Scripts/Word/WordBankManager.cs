@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public enum WordLevel
 {
@@ -89,23 +90,20 @@ public class WordBankManager : MonoBehaviour
         _activeWordData.Add(wordData);
     }
 
-    public WordData GetRandomWordData()
+    public WordData GetRandomWordData(WordLevel worldLevel)
     {
-        if (_inactiveWordData.Count <= 0)
+        //Find the all word with the same level and get random word data from it
+        var validWords = _inactiveWordData.Where(wordData => wordData.wordLevel == worldLevel).ToList();
+
+        //Check if there is any valid word data available for the requested level
+        if (validWords.Count == 0)
         {
-            Debug.LogWarning("No more available words in the active word data!");
+            Debug.LogWarning("[WordBankManager - GetRandomWordData] No available words for this level!");
             return null;
         }
 
-        int randomIndex = Random.Range(0, _activeWordData.Count);
-
-        WordData availableWord = _inactiveWordData[randomIndex];
-
-        if (_activeWordData.Contains(availableWord))
-        {
-            Debug.Log("Word is already used. Getting another availableWord...");
-            return GetRandomWordData();
-        }
+        int randomIndex = Random.Range(0, validWords.Count);
+        WordData availableWord = validWords[randomIndex];
 
         RemoveWordDataFromInactive(availableWord);
         return availableWord;
@@ -123,19 +121,4 @@ public class WordBankManager : MonoBehaviour
             }
         }
     }
-
-    #region Test Method
-
-    private void TestGetRandomWord()
-    {
-        int testCount = 2;
-
-        for (int i = 0; i < testCount; i++)
-        {
-            string randomWord = GetRandomWordData().word;
-            Debug.Log($"Random Word {i + 1}: {randomWord}");
-        }
-    }
-
-    #endregion
 }
