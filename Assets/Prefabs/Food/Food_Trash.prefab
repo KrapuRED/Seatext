@@ -215,6 +215,7 @@ MonoBehaviour:
   _wordData:
     word: 
     wordLevel: 0
+  setPositionPlayerEvent: {fileID: 11400000, guid: b5d65512b82cc9c48b39e39f132f10e9, type: 2}
 --- !u!1 &3987088421947053455
 GameObject:
   m_ObjectHideFlags: 0

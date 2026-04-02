@@ -7,6 +7,9 @@ public class Food : TypingBox
     [SerializeField] private TypeBoxUI _typeBoxUI;
     [SerializeField] private WordData _wordData;
 
+    [Header("Events")]
+    [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
+
     public void InitializeFood(WordLevel wordLevel)
     {
         _wordLevel = wordLevel;
@@ -50,7 +53,9 @@ public class Food : TypingBox
                 Debug.Log($"[{gameObject.name} - CheckingText] Text Is Done : {currentTextToType}");
                 WordBankManager.instance.CheckWordByWordData(_wordData.word);
                 TypeBoxManager.instance.RemoveTypeBox(this);
-                Destroy(gameObject);
+                //call event to set this position to player fish
+                setPositionPlayerEvent.OnRaise(transform);
+                gameObject.SetActive(false);
             }
 
             // Update the UI with the remaining text

@@ -18,7 +18,10 @@ public class FishMovement : MonoBehaviour
     public void MoveFish(Transform TargetPosition)
     {
         if (!isCanMove)
+        {
+            Debug.Log($"[FishMovement - MoveFish] Fish Cannot Move To Position!");
             return;
+        }
 
         Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.name}");
         _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition.position, _speedFish * Time.deltaTime));
