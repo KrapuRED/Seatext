@@ -7,8 +7,9 @@ public class Food : TypingBox
     [SerializeField] private TypeBoxUI _typeBoxUI;
     [SerializeField] private WordData _wordData;
 
-    private void Start()
+    public void InitializeFood(WordLevel wordLevel)
     {
+        _wordLevel = wordLevel;
         _wordData = WordBankManager.instance.GetRandomWordData(_wordLevel);
 
         if (_wordData == null)

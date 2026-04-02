@@ -27,6 +27,7 @@ public class ButtonTypeBox : TypingBox
         {
             // Update the UI with the remaining text
             textUI.text = fullText;
+            _indexChar++;
 
             if (IsTextComplete())
             {
@@ -34,6 +35,8 @@ public class ButtonTypeBox : TypingBox
                 onTextComplete.Invoke();
                 ResetTypeBox();
             }
+
+            textUI.text = ChangeColorText();
         }
         else
         {
@@ -45,6 +48,7 @@ public class ButtonTypeBox : TypingBox
     public override void ResetTypeBox()
     {
         base.ResetTypeBox();
+        _indexChar = 0;
         textUI.text = currentTextToType;
     }
 }
