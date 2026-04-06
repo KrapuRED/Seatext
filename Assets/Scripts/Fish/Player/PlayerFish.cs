@@ -30,6 +30,17 @@ public class PlayerFish : Fish
         fishMovement.MoveFish(targetPosition);
     }
 
+    public override void SetBeenHunted(bool isBeenHunted, Fish c)
+    {
+        base.SetBeenHunted(isBeenHunted);
+        Debug.Log($"{gameObject.name} is been Hunted!");
+    }
+
+    public void DodgeEnemy()
+    {
+        Debug.Log("[PlayerFish - DodgeEnemy] Try to Dodge Enemy Attack!");
+    }
+
     public void SetPlayerFishDirection(Transform targetPosition)
     {
         Debug.Log("[PlayerFish - SetPlayerFishDirection] Try to Move PlayerFish");

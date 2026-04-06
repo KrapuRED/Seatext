@@ -209,7 +209,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 942040494}
   m_Father: {fileID: 200569685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &136555575
@@ -306,8 +307,8 @@ Transform:
   m_Children:
   - {fileID: 100142063}
   - {fileID: 1077437399}
-  - {fileID: 2049118185}
   - {fileID: 159991153}
+  - {fileID: 2049118185}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &214650428
@@ -321,7 +322,7 @@ GameObject:
   - component: {fileID: 214650429}
   - component: {fileID: 214650430}
   - component: {fileID: 214650431}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerFish - Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,6 +854,128 @@ Transform:
   - {fileID: 345865646}
   m_Father: {fileID: 2049118185}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &942040493
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 100142063}
+    m_Modifications:
+    - target: {fileID: 38333581360968704, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: EndWayPoint
+      value: 
+      objectReference: {fileID: 700161400}
+    - target: {fileID: 620111283411204714, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 774021425589146897, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557782569638808407, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956725223684295917, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: dectactionTag
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956725223684295917, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: visionLayerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956725223684295917, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: visionlayerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142005586085829606, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: currentPlayerFish
+      value: 
+      objectReference: {fileID: 2001083392}
+    - target: {fileID: 3142005586085829606, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: setPositionPlayerEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: b5d65512b82cc9c48b39e39f132f10e9, type: 2}
+    - target: {fileID: 4327809490423003142, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646468932679785480, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Name
+      value: Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_TagString
+      value: Food
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015279848418000023, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148329688720175899, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+--- !u!4 &942040494 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+  m_PrefabInstance: {fileID: 942040493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &951039322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,9 +2232,10 @@ GameObject:
   - component: {fileID: 2001083393}
   - component: {fileID: 2001083392}
   - component: {fileID: 2001083391}
-  m_Layer: 0
+  - component: {fileID: 2001083394}
+  m_Layer: 6
   m_Name: Player - Fish
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2173,6 +2297,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fishData: {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
   _fishMovement: {fileID: 214650430}
+  _fishEyeSight: {fileID: 0}
+  _isBeenHunted: 0
   targetPosition: {fileID: 0}
   setPositionPlayerEvent: {fileID: 11400000, guid: b5d65512b82cc9c48b39e39f132f10e9, type: 2}
 --- !u!212 &2001083393
@@ -2230,6 +2356,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2001083394
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001083389}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.21133333}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2013037805
 GameObject:
   m_ObjectHideFlags: 0

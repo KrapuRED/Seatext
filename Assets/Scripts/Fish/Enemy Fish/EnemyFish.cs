@@ -7,6 +7,7 @@ public class EnemyContex
     public Transform endWypointPoint;
 
     public FishMovement enemyFishMovement;
+    public FishEyeSight enemyFishEyeSight;
 }
 
 public class EnemyFish : Fish, IPausable
@@ -40,10 +41,11 @@ public class EnemyFish : Fish, IPausable
 
         Contex = new EnemyContex
         {
-            enemyObject = gameObject,
-            enemyPosition = transform,
-            endWypointPoint = EndWayPoint,
-            enemyFishMovement = fishMovement
+            enemyObject         = gameObject,
+            enemyPosition       = transform,
+            endWypointPoint     = EndWayPoint,
+            enemyFishMovement   = fishMovement,
+            enemyFishEyeSight   = fishEyeSight
         };
 
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);

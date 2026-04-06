@@ -3,9 +3,13 @@ using UnityEngine;
 public class EnemyFishTypeBox : TypingBox
 {
     [Header("EnemyFishTypeBox Config")]
+    [SerializeField] private Fish currentPlayerFish;
     [SerializeField] private WordLevel _wordLevel;
     [SerializeField] private FishTextUI fishUI;
     [SerializeField] private WordData _wordData;
+
+    [Header("Events")]
+    [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
 
     private void Start()
     {
@@ -49,7 +53,15 @@ public class EnemyFishTypeBox : TypingBox
                 Debug.Log($"[Fish - CheckingText] Text Is Done : {currentTextToType}");
                 WordBankManager.instance.CheckWordByWordData(_wordData.word);
                 TypeBoxManager.instance.RemoveTypeBox(this);
-                Destroy(gameObject);
+
+                if (!currentPlayerFish.isBeenHunted)
+                {
+                    setPositionPlayerEvent.OnRaise(transform);
+                    gameObject.SetActive(false);
+                }
+                else
+                    Debug.Log("Dodge!");
+                
             }
 
             // Update the UI with the remaining text
