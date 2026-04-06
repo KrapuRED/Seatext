@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.LightTransport;
 
 public enum WordLevel
 {
@@ -22,9 +23,10 @@ public class WordBankManager : MonoBehaviour
     public static WordBankManager instance;
 
     [Header("Word Config")]
+    [SerializeField] private TextAsset _wordBankText;
     [SerializeField] private List<string> _word = new List<string>();
     [SerializeField] private List<WordData> _activeWordData = new List<WordData>();
-    [SerializeField] private List<WordData> _inactiveWordData = new List<WordData>();
+    private List<WordData> _inactiveWordData = new List<WordData>();
 
     private void Awake()
     {
@@ -33,16 +35,50 @@ public class WordBankManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        SetActiveWordData();
+        SetWordBankData();
     }
 
-    private void SetActiveWordData()
+    private void SetWordBankData()
     {
+        ConvertTextToWord();
+
         foreach (var word in _word)
         {
             int lenght = word.Length;
             _inactiveWordData.Add(CreateWordData(word, lenght));
         }
+    }
+
+    private void ConvertTextToWord()
+    {
+        if (_wordBankText == null)
+        {
+            Debug.LogError("WordBankText is NULL!");
+            return;
+        }
+
+        string content = _wordBankText.text;
+
+        string[] lines = content.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
+
+        List<string> words = new List<string>();
+
+        foreach (string line in lines)
+        {
+            string[] splitWords = line.Split(',');
+
+            foreach (string word in splitWords)
+            {
+                string cleanWord = word.Trim();
+
+                if (!string.IsNullOrEmpty(cleanWord))
+                {
+                    words.Add(cleanWord);
+                }
+            }
+        }
+
+        _word = words;
     }
 
     private WordData CreateWordData(string word, int lenght)

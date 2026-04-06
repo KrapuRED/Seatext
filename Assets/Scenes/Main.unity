@@ -1904,11 +1904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa56422aff5626641b5bacfdd72a0af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _word:
-  - fun
-  - bottleneck
-  - achives
-  - tank
+  _wordBankText: {fileID: 4900000, guid: 12169315e08f9da46ad42473eb6d002a, type: 3}
+  _word: []
   _activeWordData: []
   _inactiveWordData: []
 --- !u!1 &1551111232
