@@ -24,6 +24,8 @@ public class FishMovement : MonoBehaviour
             return;
         }
 
+        RotateFish(TargetPosition);
+
         Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.name}");
         _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition.position, _speedFish * Time.deltaTime));
     }
@@ -33,9 +35,13 @@ public class FishMovement : MonoBehaviour
         _rigidbody2D.AddForce(dodgeDir * _dodgeForce, ForceMode2D.Impulse);
     }
 
-    private void RotateFish()
+    private void RotateFish(Transform TargetPosition)
     {
+        Vector2 direction = TargetPosition.position - transform.position;
 
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        _rigidbody2D.rotation = angle - 90f;
     }
 
     public void SetCanMove(bool canMove)

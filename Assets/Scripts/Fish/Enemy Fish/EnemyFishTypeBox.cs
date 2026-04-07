@@ -57,13 +57,11 @@ public class EnemyFishTypeBox : TypingBox
 
                 if (currentPlayerFish.isBeenHunted)
                 {
-
                     currentPlayerFish.DodgeAttackFish(currentEnemyFish.Contex.enemyFishEyeSight.AttackDirection);
                 }
                 else
                 {
                     setPositionPlayerEvent.OnRaise(transform);
-                    gameObject.SetActive(false);
                 }
                 
             }

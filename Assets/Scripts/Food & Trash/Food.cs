@@ -1,14 +1,31 @@
 using UnityEngine;
 
-public class Food : TypingBox
+public class Food : TypingBox, IEatable
 {
     [Header("Food TypingBox Config")]
     [SerializeField] private WordLevel _wordLevel;
     [SerializeField] private TypeBoxUI _typeBoxUI;
     [SerializeField] private WordData _wordData;
 
+    [Header("Food and Trash Movement")]
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float limitYPosition;
+
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
+
+    public bool IsEdible { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    private void Update()
+    {
+        if (transform.position.y <= limitYPosition)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        transform.Translate(Vector2.down * _moveSpeed * Time.deltaTime);
+    }
 
     public void InitializeFood(WordLevel wordLevel)
     {
@@ -55,7 +72,6 @@ public class Food : TypingBox
                 TypeBoxManager.instance.RemoveTypeBox(this);
                 //call event to set this position to player fish
                 setPositionPlayerEvent.OnRaise(transform);
-                gameObject.SetActive(false);
             }
 
             // Update the UI with the remaining text
@@ -74,5 +90,11 @@ public class Food : TypingBox
     {
         _indexChar = 0;
         SetTextToType(currentTextToType);
+    }
+
+    public void Eat()
+    {
+        Debug.Log($"[Food - Eat] Food {gameObject.name} has been eaten!");
+        gameObject.SetActive(false);
     }
 }

@@ -1,19 +1,28 @@
 using UnityEngine;
 
-public class PlayerFish : Fish
+public class PlayerFish : Fish, IPausable, IEatable
 {
+    public static PlayerFish playerFish;
+
     [Header("Player Fish Config")]
     [SerializeField] private Transform targetPosition;
+    [SerializeField] private float distanceToTarget;
 
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
 
     private Rigidbody2D _rb2d;
 
+    public bool IsEdible { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     private void Start()
     {
+        if (playerFish == null)
+            playerFish = this;
+
         _rb2d = GetComponent<Rigidbody2D>();
         fishMovement.IntilizaFishMovement(_rb2d, fishData);
+        PauseManager.instance.Register(this);
     }
 
     private void Update()
@@ -21,13 +30,23 @@ public class PlayerFish : Fish
         if (targetPosition == null)
             return;
 
-        if (CheckDistanceToTarget() <= 0.01f)
+        if (CheckDistanceToTarget() <= distanceToTarget)
         {
             targetPosition = null;
             return;
         }
 
         fishMovement.MoveFish(targetPosition);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IEatable eatable = collision.GetComponent<IEatable>();
+
+        if (eatable == null)
+            return;
+
+        eatable.Eat();
     }
 
     public override void SetBeenHunted(bool isBeenHunted, Fish c)
@@ -65,4 +84,19 @@ public class PlayerFish : Fish
         setPositionPlayerEvent.Unregister(SetPlayerFishDirection);
     }
 
+    public void OnPause()
+    {
+        enabled = false;
+    }
+
+    public void OnResume()
+    {
+        enabled = true;
+    }
+
+    public void Eat()
+    {
+        Debug.Log($"[PlayerFish - Eat] Enemy Fish {gameObject.name} has been eaten!");
+        gameObject.SetActive(false);
+    }
 }

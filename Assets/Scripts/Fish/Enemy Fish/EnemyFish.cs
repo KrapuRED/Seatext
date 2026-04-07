@@ -10,13 +10,14 @@ public class EnemyContex
     public FishEyeSight enemyFishEyeSight;
 }
 
-public class EnemyFish : Fish, IPausable
+public class EnemyFish : Fish, IPausable, IEatable
 {
     [Header("Fish Config")]
     [SerializeField] private Transform EndWayPoint;
     [SerializeField] private EnemyFishTypeBox _enemyFishTypeBox;
 
     public EnemyContex Contex { get; private set; }
+    public bool IsEdible { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     public void OnPause()
     {
@@ -30,14 +31,10 @@ public class EnemyFish : Fish, IPausable
         fishMovement.SetCanMove(true);
     }
 
-    private void Start()
-    {
-        IntilazeFish();
-    }
-
-    private void IntilazeFish()
+    public void IntilazeFish(Transform endWayPoint)
     {
         Debug.Log($"[Fish - Start] Fish Name : {fishData.fishName}");
+        EndWayPoint = endWayPoint;
 
         Contex = new EnemyContex
         {
@@ -53,5 +50,11 @@ public class EnemyFish : Fish, IPausable
         fishMovement.IntilizaFishMovement(GetComponent<Rigidbody2D>(), fishData);
 
         PauseManager.instance.Register(this);
+    }
+
+    public void Eat()
+    {
+        Debug.Log($"[PlayerFish - Eat] {gameObject.name} has been eaten!");
+        gameObject.SetActive(false);
     }
 }

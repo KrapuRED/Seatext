@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3639267026855341837}
   - component: {fileID: 1933550344106970129}
   - component: {fileID: 2260207888035701432}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TypeBox - Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 7371194148425657189}
   - component: {fileID: 8503402597608621200}
   - component: {fileID: 4006145981459654494}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TypeBox - Backround Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8940869220473966212}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TypeBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6112801966444948643}
   - component: {fileID: 2860927579141699713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: left Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 2172220871561528027}
   - component: {fileID: 8632146453185220947}
   - component: {fileID: 8893316632414643831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '# === Fish Canvas === #'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,9 +466,10 @@ GameObject:
   - component: {fileID: 3142005586085829606}
   - component: {fileID: 790537203351147450}
   - component: {fileID: 5475068481713366027}
-  m_Layer: 0
+  - component: {fileID: 1985634371368537701}
+  m_Layer: 6
   m_Name: Fish-Enemy
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -574,6 +575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fishData: {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
   _fishMovement: {fileID: 790537203351147450}
+  _fishEyeSight: {fileID: 1956725223684295917}
+  _isBeenHunted: 0
   EndWayPoint: {fileID: 0}
   _enemyFishTypeBox: {fileID: 3142005586085829606}
 --- !u!114 &3142005586085829606
@@ -588,17 +591,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6e5b6272ade6946a3ec9cadb633534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTextToType: fish
+  currentTextToType: 
   fullText: 
   _isStillMacthing: 0
   _typeTypingBox: 2
   _indexChar: 0
   setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
+  currentPlayerFish: {fileID: 0}
+  currentEnemyFish: {fileID: 38333581360968704}
   _wordLevel: 1
   fishUI: {fileID: 8893316632414643831}
   _wordData:
     word: 
     wordLevel: 0
+  setPositionPlayerEvent: {fileID: 11400000, guid: b5d65512b82cc9c48b39e39f132f10e9, type: 2}
 --- !u!114 &790537203351147450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,7 +618,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedFish: 0
-  isCanMove: 0
+  _dodgeForce: 0
+  isCanMove: 1
 --- !u!50 &5475068481713366027
 Rigidbody2D:
   serializedVersion: 5
@@ -640,6 +647,52 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &1985634371368537701
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488203040944214544}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.21133333}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &9015279848418000023
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8487349879090675023}
   - component: {fileID: 6595942524597482661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,13 +790,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1577401565540255216}
   - component: {fileID: 1956725223684295917}
-  m_Layer: 0
-  m_Name: Fish - EyeSight
+  m_Layer: 6
+  m_Name: Fish Enemy - EyeSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1577401565540255216
 Transform:
   m_ObjectHideFlags: 0
@@ -773,6 +826,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a56ed1411ed944b8d5c60b7f634ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewDistance: 100
+  viewDistance: 10
   LeftEye: {fileID: 6112801966444948643}
   RightEye: {fileID: 8487349879090675023}
+  visionLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  dectactionTag: Player
+  currentObject: {fileID: 0}
