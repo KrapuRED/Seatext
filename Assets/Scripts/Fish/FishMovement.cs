@@ -4,6 +4,7 @@ public class FishMovement : MonoBehaviour
 {
     [Header("FishMovement Config")]
     [SerializeField] private float _speedFish;
+    [SerializeField] private float _dodgeForce;
     [SerializeField] private bool isCanMove;
 
     private Rigidbody2D _rigidbody2D;
@@ -25,6 +26,16 @@ public class FishMovement : MonoBehaviour
 
         Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.name}");
         _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition.position, _speedFish * Time.deltaTime));
+    }
+
+    public void Dodge(Vector2 dodgeDir)
+    {
+        _rigidbody2D.AddForce(dodgeDir * _dodgeForce, ForceMode2D.Impulse);
+    }
+
+    private void RotateFish()
+    {
+
     }
 
     public void SetCanMove(bool canMove)

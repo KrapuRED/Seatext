@@ -36,9 +36,11 @@ public class PlayerFish : Fish
         Debug.Log($"{gameObject.name} is been Hunted!");
     }
 
-    public void DodgeEnemy()
+    public override void DodgeAttackFish(Vector2 attackDirection)
     {
-        Debug.Log("[PlayerFish - DodgeEnemy] Try to Dodge Enemy Attack!");
+        base.DodgeAttackFish(attackDirection);
+        Vector2 dodgeDir = Vector2.Perpendicular(attackDirection);
+        fishMovement.Dodge(dodgeDir);
     }
 
     public void SetPlayerFishDirection(Transform targetPosition)

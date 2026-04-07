@@ -866,6 +866,10 @@ PrefabInstance:
       propertyPath: EndWayPoint
       value: 
       objectReference: {fileID: 700161400}
+    - target: {fileID: 38333581360968704, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: _fishEyeSight
+      value: 
+      objectReference: {fileID: 1676206791}
     - target: {fileID: 620111283411204714, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -904,7 +908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8870109
       objectReference: {fileID: 0}
     - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -916,7 +920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.46174863
       objectReference: {fileID: 0}
     - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -928,12 +932,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 3142005586085829606, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: currentPlayerFish
       value: 
       objectReference: {fileID: 2001083392}
+    - target: {fileID: 3142005586085829606, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: currentTextToType
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3142005586085829606, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: setPositionPlayerEvent
       value: 
@@ -948,7 +956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_Name
-      value: Fish
+      value: 'Enemy Fish '
       objectReference: {fileID: 0}
     - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_Layer
@@ -961,6 +969,10 @@ PrefabInstance:
     - target: {fileID: 9015279848418000023, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148329688720175899, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+      propertyPath: m_Name
+      value: Fish Enemy - EyeSight
       objectReference: {fileID: 0}
     - target: {fileID: 9148329688720175899, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_Layer
@@ -2077,6 +2089,17 @@ Transform:
   - {fileID: 1300869193}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1676206791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1956725223684295917, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
+  m_PrefabInstance: {fileID: 942040493}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a56ed1411ed944b8d5c60b7f634ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1809786127
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,7 +2284,7 @@ GameObject:
   - component: {fileID: 2001083391}
   - component: {fileID: 2001083394}
   m_Layer: 6
-  m_Name: Player - Fish
+  m_Name: Player Fish
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

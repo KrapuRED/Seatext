@@ -16,4 +16,9 @@ public class Fish : MonoBehaviour
     {
         _isBeenHunted = isBeenHunted;
     }
+
+    public virtual void DodgeAttackFish(Vector2 attackDirection)
+    {
+        Debug.Log($"[{gameObject.name} - DodgeEnemy] Try to Dodge Enemy Attack!");
+    }
 }

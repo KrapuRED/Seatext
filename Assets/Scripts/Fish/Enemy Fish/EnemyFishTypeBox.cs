@@ -4,6 +4,7 @@ public class EnemyFishTypeBox : TypingBox
 {
     [Header("EnemyFishTypeBox Config")]
     [SerializeField] private Fish currentPlayerFish;
+    [SerializeField] private EnemyFish currentEnemyFish;
     [SerializeField] private WordLevel _wordLevel;
     [SerializeField] private FishTextUI fishUI;
     [SerializeField] private WordData _wordData;
@@ -54,13 +55,16 @@ public class EnemyFishTypeBox : TypingBox
                 WordBankManager.instance.CheckWordByWordData(_wordData.word);
                 TypeBoxManager.instance.RemoveTypeBox(this);
 
-                if (!currentPlayerFish.isBeenHunted)
+                if (currentPlayerFish.isBeenHunted)
+                {
+
+                    currentPlayerFish.DodgeAttackFish(currentEnemyFish.Contex.enemyFishEyeSight.AttackDirection);
+                }
+                else
                 {
                     setPositionPlayerEvent.OnRaise(transform);
                     gameObject.SetActive(false);
                 }
-                else
-                    Debug.Log("Dodge!");
                 
             }
 

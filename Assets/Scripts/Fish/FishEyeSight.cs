@@ -11,19 +11,29 @@ public class FishEyeSight : MonoBehaviour
 
     [SerializeField] private Transform currentObject;
 
-    private void Update()
+    public Vector2 AttackDirection {get; private set;}
+
+private void Update()
     {
-        InitileizeEyeSight();
+        UpdateEyeSight();
     }
 
-    private void InitileizeEyeSight()
+    private void UpdateEyeSight()
     {
         //Set Raycast to see
-        CheckEyeSight(LeftEye);
-        CheckEyeSight(RightEye);
+        Transform leftEyeResult =  CheckEyeSight(LeftEye);
+        Transform rightEyeResult = CheckEyeSight(RightEye);
+
+        currentObject = leftEyeResult != null ? leftEyeResult : rightEyeResult;
+        bool isSeeing = currentObject != null;
+
+        if (isSeeing)
+        {
+            SetBeenHunted(isSeeing);
+        }
     }
 
-    private void CheckEyeSight(Transform eye)
+    private Transform CheckEyeSight(Transform eye)
     {
         //Direction Eye Facing
         Vector2 directionEye = eye.up;
@@ -32,30 +42,24 @@ public class FishEyeSight : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(eye.position, directionEye, viewDistance, visionLayerMask);
 
-        if (hit.collider != null)
+        if (hit.collider != null && hit.collider.CompareTag(dectactionTag))
         {
-            if (hit.collider.CompareTag(dectactionTag)){
-                currentObject = hit.transform;
-                SetBeenHunted(true);
-                Debug.Log($"[FishEyeSight - CheckEyeSight] {gameObject.name} is see {currentObject.name}");
-            }
+            return hit.transform;
         }
-        else
-        {
-            SetBeenHunted(false);
-            currentObject = null;
-        }
+
+        return null;
     }
 
     private void SetBeenHunted(bool hunted)
     {
-        if (currentObject == null || currentObject.tag == "Fish")
-        {
-            return;
-        }
+        if (currentObject == null) return;
 
         Fish currentFish = currentObject.GetComponent<Fish>();
-        currentFish.SetBeenHunted(hunted, currentFish);
+        if (currentFish != null)
+        {
+            AttackDirection = (currentObject.position - transform.position).normalized;
+            currentFish.SetBeenHunted(hunted, currentFish);
+        }
     }
 
     // Able identefy is an edible fish or not
