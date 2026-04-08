@@ -29,10 +29,15 @@ public class SpawnerManager : MonoBehaviour, IPausable
     [SerializeField] protected bool _isSpawning;
     [SerializeField] protected WordLevel wordLevel;
 
+    private void Start()
+    {
+        PauseManager.instance.Register(this);
+        Spawn();
+    }
+
     public void OnPause()
     {
         _isSpawning = false;
-        
     }
 
     public void OnResume()
@@ -43,7 +48,7 @@ public class SpawnerManager : MonoBehaviour, IPausable
 
     public virtual void Spawn()
     {
-        
+        Debug.Log("[SpawnerManager - Spawn] Spawning...");
     }
 
     public SpawingAreaData GetRandomSpawmPoint()

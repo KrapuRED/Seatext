@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public class Food : TypingBox, IEatable
+public class Food : TypingBox, IEatable, IPausable
 {
+    [Header("Food Config")]
+    [SerializeField] private DropFoodSO _dropFoodSO;
+
     [Header("Food TypingBox Config")]
     [SerializeField] private WordLevel _wordLevel;
     [SerializeField] private TypeBoxUI _typeBoxUI;
@@ -10,18 +13,25 @@ public class Food : TypingBox, IEatable
     [Header("Food and Trash Movement")]
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float limitYPosition;
+    [SerializeField] private bool _canMove;
 
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
 
     public bool IsEdible { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
+    private SpriteRenderer _spriteRenderer;
+
     private void Update()
     {
+        if (!_canMove)
+        {
+            return;
+        }
+
         if (transform.position.y <= limitYPosition)
         {
-            WordBankManager.instance.CheckWordByWordData(_wordData.word);
-            TypeBoxManager.instance.RemoveTypeBox(this);
+            RemoveWord();
 
             Destroy(gameObject);
             return;
@@ -30,10 +40,13 @@ public class Food : TypingBox, IEatable
         transform.Translate(Vector2.down * _moveSpeed * Time.deltaTime);
     }
 
-    public void InitializeFood(WordLevel wordLevel)
+    public void InitializeFood(WordLevel wordLevel, DropFoodSO foodData)
     {
+        _dropFoodSO = foodData;
         _wordLevel = wordLevel;
+
         _wordData = WordBankManager.instance.GetRandomWordData(_wordLevel);
+        PauseManager.instance.Register(this);
 
         if (_wordData == null)
         {
@@ -41,6 +54,9 @@ public class Food : TypingBox, IEatable
             return;
         }
 
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _spriteRenderer.color = Color.black;
         SetTextToType(_wordData.word);
         setTypeBoxEvent.Raise(this);
     }
@@ -71,8 +87,8 @@ public class Food : TypingBox, IEatable
             if (IsTextComplete())
             {
                 Debug.Log($"[{gameObject.name} - CheckingText] Text Is Done : {currentTextToType}");
-                WordBankManager.instance.CheckWordByWordData(_wordData.word);
-                TypeBoxManager.instance.RemoveTypeBox(this);
+                RemoveWord();
+
                 //call event to set this position to player fish
                 setPositionPlayerEvent.OnRaise(transform);
             }
@@ -97,7 +113,39 @@ public class Food : TypingBox, IEatable
 
     public void Eat()
     {
-        Debug.Log($"[Food - Eat] Food {gameObject.name} has been eaten!");
-        gameObject.SetActive(false);
+        switch (_dropFoodSO.foodType)
+        {
+            case FoodType.Trash:
+                Debug.Log($"[Food - Eat] Trash {gameObject.name} has been eaten! Player will lose health.");
+                PlayerFish.playerFish.SetTrashinHungerbar(_dropFoodSO.gainStatus);
+                break;
+
+            case FoodType.Pellet:
+                Debug.Log($"[Food - Eat] Pellet {gameObject.name} has been eaten! Player will gain some points.");
+                break;
+
+            case FoodType.Goldenpellet:
+                Debug.Log($"[Food - Eat] Goldenpellet {gameObject.name} has been eaten! Player will gain some points.");
+                break;
+        }
+
+        RemoveWord();
+        Destroy(gameObject);
+    }
+
+    private void RemoveWord()
+    {
+        WordBankManager.instance.CheckWordByWordData(_wordData.word);
+        TypeBoxManager.instance.RemoveTypeBox(this);
+    }
+
+    public void OnPause()
+    {
+        _canMove = false;
+    }
+
+    public void OnResume()
+    {
+        _canMove = true;
     }
 }

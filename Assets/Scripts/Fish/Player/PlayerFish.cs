@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class PlayerFish : Fish, IPausable, IEatable
 {
-    public static PlayerFish playerFish;
+    public static PlayerFish playerFish { get; private set; }
 
     [Header("Player Fish Config")]
     [SerializeField] private Transform targetPosition;
     [SerializeField] private float distanceToTarget;
+    [SerializeField] private float maxHunger;
+    [SerializeField] private float trashGain;
 
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
@@ -15,11 +17,19 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     public bool IsEdible { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
+    private void Awake()
+    {
+        if (playerFish != null && playerFish != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        playerFish = this;
+    }
+
     private void Start()
     {
-        if (playerFish == null)
-            playerFish = this;
-
         _rb2d = GetComponent<Rigidbody2D>();
         fishMovement.IntilizaFishMovement(_rb2d, fishData);
         PauseManager.instance.Register(this);
@@ -74,14 +84,10 @@ public class PlayerFish : Fish, IPausable, IEatable
         return distance;
     }
 
-    private void OnEnable()
+    public void SetTrashinHungerbar(float gainTrash)
     {
-        setPositionPlayerEvent.Register(SetPlayerFishDirection);
-    }
-
-    private void OnDisable()
-    {
-        setPositionPlayerEvent.Unregister(SetPlayerFishDirection);
+        trashGain += gainTrash;
+        maxHunger -= gainTrash;
     }
 
     public void OnPause()
@@ -98,5 +104,15 @@ public class PlayerFish : Fish, IPausable, IEatable
     {
         Debug.Log($"[PlayerFish - Eat] Enemy Fish {gameObject.name} has been eaten!");
         gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        setPositionPlayerEvent.Register(SetPlayerFishDirection);
+    }
+
+    private void OnDisable()
+    {
+        setPositionPlayerEvent.Unregister(SetPlayerFishDirection);
     }
 }

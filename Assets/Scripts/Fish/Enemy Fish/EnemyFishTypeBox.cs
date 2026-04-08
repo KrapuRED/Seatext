@@ -54,7 +54,7 @@ public class EnemyFishTypeBox : TypingBox
                 Debug.Log($"[Fish - CheckingText] Text Is Done : {currentTextToType}");
                 RemoveWordFromFish();
 
-                if (currentPlayerFish.isBeenHunted)
+                if (PlayerFish.playerFish.isBeenHunted)
                 {
                     currentPlayerFish.DodgeAttackFish(currentEnemyFish.Contex.enemyFishEyeSight.AttackDirection);
                 }

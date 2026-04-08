@@ -3,11 +3,8 @@ using System.Collections.Generic;
 
 public class FoodTrashSpawnerManager : SpawnerManager
 {
-
-    private void Start()
-    {
-        Spawn();
-    }
+    [Header("Food and Trash Spawner Config")]
+    [SerializeField] private List<DropFoodSO> _foodDataList = new List<DropFoodSO>();
 
     public override void Spawn()
     {
@@ -28,6 +25,13 @@ public class FoodTrashSpawnerManager : SpawnerManager
         }
 
         Food newFood = newFoodGO.GetComponent<Food>();
-        newFood.InitializeFood(wordLevel);
+        newFood.InitializeFood(wordLevel, RandomFoodData());
+    }
+
+    private DropFoodSO RandomFoodData()
+    {
+        DropFoodSO randomFoodData = _foodDataList[Random.Range(0, _foodDataList.Count)];
+
+        return randomFoodData;
     }
 }

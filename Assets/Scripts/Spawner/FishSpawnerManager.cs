@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class FishSpawnerManager : SpawnerManager
 {
-    private void Start()
-    {
-        Spawn();
-    }
-
     public override void Spawn()
     {
         if (!_isSpawning)

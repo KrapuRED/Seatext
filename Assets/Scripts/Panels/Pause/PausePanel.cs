@@ -4,6 +4,14 @@ public class PausePanel : Panel
 {
     public CanvasGroup cg;
 
+    private void Start()
+    {
+        if (cg.alpha == 1)
+        {
+            PanelManager.instance.OpenPanel(panelID);
+        }
+    }
+
     public override void OpenPanel()
     {
         PauseManager.instance.SetPause(true);

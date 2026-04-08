@@ -28,7 +28,9 @@ public class PauseManager : MonoBehaviour
 
     public void SetPause(bool pause)
     {
-        foreach (var p in pausables)
+        var snapshot = new List<IPausable>(pausables);
+
+        foreach (var p in snapshot)
         {
             if (pause) p.OnPause();
             else p.OnResume();
