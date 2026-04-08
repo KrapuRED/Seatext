@@ -1608,29 +1608,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnAreas:
-  - spawingAreaName: Waypoint Top
+  - spawingAreaName: Waypoint Top 0
     position: 3
-    spawnTransform: {fileID: 0}
-  - spawingAreaName: Waypoint Top
+    spawnTransform: {fileID: 700161400}
+  - spawingAreaName: Waypoint Top 1
     position: 3
-    spawnTransform: {fileID: 0}
-  - spawingAreaName: Waypoint Top
+    spawnTransform: {fileID: 1981906957}
+  - spawingAreaName: Waypoint Top 2
     position: 3
-    spawnTransform: {fileID: 0}
-  - spawingAreaName: Waypoint Top
+    spawnTransform: {fileID: 1551111233}
+  - spawingAreaName: Waypoint Top 3
     position: 3
-    spawnTransform: {fileID: 0}
-  - spawingAreaName: Waypoint Top
+    spawnTransform: {fileID: 71872152}
+  - spawingAreaName: Waypoint Top 4
     position: 3
-    spawnTransform: {fileID: 0}
-  - spawingAreaName: Waypoint Top
+    spawnTransform: {fileID: 1809786128}
+  - spawingAreaName: Waypoint Top 5
     position: 3
-    spawnTransform: {fileID: 0}
-  - spawingAreaName: Waypoint Top
+    spawnTransform: {fileID: 12492946}
+  - spawingAreaName: Waypoint Top 6
     position: 3
-    spawnTransform: {fileID: 0}
-  _continer: {fileID: 0}
-  _prefab: {fileID: 0}
+    spawnTransform: {fileID: 1511018129}
+  _continer: {fileID: 1077437399}
+  _prefab: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
   _spawnInterval: 0
   _isSpawning: 1
   wordLevel: 1

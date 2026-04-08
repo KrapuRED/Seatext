@@ -20,6 +20,9 @@ public class Food : TypingBox, IEatable
     {
         if (transform.position.y <= limitYPosition)
         {
+            WordBankManager.instance.CheckWordByWordData(_wordData.word);
+            TypeBoxManager.instance.RemoveTypeBox(this);
+
             Destroy(gameObject);
             return;
         }

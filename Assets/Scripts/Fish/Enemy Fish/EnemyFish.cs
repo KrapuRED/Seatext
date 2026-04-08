@@ -8,6 +8,8 @@ public class EnemyContex
 
     public FishMovement enemyFishMovement;
     public FishEyeSight enemyFishEyeSight;
+    public EnemyFishTypeBox enemyFishTypeBox;
+    public EnemyFish enemyFish;
 }
 
 public class EnemyFish : Fish, IPausable, IEatable
@@ -42,7 +44,9 @@ public class EnemyFish : Fish, IPausable, IEatable
             enemyPosition       = transform,
             endWypointPoint     = EndWayPoint,
             enemyFishMovement   = fishMovement,
-            enemyFishEyeSight   = fishEyeSight
+            enemyFishEyeSight   = fishEyeSight,
+            enemyFishTypeBox    = _enemyFishTypeBox,
+            enemyFish           = this    
         };
 
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
@@ -56,5 +60,10 @@ public class EnemyFish : Fish, IPausable, IEatable
     {
         Debug.Log($"[PlayerFish - Eat] {gameObject.name} has been eaten!");
         gameObject.SetActive(false);
+    }
+
+    public void Unregister()
+    {
+        PauseManager.instance.Unregister(this);
     }
 }

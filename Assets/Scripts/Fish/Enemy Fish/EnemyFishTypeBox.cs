@@ -52,8 +52,7 @@ public class EnemyFishTypeBox : TypingBox
             if (IsTextComplete())
             {
                 Debug.Log($"[Fish - CheckingText] Text Is Done : {currentTextToType}");
-                WordBankManager.instance.CheckWordByWordData(_wordData.word);
-                TypeBoxManager.instance.RemoveTypeBox(this);
+                RemoveWordFromFish();
 
                 if (currentPlayerFish.isBeenHunted)
                 {
@@ -76,6 +75,12 @@ public class EnemyFishTypeBox : TypingBox
         }
 
         return isCorrectLetter;
+    }
+
+    public void RemoveWordFromFish()
+    {
+        WordBankManager.instance.CheckWordByWordData(_wordData.word);
+        TypeBoxManager.instance.RemoveTypeBox(this);
     }
 
     public override void ResetTypeBox()

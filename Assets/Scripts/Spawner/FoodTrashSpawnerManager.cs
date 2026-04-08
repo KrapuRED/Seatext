@@ -3,20 +3,10 @@ using System.Collections.Generic;
 
 public class FoodTrashSpawnerManager : SpawnerManager
 {
-    public static FoodTrashSpawnerManager instance;
 
-    private void Awake()
+    private void Start()
     {
-        if (instance == null)
-        {
-            instance = this;
-            PauseManager.instance.Register(this);
-        }
-        else
-        {
-            Debug.LogWarning("Multiple instances of FoodTrashSpawnerManager detected! Destroying duplicate.");
-            Destroy(gameObject);
-        }
+        Spawn();
     }
 
     public override void Spawn()

@@ -38,6 +38,7 @@ public class SpawnerManager : MonoBehaviour, IPausable
     public void OnResume()
     {
         _isSpawning = true;
+        Spawn();
     }
 
     public virtual void Spawn()

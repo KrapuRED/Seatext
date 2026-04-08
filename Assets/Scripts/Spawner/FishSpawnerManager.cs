@@ -13,7 +13,7 @@ public class FishSpawnerManager : SpawnerManager
         if (!_isSpawning)
             return;
 
-        Debug.Log("[FoodTrashSpawnerManager - OnSpawningFood] Try to spawn food or trash");
+        Debug.Log("[FishSpawnerManager - Spawn] Try to spawn food or trash");
 
         SpawingAreaData spawingAreaData = GetRandomSpawmPoint();
 

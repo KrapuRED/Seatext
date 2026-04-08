@@ -21,6 +21,11 @@ public class PauseManager : MonoBehaviour
         pausables.Add(p);
     }
 
+    public void Unregister(IPausable p)
+    {
+        pausables.Remove(p);
+    }
+
     public void SetPause(bool pause)
     {
         foreach (var p in pausables)
