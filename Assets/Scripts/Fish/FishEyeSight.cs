@@ -9,11 +9,13 @@ public class FishEyeSight : MonoBehaviour
     [SerializeField] private LayerMask visionLayerMask;
     [SerializeField] private string dectactionTag;
 
-    [SerializeField] private Transform currentObject;
+    [SerializeField] private Transform _currentObject;
 
+    public bool isCanSee { private get; set; }
     public Vector2 AttackDirection {get; private set;}
+    public Transform currentObject => _currentObject;
 
-private void Update()
+    private void Update()
     {
         UpdateEyeSight();
     }
@@ -21,11 +23,14 @@ private void Update()
     private void UpdateEyeSight()
     {
         //Set Raycast to see
-        Transform leftEyeResult =  CheckEyeSight(LeftEye);
-        Transform rightEyeResult = CheckEyeSight(RightEye);
+        if (!isCanSee)
+            return;
 
-        currentObject = leftEyeResult != null ? leftEyeResult : rightEyeResult;
-        bool isSeeing = currentObject != null;
+        Transform leftEyeResult     = CheckEyeSight(LeftEye);
+        Transform rightEyeResult    = CheckEyeSight(RightEye);
+
+        _currentObject = leftEyeResult != null ? leftEyeResult : rightEyeResult;
+        bool isSeeing = _currentObject != null;
 
         if (isSeeing)
         {
@@ -52,12 +57,12 @@ private void Update()
 
     private void SetBeenHunted(bool hunted)
     {
-        if (currentObject == null) return;
+        if (_currentObject == null) return;
 
-        Fish currentFish = currentObject.GetComponent<Fish>();
+        Fish currentFish = _currentObject.GetComponent<Fish>();
         if (currentFish != null)
         {
-            AttackDirection = (currentObject.position - transform.position).normalized;
+            AttackDirection = (_currentObject.position - transform.position).normalized;
             currentFish.SetBeenHunted(hunted, currentFish);
         }
     }

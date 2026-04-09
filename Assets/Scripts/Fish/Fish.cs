@@ -12,6 +12,11 @@ public class Fish : MonoBehaviour
     public FishEyeSight fishEyeSight => _fishEyeSight;
     public bool isBeenHunted => _isBeenHunted;
 
+    public void SetFishData(FishOS data)
+    {
+        _fishData = data;
+    }
+
     public virtual void SetBeenHunted(bool isBeenHunted, Fish curerntFish = null)
     {
         _isBeenHunted = isBeenHunted;

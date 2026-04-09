@@ -16,7 +16,7 @@ public class StateMachine : MonoBehaviour
     [SerializeField] private List<DataStateCondtion> dataStateCondtions = new List<DataStateCondtion>();
     [SerializeField] private StateSO _activeState;
 
-    private void Awake()
+    private void Start()
     {
         foreach (var data in currentFish.fishData.dataStateCondtions)
         {
@@ -35,7 +35,6 @@ public class StateMachine : MonoBehaviour
             {
                 _activeState = data.state;
                 _activeState.ExcuteState(currentFish.Contex);
-                break; // Exit the loop after finding the first valid state
             }
         }
     }

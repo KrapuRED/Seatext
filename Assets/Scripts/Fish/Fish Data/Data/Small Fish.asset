@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79767414a0a7d47bfaeae44a0a54ea, type: 3}
+  m_Name: Small Fish
+  m_EditorClassIdentifier: 
+  fishName: Small Fish
+  fishID: SP-00
+  fishSprite: {fileID: 0}
+  fishType: 1
+  fishBehavior: 3
+  speedFish: 5
+  dataStateCondtions:
+  - nameStateCondition: End Point State
+    stateConditionID: 
+    state: {fileID: 11400000, guid: 290a53ffaa86e40489a430b5f5ed7a8b, type: 2}
+    condition: {fileID: 11400000, guid: 592aeb46390089d438e8ed58797531e0, type: 2}
+  - nameStateCondition: Roaming State
+    stateConditionID: 
+    state: {fileID: 11400000, guid: 8a13c06465070704d8706cc4940d600a, type: 2}
+    condition: {fileID: 11400000, guid: 8197bfca35b335b47983976b456a98fb, type: 2}

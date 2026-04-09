@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class FishSpawnerManager : SpawnerManager
 {
+    [Header("Fish Spawn Manager")]
+    [SerializeField] private List<FishOS> fishDatas = new List<FishOS>();
+
     public override void Spawn()
     {
         if (!_isSpawning)
@@ -14,16 +17,25 @@ public class FishSpawnerManager : SpawnerManager
 
         Transform spawnPos = spawingAreaData.spawnTransform;
 
-        GameObject newFoodGO = Instantiate(_prefab, spawnPos.position, Quaternion.identity, _continer);
+        GameObject newFishGO = Instantiate(_prefab, spawnPos.position, Quaternion.identity, _continer);
 
-        if (newFoodGO == null)
+        if (newFishGO == null)
         {
             Debug.Log($"[FishSpawnManager - OnSpawningFood] Food or Trash is NULL!");
             return;
         }
 
-        EnemyFish enemyFish = newFoodGO.GetComponent<EnemyFish>();
-        enemyFish.IntilazeFish(GetRandomEndWayPoint(spawingAreaData));
+        EnemyFish enemyFish = newFishGO.GetComponent<EnemyFish>();
+        enemyFish.IntilazeFish(GetRandomEndWayPoint(spawingAreaData), GetRandomDishData());
+    }
+
+    private FishOS GetRandomDishData()
+    {
+        int index = Random.Range(0, fishDatas.Count);
+
+        FishOS data = fishDatas[index];
+
+        return data;
     }
 
 }

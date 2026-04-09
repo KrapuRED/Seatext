@@ -29,7 +29,7 @@ public class FishMovement : MonoBehaviour
 
         RotateFish(TargetPosition);
 
-        Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.name}");
+        //Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.name}");
         _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition.position, _speedFish * Time.deltaTime));
     }
 

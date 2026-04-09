@@ -47,6 +47,8 @@ public class PlayerFish : Fish, IPausable, IEatable
 
         currentHealth = maxHealth;
         statusHealthUI.UpdateStatusBar(currentHealth, maxHealth);
+
+        fishEyeSight.isCanSee = true;
     }
 
     private void Update()

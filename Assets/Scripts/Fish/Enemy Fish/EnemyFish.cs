@@ -36,11 +36,19 @@ public class EnemyFish : Fish, IPausable, IEatable
         fishMovement.SetCanMove(true);
     }
 
-    public void IntilazeFish(Transform endWayPoint)
+    private void Start()
     {
-        Debug.Log($"[Fish - Start] Fish Name : {fishData.fishName}");
+        IntilazeFish(EndWayPoint, fishData);
+    }
+
+    public void IntilazeFish(Transform endWayPoint, FishOS data)
+    {
         EndWayPoint = endWayPoint;
+
         _rb2d = GetComponent<Rigidbody2D>();
+        SetFishData(data);
+
+        Debug.Log($"[Fish - Start] Fish Name : {fishData.fishName}");
 
         Contex = new EnemyContex
         {
@@ -52,6 +60,11 @@ public class EnemyFish : Fish, IPausable, IEatable
             enemyFishTypeBox    = _enemyFishTypeBox,
             enemyFish           = this    
         };
+
+        if (fishData.fishBehavior != FishBehavior.passive)
+        {
+            fishEyeSight.isCanSee = true;
+        }
 
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);

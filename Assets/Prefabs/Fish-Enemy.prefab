@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c63f6b9fdaafe4e9ac2ec5126f1a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fishData: {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
+  _fishData: {fileID: 0}
   _fishMovement: {fileID: 790537203351147450}
   _fishEyeSight: {fileID: 1956725223684295917}
   _isBeenHunted: 0
@@ -812,7 +812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1577401565540255216
 Transform:
   m_ObjectHideFlags: 0

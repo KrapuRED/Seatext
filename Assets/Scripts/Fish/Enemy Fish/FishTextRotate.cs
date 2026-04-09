@@ -8,7 +8,7 @@ public class FishTextRotate : MonoBehaviour
     {
         float currentZRotation = deg * -1;
 
-        Debug.Log($"[FishTextRotate - RotateCanvasUI] Current Z Rotation : {currentZRotation}");
+        //Debug.Log($"[FishTextRotate - RotateCanvasUI] Current Z Rotation : {currentZRotation}");
 
         _rectTransform.rotation = Quaternion.Euler(0, 0, currentZRotation);
     }
