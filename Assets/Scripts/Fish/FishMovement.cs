@@ -7,6 +7,9 @@ public class FishMovement : MonoBehaviour
     [SerializeField] private float _dodgeForce;
     [SerializeField] private bool isCanMove;
 
+    [Header("Effector")]
+    [SerializeField] private FishTextRotate _fishTextRotate;
+
     private Rigidbody2D _rigidbody2D;
 
     public void IntilizaFishMovement(Rigidbody2D rb2d, FishOS fishData)
@@ -42,6 +45,14 @@ public class FishMovement : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         _rigidbody2D.rotation = angle - 90f;
+
+        if (_fishTextRotate == null)
+        {
+            return;
+        }
+
+        _fishTextRotate.RotateCanvasUI(_rigidbody2D.rotation);
+        Debug.Log($"[FishMovement - RotateFish] Enemy Fish Rotation : {_rigidbody2D.rotation}");
     }
 
     public void SetCanMove(bool canMove)

@@ -17,6 +17,9 @@ public class EnemyFish : Fish, IPausable, IEatable
     [Header("Fish Config")]
     [SerializeField] private Transform EndWayPoint;
     [SerializeField] private EnemyFishTypeBox _enemyFishTypeBox;
+    [SerializeField] private FishTextRotate _fishTextRotation;
+
+    private Rigidbody2D _rb2d;
 
     public EnemyContex Contex { get; private set; }
     public bool IsEdible { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
@@ -37,6 +40,7 @@ public class EnemyFish : Fish, IPausable, IEatable
     {
         Debug.Log($"[Fish - Start] Fish Name : {fishData.fishName}");
         EndWayPoint = endWayPoint;
+        _rb2d = GetComponent<Rigidbody2D>();
 
         Contex = new EnemyContex
         {
@@ -51,7 +55,7 @@ public class EnemyFish : Fish, IPausable, IEatable
 
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);
-        fishMovement.IntilizaFishMovement(GetComponent<Rigidbody2D>(), fishData);
+        fishMovement.IntilizaFishMovement(_rb2d, fishData);
 
         PauseManager.instance.Register(this);
     }

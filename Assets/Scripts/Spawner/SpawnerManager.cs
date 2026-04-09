@@ -55,7 +55,7 @@ public class SpawnerManager : MonoBehaviour, IPausable
     {
         int randomIndex = Random.Range(0, spawnAreas.Count);
 
-        Debug.Log($"[FoodTrashSpawnerManager - GetRandomSpawmPoint] Random Index : {randomIndex} | Spawn Name : {spawnAreas[randomIndex].spawingAreaName}");
+        //Debug.Log($"[FoodTrashSpawnerManager - GetRandomSpawmPoint] Random Index : {randomIndex} | Spawn Name : {spawnAreas[randomIndex].spawingAreaName}");
         SpawingAreaData aviableSpawn = spawnAreas[randomIndex];
 
         return aviableSpawn;
