@@ -594,7 +594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -3.65
       objectReference: {fileID: 0}
     - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2958,7 +2958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 339882183581354877, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.85
       objectReference: {fileID: 0}
     - target: {fileID: 339882183581354877, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2995,6 +2995,10 @@ PrefabInstance:
     - target: {fileID: 4692316933345027950, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_Name
       value: Player Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 4692316933345027950, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7998975373102525702, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: _fishData

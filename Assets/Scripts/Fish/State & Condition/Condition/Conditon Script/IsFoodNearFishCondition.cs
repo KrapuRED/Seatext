@@ -6,16 +6,14 @@ public class IsFoodNearFishCondition : ConditionSO
 {
     public override bool CheckCondition(EnemyContex contex)
     {
-        FishOS food = contex.enemyFishEyeSight.currentObject.GetComponent<FishOS>();
-
         bool seeFood;
-        if ( food == null )
+        if (contex.enemyFishEyeSight.currentObject != null)
         {
-            seeFood = false;
+            seeFood = true;
         }
         else
         {
-            seeFood = true;
+            seeFood = false;
         }
 
         Debug.Log("IsFoodNearFishCondition: " + seeFood);

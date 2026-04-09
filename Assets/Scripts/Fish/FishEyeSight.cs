@@ -15,12 +15,8 @@ public class FishEyeSight : MonoBehaviour
     public Vector2 AttackDirection {get; private set;}
     public Transform currentObject => _currentObject;
 
-    private void Update()
-    {
-        UpdateEyeSight();
-    }
 
-    private void UpdateEyeSight()
+    public void UpdateEyeSight()
     {
         //Set Raycast to see
         if (!isCanSee)
@@ -36,6 +32,7 @@ public class FishEyeSight : MonoBehaviour
         {
             SetBeenHunted(isSeeing);
         }
+
     }
 
     private Transform CheckEyeSight(Transform eye)

@@ -22,7 +22,7 @@ public class EnemyFish : Fish, IPausable, IEatable
     private Rigidbody2D _rb2d;
 
     public EnemyContex Contex { get; private set; }
-    public bool IsEdible { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public bool IsEdible { get; set; }
 
     public void OnPause()
     {
