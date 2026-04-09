@@ -485,6 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8055683999395820272}
   - component: {fileID: 8889115641402253903}
+  - component: {fileID: 1005088665959486317}
   m_Layer: 5
   m_Name: Status - Hunger Bar
   m_TagString: Untagged
@@ -539,6 +540,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1005088665959486317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8639405644217780970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ff7687f1873a445b87705d9fdf0446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusName: Status Hunger
+  statusID: SS-00
+  hungerSlider: {fileID: 9093234915796010677}
+  trashSlider: {fileID: 2662358621286717149}
 --- !u!1 &9120131024177648968
 GameObject:
   m_ObjectHideFlags: 0
