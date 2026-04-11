@@ -51,8 +51,7 @@ public class FishMovement : MonoBehaviour
             return;
         }
 
-        _fishTextRotate.RotateCanvasUI(_rigidbody2D.rotation);
-        Debug.Log($"[FishMovement - RotateFish] Enemy Fish Rotation : {_rigidbody2D.rotation}");
+        _fishTextRotate.KeepTextUpright();
     }
 
     public void SetCanMove(bool canMove)

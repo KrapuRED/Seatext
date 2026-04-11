@@ -4,20 +4,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "IsFoodNearFishCondition", menuName = "State Machine/Condition/IsFoodNearFishCondition")]
 public class IsFoodNearFishCondition : ConditionSO
 {
+    public float distanceToEat;
+
     public override bool CheckCondition(EnemyContex contex)
     {
-        bool seeFood;
-        if (contex.enemyFishEyeSight.currentObject != null)
-        {
-            seeFood = true;
-        }
-        else
-        {
-            seeFood = false;
-        }
+        contex.enemyFishEyeSight.UpdateEyeSight();
+        Transform target = contex.enemyFishEyeSight.currentObject;
 
-        Debug.Log("IsFoodNearFishCondition: " + seeFood);
-
-        return seeFood;
+        if (target != null)
+        {
+            float distance = Vector2.Distance(contex.enemyFish.transform.position, target.position);
+            if (target.TryGetComponent(out IEatable food) && distance <= distanceToEat)
+            {
+                if (food.foodSize < contex.enemyFish.foodSize)
+                    return true;
+            }
+        }
+        return false;
     }
 }

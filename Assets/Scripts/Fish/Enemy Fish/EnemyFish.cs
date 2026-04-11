@@ -22,7 +22,7 @@ public class EnemyFish : Fish, IPausable, IEatable
     private Rigidbody2D _rb2d;
 
     public EnemyContex Contex { get; private set; }
-    public bool IsEdible { get; set; }
+    public FoodSize foodSize { get; set; }
 
     public void OnPause()
     {
@@ -34,11 +34,6 @@ public class EnemyFish : Fish, IPausable, IEatable
     {
         enabled = true;
         fishMovement.SetCanMove(true);
-    }
-
-    private void Start()
-    {
-        IntilazeFish(EndWayPoint, fishData);
     }
 
     public void IntilazeFish(Transform endWayPoint, FishOS data)
@@ -61,7 +56,7 @@ public class EnemyFish : Fish, IPausable, IEatable
             enemyFish           = this    
         };
 
-        if (fishData.fishBehavior != FishBehavior.passive)
+        if (fishData.fishBehavior != FishBehavior.Passive)
         {
             fishEyeSight.isCanSee = true;
         }
@@ -69,17 +64,28 @@ public class EnemyFish : Fish, IPausable, IEatable
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);
         fishMovement.IntilizaFishMovement(_rb2d, fishData);
+        foodSize = fishData.fishSize;
 
         PauseManager.instance.Register(this);
     }
 
-    public void Eat()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"[PlayerFish - Eat] {gameObject.name} has been eaten!");
-        gameObject.SetActive(false);
+        IEatable eatable = collision.GetComponent<IEatable>();
+
+        if (eatable == null)
+            return;
+
+        eatable.Eat(fishType);
     }
 
-    public void Unregister()
+    public void Eat(FishType fishType)
+    {
+        Debug.Log($"[PlayerFish - Eat] {gameObject.name} has been eaten!");
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
     {
         PauseManager.instance.Unregister(this);
     }

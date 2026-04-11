@@ -15,7 +15,7 @@ MonoBehaviour:
   fishName: Small Fish
   fishID: SP-00
   fishSprite: {fileID: 0}
-  fishType: 1
+  fishSize: 1
   fishBehavior: 3
   speedFish: 5
   dataStateCondtions:

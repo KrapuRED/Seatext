@@ -44,7 +44,7 @@ public class FishEyeSight : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(eye.position, directionEye, viewDistance, visionLayerMask);
 
-        if (hit.collider != null && hit.collider.CompareTag(dectactionTag))
+        if (hit.collider != null)
         {
             return hit.transform;
         }

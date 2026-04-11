@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 public enum FishBehavior
 {
-    none,
-    normal,
-    aggressive,
-    passive
+    None,
+    Normal,
+    Aggressive,
+    Passive
 }
 
-public enum FishType
+public enum FoodSize
 {
-    none, 
-    small,
-    Big
+    None, 
+    Small,
+    Large
 }
 
 [CreateAssetMenu(fileName = "FishOS", menuName = "FishData/FishOS")]
@@ -22,7 +22,7 @@ public class FishOS : ScriptableObject
     public string fishName;
     public string fishID;
     public Sprite fishSprite;
-    public FishType fishType;
+    public FoodSize fishSize;
     public FishBehavior fishBehavior;
 
     [Header("Fish Movement")]

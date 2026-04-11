@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IEatable
 {
-    public bool IsEdible { get; set; }
+    public FoodSize foodSize { get; set; }
 
-    public void Eat();
+    public void Eat(FishType fishType);
 }

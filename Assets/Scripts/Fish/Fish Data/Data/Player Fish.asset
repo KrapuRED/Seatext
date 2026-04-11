@@ -15,5 +15,7 @@ MonoBehaviour:
   fishName: Kreapu
   fishID: 
   fishSprite: {fileID: 0}
+  fishSize: 1
+  fishBehavior: 0
   speedFish: 10
   dataStateCondtions: []

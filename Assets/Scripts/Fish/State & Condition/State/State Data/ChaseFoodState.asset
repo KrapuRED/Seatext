@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5d18d2e5b34fb43bc509c872704386, type: 3}
   m_Name: ChaseFoodState
   m_EditorClassIdentifier: 
+  distanceToEat: 0.5

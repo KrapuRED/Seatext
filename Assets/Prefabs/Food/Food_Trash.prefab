@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4875765432688007010}
   - component: {fileID: 4219895754207493913}
   - component: {fileID: 583772736788658192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TypeBox - Backround Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 176879727116918807}
   - component: {fileID: 7131575243960157212}
   - component: {fileID: 1682887378073600455}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Food_Trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,6 +211,7 @@ MonoBehaviour:
   _typeTypingBox: 2
   _indexChar: 0
   setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
+  _dropFoodSO: {fileID: 0}
   _wordLevel: 1
   _typeBoxUI: {fileID: 8767203307820056284}
   _wordData:
@@ -277,7 +278,7 @@ GameObject:
   - component: {fileID: 5851729751905103866}
   - component: {fileID: 1115016317069016931}
   - component: {fileID: 3767436218544994955}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TypeBox - Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2541251173412443216}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TypeBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +453,7 @@ GameObject:
   - component: {fileID: 1829840662840978809}
   - component: {fileID: 4218694804797844880}
   - component: {fileID: 8767203307820056284}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '# === Food/Trash Canvas === #'
   m_TagString: Untagged
   m_Icon: {fileID: 0}

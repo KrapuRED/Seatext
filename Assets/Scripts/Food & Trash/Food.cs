@@ -18,7 +18,7 @@ public class Food : TypingBox, IEatable, IPausable
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
 
-    public bool IsEdible { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public FoodSize foodSize { get ; set; }
 
     private SpriteRenderer _spriteRenderer;
 
@@ -32,7 +32,7 @@ public class Food : TypingBox, IEatable, IPausable
         if (transform.position.y <= limitYPosition)
         {
             RemoveWord();
-
+            PauseManager.instance.Unregister(this);
             Destroy(gameObject);
             return;
         }
@@ -59,6 +59,7 @@ public class Food : TypingBox, IEatable, IPausable
         _spriteRenderer.color = Color.black;
         SetTextToType(_wordData.word);
         setTypeBoxEvent.Raise(this);
+        foodSize = FoodSize.None;
     }
 
     public override void SetTextToType(string text)
@@ -111,22 +112,27 @@ public class Food : TypingBox, IEatable, IPausable
         SetTextToType(currentTextToType);
     }
 
-    public void Eat()
+    public void Eat(FishType fishType)
     {
-        switch (_dropFoodSO.foodType)
+        Debug.Log($"[Food - Eat] {gameObject.name} has been eaten! Food Type : {_dropFoodSO.foodType}");
+
+        if (fishType == FishType.Player)
         {
-            case FoodType.Trash:
-                Debug.Log($"[Food - Eat] Trash {gameObject.name} has been eaten! Player will lose health.");
-                PlayerFish.playerFish.SetTrashinHungerbar(_dropFoodSO.gainStatus);
-                break;
+            switch (_dropFoodSO.foodType)
+            {
+                case FoodType.Trash:
+                    Debug.Log($"[Food - Eat] Trash {gameObject.name} has been eaten! Player will lose health.");
+                    //PlayerFish.playerFish.SetTrashinHungerbar(_dropFoodSO.gainStatus);
+                    break;
 
-            case FoodType.Pellet:
-                Debug.Log($"[Food - Eat] Pellet {gameObject.name} has been eaten! Player will gain some points.");
-                break;
+                case FoodType.Pellet:
+                    Debug.Log($"[Food - Eat] Pellet {gameObject.name} has been eaten! Player will gain some points.");
+                    break;
 
-            case FoodType.Goldenpellet:
-                Debug.Log($"[Food - Eat] Goldenpellet {gameObject.name} has been eaten! Player will gain some points.");
-                break;
+                case FoodType.Goldenpellet:
+                    Debug.Log($"[Food - Eat] Goldenpellet {gameObject.name} has been eaten! Player will gain some points.");
+                    break;
+            }
         }
 
         RemoveWord();

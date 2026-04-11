@@ -28,7 +28,6 @@ public class StateMachine : MonoBehaviour
     void Update()
     {
         //Debug.Log($"[StateMachine - Update] Counting State Machine For Fish : {dataStateCondtions.Count}");
-        currentFish.Contex.enemyFishEyeSight.UpdateEyeSight();
 
         foreach (var data in dataStateCondtions)
         {

@@ -22,7 +22,7 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     private Rigidbody2D _rb2d;
 
-    public bool IsEdible { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public FoodSize foodSize { get ; set ; }
 
     private void Awake()
     {
@@ -49,6 +49,7 @@ public class PlayerFish : Fish, IPausable, IEatable
         statusHealthUI.UpdateStatusBar(currentHealth, maxHealth);
 
         fishEyeSight.isCanSee = true;
+        foodSize = fishData.fishSize;
     }
 
     private void Update()
@@ -74,7 +75,7 @@ public class PlayerFish : Fish, IPausable, IEatable
         if (eatable == null)
             return;
 
-        eatable.Eat();
+        eatable.Eat(fishType);
     }
 
     private void Starve()
@@ -148,10 +149,10 @@ public class PlayerFish : Fish, IPausable, IEatable
         enabled = true;
     }
 
-    public void Eat()
+    public void Eat(FishType fishType)
     {
         Debug.Log($"[PlayerFish - Eat] Enemy Fish {gameObject.name} has been eaten!");
-        gameObject.SetActive(false);
+        
     }
 
     private void OnEnable()

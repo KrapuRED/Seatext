@@ -1,16 +1,25 @@
 using UnityEngine;
 
+public enum FishType
+{
+    None,
+    Player,
+    Enemy
+}
+
 public class Fish : MonoBehaviour
 {
     [SerializeField] private FishOS _fishData;
     [SerializeField] private FishMovement _fishMovement;
     [SerializeField] private FishEyeSight _fishEyeSight;
     [SerializeField] private bool _isBeenHunted;
+    [SerializeField] private FishType _fishType;
 
     public FishOS fishData => _fishData;
     public FishMovement fishMovement => _fishMovement;
     public FishEyeSight fishEyeSight => _fishEyeSight;
     public bool isBeenHunted => _isBeenHunted;
+    public FishType fishType => _fishType;
 
     public void SetFishData(FishOS data)
     {

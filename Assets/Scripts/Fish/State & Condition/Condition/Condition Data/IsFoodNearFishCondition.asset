@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3189f45b7ae43047b9dce7181cbe612, type: 3}
   m_Name: IsFoodNearFishCondition
   m_EditorClassIdentifier: 
+  distanceToEat: 5

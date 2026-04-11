@@ -6,7 +6,6 @@ public class StateNearEndPoint : StateSO
     public override void ExcuteState(EnemyContex contex)
     {
         Debug.Log("State Near End Point");
-        contex.enemyFish.Unregister();
         contex.enemyFishTypeBox.RemoveWordFromFish();
         Destroy(contex.enemyObject);
     }
