@@ -51,7 +51,7 @@ public class PauseManager : MonoBehaviour
     {
         var ListPauses = new List<PauseAbleData>(dataPauseAble);
 
-        Debug.Log($"[PauseManager - SetPause] Set Pause : {pause} For Pausables Count : {ListPauses.Count}");
+        //Debug.Log($"[PauseManager - SetPause] Set Pause : {pause} For Pausables Count : {ListPauses.Count}");
 
         foreach (var p in ListPauses)
         {

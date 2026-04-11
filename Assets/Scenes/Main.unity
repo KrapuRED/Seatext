@@ -874,7 +874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -653.58, y: -375}
+  m_AnchoredPosition: {x: -653.5801, y: -375}
   m_SizeDelta: {x: -1317.18, y: -768.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782167568
@@ -1053,6 +1053,7 @@ MonoBehaviour:
   wordLevel: 1
   fishDatas:
   - {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
+  - {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
 --- !u!1 &981156933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,6 +2927,10 @@ PrefabInstance:
       propertyPath: _fishData
       value: 
       objectReference: {fileID: 11400000, guid: 225121f13c087284f82f3bde409e8138, type: 2}
+    - target: {fileID: 7998975373102525702, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: _fishType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7998975373102525702, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: maxHealth
       value: 100

@@ -15,9 +15,9 @@ MonoBehaviour:
   fishName: Small Agro
   fishID: SA-00
   fishSprite: {fileID: 0}
-  fishSize: 1
+  fishSize: 2
   fishBehavior: 2
-  speedFish: 7
+  speedFish: 4
   dataStateCondtions:
   - nameStateCondition: Chasing Food
     stateConditionID: 

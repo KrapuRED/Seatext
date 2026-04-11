@@ -135,6 +135,11 @@ public class PlayerFish : Fish, IPausable, IEatable
         trashGain += gainTrash;
         maxHunger -= gainTrash;
 
+        ResetHunggerBar();
+    }
+
+    public void ResetHunggerBar()
+    {
         statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
         currentHunger = maxHunger;
     }

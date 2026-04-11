@@ -82,6 +82,8 @@ public class EnemyFish : Fish, IPausable, IEatable
     public void Eat(FishType fishType)
     {
         Debug.Log($"[PlayerFish - Eat] {gameObject.name} has been eaten!");
+        _enemyFishTypeBox.RemoveWordFromFish();
+        PlayerFish.playerFish.ResetHunggerBar();
         Destroy(gameObject);
     }
 
