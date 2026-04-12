@@ -36,6 +36,11 @@ public class EnemyFish : Fish, IPausable, IEatable
         fishMovement.SetCanMove(true);
     }
 
+    private void Start()
+    {
+        //IntilazeFish(EndWayPoint, fishData);
+    }
+
     public void IntilazeFish(Transform endWayPoint, FishOS data)
     {
         EndWayPoint = endWayPoint;
@@ -83,7 +88,14 @@ public class EnemyFish : Fish, IPausable, IEatable
     {
         Debug.Log($"[PlayerFish - Eat] {gameObject.name} has been eaten!");
         _enemyFishTypeBox.RemoveWordFromFish();
-        PlayerFish.playerFish.ResetHunggerBar();
+        
+        switch (fishType)
+        {
+            case FishType.Player:
+                PlayerFish.playerFish.ResetHunggerBar(); 
+                break;
+        }
+
         Destroy(gameObject);
     }
 

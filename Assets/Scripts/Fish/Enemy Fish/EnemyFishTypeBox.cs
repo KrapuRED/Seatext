@@ -3,7 +3,6 @@ using UnityEngine;
 public class EnemyFishTypeBox : TypingBox
 {
     [Header("EnemyFishTypeBox Config")]
-    [SerializeField] private Fish currentPlayerFish;
     [SerializeField] private EnemyFish currentEnemyFish;
     [SerializeField] private WordLevel _wordLevel;
     [SerializeField] private FishTextUI fishUI;
@@ -52,11 +51,9 @@ public class EnemyFishTypeBox : TypingBox
             if (IsTextComplete())
             {
                 Debug.Log($"[Fish - CheckingText] Text Is Done : {currentTextToType}");
-                RemoveWordFromFish();
-
                 if (PlayerFish.playerFish.isBeenHunted)
                 {
-                    currentPlayerFish.DodgeAttackFish(currentEnemyFish.Contex.enemyFishEyeSight.AttackDirection);
+                    PlayerFish.playerFish.DodgeAttackFish(currentEnemyFish.Contex.enemyFishEyeSight.AttackDirection);
                 }
                 else
                 {

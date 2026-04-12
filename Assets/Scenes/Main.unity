@@ -874,7 +874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -653.5801, y: -375}
+  m_AnchoredPosition: {x: -653.58014, y: -375}
   m_SizeDelta: {x: -1317.18, y: -768.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782167568
@@ -1673,7 +1673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1303435003
 Transform:
   m_ObjectHideFlags: 0
@@ -2915,6 +2915,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 849279166515148401, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463069133302231637, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866416412487774996, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3820074261555348365, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421710170398159637, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4692316933345027950, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_Name
       value: Player Fish
@@ -2947,6 +2967,10 @@ PrefabInstance:
       propertyPath: statusHungerUI
       value: 
       objectReference: {fileID: 6057705721587213227}
+    - target: {fileID: 9036370392552053603, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
