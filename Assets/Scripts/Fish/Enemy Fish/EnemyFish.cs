@@ -9,15 +9,17 @@ public class EnemyContex
     public FishMovement enemyFishMovement;
     public FishEyeSight enemyFishEyeSight;
     public EnemyFishTypeBox enemyFishTypeBox;
+    public FishSightVisual fishSightVisual;
     public EnemyFish enemyFish;
 }
 
 public class EnemyFish : Fish, IPausable, IEatable
 {
     [Header("Fish Config")]
-    [SerializeField] private Transform EndWayPoint;
-    [SerializeField] private EnemyFishTypeBox _enemyFishTypeBox;
-    [SerializeField] private FishTextRotate _fishTextRotation;
+    [SerializeField] private Transform          EndWayPoint;
+    [SerializeField] private FishSightVisual    _fishSightVisual;
+    [SerializeField] private EnemyFishTypeBox   _enemyFishTypeBox;
+    [SerializeField] private FishTextRotate     _fishTextRotation;
     [SerializeField] private bool IntilazeFishByStart;
 
     private Rigidbody2D _rb2d;
@@ -60,6 +62,7 @@ public class EnemyFish : Fish, IPausable, IEatable
             enemyFishMovement   = fishMovement,
             enemyFishEyeSight   = fishEyeSight,
             enemyFishTypeBox    = _enemyFishTypeBox,
+            fishSightVisual     = _fishSightVisual,
             enemyFish           = this    
         };
 

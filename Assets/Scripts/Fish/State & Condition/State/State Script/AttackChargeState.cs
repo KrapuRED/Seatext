@@ -20,12 +20,14 @@ public class AttackChargeState : StateSO
         if (chargeTimer > 0 )
         {
             chargeTimer -= Time.deltaTime;
+            contex.fishSightVisual.OnSightVisual(contex.endWypointPoint);
             Debug.Log("Charge in " + Mathf.Round(chargeTimer));
         }
 
         if (chargeTimer <= 0)
         {
             Debug.Log("Charge...");
+            contex.fishSightVisual.Dettach();
             chargeDirection = contex.endWypointPoint;
             contex.enemyFishMovement.MoveFish(chargeDirection);
         }

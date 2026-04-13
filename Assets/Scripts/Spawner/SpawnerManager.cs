@@ -28,11 +28,13 @@ public class SpawnerManager : MonoBehaviour, IPausable
     [SerializeField] protected float _spawnInterval;
     [SerializeField] protected bool _isSpawning;
     [SerializeField] protected WordLevel wordLevel;
+    [SerializeField] private bool IntilazeSpawnerByStart;
 
     private void Start()
     {
         PauseManager.instance.Register(this);
-        Spawn();
+        if (IntilazeSpawnerByStart)
+            Spawn();
     }
 
     public void OnPause()
