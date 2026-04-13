@@ -10,6 +10,7 @@ public class EnemyContex
     public FishEyeSight enemyFishEyeSight;
     public EnemyFishTypeBox enemyFishTypeBox;
     public FishSightVisual fishSightVisual;
+
     public EnemyFish enemyFish;
 }
 
@@ -24,6 +25,7 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     private Rigidbody2D _rb2d;
 
+    public int foodBeenEaten { get; private set; }
     public EnemyContex Contex { get; private set; }
     public FoodSize foodSize { get; set; }
 
@@ -86,6 +88,8 @@ public class EnemyFish : Fish, IPausable, IEatable
         if (eatable == null)
             return;
 
+        foodBeenEaten++;
+        Debug.Log($"[EnemyFish - OnTriggerEnter2D] Food Been Eaten : {foodBeenEaten}");
         eatable.Eat(fishType);
     }
 

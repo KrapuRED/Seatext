@@ -19,7 +19,7 @@ public class FishMovement : MonoBehaviour
     }
 
 
-    public void MoveFish(Transform TargetPosition)
+    public void MoveFish(Transform TargetPosition, bool runAway = false)
     {
         if (!isCanMove)
         {
@@ -27,10 +27,18 @@ public class FishMovement : MonoBehaviour
             return;
         }
 
+        float speed = _speedFish;
+
+        if (runAway)
+        {
+            speed *= 2f;
+            Debug.Log($"New speed : {speed}");
+        }
+
         RotateFish(TargetPosition);
 
         //Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.name}");
-        _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition.position, _speedFish * Time.deltaTime));
+        _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition.position, speed * Time.deltaTime));
     }
 
     public void Dodge(Vector2 dodgeDir)

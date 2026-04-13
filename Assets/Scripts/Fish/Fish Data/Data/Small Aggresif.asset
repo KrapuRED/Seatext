@@ -19,14 +19,18 @@ MonoBehaviour:
   fishBehavior: 2
   speedFish: 4
   dataStateCondtions:
-  - nameStateCondition: Chasing Food
-    stateConditionID: 
-    state: {fileID: 11400000, guid: 471271fc764caf2448d5c5026da1886e, type: 2}
-    condition: {fileID: 11400000, guid: c026b986efa293c40ac3dbc40949bc1a, type: 2}
   - nameStateCondition: End Point State
     stateConditionID: 
     state: {fileID: 11400000, guid: 290a53ffaa86e40489a430b5f5ed7a8b, type: 2}
     condition: {fileID: 11400000, guid: 592aeb46390089d438e8ed58797531e0, type: 2}
+  - nameStateCondition: Satisfied
+    stateConditionID: 
+    state: {fileID: 11400000, guid: 2b6da913efecf984a81d5e441544c7ad, type: 2}
+    condition: {fileID: 11400000, guid: c1d9f7c417698f145bd53e0518635246, type: 2}
+  - nameStateCondition: Chasing Food
+    stateConditionID: 
+    state: {fileID: 11400000, guid: 471271fc764caf2448d5c5026da1886e, type: 2}
+    condition: {fileID: 11400000, guid: c026b986efa293c40ac3dbc40949bc1a, type: 2}
   - nameStateCondition: Roaming State
     stateConditionID: 
     state: {fileID: 11400000, guid: 8a13c06465070704d8706cc4940d600a, type: 2}
