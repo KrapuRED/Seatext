@@ -38,7 +38,7 @@ public class FishMovement : MonoBehaviour
         _rigidbody2D.AddForce(dodgeDir * _dodgeForce, ForceMode2D.Impulse);
     }
 
-    private void RotateFish(Transform TargetPosition)
+    public void RotateFish(Transform TargetPosition)
     {
         Vector2 direction = TargetPosition.position - transform.position;
 

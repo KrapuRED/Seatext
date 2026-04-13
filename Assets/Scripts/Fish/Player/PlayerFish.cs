@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerFish : Fish, IPausable, IEatable
 {
@@ -157,7 +158,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     public void Eat(FishType fishType)
     {
         Debug.Log($"[PlayerFish - Eat] Enemy Fish {gameObject.name} has been eaten!");
-        
+        TakingDamage(10);
     }
 
     private void OnEnable()

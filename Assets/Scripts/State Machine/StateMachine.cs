@@ -34,7 +34,14 @@ public class StateMachine : MonoBehaviour
         {
             if (data.condition.CheckCondition(currentFish.Contex))
             {
-                _activeState = data.state;
+                StateSO nextState = data.state;
+
+                if (nextState != _activeState)
+                {
+                    _activeState = data.state;
+                    _activeState.EnterState(currentFish.Contex);
+                }
+
                 break;
             }
         }

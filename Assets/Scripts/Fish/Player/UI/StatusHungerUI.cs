@@ -9,7 +9,7 @@ public class StatusHungerUI : StatusBarUI
 
     public override void UpdateStatusBar(float currentValue, float maxValue)
     {
-        hungerSlider.value = maxValue/100;
-        trashSlider.value = currentValue/100;
+        hungerSlider.value  = Mathf.Abs(maxValue / 100);
+        trashSlider.value   = Mathf.Abs(currentValue / 100);
     }
 }

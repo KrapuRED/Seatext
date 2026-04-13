@@ -7,6 +7,12 @@ public class ChaseFoodState : StateSO
 {
     public float distanceToEat;
 
+    public override void EnterState(EnemyContex contex)
+    {
+        Debug.Log($"{contex.enemyFish.name} is {name}");
+
+    }
+
     public override void ExcuteState(EnemyContex contex)
     {
         Transform foodPosition = contex.enemyFishEyeSight.currentObject?.transform;

@@ -18,6 +18,7 @@ public class EnemyFish : Fish, IPausable, IEatable
     [SerializeField] private Transform EndWayPoint;
     [SerializeField] private EnemyFishTypeBox _enemyFishTypeBox;
     [SerializeField] private FishTextRotate _fishTextRotation;
+    [SerializeField] private bool IntilazeFishByStart;
 
     private Rigidbody2D _rb2d;
 
@@ -38,7 +39,8 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     private void Start()
     {
-        //IntilazeFish(EndWayPoint, fishData);
+        if (IntilazeFishByStart)
+            IntilazeFish(EndWayPoint, fishData);
     }
 
     public void IntilazeFish(Transform endWayPoint, FishOS data)
