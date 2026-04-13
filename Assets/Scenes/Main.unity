@@ -551,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -648,6 +648,10 @@ PrefabInstance:
     - target: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
       propertyPath: m_Name
       value: Food_Trash
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1228,7 +1232,8 @@ MonoBehaviour:
   wordLevel: 1
   IntilazeSpawnerByStart: 0
   fishDatas:
-  - {fileID: 11400000, guid: 63da1befc71e72042947cf73eba4033a, type: 2}
+  - {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
+  - {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
 --- !u!1 &981156933
 GameObject:
   m_ObjectHideFlags: 0
