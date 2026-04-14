@@ -10,13 +10,9 @@ public class PlayerFish : Fish, IPausable, IEatable
     [SerializeField] private float distanceToTarget;
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
-    [SerializeField] private float maxHunger;
-    [SerializeField] private float currentHunger;
-    [SerializeField] private float trashGain;
 
-    [Header("UI")]
-    [SerializeField] private StatusBarUI statusHungerUI;
-    [SerializeField] private StatusHealthUI statusHealthUI;
+    [Header("Fish System")]
+    [SerializeField] private FishStatus _playerFishStatus;
 
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
@@ -24,6 +20,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     private Rigidbody2D _rb2d;
 
     public FoodSize foodSize { get ; set ; }
+    public FishStatus playerFishStatus => _playerFishStatus;
 
     private void Awake()
     {
@@ -43,11 +40,7 @@ public class PlayerFish : Fish, IPausable, IEatable
         fishMovement.IntilizaFishMovement(_rb2d, fishData);
         PauseManager.instance.Register(this);
 
-        currentHunger = maxHunger;
-        statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
-
         currentHealth = maxHealth;
-        statusHealthUI.UpdateStatusBar(currentHealth, maxHealth);
 
         fishEyeSight.isCanSee = true;
         foodSize = fishData.fishSize;
@@ -55,7 +48,7 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     private void Update()
     {
-        Starve();
+        _playerFishStatus.Starve();
 
         if (targetPosition == null)
             return;
@@ -79,19 +72,6 @@ public class PlayerFish : Fish, IPausable, IEatable
         eatable.Eat(fishType);
     }
 
-    private void Starve()
-    {
-        if (currentHunger <= 0)
-        {
-            Debug.Log($"[PlayerFish - Update] PlayerFish {gameObject.name} is too hungry to move!");
-            float damageValue = Time.deltaTime;
-            TakingDamage(damageValue);
-            return;
-        }
-
-        currentHunger -= Time.deltaTime;
-        statusHungerUI.UpdateStatusBar(trashGain, currentHunger);
-    }
 
     public void TakingDamage(float damageValue)
     {
@@ -103,7 +83,7 @@ public class PlayerFish : Fish, IPausable, IEatable
         }
 
         currentHealth -= damageValue;
-        statusHealthUI.UpdateStatusBar(currentHealth, maxHealth);
+       _playerFishStatus.OnUpdateHealthBar(currentHealth, maxHealth);
     }
 
     public override void SetBeenHunted(bool isBeenHunted, Fish c)
@@ -131,19 +111,6 @@ public class PlayerFish : Fish, IPausable, IEatable
         return distance;
     }
 
-    public void SetTrashinHungerbar(float gainTrash)
-    {
-        trashGain += gainTrash;
-        maxHunger -= gainTrash;
-
-        ResetHunggerBar();
-    }
-
-    public void ResetHunggerBar()
-    {
-        statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
-        currentHunger = maxHunger;
-    }
 
     public void OnPause()
     {

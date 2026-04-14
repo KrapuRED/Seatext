@@ -2,15 +2,57 @@ using UnityEngine;
 
 public class FishStatus : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Fish Status Config")]
+    [SerializeField] private float maxHunger;
+    [SerializeField] private float _currentHunger;
+    [SerializeField] private float trashGain;
+
+    [Header("UI")]
+    [SerializeField] private StatusHungerUI statusHungerUI;
+    [SerializeField] private StatusHealthUI statusHealthUI;
+
+    private PlayerFish _playerFish;
+
+    public float currentHunger => _currentHunger;
+
+    private void Start()
     {
-        
+        _currentHunger = maxHunger;
+        statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
+
+        _playerFish = GetComponent<PlayerFish>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Starve()
     {
-        
+        if (currentHunger <= 0)
+        {
+            Debug.Log($"[PlayerFish - Update] PlayerFish {gameObject.name} is too hungry to move!");
+            float damageValue = Time.deltaTime;
+            _playerFish.TakingDamage(damageValue);
+            return;
+        }
+
+        _currentHunger -= Time.deltaTime;
+        statusHungerUI.UpdateStatusBar(trashGain, _currentHunger);
+    }
+
+    public void OnUpdateHealthBar(float currentHealth, float maxHealth)
+    {
+        statusHealthUI.UpdateStatusBar(currentHealth, maxHealth);
+    }
+
+    public void SetTrashinHungerbar(float gainTrash)
+    {
+        trashGain += gainTrash;
+        maxHunger -= gainTrash;
+
+        ResetHunggerBar();
+    }
+
+    public void ResetHunggerBar()
+    {
+        statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
+        _currentHunger = maxHunger;
     }
 }

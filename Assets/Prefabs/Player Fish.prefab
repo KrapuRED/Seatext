@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8514180140959559430}
   - component: {fileID: 2695495758539738174}
   - component: {fileID: 6360566529690299870}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PlayerFish - Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,7 @@ MonoBehaviour:
   _speedFish: 0
   _dodgeForce: 1
   isCanMove: 1
+  _fishTextRotate: {fileID: 0}
 --- !u!212 &6360566529690299870
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2999379020869096123}
   - component: {fileID: 3167100711482963360}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player Fish - EyeSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,14 +150,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a56ed1411ed944b8d5c60b7f634ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewAngle: 0
   viewDistance: 20
-  LeftEye: {fileID: 9205601914429087047}
-  RightEye: {fileID: 7410180442678513634}
+  EyePosition: {fileID: 0}
   visionLayerMask:
     serializedVersion: 2
     m_Bits: 64
   dectactionTag: Food
-  currentObject: {fileID: 0}
+  _objectsInSights: []
+  _currentObject: {fileID: 0}
 --- !u!1 &2866416412487774996
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1968422358233737315}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PlayerFish - ColliderBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7410180442678513634}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EyeSight - Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1512737741790844538}
   - component: {fileID: 5531016699854132276}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ColliderBox - Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,6 +311,7 @@ GameObject:
   - component: {fileID: 339882183581354877}
   - component: {fileID: 2548475851503398298}
   - component: {fileID: 7998975373102525702}
+  - component: {fileID: 5971516993862269681}
   - component: {fileID: 7194691806180533832}
   - component: {fileID: 6970934337533873492}
   m_Layer: 6
@@ -403,13 +406,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b92b8f99cb4a24498ddcbbc9e6ca1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fishData: {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
+  _fishData: {fileID: 11400000, guid: 225121f13c087284f82f3bde409e8138, type: 2}
   _fishMovement: {fileID: 2695495758539738174}
   _fishEyeSight: {fileID: 3167100711482963360}
   _isBeenHunted: 0
+  _fishType: 1
   targetPosition: {fileID: 0}
   distanceToTarget: 1
+  maxHealth: 100
+  currentHealth: 0
+  _playerFishStatus: {fileID: 5971516993862269681}
   setPositionPlayerEvent: {fileID: 11400000, guid: b5d65512b82cc9c48b39e39f132f10e9, type: 2}
+--- !u!114 &5971516993862269681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4692316933345027950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 215b425980b19df40a87d449d9fd6d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHunger: 100
+  _currentHunger: 0
+  trashGain: 0
+  statusHungerUI: {fileID: 0}
+  statusHealthUI: {fileID: 0}
 --- !u!50 &7194691806180533832
 Rigidbody2D:
   serializedVersion: 5
@@ -492,7 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9205601914429087047}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EyeSight - left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

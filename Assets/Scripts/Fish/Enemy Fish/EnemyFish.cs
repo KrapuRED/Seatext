@@ -101,7 +101,7 @@ public class EnemyFish : Fish, IPausable, IEatable
         switch (fishType)
         {
             case FishType.Player:
-                PlayerFish.playerFish.ResetHunggerBar(); 
+                PlayerFish.playerFish.playerFishStatus.ResetHunggerBar(); 
                 break;
         }
 

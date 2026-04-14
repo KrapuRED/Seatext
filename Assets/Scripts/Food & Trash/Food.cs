@@ -4,6 +4,7 @@ public class Food : TypingBox, IEatable, IPausable
 {
     [Header("Food Config")]
     [SerializeField] private DropFoodSO _dropFoodSO;
+    [SerializeField] private bool isCanInitilizeByStart;
 
     [Header("Food TypingBox Config")]
     [SerializeField] private WordLevel _wordLevel;
@@ -21,6 +22,12 @@ public class Food : TypingBox, IEatable, IPausable
     public FoodSize foodSize { get ; set; }
 
     private SpriteRenderer _spriteRenderer;
+
+    private void Start()
+    {
+        if (isCanInitilizeByStart)
+            InitializeFood(_wordLevel, _dropFoodSO);
+    }
 
     private void Update()
     {
@@ -122,7 +129,7 @@ public class Food : TypingBox, IEatable, IPausable
             {
                 case FoodType.Trash:
                     Debug.Log($"[Food - Eat] Trash {gameObject.name} has been eaten! Player will lose health.");
-                    //PlayerFish.playerFish.SetTrashinHungerbar(_dropFoodSO.gainStatus);
+                    PlayerFish.playerFish.playerFishStatus.SetTrashinHungerbar(_dropFoodSO.gainStatus);
                     break;
 
                 case FoodType.Pellet:
