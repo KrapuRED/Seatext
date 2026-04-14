@@ -1235,15 +1235,12 @@ MonoBehaviour:
     spawnTransform: {fileID: 1252777395}
   _continer: {fileID: 100142063}
   _prefab: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-  _spawnInterval: 0
+  _spawnInterval: 2.5
   _isSpawning: 1
   wordLevel: 1
   IntilazeSpawnerByStart: 1
-  fishDatas:
-  - {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
-  - {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
   _spawnTableDatas:
-  - fishName: Small Passive
+  - fishName: Tiny Passive Fish
     spawnChance: 40
     fishDatas:
     - {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
@@ -1926,7 +1923,7 @@ MonoBehaviour:
     spawnTransform: {fileID: 12492946}
   _continer: {fileID: 1077437399}
   _prefab: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-  _spawnInterval: 0
+  _spawnInterval: 2.5
   _isSpawning: 1
   wordLevel: 1
   IntilazeSpawnerByStart: 0
@@ -3053,6 +3050,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8832359815532709602, guid: e0c2cccd19fcc704c94064758915d03a, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093234915796010677, guid: e0c2cccd19fcc704c94064758915d03a, type: 3}
+      propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

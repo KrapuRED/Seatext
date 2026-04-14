@@ -12,7 +12,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     [SerializeField] private float currentHealth;
 
     [Header("Fish System")]
-    [SerializeField] private FishStatus _playerFishStatus;
+    [SerializeField] private FishHunger _playerFishStatus;
 
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
@@ -20,7 +20,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     private Rigidbody2D _rb2d;
 
     public FoodSize foodSize { get ; set ; }
-    public FishStatus playerFishStatus => _playerFishStatus;
+    public FishHunger playerFishStatus => _playerFishStatus;
 
     private void Awake()
     {
@@ -59,7 +59,7 @@ public class PlayerFish : Fish, IPausable, IEatable
             return;
         }
 
-        fishMovement.MoveFish(targetPosition);
+        fishMovement.MoveFish(targetPosition, fishSpeed.GetFishSpeed(10));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -71,7 +71,6 @@ public class PlayerFish : Fish, IPausable, IEatable
 
         eatable.Eat(fishType);
     }
-
 
     public void TakingDamage(float damageValue)
     {

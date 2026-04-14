@@ -12,7 +12,6 @@ public class SpawnTableData
 public class FishSpawnerManager : SpawnerManager
 {
     [Header("Fish Spawn Manager")]
-    [SerializeField] private List<FishOS> fishDatas = new List<FishOS>();
     [SerializeField] private List<SpawnTableData> _spawnTableDatas = new List<SpawnTableData>();
 
     public override void Spawn()

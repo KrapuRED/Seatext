@@ -11,6 +11,6 @@ public class RoamingState : StateSO
 
     public override void ExcuteState(EnemyContex contex)
     {
-        contex.enemyFishMovement.MoveFish(contex.endWypointPoint);
+        contex.enemyFishMovement.MoveFish(contex.endWypointPoint, contex.enemyFishSpeed.GetFishSpeed(0));
     }
 }

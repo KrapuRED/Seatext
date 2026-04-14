@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,22 +31,32 @@ public class SpawnerManager : MonoBehaviour, IPausable
     [SerializeField] protected WordLevel wordLevel;
     [SerializeField] private bool IntilazeSpawnerByStart;
 
+    private Coroutine _spawnCoroutine;
+
     private void Start()
     {
         PauseManager.instance.Register(this);
         if (IntilazeSpawnerByStart)
             Spawn();
+
+        OnStartSpawing();
     }
 
     public void OnPause()
     {
         _isSpawning = false;
+        StopCoroutine(_spawnCoroutine);
     }
 
     public void OnResume()
     {
         _isSpawning = true;
-        Spawn();
+        OnStartSpawing();
+    }
+
+    public void OnStartSpawing()
+    {
+        _spawnCoroutine = StartCoroutine(SpawingCoroutine());
     }
 
     public virtual void Spawn()
@@ -81,5 +92,14 @@ public class SpawnerManager : MonoBehaviour, IPausable
 
         int randomIndex = Random.Range(0, aviableEndWayPoints.Count);
         return aviableEndWayPoints[randomIndex].spawnTransform;
+    }
+
+    private IEnumerator SpawingCoroutine()
+    {
+        while (_isSpawning)
+        {
+            yield return new WaitForSeconds(_spawnInterval);
+            Spawn();
+        }
     }
 }

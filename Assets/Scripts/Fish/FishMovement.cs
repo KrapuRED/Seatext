@@ -3,7 +3,6 @@ using UnityEngine;
 public class FishMovement : MonoBehaviour
 {
     [Header("FishMovement Config")]
-    [SerializeField] private float _speedFish;
     [SerializeField] private float _dodgeForce;
     [SerializeField] private bool isCanMove;
 
@@ -15,19 +14,17 @@ public class FishMovement : MonoBehaviour
     public void IntilizaFishMovement(Rigidbody2D rb2d, FishOS fishData)
     {
         _rigidbody2D = rb2d;
-        _speedFish = fishData.speedFish;
+
     }
 
 
-    public void MoveFish(Transform TargetPosition, bool runAway = false)
+    public void MoveFish(Transform TargetPosition, float speed ,bool runAway = false)
     {
         if (!isCanMove)
         {
             Debug.Log($"[FishMovement - MoveFish] Fish Cannot Move To Position!");
             return;
         }
-
-        float speed = _speedFish;
 
         if (runAway)
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FishStatus : MonoBehaviour
+public class FishHunger : MonoBehaviour
 {
     [Header("Fish Status Config")]
     [SerializeField] private float maxHunger;

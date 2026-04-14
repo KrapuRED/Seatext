@@ -6,6 +6,7 @@ public class EnemyContex
     public Transform enemyPosition;
     public Transform endWypointPoint;
 
+    public FishSpeed enemyFishSpeed;
     public FishMovement enemyFishMovement;
     public FishEyeSight enemyFishEyeSight;
     public EnemyFishTypeBox enemyFishTypeBox;
@@ -65,6 +66,7 @@ public class EnemyFish : Fish, IPausable, IEatable
             enemyFishEyeSight   = fishEyeSight,
             enemyFishTypeBox    = _enemyFishTypeBox,
             fishSightVisual     = _fishSightVisual,
+            enemyFishSpeed      = fishSpeed,
             enemyFish           = this    
         };
 

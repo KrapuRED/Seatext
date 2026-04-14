@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0936e5991c3cfc9429d862a0990d1808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedFish: 0
   _dodgeForce: 1
   isCanMove: 1
   _fishTextRotate: {fileID: 0}
@@ -312,6 +311,7 @@ GameObject:
   - component: {fileID: 2548475851503398298}
   - component: {fileID: 7998975373102525702}
   - component: {fileID: 5971516993862269681}
+  - component: {fileID: 5884964062621459563}
   - component: {fileID: 7194691806180533832}
   - component: {fileID: 6970934337533873492}
   m_Layer: 6
@@ -409,6 +409,7 @@ MonoBehaviour:
   _fishData: {fileID: 11400000, guid: 225121f13c087284f82f3bde409e8138, type: 2}
   _fishMovement: {fileID: 2695495758539738174}
   _fishEyeSight: {fileID: 3167100711482963360}
+  _fishSpeed: {fileID: 0}
   _isBeenHunted: 0
   _fishType: 1
   targetPosition: {fileID: 0}
@@ -434,6 +435,19 @@ MonoBehaviour:
   trashGain: 0
   statusHungerUI: {fileID: 0}
   statusHealthUI: {fileID: 0}
+--- !u!114 &5884964062621459563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4692316933345027950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54dd2316277c442ab9d400429fcc5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 0
 --- !u!50 &7194691806180533832
 Rigidbody2D:
   serializedVersion: 5
