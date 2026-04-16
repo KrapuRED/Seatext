@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4875765432688007010}
   - component: {fileID: 4219895754207493913}
   - component: {fileID: 583772736788658192}
+  - component: {fileID: 9019628286764586997}
   m_Layer: 6
   m_Name: TypeBox - Backround Frame Image
   m_TagString: Untagged
@@ -76,6 +77,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 90
+--- !u!114 &9019628286764586997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115300046128565108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 0
 --- !u!1 &2118618728440923955
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +295,7 @@ GameObject:
   - component: {fileID: 5851729751905103866}
   - component: {fileID: 1115016317069016931}
   - component: {fileID: 3767436218544994955}
-  - component: {fileID: 259937458090151320}
+  - component: {fileID: 6072255418020686266}
   m_Layer: 6
   m_Name: TypeBox - Text (TMP)
   m_TagString: Untagged
@@ -335,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Very long text that can be full on time
+  m_text: word
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -406,7 +421,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &259937458090151320
+--- !u!114 &6072255418020686266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -477,7 +492,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 2.84, y: 2}
+  m_CellSize: {x: 2, y: 1}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2

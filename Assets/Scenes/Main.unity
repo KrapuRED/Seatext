@@ -273,8 +273,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 741096022}
+  m_Children: []
   m_Father: {fileID: 200569685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &108917032
@@ -485,67 +484,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &311384395
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 100142063}
-    m_Modifications:
-    - target: {fileID: 38333581360968704, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: EndWayPoint
-      value: 
-      objectReference: {fileID: 71872152}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-      propertyPath: m_Name
-      value: Fish-Enemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
 --- !u!1 &317281104
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,11 +839,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1705727114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &741096022 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2101408738233833046, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-  m_PrefabInstance: {fileID: 311384395}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &782167566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,11 +976,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &947839069 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-  m_PrefabInstance: {fileID: 1752464826}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &951039322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,14 +1089,17 @@ MonoBehaviour:
   IntilazeSpawnerByStart: 1
   _spawnTableDatas:
   - fishName: Tiny Passive Fish
+    fishPrefab: {fileID: 3563744844176391317, guid: 4a94656e79eea2c458ed4f4febcdb4cd, type: 3}
     spawnChance: 40
     fishDatas:
     - {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
   - fishName: Small Aggresive
+    fishPrefab: {fileID: 3563744844176391317, guid: 4a94656e79eea2c458ed4f4febcdb4cd, type: 3}
     spawnChance: 30
     fishDatas:
     - {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
   - fishName: Big Aggresive
+    fishPrefab: {fileID: 1251050015922200359, guid: ff7734a5779c76f4f9b404f22001f59e, type: 3}
     spawnChance: 20
     fishDatas:
     - {fileID: 11400000, guid: 63da1befc71e72042947cf73eba4033a, type: 2}
@@ -1437,8 +1368,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 947839069}
+  m_Children: []
   m_Father: {fileID: 200569685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1103542092
@@ -1839,7 +1769,7 @@ MonoBehaviour:
   _continer: {fileID: 1077437399}
   _prefab: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
   _spawnInterval: 2.5
-  _isSpawning: 1
+  _isSpawning: 0
   wordLevel: 1
   IntilazeSpawnerByStart: 0
   _foodDataList:
@@ -2339,63 +2269,6 @@ Transform:
   - {fileID: 1252777395}
   m_Father: {fileID: 27787139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1752464826
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1077437399}
-    m_Modifications:
-    - target: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_Name
-      value: Food_Trash
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3861015599623731895, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
 --- !u!114 &1793070627 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 708808395805924894, guid: f9a95d4282a075e4fa68f7324b8a5a85, type: 3}
@@ -2484,7 +2357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1895674218
 Transform:
   m_ObjectHideFlags: 0

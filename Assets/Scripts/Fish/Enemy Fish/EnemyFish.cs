@@ -83,16 +83,18 @@ public class EnemyFish : Fish, IPausable, IEatable
         PauseManager.instance.Register(this);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnEating()
     {
-        IEatable eatable = collision.GetComponent<IEatable>();
-
-        if (eatable == null)
-            return;
-
-        foodBeenEaten++;
-        Debug.Log($"[EnemyFish - OnTriggerEnter2D] Food Been Eaten : {foodBeenEaten}");
-        eatable.Eat(fishType);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(mouthPosition.position, eatRange);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.TryGetComponent(out IEatable eating))
+            {
+                Debug.Log($"[{gameObject.name} - Update] Try to Eat {collider.gameObject.name}!");
+                foodBeenEaten++;
+                eating.Eat(fishType);
+            }
+        }
     }
 
     public void Eat(FishType fishType)

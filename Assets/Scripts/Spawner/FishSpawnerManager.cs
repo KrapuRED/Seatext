@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnTableData
 {
     public string fishName;
+    public GameObject fishPrefab;
     [Range(0, 100)] public int spawnChance;
     public List<FishOS> fishDatas = new List<FishOS>();
 }
@@ -42,11 +43,11 @@ public class FishSpawnerManager : SpawnerManager
         SpawingAreaData spawingAreaData = GetRandomSpawmPoint();
         Transform spawnPos = spawingAreaData.spawnTransform;
 
-        GameObject newFishGO = Instantiate(_prefab, spawnPos.position, Quaternion.identity, _continer);
+        GameObject newFishGO = Instantiate(selectTable.fishPrefab, spawnPos.position, Quaternion.identity, _continer);
 
         if (newFishGO == null)
         {
-            Debug.Log($"[FishSpawnManager - OnSpawningFood] Food or Trash is NULL!");
+            Debug.Log($"[FishSpawnManager - OnSpawningFish] Fish is NULL!");
             return;
         }
 
