@@ -409,7 +409,7 @@ MonoBehaviour:
   _fishData: {fileID: 11400000, guid: 225121f13c087284f82f3bde409e8138, type: 2}
   _fishMovement: {fileID: 2695495758539738174}
   _fishEyeSight: {fileID: 3167100711482963360}
-  _fishSpeed: {fileID: 0}
+  _fishSpeed: {fileID: 5884964062621459563}
   _isBeenHunted: 0
   _fishType: 1
   targetPosition: {fileID: 0}

@@ -29,7 +29,7 @@ public class AttackChargeState : StateSO
             Debug.Log("Charge...");
             contex.fishSightVisual.Dettach();
             chargeDirection = contex.endWypointPoint;
-            contex.enemyFishMovement.MoveFish(chargeDirection, contex.enemyFishSpeed.GetFishSpeed(0));
+            contex.enemyFishMovement.MoveFish(chargeDirection, contex.enemyFishSpeed.GetFishSpeed(1));
         }
     }
 }

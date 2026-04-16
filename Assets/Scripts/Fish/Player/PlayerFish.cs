@@ -59,7 +59,7 @@ public class PlayerFish : Fish, IPausable, IEatable
             return;
         }
 
-        fishMovement.MoveFish(targetPosition, fishSpeed.GetFishSpeed(10));
+        fishMovement.MoveFish(targetPosition, fishSpeed.GetFishSpeed(1));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

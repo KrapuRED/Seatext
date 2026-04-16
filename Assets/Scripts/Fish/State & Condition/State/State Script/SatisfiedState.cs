@@ -10,6 +10,6 @@ public class SatisfiedState : StateSO
 
     public override void ExcuteState(EnemyContex contex)
     {
-        contex.enemyFishMovement.MoveFish(contex.endWypointPoint, contex.enemyFishSpeed.GetFishSpeed(0), true);
+        contex.enemyFishMovement.MoveFish(contex.endWypointPoint, contex.enemyFishSpeed.GetFishSpeed(1), true);
     }
 }

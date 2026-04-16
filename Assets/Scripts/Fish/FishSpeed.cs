@@ -7,7 +7,7 @@ public class FishSpeed : MonoBehaviour
 
     public float GetFishSpeed(float speedFactor)
     {
-        float currentSpeed = baseSpeed * speedFactor;
+        float currentSpeed = (baseSpeed * speedFactor) / 10;
         return currentSpeed;
     }
 }

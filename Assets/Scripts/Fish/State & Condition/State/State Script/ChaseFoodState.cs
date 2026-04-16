@@ -20,6 +20,6 @@ public class ChaseFoodState : StateSO
         if (foodPosition == null)
             return;
 
-            contex.enemyFishMovement.MoveFish(foodPosition, contex.enemyFishSpeed.GetFishSpeed(0));
+            contex.enemyFishMovement.MoveFish(foodPosition, contex.enemyFishSpeed.GetFishSpeed(1));
     }
 }
