@@ -934,12 +934,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c63f6b9fdaafe4e9ac2ec5126f1a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fishData: {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
+  _fishData: {fileID: 0}
   _fishMovement: {fileID: 790537203351147450}
   _fishEyeSight: {fileID: 1956725223684295917}
   _fishSpeed: {fileID: 5824866575210849353}
   _isBeenHunted: 0
   _fishType: 2
+  mouthPosition: {fileID: 0}
+  eatRange: 0
   EndWayPoint: {fileID: 0}
   _fishSightVisual: {fileID: 8641277444357706846}
   _enemyFishTypeBox: {fileID: 3142005586085829606}

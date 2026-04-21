@@ -31,7 +31,7 @@ public class EnemyFishTypeBox : TypingBox
         fishUI.SetWordTextUI(ChangeColorText());
     }
 
-    public override bool CheckingText(string typing)
+    public override bool CheckingText(string typedText)
     {
         if (_indexChar >= fullText.Length)
         {
@@ -39,7 +39,7 @@ public class EnemyFishTypeBox : TypingBox
             return false;
         }
 
-        bool isCorrectLetter = IsCorrectLetter(typing);
+        bool isCorrectLetter = IsCorrectLetter(typedText);
         Debug.Log($"[{gameObject.name} - CheckingText] Is Correct Letter : {isCorrectLetter}");
 
         if (isCorrectLetter)
@@ -67,7 +67,7 @@ public class EnemyFishTypeBox : TypingBox
         }
         else
         {
-            Debug.Log($"[Fish - CheckingText] Wrong Letter! Typed : {typing}, Expected : {fullText[0]}");
+            Debug.Log($"[Fish - CheckingText] Wrong Letter! Typed : {typedText}, Expected : {fullText[0]}");
             _isStillMacthing = false;
         }
 

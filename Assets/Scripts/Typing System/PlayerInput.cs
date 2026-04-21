@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour
 
         string key = context.control.displayName;
         TypeBoxManager.instance.CheckTyping(key);
-        Debug.Log($"[PlayerInput - OnTypingText] Typed Text : {key}");
+        //Debug.Log($"[PlayerInput - OnTypingText] Typed Text : {key}");
     }
 
     public void PuaseGame(InputAction.CallbackContext context)

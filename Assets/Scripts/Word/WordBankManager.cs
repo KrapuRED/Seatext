@@ -151,7 +151,7 @@ public class WordBankManager : MonoBehaviour
         {
             if (wordData.word == typedWord)
             {
-                Debug.Log($"[WordBankManager - CheckWordByWordData] Typed word : {typedWord} is correct!");
+                //Debug.Log($"[WordBankManager - CheckWordByWordData] Typed word : {typedWord} is correct!");
                 RemoveWordDataFromActive(wordData);
                 return;
             }

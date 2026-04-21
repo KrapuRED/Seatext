@@ -53,6 +53,7 @@ MonoBehaviour:
   _indexChar: 0
   setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
   _wordLevel: 1
+  _levelNode: {fileID: 6619855779897668214}
   _textLevelNode: {fileID: 820660135497653250}
   _wordData:
     word: 
@@ -390,8 +391,6 @@ MonoBehaviour:
     m_Bits: 128
   _levelNodeRadius: 2
   _levelNodeCheckPoint: {fileID: 2847664563380678733}
-  _isBeenVisited: 0
-  _isBeenSeen: 0
 --- !u!58 &350149495964052630
 CircleCollider2D:
   m_ObjectHideFlags: 0

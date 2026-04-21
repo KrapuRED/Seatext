@@ -13,10 +13,6 @@ public class TypingBox : MonoBehaviour
 
     public SetTypeBoxEventSO setTypeBoxEvent;
 
-    private void Start()
-    {
-        setTypeBoxEvent.Raise(this);
-    }
     public virtual void SetTextToType(string text)
     {
         currentTextToType = text;

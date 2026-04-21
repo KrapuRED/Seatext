@@ -14,6 +14,9 @@ public class LevelNodeManager : MonoBehaviour
 
     [Header("Level Node Manager Config")]
     [SerializeField] private List<LevelNodeData> _levelNodeDatas = new List<LevelNodeData>();
+    [SerializeField] private List<LevelNode> _nearCurrentLevelNodes = new List<LevelNode>();
+    [SerializeField] private List<LevelNode> _levelNodeBeenVisit = new List<LevelNode>();
+    [SerializeField] private LevelNode _currentLevelNode;
 
     private void Awake()
     {
@@ -30,6 +33,10 @@ public class LevelNodeManager : MonoBehaviour
     public void RegisterLevelNode(LevelNode levelNode)
     {
         //Debug.Log($"[{this.name} - RegisterLevelNode] Register Level Node : {levelNode.name}");
+        if (levelNode.tileType == LevelTileType.StartPoint)
+        {
+            _currentLevelNode = levelNode;
+        }
 
         if (_levelNodeDatas.Exists(x => x.levelNodeName == levelNode.name))
         {
@@ -44,5 +51,32 @@ public class LevelNodeManager : MonoBehaviour
         };
 
         _levelNodeDatas.Add(newLevelData);
-    } 
+    }
+
+    public void SetNearCurrentLevelNode(LevelNode nearLevelNode)
+    {
+        if (!_nearCurrentLevelNodes.Contains(nearLevelNode))
+            _nearCurrentLevelNodes.Add(nearLevelNode);
+    }
+
+    public void SelectedNextLevelNode(LevelNode nextLevelNode)
+    {
+        _currentLevelNode.SetBeenVisited();
+        _levelNodeBeenVisit.Add(_currentLevelNode);
+        
+        ResetAllLevelNode(nextLevelNode);
+
+        _currentLevelNode = nextLevelNode;
+        _currentLevelNode.CheckSurroundingLevelNode();
+    }
+
+    private void ResetAllLevelNode(LevelNode excludeNode)
+    {
+        foreach (var levelNode in _nearCurrentLevelNodes)
+        {
+            if (levelNode == excludeNode) continue;
+            levelNode.ResetToHidden();
+        }
+        _nearCurrentLevelNodes.Clear();
+    }
 }
