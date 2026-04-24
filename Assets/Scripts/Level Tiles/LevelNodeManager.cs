@@ -30,10 +30,16 @@ public class LevelNodeManager : MonoBehaviour
         }
     }
 
+    public void ExploreNodeLevel()
+    {
+        Debug.Log($"[{this.name} - ExploreNodeLevel] Explore Node Level : {_currentLevelNode.name}");
+        GameManager.Instance.LoadLevel(_currentLevelNode);
+    }
+
     public void RegisterLevelNode(LevelNode levelNode)
     {
         //Debug.Log($"[{this.name} - RegisterLevelNode] Register Level Node : {levelNode.name}");
-        if (levelNode.tileType == LevelTileType.StartPoint)
+        if (levelNode.TileType == LevelNodeType.StartPoint)
         {
             _currentLevelNode = levelNode;
         }

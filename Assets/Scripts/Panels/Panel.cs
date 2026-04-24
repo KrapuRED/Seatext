@@ -9,4 +9,6 @@ public abstract class Panel : MonoBehaviour
     public abstract void OpenPanel();
 
     public abstract void ClosePanel();
+
+    public abstract void SetDataToPanel(object data);
 }

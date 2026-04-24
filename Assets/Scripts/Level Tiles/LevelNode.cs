@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public enum LevelTileType
+public enum LevelNodeType
 {
     Normal,
     Treasure,
@@ -20,20 +20,23 @@ public enum LevelNodeState
 
 public class LevelNode : MonoBehaviour
 {
-    [Header("Level Tile Config")]
-    [SerializeField] private LevelTileType _tileType;
-    [SerializeField] private LevelSO _levelData;
+    [Header("Level Node Config")]
+    [SerializeField] private LevelNodeType _tileType;
+    [SerializeField] private LevelDataSO _levelData;
     [SerializeField] private LevelNodeState _levelNodeState;
     [SerializeField] private LevelNodeTypeBox _levelNodeTypeBox;
     [SerializeField] private LevelNodeTextUI _levelNodeTextUI;
+    [SerializeField] private string panelID;
 
-    [Header("Level Node ")]
+    [Header("Level Node Settings")]
     [SerializeField] private LayerMask _LevelNodeLayer;
     [SerializeField] private float _levelNodeRadius;
     [SerializeField] private Transform _levelNodeCheckPoint;
 
+    
+    public bool beenExplored { get; set; }
     public LevelNodeState levelNodeState => _levelNodeState;
-    public LevelTileType tileType => _tileType;
+    public LevelNodeType TileType => _tileType;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -50,15 +53,16 @@ public class LevelNode : MonoBehaviour
 
     private void IntiliazeLevelNode()
     {
-        if (_tileType == LevelTileType.StartPoint)
+        if (_tileType == LevelNodeType.StartPoint)
         {
             _levelNodeState = LevelNodeState.Current;
             _levelNodeTextUI.SetWordTextUI("You");
             _spriteRenderer.color = Color.blue;
+
             CheckSurroundingLevelNode();
         }
 
-        if (_tileType == LevelTileType.EndPoint)
+        if (_tileType == LevelNodeType.EndPoint)
             _spriteRenderer.color = Color.red;
 
         LevelNodeManager.instance.RegisterLevelNode(this);
@@ -88,8 +92,10 @@ public class LevelNode : MonoBehaviour
         _levelNodeTextUI.SetWordTextUI("You");
         _spriteRenderer.color = Color.blue;
 
+        PanelManager.instance.OpenPanel(panelID, _levelData);
         
-        LevelNodeManager.instance.SelectedNextLevelNode(this);
+        if (beenExplored)
+            LevelNodeManager.instance.SelectedNextLevelNode(this);
     }
 
 
@@ -115,8 +121,6 @@ public class LevelNode : MonoBehaviour
 
     public void ResetToHidden()
     {
-        Debug.Log("[LevelNode - ResetToHidden] Reset Level Node : " + name);
-        
         _levelNodeState = LevelNodeState.Unseen;
 
         _levelNodeTypeBox.RemoveWordData();

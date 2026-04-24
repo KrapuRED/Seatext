@@ -384,8 +384,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tileType: 0
   _levelData: {fileID: 0}
+  _levelNodeState: 0
   _levelNodeTypeBox: {fileID: 8727858882895210407}
   _levelNodeTextUI: {fileID: 820660135497653250}
+  panelID: PP-01
   _LevelNodeLayer:
     serializedVersion: 2
     m_Bits: 128

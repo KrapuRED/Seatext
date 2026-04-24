@@ -23,4 +23,9 @@ public class PausePanel : Panel
         PauseManager.instance.SetPause(false);
         cg.alpha = 0;
     }
+
+    public override void SetDataToPanel(object data)
+    {
+        
+    }
 }

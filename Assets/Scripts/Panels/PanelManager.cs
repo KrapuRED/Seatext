@@ -23,7 +23,7 @@ public class PanelManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void OpenPanel(string panelID)
+    public void OpenPanel(string panelID, object data = null)
     {
         Debug.Log($"[PanelManager - OpenPanel] try opening panel : {panelID}");
         foreach (var panelData in panelDatas)
@@ -32,6 +32,7 @@ public class PanelManager : MonoBehaviour
             {
                 Debug.Log($"[PanelManager - OpenPanel] Open Panel : {panelData.panelName}");
                 TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.UI);
+                panelData.panel.SetDataToPanel(data);
                 panelData.isActive = true;
                 panelData.panel.OpenPanel();
                 break;

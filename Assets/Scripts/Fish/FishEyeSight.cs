@@ -10,7 +10,8 @@ public class FishEyeSight : MonoBehaviour
     [SerializeField] private Transform EyePosition;
     [SerializeField] private LayerMask visionLayerMask;
     [SerializeField] private string dectactionTag;
-    
+    [SerializeField] private float limitFrame;
+
     [SerializeField] private List<Collider2D> _objectsInSights = new List<Collider2D>();
     [SerializeField] private Transform _currentObject;
 
@@ -24,6 +25,10 @@ public class FishEyeSight : MonoBehaviour
         if (!isCanSee)
             return;
 
+        if (Time.frameCount % limitFrame != 0)
+            return; 
+
+        Debug.Log("Update Eye Sight");
         Transform eyeResult = CheckEyeSight();
 
         if (_currentObject == null)

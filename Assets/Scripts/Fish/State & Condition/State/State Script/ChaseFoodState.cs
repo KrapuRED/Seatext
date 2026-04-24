@@ -17,7 +17,7 @@ public class ChaseFoodState : StateSO
     {
         Transform foodPosition = contex.enemyFishEyeSight.currentObject?.transform;
         
-        if (foodPosition == null)
+        if (foodPosition == null && foodPosition.CompareTag("Player"))
             return;
 
             contex.enemyFishMovement.MoveFish(foodPosition, contex.enemyFishSpeed.GetFishSpeed(1));

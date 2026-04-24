@@ -45,7 +45,9 @@ public class SpawnerManager : MonoBehaviour, IPausable
     public void OnPause()
     {
         _isSpawning = false;
-        StopCoroutine(_spawnCoroutine);
+        bool isCoroutineRunning = _spawnCoroutine != null;
+
+        Debug.Log($"[{this.name} - OnPause] Is Coroutine Running : {isCoroutineRunning}");
     }
 
     public void OnResume()
