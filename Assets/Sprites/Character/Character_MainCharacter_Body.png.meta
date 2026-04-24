@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: 3619493496345114366
     second: Character_MainCharacter_Body_0
+  - first:
+      114: 7758808863751001465
+    second: 4d5dd5623ef2a2b112e2de9c9628c611
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,6 +112,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -151,6 +180,6 @@ TextureImporter:
       Character_MainCharacter_Body_0: 3619493496345114366
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: 
+  userData: '{"entries":[{"key":"SDFImportSettings","data":"{\"BorderOffset\":25,\"ResolutionScale\":0.35600000619888308,\"GradientSize\":0.30399999022483828,\"GenerateSDF\":true,\"SDFGenerationBackend\":\"auto\"}"}]}'
   assetBundleName: 
   assetBundleVariant: 
