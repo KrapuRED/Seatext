@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f79767414a0a7d47bfaeae44a0a54ea, type: 3}
-  m_Name: Small Fish
+  m_Name: Tiny Fish
   m_EditorClassIdentifier: 
-  fishName: Small Fish
-  fishID: SP-00
+  fishName: Tiny Fish
+  fishID: TF-00
   fishSprite: {fileID: 0}
   fishSize: 1
   fishBehavior: 3

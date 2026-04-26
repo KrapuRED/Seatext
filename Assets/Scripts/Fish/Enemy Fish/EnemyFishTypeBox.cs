@@ -51,9 +51,9 @@ public class EnemyFishTypeBox : TypingBox
             if (IsTextComplete())
             {
                 Debug.Log($"[Fish - CheckingText] Text Is Done : {currentTextToType}");
-                if (PlayerFish.playerFish.isBeenHunted)
+                if (PlayerFish.playerFish.IsBeenHunted)
                 {
-                    PlayerFish.playerFish.DodgeAttackFish(currentEnemyFish.Contex.enemyFishEyeSight.AttackDirection);
+                    PlayerFish.playerFish.DodgeAttackFish(currentEnemyFish.Contex.fishEyeSight.AttackDirection);
                 }
                 else
                 {

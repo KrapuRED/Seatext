@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class StateSO : ScriptableObject
 {
-    public abstract void EnterState(EnemyContex contex);
+    public abstract void EnterState(FishContex contex);
 
-    public abstract void ExcuteState(EnemyContex contex);
+    public abstract void ExcuteState(FishContex contex);
 }

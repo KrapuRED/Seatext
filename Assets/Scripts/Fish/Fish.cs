@@ -4,7 +4,21 @@ public enum FishType
 {
     None,
     Player,
-    Enemy
+    Tiny,
+    Small,
+    Big
+}
+
+[System.Serializable]
+public abstract class FishContex
+{
+    public GameObject fishObject;
+    public Transform fishPosition;
+    public FishMovement fishMovement;
+    public FishEyeSight fishEyeSight;
+    public FishMouth fishMouth;
+    public FishSpeed fishSpeed;
+    public Fish fish;
 }
 
 public class Fish : MonoBehaviour
@@ -14,6 +28,7 @@ public class Fish : MonoBehaviour
     [SerializeField] private FishMovement _fishMovement;
     [SerializeField] private FishEyeSight _fishEyeSight;
     [SerializeField] private FishSpeed _fishSpeed;
+    [SerializeField] private FishMouth _fishMouth;
     [SerializeField] private bool _isBeenHunted;
     [SerializeField] private FishType _fishType;
 
@@ -21,17 +36,14 @@ public class Fish : MonoBehaviour
     [SerializeField] protected Transform mouthPosition;
     [SerializeField] protected float eatRange;
 
-    public FishOS fishData => _fishData;
-    public FishMovement fishMovement => _fishMovement;
-    public FishEyeSight fishEyeSight => _fishEyeSight;
-    public FishSpeed    fishSpeed => _fishSpeed;
-    public bool isBeenHunted => _isBeenHunted;
-    public FishType fishType => _fishType;
-
-    private void Update()
-    {
-        OnEating();
-    }
+    public FishOS FishData => _fishData;
+    public FishMovement FishMovement => _fishMovement;
+    public FishEyeSight FishEyeSight => _fishEyeSight;
+    public FishSpeed    FishSpeed => _fishSpeed;
+    public FishMouth FishMouth => _fishMouth;
+    public bool IsBeenHunted => _isBeenHunted;
+    public FishType FishType => _fishType;
+    public FishContex Contex { get;  set; }
 
     public virtual void OnEating()
     {

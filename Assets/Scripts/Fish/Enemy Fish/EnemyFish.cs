@@ -1,17 +1,14 @@
 using UnityEngine;
 
-public class EnemyContex
+public class EnemyContex : FishContex
 {
-    public GameObject enemyObject;
     public Transform enemyPosition;
-    public Transform endWypointPoint;
+    public Transform endWaypoint;
 
-    public FishSpeed enemyFishSpeed;
-    public FishMovement enemyFishMovement;
     public FishEyeSight enemyFishEyeSight;
+    public FishMouth enemyFishMouth;
     public EnemyFishTypeBox enemyFishTypeBox;
     public FishSightVisual fishSightVisual;
-
     public EnemyFish enemyFish;
 }
 
@@ -22,98 +19,110 @@ public class EnemyFish : Fish, IPausable, IEatable
     [SerializeField] private FishSightVisual    _fishSightVisual;
     [SerializeField] private EnemyFishTypeBox   _enemyFishTypeBox;
     [SerializeField] private FishTextRotate     _fishTextRotation;
+    [SerializeField] private int _foodBeenEaten;
     [SerializeField] private bool IntilazeFishByStart;
 
     private Rigidbody2D _rb2d;
 
-    public int foodBeenEaten { get; private set; }
-    public EnemyContex Contex { get; private set; }
+    public int FoodBeenEaten => _foodBeenEaten;
+    
     public FoodSize foodSize { get; set; }
+
+    private void Start()
+    {
+        if (IntilazeFishByStart)
+            IntilazeFish(EndWayPoint, FishData);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnEating();
+    }
 
     public void OnPause()
     {
         enabled = false;
-        fishMovement.SetCanMove(false);
+        FishMovement.SetCanMove(false);
     }
 
     public void OnResume()
     {
         enabled = true;
-        fishMovement.SetCanMove(true);
-    }
-
-    private void Start()
-    {
-        if (IntilazeFishByStart)
-            IntilazeFish(EndWayPoint, fishData);
+        FishMovement.SetCanMove(true);
     }
 
     public void IntilazeFish(Transform endWayPoint, FishOS data)
     {
+        GameEvents.OnEatableEntered.AddListener(HandleEating);
+
         EndWayPoint = endWayPoint;
 
         _rb2d = GetComponent<Rigidbody2D>();
         SetFishData(data);
 
-        Debug.Log($"[Fish - Start] Fish Name : {fishData.fishName}");
-
         Contex = new EnemyContex
         {
-            enemyObject         = gameObject,
+            fishObject          = gameObject,
             enemyPosition       = transform,
-            endWypointPoint     = EndWayPoint,
-            enemyFishMovement   = fishMovement,
-            enemyFishEyeSight   = fishEyeSight,
+            endWaypoint         = EndWayPoint,
+            fishMovement        = FishMovement,
+            enemyFishEyeSight   = FishEyeSight,
+            fishMouth           = FishMouth,
             enemyFishTypeBox    = _enemyFishTypeBox,
             fishSightVisual     = _fishSightVisual,
-            enemyFishSpeed      = fishSpeed,
+            fishSpeed           = FishSpeed,
             enemyFish           = this    
         };
 
-        if (fishData.fishBehavior != FishBehavior.Passive)
+        if (FishData.fishBehavior != FishBehavior.Passive)
         {
-            fishEyeSight.isCanSee = true;
+            FishEyeSight.isCanSee = true;
         }
+
+        if (FishMouth != null)
+            FishMouth.ownerFishType = FishType;
 
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);
-        fishMovement.IntilizaFishMovement(_rb2d, fishData);
-        foodSize = fishData.fishSize;
+        FishMovement.IntilizaFishMovement(_rb2d, FishData);
+        foodSize = FishData.fishSize;
 
         PauseManager.instance.Register(this);
     }
 
+    private void HandleEating(IEatable eatable)
+    {
+        if (FishType == FishType.Tiny)
+            return;
+
+        _foodBeenEaten++;
+        eatable.Eat(FishType);
+    }
+
     public override void OnEating()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(mouthPosition.position, eatRange);
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.TryGetComponent(out IEatable eating))
-            {
-                Debug.Log($"[{gameObject.name} - Update] Try to Eat {collider.gameObject.name}!");
-                foodBeenEaten++;
-                eating.Eat(fishType);
-            }
-        }
+
     }
 
     public void Eat(FishType fishType)
     {
-        Debug.Log($"[PlayerFish - Eat] {gameObject.name} has been eaten!");
-        _enemyFishTypeBox.RemoveWordFromFish();
+        Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten! by {fishType.ToString()}");
         
         switch (fishType)
         {
             case FishType.Player:
+                Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten by Player Fish!");
                 PlayerFish.playerFish.playerFishStatus.ResetHunggerBar(); 
                 break;
         }
 
+        _enemyFishTypeBox.RemoveWordFromFish();
         Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
+        GameEvents.OnEatableEntered.RemoveListener(HandleEating);
         PauseManager.instance.Unregister(this);
     }
 }

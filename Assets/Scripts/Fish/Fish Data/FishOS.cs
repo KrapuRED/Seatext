@@ -11,9 +11,11 @@ public enum FishBehavior
 
 public enum FoodSize
 {
-    None, 
+    None,
+    Tiny,
     Small,
-    Large
+    Player,
+    Big
 }
 
 [CreateAssetMenu(fileName = "FishOS", menuName = "FishData/FishOS")]

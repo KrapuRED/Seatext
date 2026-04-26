@@ -163,6 +163,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 90
+--- !u!1 &2537887709352863719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2803420063161205812}
+  m_Layer: 0
+  m_Name: Fish Enemy - Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2803420063161205812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537887709352863719}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7618489413780594897}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2904086607998468126
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +225,6 @@ Transform:
   m_Children:
   - {fileID: 345864433926264134}
   - {fileID: 5195705608886523685}
-  - {fileID: 5892998546060345373}
   m_Father: {fileID: 7618489413780594897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3368988122478861218
@@ -222,7 +252,7 @@ Transform:
   m_GameObject: {fileID: 3368988122478861218}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -245,8 +275,8 @@ GameObject:
   - component: {fileID: 2721446541668469528}
   - component: {fileID: 4256570863100564285}
   m_Layer: 6
-  m_Name: Small Fish Enemy
-  m_TagString: Untagged
+  m_Name: Tiny Fish Enemy
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,6 +296,7 @@ Transform:
   m_Children:
   - {fileID: 7253077935414445735}
   - {fileID: 3509576962816991255}
+  - {fileID: 2803420063161205812}
   - {fileID: 4213284844227896708}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -300,10 +331,10 @@ MonoBehaviour:
   _fishMovement: {fileID: 7580885149079457300}
   _fishEyeSight: {fileID: 7941774009125959354}
   _fishSpeed: {fileID: 4018757822145048964}
-  _fishMouth: {fileID: 2753695722096646395}
+  _fishMouth: {fileID: 0}
   _isBeenHunted: 0
-  _fishType: 3
-  mouthPosition: {fileID: 5892998546060345373}
+  _fishType: 2
+  mouthPosition: {fileID: 0}
   eatRange: 0.25
   EndWayPoint: {fileID: 0}
   _fishSightVisual: {fileID: 7327692906236148703}
@@ -425,7 +456,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.14964369}
+  m_Offset: {x: 0.00229311, y: -0.21513152}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.28866667}
@@ -435,7 +466,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.8766207}
+  m_Size: {x: 0.7844446, y: 0.8186555}
   m_EdgeRadius: 0
 --- !u!1 &4138656745244113701
 GameObject:
@@ -644,7 +675,7 @@ GameObject:
   - component: {fileID: 7253077935414445735}
   - component: {fileID: 284787379867101932}
   m_Layer: 6
-  m_Name: Small Fish - Sprite
+  m_Name: Tiny Fish - Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -659,9 +690,9 @@ Transform:
   m_GameObject: {fileID: 5841108420930260379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -0.33, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7618489413780594897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -865,88 +896,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridLayoutTypeBoxUI: {fileID: 5686437266886213807}
---- !u!1 &6678402592932431403
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5892998546060345373}
-  - component: {fileID: 2753695722096646395}
-  - component: {fileID: 5467941366499960704}
-  m_Layer: 0
-  m_Name: Fish Enemy - Mouth
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5892998546060345373
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6678402592932431403}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.192, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4213284844227896708}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2753695722096646395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6678402592932431403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 891aeb9ba66fc594fbe332698823c611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerFishType: 0
---- !u!58 &5467941366499960704
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6678402592932431403}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.103165865}
-  m_Radius: 0.39683414
 --- !u!1 &7629643388811130154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1149,7 @@ Transform:
   m_GameObject: {fileID: 7973769525538263001}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.576, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

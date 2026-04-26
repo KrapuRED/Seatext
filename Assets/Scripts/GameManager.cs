@@ -21,12 +21,12 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvent.OnChangeToSelectLevel.AddListener(LoadLevelSelect);
+        GameEvents.OnChangeToSelectLevel.AddListener(LoadLevelSelect);
     }
 
     private void OnDisable()
     {
-        GameEvent.OnChangeToSelectLevel.RemoveListener(LoadLevelSelect);
+        GameEvents.OnChangeToSelectLevel.RemoveListener(LoadLevelSelect);
     }
 
     public void LoadLevel(LevelNode levelNode)

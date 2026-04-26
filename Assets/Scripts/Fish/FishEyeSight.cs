@@ -25,6 +25,9 @@ public class FishEyeSight : MonoBehaviour
         if (!isCanSee)
             return;
 
+        if (EyePosition == null)
+            return;
+
         if (Time.frameCount % limitFrame != 0)
             return; 
 
@@ -103,4 +106,5 @@ public class FishEyeSight : MonoBehaviour
         Debug.DrawLine(EyePosition.position, rightEndPoint, Color.red);
         Debug.DrawLine(leftEndPoint, rightEndPoint, Color.green);
     }
+
 }

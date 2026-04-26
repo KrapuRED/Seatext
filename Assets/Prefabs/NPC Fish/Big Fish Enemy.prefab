@@ -182,6 +182,7 @@ Transform:
   m_Children:
   - {fileID: 952090294897370173}
   - {fileID: 3653060142050271705}
+  - {fileID: 7454055612938712004}
   m_Father: {fileID: 7706811449195803805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1251050015922200359
@@ -256,14 +257,16 @@ MonoBehaviour:
   _fishMovement: {fileID: 3311576797285818517}
   _fishEyeSight: {fileID: 7277502308238493773}
   _fishSpeed: {fileID: 8864369757495353593}
+  _fishMouth: {fileID: 2999129236091427618}
   _isBeenHunted: 0
-  _fishType: 2
+  _fishType: 4
   mouthPosition: {fileID: 321752189633551727}
   eatRange: 0.75
   EndWayPoint: {fileID: 0}
   _fishSightVisual: {fileID: 4821539825694877147}
   _enemyFishTypeBox: {fileID: 5461707984284380499}
   _fishTextRotation: {fileID: 6821151395226544016}
+  _foodBeenEaten: 0
   IntilazeFishByStart: 0
 --- !u!114 &5461707984284380499
 MonoBehaviour:
@@ -1161,3 +1164,85 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6717295923869324036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7454055612938712004}
+  - component: {fileID: 2999129236091427618}
+  - component: {fileID: 482790824993901939}
+  m_Layer: 6
+  m_Name: Big Fish - Mouth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7454055612938712004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717295923869324036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 10237926798974617}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2999129236091427618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717295923869324036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891aeb9ba66fc594fbe332698823c611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerFishType: 0
+--- !u!58 &482790824993901939
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717295923869324036}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 1.9324718}
+  m_Radius: 0.6918769

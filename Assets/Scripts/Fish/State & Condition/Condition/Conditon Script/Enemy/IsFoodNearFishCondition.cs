@@ -2,12 +2,12 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "IsFoodNearFishCondition", menuName = "State Machine/Condition/IsFoodNearFishCondition")]
-public class IsFoodNearFishCondition : ConditionSO
+public class IsFoodNearFishCondition : EnemyConditionSO
 {
     public float distanceToEat;
     public float durationChasingFood;
 
-    public override bool CheckCondition(EnemyContex contex)
+    protected override bool CheckCondition(EnemyContex contex)
     {
         Transform target = contex.enemyFishEyeSight.currentObject;
 

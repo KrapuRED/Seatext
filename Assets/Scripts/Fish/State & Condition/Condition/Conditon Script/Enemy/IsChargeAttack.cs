@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "IsChargeAttack", menuName = "State Machine/Condition/IsChargeAttack")]
-public class IsChargeAttack : ConditionSO
+public class IsChargeAttack : EnemyConditionSO
 {
-    public override bool CheckCondition(EnemyContex contex)
+    protected override bool CheckCondition(EnemyContex contex)
     {
         return true;
     }

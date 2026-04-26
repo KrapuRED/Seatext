@@ -1,6 +1,14 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+[System.Serializable]
+public class PlayerContex : FishContex
+{
+    public PlayerFish playerFish;
+
+    public bool IsActiveFish;
+}
+
 public class PlayerFish : Fish, IPausable, IEatable
 {
     public static PlayerFish playerFish { get; private set; }
@@ -9,10 +17,11 @@ public class PlayerFish : Fish, IPausable, IEatable
     [SerializeField] private Transform targetPosition;
     [SerializeField] private float distanceToTarget;
     [SerializeField] private float maxHealth;
-    [SerializeField] private float currentHealth;
+    [SerializeField] private bool _isActiveFish;
 
     [Header("Fish System")]
     [SerializeField] private FishHunger _playerFishStatus;
+    [SerializeField] private FishHealth _playerFishHealth;
 
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
@@ -37,13 +46,23 @@ public class PlayerFish : Fish, IPausable, IEatable
     {
         _rb2d = GetComponent<Rigidbody2D>();
 
-        fishMovement.IntilizaFishMovement(_rb2d, fishData);
+        FishMovement.IntilizaFishMovement(_rb2d, FishData);
         PauseManager.instance.Register(this);
+        _playerFishHealth.SetFishHealth(maxHealth);
 
-        currentHealth = maxHealth;
+        Contex = new PlayerContex
+        {
+            playerFish      = this,
+            fishObject      = gameObject,
+            fishEyeSight    = FishEyeSight,
+            fishMovement    = FishMovement,
+            fishSpeed       = FishSpeed,
+            fishMouth       = FishMouth,
+            IsActiveFish    = false
+        };
 
-        fishEyeSight.isCanSee = true;
-        foodSize = fishData.fishSize;
+        FishEyeSight.isCanSee = true;
+        foodSize = FishData.fishSize;
     }
 
     private void Update()
@@ -59,7 +78,17 @@ public class PlayerFish : Fish, IPausable, IEatable
             return;
         }
 
-        fishMovement.MoveFish(targetPosition, fishSpeed.GetFishSpeed(1));
+        FishMovement.MoveFish(targetPosition, FishSpeed.GetFishSpeed(1));
+    }
+
+    private void OnEnable()
+    {
+        setPositionPlayerEvent.Register(SetPlayerFishDirection);
+    }
+
+    private void OnDisable()
+    {
+        setPositionPlayerEvent.Unregister(SetPlayerFishDirection);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -69,20 +98,19 @@ public class PlayerFish : Fish, IPausable, IEatable
         if (eatable == null)
             return;
 
-        eatable.Eat(fishType);
+        eatable.Eat(FishType);
     }
 
     public void TakingDamage(float damageValue)
     {
-        if (currentHealth <= 0)
+        if (_playerFishHealth.IsDead())
         {
             Debug.Log($"[PlayerFish - TakingDamage] PlayerFish {gameObject.name} has been killed!");
             gameObject.SetActive(false);
             return;
         }
 
-        currentHealth -= damageValue;
-       _playerFishStatus.OnUpdateHealthBar(currentHealth, maxHealth);
+        _playerFishHealth.OnTakeDamage(damageValue);
     }
 
     public override void SetBeenHunted(bool isBeenHunted, Fish c)
@@ -95,7 +123,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     {
         base.DodgeAttackFish(attackDirection);
         Vector2 dodgeDir = Vector2.Perpendicular(attackDirection);
-        fishMovement.Dodge(dodgeDir);
+        FishMovement.Dodge(dodgeDir);
     }
 
     public void SetPlayerFishDirection(Transform targetPosition)
@@ -110,7 +138,6 @@ public class PlayerFish : Fish, IPausable, IEatable
         return distance;
     }
 
-
     public void OnPause()
     {
         enabled = false;
@@ -124,16 +151,16 @@ public class PlayerFish : Fish, IPausable, IEatable
     public void Eat(FishType fishType)
     {
         Debug.Log($"[PlayerFish - Eat] Enemy Fish {gameObject.name} has been eaten!");
-        TakingDamage(10);
+        switch (fishType)
+        {
+            case FishType.Big:
+                TakingDamage(10);
+                break;
+        }
     }
 
-    private void OnEnable()
+    public void SetActiveFish(bool condition)
     {
-        setPositionPlayerEvent.Register(SetPlayerFishDirection);
-    }
-
-    private void OnDisable()
-    {
-        setPositionPlayerEvent.Unregister(SetPlayerFishDirection);
+        _isActiveFish = condition;
     }
 }

@@ -1,13 +1,13 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "IsEndPointNear", menuName = "State Machine/Condition/IsEndPointNear")]
-public class IsEndPointNear : ConditionSO
+public class IsEndPointNear : EnemyConditionSO
 {
     public float distanceToEndPoint;
 
-    public override bool CheckCondition(EnemyContex contex)
+    protected override bool CheckCondition(EnemyContex contex)
     {
-        float distance = Vector3.Distance(contex.enemyPosition.position, contex.endWypointPoint.position);
+        float distance = Vector3.Distance(contex.enemyPosition.position, contex.endWaypoint.position);
         return distance <= distanceToEndPoint;
     }
 }

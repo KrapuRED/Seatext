@@ -15,7 +15,7 @@ MonoBehaviour:
   fishName: Miad
   fishID: MA-00
   fishSprite: {fileID: 0}
-  fishSize: 2
+  fishSize: 4
   fishBehavior: 2
   speedFish: 10
   dataStateCondtions:

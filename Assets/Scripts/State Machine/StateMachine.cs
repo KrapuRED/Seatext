@@ -12,13 +12,13 @@ public class DataStateCondtion
 public class StateMachine : MonoBehaviour
 {
     [Header("State and Condition Config")]
-    [SerializeField] private EnemyFish currentFish;
+    [SerializeField] private Fish currentFish;
     [SerializeField] private List<DataStateCondtion> dataStateCondtions = new List<DataStateCondtion>();
     [SerializeField] private StateSO _activeState;
 
     private void Start()
     {
-        foreach (var data in currentFish.fishData.dataStateCondtions)
+        foreach (var data in currentFish.FishData.dataStateCondtions)
         {
             dataStateCondtions.Add(data);
         }
@@ -28,7 +28,7 @@ public class StateMachine : MonoBehaviour
     void Update()
     {
         //Debug.Log($"[StateMachine - Update] Counting State Machine For Fish : {dataStateCondtions.Count}");
-        currentFish.fishEyeSight.UpdateEyeSight();
+        currentFish.FishEyeSight.UpdateEyeSight();
 
         foreach (var data in dataStateCondtions)
         {
@@ -46,6 +46,7 @@ public class StateMachine : MonoBehaviour
             }
         }
 
+        if (_activeState != null)
         _activeState.ExcuteState(currentFish.Contex);
     }
 }

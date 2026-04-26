@@ -58,7 +58,15 @@ public class CustomEvents<T1, T2>
 }
 #endregion
 
-public class GameEvent
+public class GameEvents
 {
     public static readonly CustomEvents OnChangeToSelectLevel = new ();
+
+    #region Fish Events
+    public static readonly CustomEvents<IEatable> OnEatableEntered = new ();
+    #endregion
+
+    #region UI Events
+    public static readonly CustomEvents<float, float> OnUpdateHealthBar = new();
+    #endregion
 }

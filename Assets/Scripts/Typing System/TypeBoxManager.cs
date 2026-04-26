@@ -53,6 +53,8 @@ public class TypeBoxManager : MonoBehaviour
 
     public void CheckTyping(string typedText)
     {
+
+
         // This method can be overridden by derived classes to implement specific typing logic
         List<TypingBox> macthingTypeBox = new List<TypingBox>();
 

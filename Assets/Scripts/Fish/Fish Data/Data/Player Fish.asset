@@ -15,7 +15,11 @@ MonoBehaviour:
   fishName: Kreapu
   fishID: 
   fishSprite: {fileID: 0}
-  fishSize: 1
+  fishSize: 3
   fishBehavior: 0
   speedFish: 100
-  dataStateCondtions: []
+  dataStateCondtions:
+  - nameStateCondition: Player Idle State
+    stateConditionID: PS-00
+    state: {fileID: 11400000, guid: e3105b60f0a627b4eaf3aaa9c401386d, type: 2}
+    condition: {fileID: 11400000, guid: 78e8dd5d64502c044bd763a7bd182bf8, type: 2}
