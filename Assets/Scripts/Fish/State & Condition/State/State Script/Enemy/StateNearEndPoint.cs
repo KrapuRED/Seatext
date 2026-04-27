@@ -13,4 +13,8 @@ public class StateNearEndPoint : EnemyStateSO
         contex.enemyFishTypeBox.RemoveWordFromFish();
         Destroy(contex.fishObject);
     }
+    protected override void ExitState(EnemyContex contex)
+    {
+        Debug.Log($"{contex.enemyFish.name} exit {name}");
+    }
 }

@@ -31,4 +31,9 @@ public class AttackChargeState : EnemyStateSO
             contex.fishMovement.MoveFish(chargeDirection, contex.fishSpeed.GetFishSpeed(1));
         }
     }
+
+    protected override void ExitState(EnemyContex contex)
+    {
+        Debug.Log($"{contex.enemyFish.name} is exiting {name}");
+    }
 }

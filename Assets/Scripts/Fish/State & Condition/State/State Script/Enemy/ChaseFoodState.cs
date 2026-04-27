@@ -22,4 +22,8 @@ public class ChaseFoodState : EnemyStateSO
 
             contex.fishMovement.MoveFish(foodPosition, contex.fishSpeed.GetFishSpeed(1));
     }
+    protected override void ExitState(EnemyContex contex)
+    {
+        Debug.Log($"{contex.enemyFish.name} exit {name}");
+    }
 }

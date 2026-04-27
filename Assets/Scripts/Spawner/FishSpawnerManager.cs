@@ -40,7 +40,7 @@ public class FishSpawnerManager : SpawnerManager
             return;
         }
 
-        SpawingAreaData spawingAreaData = GetRandomSpawmPoint();
+        SpawingAreaData spawingAreaData = WaypointManager.Instance.GetRandomFishSpawnPoint();
         Transform spawnPos = spawingAreaData.spawnTransform;
 
         GameObject newFishGO = Instantiate(selectTable.fishPrefab, spawnPos.position, Quaternion.identity, _continer);
@@ -52,7 +52,9 @@ public class FishSpawnerManager : SpawnerManager
         }
 
         EnemyFish enemyFish = newFishGO.GetComponent<EnemyFish>();
-        enemyFish.IntilazeFish(GetRandomEndWayPoint(spawingAreaData), GetRandomDishData(selectTable));
+        Transform endWayPoint = WaypointManager.Instance.GetRandomEndWayPoint(spawingAreaData);
+
+        enemyFish.IntilazeFish(endWayPoint, GetRandomDishData(selectTable));
     }
 
     private SpawnTableData GetRandomSpawnTable()

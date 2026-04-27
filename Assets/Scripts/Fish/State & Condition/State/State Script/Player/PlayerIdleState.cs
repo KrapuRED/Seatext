@@ -7,11 +7,17 @@ public class PlayerIdleState : PlayerStateSO
     protected override void EnterState(PlayerContex contex)
     {
         Debug.Log($"[PlayerIdleState - EnterState] Enter Idle State");
-        contex.playerFish.SetActiveFish(false);
+        contex.IsIdle = true;
+        contex.CanEatFish = false;
     }
 
     protected override void ExcuteState(PlayerContex contex)
     {
         Debug.Log($"[PlayerIdleState - ExcuteState] Excute Idle State");
+    }
+
+    protected override void ExitState(PlayerContex contex)
+    {
+        Debug.Log($"[PlayerIdleState - ExitState] Exit Idle State");
     }
 }

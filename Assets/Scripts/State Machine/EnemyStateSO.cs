@@ -18,6 +18,15 @@ public abstract class EnemyStateSO : StateSO
         }
     }
 
+    public override void ExitState(FishContex contex)
+    {
+        if (contex is EnemyContex enemyContex)
+        {
+            ExitState(enemyContex);
+        }
+    }
+
     protected abstract void EnterState(EnemyContex contex);
     protected abstract void ExcuteState(EnemyContex contex);
+    protected abstract void ExitState(EnemyContex contex);
 }

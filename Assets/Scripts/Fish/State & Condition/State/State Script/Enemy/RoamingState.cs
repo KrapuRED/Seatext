@@ -13,4 +13,9 @@ public class RoamingState : EnemyStateSO
     {
         contex.fishMovement.MoveFish(contex.endWaypoint, contex.fishSpeed.GetFishSpeed(0.5f));
     }
+
+    protected override void ExitState(EnemyContex contex)
+    {
+        Debug.Log($"{contex.enemyFish.name} exit {name}");
+    }
 }

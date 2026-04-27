@@ -38,6 +38,7 @@ public class StateMachine : MonoBehaviour
 
                 if (nextState != _activeState)
                 {
+                    _activeState?.ExitState(currentFish.Contex);
                     _activeState = data.state;
                     _activeState.EnterState(currentFish.Contex);
                 }
@@ -48,5 +49,11 @@ public class StateMachine : MonoBehaviour
 
         if (_activeState != null)
         _activeState.ExcuteState(currentFish.Contex);
+    }
+
+    public void ResetStateMachine()
+    {
+        Debug.Log($"[StateMachine - ResetStateMachine] Reset State Machine");
+        _activeState = null;
     }
 }

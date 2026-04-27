@@ -11,15 +11,6 @@ public enum WayPointPosition
     bottom
 }
 
-[System.Serializable]
-public class SpawingAreaData
-{
-    public string spawingAreaName;
-    public WayPointPosition position;
-    public Transform spawnTransform;
-}
-
-
 public class SpawnerManager : MonoBehaviour, IPausable
 {
     [Header("Spawner Config")]
@@ -74,26 +65,6 @@ public class SpawnerManager : MonoBehaviour, IPausable
         SpawingAreaData aviableSpawn = spawnAreas[randomIndex];
 
         return aviableSpawn;
-    }
-
-    public Transform GetRandomEndWayPoint(SpawingAreaData startWayPoint)
-    {
-
-        List<SpawingAreaData> aviableEndWayPoints = new List<SpawingAreaData>();
-
-        foreach (SpawingAreaData spawn in spawnAreas)
-        {
-            if (spawn.position != startWayPoint.position)
-            {
-                aviableEndWayPoints.Add(spawn);
-            }
-        }
-
-        if (aviableEndWayPoints.Count <= 0)
-            return GetRandomEndWayPoint(startWayPoint);
-
-        int randomIndex = Random.Range(0, aviableEndWayPoints.Count);
-        return aviableEndWayPoints[randomIndex].spawnTransform;
     }
 
     private IEnumerator SpawingCoroutine()

@@ -5,8 +5,12 @@ using UnityEngine.Rendering.Universal;
 public class PlayerContex : FishContex
 {
     public PlayerFish playerFish;
+    public Transform RoamingPoint;
 
     public bool IsActiveFish;
+    public bool IsIdle;
+    public bool IsRoaming;
+    public bool CanEatFish;
 }
 
 public class PlayerFish : Fish, IPausable, IEatable
@@ -22,6 +26,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     [Header("Fish System")]
     [SerializeField] private FishHunger _playerFishStatus;
     [SerializeField] private FishHealth _playerFishHealth;
+    [SerializeField] private StateMachine _stateMachine;
 
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
@@ -30,6 +35,7 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     public FoodSize foodSize { get ; set ; }
     public FishHunger playerFishStatus => _playerFishStatus;
+    private PlayerContex PlayerContex => Contex as PlayerContex;
 
     private void Awake()
     {
@@ -53,12 +59,13 @@ public class PlayerFish : Fish, IPausable, IEatable
         Contex = new PlayerContex
         {
             playerFish      = this,
+            RoamingPoint    =  targetPosition,
             fishObject      = gameObject,
             fishEyeSight    = FishEyeSight,
             fishMovement    = FishMovement,
             fishSpeed       = FishSpeed,
             fishMouth       = FishMouth,
-            IsActiveFish    = false
+            IsActiveFish    = true
         };
 
         FishEyeSight.isCanSee = true;
@@ -72,7 +79,7 @@ public class PlayerFish : Fish, IPausable, IEatable
         if (targetPosition == null)
             return;
 
-        if (CheckDistanceToTarget() <= distanceToTarget)
+        if (CheckDistanceToTarget() <= distanceToTarget && (!PlayerContex.IsRoaming || !PlayerContex.IsRoaming))
         {
             targetPosition = null;
             return;
@@ -84,11 +91,13 @@ public class PlayerFish : Fish, IPausable, IEatable
     private void OnEnable()
     {
         setPositionPlayerEvent.Register(SetPlayerFishDirection);
+        GameEvents.OnPlayerActive.AddListener(SetActiveFish);
     }
 
     private void OnDisable()
     {
         setPositionPlayerEvent.Unregister(SetPlayerFishDirection);
+        GameEvents.OnPlayerActive.RemoveListener(SetActiveFish);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -129,6 +138,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     public void SetPlayerFishDirection(Transform targetPosition)
     {
         Debug.Log("[PlayerFish - SetPlayerFishDirection] Try to Move PlayerFish");
+        PlayerContex.RoamingPoint = targetPosition;
         this.targetPosition = targetPosition;
     }
 
@@ -161,6 +171,20 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     public void SetActiveFish(bool condition)
     {
+        Debug.Log($"[PlayerFish - SetActiveFish] Player Fish is now {(condition ? "Active" : "Inactive")}");
+
+        PlayerContex playerContex = Contex as PlayerContex;
+
+        if (condition)
+        {
+            //reset state machine
+            _stateMachine.ResetStateMachine();
+            playerContex.IsIdle = false;
+            playerContex.IsRoaming = false;
+        }
+
+        playerContex.IsActiveFish = condition;
         _isActiveFish = condition;
+
     }
 }

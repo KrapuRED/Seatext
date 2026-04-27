@@ -9,9 +9,6 @@ public class PlayerIsIdleCondition :  PlayerConditionSO
 
     protected override bool CheckCondition(PlayerContex contex)
     {
-        //if player not typing in sometime will be in idle state and cannot eat food
-        Debug.Log($"[PlayerIsIdleCondition - CheckCondition] Check Player Is Idle Condition");
-
         if (contex.IsActiveFish)
         {
             idleTimer = 0f;

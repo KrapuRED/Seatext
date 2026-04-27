@@ -19,6 +19,10 @@ MonoBehaviour:
   fishBehavior: 0
   speedFish: 100
   dataStateCondtions:
+  - nameStateCondition: Player Roaming Inactive State
+    stateConditionID: PS-01
+    state: {fileID: 11400000, guid: 95a81338bc9fb13459fbd6a81b8f68aa, type: 2}
+    condition: {fileID: 11400000, guid: 5e86446f9e9328d4eb090f9b3de2f30c, type: 2}
   - nameStateCondition: Player Idle State
     stateConditionID: PS-00
     state: {fileID: 11400000, guid: e3105b60f0a627b4eaf3aaa9c401386d, type: 2}

@@ -12,4 +12,9 @@ public class SatisfiedState : EnemyStateSO
     {
         contex.fishMovement.MoveFish(contex.endWaypoint, contex.fishSpeed.GetFishSpeed(1), true);
     }
+
+    protected override void ExitState(EnemyContex contex)
+    {
+        Debug.Log($"{contex.enemyFish.name} is exiting {name}");
+    }
 }

@@ -69,4 +69,9 @@ public class GameEvents
     #region UI Events
     public static readonly CustomEvents<float, float> OnUpdateHealthBar = new();
     #endregion
+
+    #region Game Play
+    public static readonly CustomEvents OnPlayerDie = new();
+    public static readonly CustomEvents<bool> OnPlayerActive = new();
+    #endregion
 }
