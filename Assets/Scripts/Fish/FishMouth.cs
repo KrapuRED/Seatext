@@ -3,23 +3,29 @@ using UnityEngine;
 public class FishMouth : MonoBehaviour
 {
     public FishType ownerFishType;
+    [SerializeField] private bool _isMouthOpen;
 
-    public bool IsMouthOpen { get;  set; }
+    public void SetMouthState(bool isOpen)
+    {
+        _isMouthOpen = isOpen;
+        Debug.Log($"[FishMouth] SetMouthState({isOpen}) called by: {new System.Diagnostics.StackTrace()}", gameObject);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log($"[FishMouth - OnTriggerEnter2D] {gameObject.name} has entered the trigger with {collision.gameObject.name}");
-        Debug.Log($"[FishMoth({gameObject.name}) - OnTriggerEnter2D] IsMouthOpen : {IsMouthOpen}");
+        Debug.Log($"[FishMoth({gameObject.name}) - OnTriggerEnter2D] IsMouthOpen : {_isMouthOpen}");
 
-        if (!IsMouthOpen)
+        if (!_isMouthOpen)
         {
             Debug.Log($"[FishMoth({gameObject.name}) - OnTriggerEnter2D] Mouth is closed, ignoring collision.");
             return;
         }
 
-        if (collision.TryGetComponent(out IEatable eatAble))
+        if (collision.TryGetComponent(out IEatable eatAble) && _isMouthOpen)
         {
-            GameEvents.OnEatableEntered.Invoke(eatAble);
+            Debug.Log("Calling Events!");
+            //GameEvents.OnEatableEntered.Invoke(eatAble);
         }
     }
 }

@@ -69,7 +69,7 @@ public class PlayerFish : Fish, IPausable, IEatable
         };
 
         FishEyeSight.isCanSee = true;
-        FishMouth.IsMouthOpen = true;
+        FishMouth.SetMouthState(true);
         foodSize = FishData.fishSize;
     }
 
@@ -108,16 +108,6 @@ public class PlayerFish : Fish, IPausable, IEatable
         }
 
         FishMovement.MoveFish(targetPosition, FishSpeed.GetChaseFishSpeed());
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        IEatable eatable = collision.GetComponent<IEatable>();
-
-        if (eatable == null)
-            return;
-
-        eatable.Eat(FishType);
     }
 
     public void TakingDamage(float damageValue)
@@ -193,7 +183,7 @@ public class PlayerFish : Fish, IPausable, IEatable
             playerContex.IsRoaming = false;
         }
 
-        FishMouth.IsMouthOpen = condition;
+        FishMouth.SetMouthState(condition);
         //Debug.Log($"[PlayerFish - SetActiveFish] Set FishMouth IsMouthOpen to {condition}");
 
         playerContex.IsActiveFish = condition;

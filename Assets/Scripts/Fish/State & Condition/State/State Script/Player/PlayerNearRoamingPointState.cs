@@ -6,7 +6,7 @@ public class PlayerNearRoamingPointState : PlayerStateSO
 {
    protected override void EnterState(PlayerContex contex)
     {
-        Debug.Log($"[PlayerNearRoamingPointState - EnterState] Enter Player Near Roaming Point State");
+        //Debug.Log($"[PlayerNearRoamingPointState - EnterState] Enter Player Near Roaming Point State");
         if (contex.IsRoaming)
         {
             contex.playerFish.SetPlayerFishDirection(WaypointManager.Instance.GetRandomRoamingPoint().spawnTransform);

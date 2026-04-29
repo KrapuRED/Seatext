@@ -8,12 +8,12 @@ public class PlayerIdleState : PlayerStateSO
     {
         Debug.Log($"[PlayerIdleState - EnterState] Enter Idle State");
         contex.IsIdle = true;
-        contex.fishMouth.IsMouthOpen = false;
+        contex.fishMouth.SetMouthState(false);
     }
 
     protected override void ExcuteState(PlayerContex contex)
     {
-        Debug.Log($"[PlayerIdleState - ExcuteState] Excute Idle State");
+        //Debug.Log($"[PlayerIdleState - ExcuteState] Excute Idle State");
     }
 
     protected override void ExitState(PlayerContex contex)

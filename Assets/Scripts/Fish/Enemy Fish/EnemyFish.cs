@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class EnemyContex : FishContex
@@ -82,7 +83,7 @@ public class EnemyFish : Fish, IPausable, IEatable
         if (FishMouth != null)
         {
             FishMouth.ownerFishType = FishType;
-            FishMouth.IsMouthOpen = true;
+            FishMouth.SetMouthState(true);
         }
 
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
@@ -109,8 +110,7 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     public void Eat(FishType fishType)
     {
-        Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten! by {fishType.ToString()}");
-        
+        Debug.Log($"[FishEnemy - Eat] Eat called by: {new System.Diagnostics.StackTrace()}", gameObject);
         switch (fishType)
         {
             case FishType.Player:

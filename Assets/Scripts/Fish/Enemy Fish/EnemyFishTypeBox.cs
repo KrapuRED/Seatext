@@ -25,6 +25,11 @@ public class EnemyFishTypeBox : TypingBox
         setTypeBoxEvent.Raise(this);
     }
 
+    private void SetWordData()
+    {
+
+    }
+
     public override void SetTextToType(string text)
     {
         base.SetTextToType(text);

@@ -23,7 +23,7 @@ public class FishSpeed : MonoBehaviour
     public float GetFishSpeed(float speedFactor)
     {
         float currentSpeed = (baseSpeed * speedFactor) / 10;
-        Debug.Log($"[FishSpeed - GetFishSpeed] Base Speed: {baseSpeed}, Speed Factor: {speedFactor}, Current Speed: {currentSpeed}");
+        //Debug.Log($"[FishSpeed - GetFishSpeed] Base Speed: {baseSpeed}, Speed Factor: {speedFactor}, Current Speed: {currentSpeed}");
         return currentSpeed;
     }
 
