@@ -80,7 +80,10 @@ public class EnemyFish : Fish, IPausable, IEatable
         }
 
         if (FishMouth != null)
+        {
             FishMouth.ownerFishType = FishType;
+            FishMouth.IsMouthOpen = true;
+        }
 
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);

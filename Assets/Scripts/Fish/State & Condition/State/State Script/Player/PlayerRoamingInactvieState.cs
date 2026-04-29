@@ -22,8 +22,6 @@ public class PlayerRoamingInactvieState : PlayerStateSO
 
         float distance = Vector2.Distance(contex.playerFish.transform.position, contex.RoamingPoint.position);
 
-        Debug.Log($"[PlayerNearRoamingPointCondition - CheckCondition] Distance to Roaming Point: {distance}");
-
         if (distance <= distanceToRoamingPoint)
         {
             contex.playerFish.SetPlayerFishDirection(WaypointManager.Instance.GetRandomRoamingPoint().spawnTransform);

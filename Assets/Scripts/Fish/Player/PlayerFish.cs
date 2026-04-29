@@ -69,7 +69,22 @@ public class PlayerFish : Fish, IPausable, IEatable
         };
 
         FishEyeSight.isCanSee = true;
+        FishMouth.IsMouthOpen = true;
         foodSize = FishData.fishSize;
+    }
+
+    private void OnEnable()
+    {
+        setPositionPlayerEvent.Register(SetPlayerFishDirection);
+        GameEvents.OnPlayerActive.AddListener(SetActiveFish);
+        GameEvents.OnDodgeAttackFish.AddListener(DodgeAttackFish);
+    }
+
+    private void OnDisable()
+    {
+        setPositionPlayerEvent.Unregister(SetPlayerFishDirection);
+        GameEvents.OnPlayerActive.RemoveListener(SetActiveFish);
+        GameEvents.OnDodgeAttackFish.RemoveListener(DodgeAttackFish);
     }
 
     private void Update()
@@ -79,25 +94,20 @@ public class PlayerFish : Fish, IPausable, IEatable
         if (targetPosition == null)
             return;
 
-        if (CheckDistanceToTarget() <= distanceToTarget && (!PlayerContex.IsRoaming || !PlayerContex.IsRoaming))
+        if (CheckDistanceToTarget() <= distanceToTarget && (!PlayerContex.IsIdle || !PlayerContex.IsRoaming))
         {
             targetPosition = null;
             return;
         }
 
-        FishMovement.MoveFish(targetPosition, FishSpeed.GetFishSpeed(1));
-    }
+        if (PlayerContex.IsRoaming)
+        {
+            //Debug.Log($"[PlayerFish - Update] Move PlayerFish to Roaming Point");
+            FishMovement.MoveFish(targetPosition, FishSpeed.GetRoamingFishSpeed());
+            return;
+        }
 
-    private void OnEnable()
-    {
-        setPositionPlayerEvent.Register(SetPlayerFishDirection);
-        GameEvents.OnPlayerActive.AddListener(SetActiveFish);
-    }
-
-    private void OnDisable()
-    {
-        setPositionPlayerEvent.Unregister(SetPlayerFishDirection);
-        GameEvents.OnPlayerActive.RemoveListener(SetActiveFish);
+        FishMovement.MoveFish(targetPosition, FishSpeed.GetChaseFishSpeed());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -182,6 +192,9 @@ public class PlayerFish : Fish, IPausable, IEatable
             playerContex.IsIdle = false;
             playerContex.IsRoaming = false;
         }
+
+        FishMouth.IsMouthOpen = condition;
+        //Debug.Log($"[PlayerFish - SetActiveFish] Set FishMouth IsMouthOpen to {condition}");
 
         playerContex.IsActiveFish = condition;
         _isActiveFish = condition;

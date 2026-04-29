@@ -6,11 +6,14 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float timerToIdle;
     [SerializeField] private float timer;
 
+    [SerializeField] private bool isIdle;
+
     private void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
-        if (timer >= timerToIdle)
+        if (timer >= timerToIdle && !isIdle)
         {
+            isIdle = true;
             GameEvents.OnPlayerActive.Invoke(false);
         }
     }
@@ -20,6 +23,7 @@ public class PlayerInput : MonoBehaviour
         if (!context.performed) return;
 
         timer = 0f;
+        isIdle = false;
         GameEvents.OnPlayerActive.Invoke(true);
 
         string key = context.control.displayName;

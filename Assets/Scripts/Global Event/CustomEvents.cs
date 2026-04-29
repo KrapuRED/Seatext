@@ -64,6 +64,11 @@ public class GameEvents
 
     #region Fish Events
     public static readonly CustomEvents<IEatable> OnEatableEntered = new ();
+
+    #endregion
+
+    #region Player Fish Events
+    public static readonly CustomEvents<Vector2> OnDodgeAttackFish = new();
     #endregion
 
     #region UI Events
