@@ -7,13 +7,33 @@ public class SpawnTableData
     public string fishName;
     public GameObject fishPrefab;
     [Range(0, 100)] public int spawnChance;
-    public List<FishOS> fishDatas = new List<FishOS>();
+    public List<FishSO> fishDatas = new List<FishSO>();
+}
+
+[System.Serializable]
+public class spawnedFishData
+{
+    public FishSO fishData;
+    public int fishIndex;
 }
 
 public class FishSpawnerManager : SpawnerManager
 {
-    [Header("Fish Spawn Manager")]
+    [Header("Spawnable Fish Data")]
     [SerializeField] private List<SpawnTableData> _spawnTableDatas = new List<SpawnTableData>();
+
+    [Header("Spawned Fish Pool")]
+    [SerializeField] private List<spawnedFishData> _spawnedFishDatas = new List<spawnedFishData>();
+
+    private void OnEnable()
+    {
+        GameEvents.OnRemoveSpawnedFishData.AddListener(RemoveSpawnedFishData);
+    }
+    
+    private void OnDisable()
+    {
+        GameEvents.OnRemoveSpawnedFishData.RemoveListener(RemoveSpawnedFishData);
+    }
 
     public override void Spawn()
     {
@@ -54,7 +74,10 @@ public class FishSpawnerManager : SpawnerManager
         EnemyFish enemyFish = newFishGO.GetComponent<EnemyFish>();
         Transform endWayPoint = WaypointManager.Instance.GetRandomEndWayPoint(spawingAreaData);
 
-        enemyFish.IntilazeFish(endWayPoint, GetRandomDishData(selectTable));
+        FishSO fishData = GetRandomDishData(selectTable);
+        int fishDataIndex = AddSpawnedFishData(fishData);
+
+        enemyFish.IntilazeFish(endWayPoint, fishData, fishDataIndex);
     }
 
     private SpawnTableData GetRandomSpawnTable()
@@ -74,13 +97,57 @@ public class FishSpawnerManager : SpawnerManager
         return null;
     }
 
-    private FishOS GetRandomDishData(SpawnTableData tableData)
+    private FishSO GetRandomDishData(SpawnTableData tableData)
     {
         int index = Random.Range(0, tableData.fishDatas.Count);
 
-        FishOS data = tableData.fishDatas[index];
+        FishSO data = tableData.fishDatas[index];
 
         return data;
     }
 
+    private int FindSpawnedFishDataIndex()
+    {
+        int index = _spawnedFishDatas.Count;
+        for (int i = 0; i < index; i++)
+        {
+            if (_spawnedFishDatas[i].fishData == null)
+            {
+                index =  _spawnedFishDatas[i].fishIndex;
+            }
+        }
+        return index;
+    }
+
+    public int AddSpawnedFishData(FishSO fishData)
+    {
+        int index = FindSpawnedFishDataIndex();
+        Debug.Log($"[FishSpawnerManager - AddSpawnedFishData] Adding Fish Data: {fishData.fishName} at index: {index}");
+
+        if (index == -1)
+        {
+            Debug.LogError($"[FishSpawnerManager - AddSpawnedFishData] No empty slot for spawned fish data!");
+            return -1;
+        }
+
+        _spawnedFishDatas.Add(
+            new spawnedFishData
+            {
+                fishData  = fishData,
+                fishIndex = index
+            });
+        return index;
+    }
+
+    private void RemoveSpawnedFishData(int fishIndex)
+    {
+        for (int i = 0; i < _spawnedFishDatas.Count; i++)
+        {
+            if (_spawnedFishDatas[i].fishIndex == fishIndex)
+            {
+                _spawnedFishDatas[i].fishData = null;
+                break;
+            }
+        }
+    }
 }

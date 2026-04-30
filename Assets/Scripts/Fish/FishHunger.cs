@@ -11,16 +11,15 @@ public class FishHunger : MonoBehaviour
     [SerializeField] private StatusHungerUI statusHungerUI;
     [SerializeField] private StatusHealthUI statusHealthUI;
 
-    private PlayerFish _playerFish;
+    [SerializeField] private PlayerFish _playerFish;
 
     public float currentHunger => _currentHunger;
 
     private void Start()
     {
         _currentHunger = maxHunger;
-        statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
-
-        _playerFish = GetComponent<PlayerFish>();
+        //statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
+        GameEvents.OnUpdateHungerBar.Invoke(trashGain, maxHunger);
     }
 
     public void Starve()
@@ -34,12 +33,14 @@ public class FishHunger : MonoBehaviour
         }
 
         _currentHunger -= Time.deltaTime;
-        statusHungerUI.UpdateStatusBar(trashGain, _currentHunger);
+        //statusHungerUI.UpdateStatusBar(trashGain, _currentHunger);
+        GameEvents.OnUpdateHungerBar.Invoke(trashGain, _currentHunger);
     }
 
     public void OnUpdateHealthBar(float currentHealth, float maxHealth)
     {
-        statusHealthUI.UpdateStatusBar(currentHealth, maxHealth);
+        //statusHealthUI.UpdateStatusBar(currentHealth, maxHealth);
+        GameEvents.OnUpdateHungerBar.Invoke(currentHealth, maxHealth);
     }
 
     public void SetTrashinHungerbar(float gainTrash)

@@ -9,9 +9,9 @@ public class FishMovement : MonoBehaviour
     [Header("Effector")]
     [SerializeField] private FishTextRotate _fishTextRotate;
 
-    private Rigidbody2D _rigidbody2D;
+    [SerializeField] private Rigidbody2D _rigidbody2D;
 
-    public void IntilizaFishMovement(Rigidbody2D rb2d, FishOS fishData)
+    public void IntilizaFishMovement(Rigidbody2D rb2d, FishSO fishData)
     {
         _rigidbody2D = rb2d;
 
@@ -34,7 +34,7 @@ public class FishMovement : MonoBehaviour
 
         RotateFish(TargetPosition);
 
-        //Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.name}");
+        Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.position}, Fish Speed : {speed}");
         _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition.position, speed * Time.deltaTime));
     }
 

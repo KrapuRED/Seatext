@@ -5,16 +5,17 @@ public class StateNearEndPoint : EnemyStateSO
 {
     protected override void EnterState(EnemyContex contex)
     {
-        Debug.Log($"{contex.enemyFish.name} is {name}");
+        //Debug.Log($"{contex.enemyFish.name} is {name}");
     }
 
     protected override void ExcuteState(EnemyContex contex)
     {
         contex.enemyFishTypeBox.RemoveWordFromFish();
+        GameEvents.OnRemoveSpawnedFishData.Invoke(contex.enemyFishIndex);
         Destroy(contex.fishObject);
     }
     protected override void ExitState(EnemyContex contex)
     {
-        Debug.Log($"{contex.enemyFish.name} exit {name}");
+        //Debug.Log($"{contex.enemyFish.name} exit {name}");
     }
 }

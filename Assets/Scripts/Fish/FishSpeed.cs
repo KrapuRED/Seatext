@@ -3,6 +3,7 @@ using UnityEngine;
 public class FishSpeed : MonoBehaviour
 {
     [Header("Fish Speed Config")]
+    public FishType ownerFishType;
     [SerializeField] private float baseSpeed;
 
     [Header("Speed Factors")]
@@ -15,6 +16,16 @@ public class FishSpeed : MonoBehaviour
     [SerializeField] private float currentWaterStrength;
     [SerializeField] private float waterCurrentMultiplier;
 
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerGainingSpeed.AddListener(AddStackChaseSpeed);
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerGainingSpeed.RemoveListener(AddStackChaseSpeed);
+    }
+
     public void InitiliazeFishSpeed(float speed)
     {
         baseSpeed = speed;
@@ -23,13 +34,19 @@ public class FishSpeed : MonoBehaviour
     public float GetFishSpeed(float speedFactor)
     {
         float currentSpeed = (baseSpeed * speedFactor) / 10;
-        //Debug.Log($"[FishSpeed - GetFishSpeed] Base Speed: {baseSpeed}, Speed Factor: {speedFactor}, Current Speed: {currentSpeed}");
+        Debug.Log($"[FishSpeed - GetFishSpeed] Base Speed: {baseSpeed}, Speed Factor: {speedFactor}, Current Speed: {currentSpeed}");
         return currentSpeed;
     }
 
-    public void AddStackChaseSpeed()
+    private void AddStackChaseSpeed()
     {
-        stackChaseSpeedFactor++;
+        if (ownerFishType == FishType.Player)
+            stackChaseSpeedFactor++;
+    }
+
+    public void ResetStackChaseSpeed()
+    {
+        stackChaseSpeedFactor = 1;
     }
 
     public float GetRoamingFishSpeed()

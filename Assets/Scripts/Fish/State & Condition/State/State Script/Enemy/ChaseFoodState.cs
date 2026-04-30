@@ -9,7 +9,7 @@ public class ChaseFoodState : EnemyStateSO
 
     protected override void EnterState(EnemyContex contex)
     {
-        Debug.Log($"{contex.enemyFish.name} is {name}");
+        //Debug.Log($"{contex.enemyFish.name} is {name}");
 
     }
 
@@ -24,6 +24,6 @@ public class ChaseFoodState : EnemyStateSO
     }
     protected override void ExitState(EnemyContex contex)
     {
-        Debug.Log($"{contex.enemyFish.name} exit {name}");
+        //Debug.Log($"{contex.enemyFish.name} exit {name}");
     }
 }

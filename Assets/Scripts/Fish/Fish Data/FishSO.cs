@@ -18,8 +18,8 @@ public enum FoodSize
     Big
 }
 
-[CreateAssetMenu(fileName = "FishOS", menuName = "FishData/FishOS")]
-public class FishOS : ScriptableObject
+[CreateAssetMenu(fileName = "FishSO", menuName = "FishData/FishSO")]
+public class FishSO : ScriptableObject
 {
     public string fishName;
     public string fishID;

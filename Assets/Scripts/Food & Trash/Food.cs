@@ -129,7 +129,7 @@ public class Food : TypingBox, IEatable, IPausable
             {
                 case FoodType.Trash:
                     Debug.Log($"[Food - Eat] Trash {gameObject.name} has been eaten! Player will lose health.");
-                    PlayerFish.playerFish.playerFishStatus.SetTrashinHungerbar(_dropFoodSO.gainStatus);
+                    PlayerFish.playerFish.PlayerFishHunger.SetTrashinHungerbar(_dropFoodSO.gainStatus);
                     break;
 
                 case FoodType.Pellet:

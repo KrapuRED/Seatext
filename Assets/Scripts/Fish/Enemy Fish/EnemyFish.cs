@@ -11,6 +11,7 @@ public class EnemyContex : FishContex
     public EnemyFishTypeBox enemyFishTypeBox;
     public FishSightVisual fishSightVisual;
     public EnemyFish enemyFish;
+    public int enemyFishIndex;
 }
 
 public class EnemyFish : Fish, IPausable, IEatable
@@ -32,7 +33,13 @@ public class EnemyFish : Fish, IPausable, IEatable
     private void Start()
     {
         if (IntilazeFishByStart)
-            IntilazeFish(EndWayPoint, FishData);
+            IntilazeFish(EndWayPoint, FishData, FishIndex);
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnEatableEntered.RemoveListener(HandleEating);
+        PauseManager.instance.Unregister(this);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -52,14 +59,14 @@ public class EnemyFish : Fish, IPausable, IEatable
         FishMovement.SetCanMove(true);
     }
 
-    public void IntilazeFish(Transform endWayPoint, FishOS data)
+    public void IntilazeFish(Transform endWayPoint, FishSO data, int fishIndex)
     {
         GameEvents.OnEatableEntered.AddListener(HandleEating);
 
         EndWayPoint = endWayPoint;
 
         _rb2d = GetComponent<Rigidbody2D>();
-        SetFishData(data);
+        SetFishData(data, fishIndex);
 
         Contex = new EnemyContex
         {
@@ -72,6 +79,7 @@ public class EnemyFish : Fish, IPausable, IEatable
             enemyFishTypeBox    = _enemyFishTypeBox,
             fishSightVisual     = _fishSightVisual,
             fishSpeed           = FishSpeed,
+            enemyFishIndex      = FishIndex,
             enemyFish           = this    
         };
 
@@ -82,10 +90,11 @@ public class EnemyFish : Fish, IPausable, IEatable
 
         if (FishMouth != null)
         {
-            FishMouth.ownerFishType = FishType;
+            FishMouth.ownerFish = this;
             FishMouth.SetMouthState(true);
         }
 
+        FishSpeed.ownerFishType = FishType;
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);
         FishMovement.IntilizaFishMovement(_rb2d, FishData);
@@ -94,13 +103,17 @@ public class EnemyFish : Fish, IPausable, IEatable
         PauseManager.instance.Register(this);
     }
 
-    private void HandleEating(IEatable eatable)
+    private void HandleEating(IEatable eatable, FishType eatyingBy, int eaterFishIndex)
     {
+        if (FishIndex != eaterFishIndex)
+            return;
+
         if (FishType == FishType.Tiny)
             return;
 
+        Debug.Log($"[EnemyFish - HandleEating] I am {FishIndex}, I ate something.");
         _foodBeenEaten++;
-        eatable.Eat(FishType);
+        eatable.Eat(eatyingBy);
     }
 
     public override void OnEating()
@@ -110,22 +123,19 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     public void Eat(FishType fishType)
     {
-        Debug.Log($"[FishEnemy - Eat] Eat called by: {new System.Diagnostics.StackTrace()}", gameObject);
         switch (fishType)
         {
             case FishType.Player:
                 Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten by Player Fish!");
-                PlayerFish.playerFish.playerFishStatus.ResetHunggerBar(); 
+                GameEvents.OnPlayerEating.Invoke();
+                break;
+
+            case FishType.Small:
+                GameEvents.OnRemoveSpawnedFishData.Invoke(FishIndex);
                 break;
         }
 
         _enemyFishTypeBox.RemoveWordFromFish();
         Destroy(gameObject);
-    }
-
-    private void OnDestroy()
-    {
-        GameEvents.OnEatableEntered.RemoveListener(HandleEating);
-        PauseManager.instance.Unregister(this);
     }
 }

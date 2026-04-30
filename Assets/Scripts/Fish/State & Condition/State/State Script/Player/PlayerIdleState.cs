@@ -13,7 +13,7 @@ public class PlayerIdleState : PlayerStateSO
 
     protected override void ExcuteState(PlayerContex contex)
     {
-        //Debug.Log($"[PlayerIdleState - ExcuteState] Excute Idle State");
+        Debug.Log($"[PlayerIdleState - ExcuteState] Excute Idle State");
     }
 
     protected override void ExitState(PlayerContex contex)

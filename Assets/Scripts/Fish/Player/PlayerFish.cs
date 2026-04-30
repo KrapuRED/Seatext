@@ -24,17 +24,14 @@ public class PlayerFish : Fish, IPausable, IEatable
     [SerializeField] private bool _isActiveFish;
 
     [Header("Fish System")]
-    [SerializeField] private FishHunger _playerFishStatus;
+    [SerializeField] private FishHunger _playerFishHunger;
     [SerializeField] private FishHealth _playerFishHealth;
     [SerializeField] private StateMachine _stateMachine;
-
-    [Header("Events")]
-    [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
 
     private Rigidbody2D _rb2d;
 
     public FoodSize foodSize { get ; set ; }
-    public FishHunger playerFishStatus => _playerFishStatus;
+    public FishHunger PlayerFishHunger => _playerFishHunger;
     private PlayerContex PlayerContex => Contex as PlayerContex;
 
     private void Awake()
@@ -69,31 +66,35 @@ public class PlayerFish : Fish, IPausable, IEatable
         };
 
         FishEyeSight.isCanSee = true;
+        FishSpeed.ownerFishType = FishType;
+        FishMouth.ownerFish = this;
         FishMouth.SetMouthState(true);
         foodSize = FishData.fishSize;
     }
 
     private void OnEnable()
     {
-        setPositionPlayerEvent.Register(SetPlayerFishDirection);
         GameEvents.OnPlayerActive.AddListener(SetActiveFish);
         GameEvents.OnDodgeAttackFish.AddListener(DodgeAttackFish);
+        GameEvents.OnSetPositionPlayerEvent.AddListener(SetPlayerFishDirection);
+        GameEvents.OnPlayerEating.AddListener(PlayerEating);
     }
 
     private void OnDisable()
     {
-        setPositionPlayerEvent.Unregister(SetPlayerFishDirection);
         GameEvents.OnPlayerActive.RemoveListener(SetActiveFish);
         GameEvents.OnDodgeAttackFish.RemoveListener(DodgeAttackFish);
+        GameEvents.OnSetPositionPlayerEvent.AddListener(SetPlayerFishDirection);
+        GameEvents.OnPlayerEating.RemoveListener(PlayerEating);
     }
 
     private void Update()
     {
-        _playerFishStatus.Starve();
+        _playerFishHunger.Starve();
 
         if (targetPosition == null)
             return;
-
+        
         if (CheckDistanceToTarget() <= distanceToTarget && (!PlayerContex.IsIdle || !PlayerContex.IsRoaming))
         {
             targetPosition = null;
@@ -188,6 +189,12 @@ public class PlayerFish : Fish, IPausable, IEatable
 
         playerContex.IsActiveFish = condition;
         _isActiveFish = condition;
+    }
 
+    private void PlayerEating()
+    {
+        Debug.Log("[PlayerFish - PlayerEating] Player Fish is Eating!");
+        FishSpeed.ResetStackChaseSpeed();
+        _playerFishHunger.ResetHunggerBar();
     }
 }

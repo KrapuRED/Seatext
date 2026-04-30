@@ -32,6 +32,7 @@ public class StateMachine : MonoBehaviour
 
         foreach (var data in dataStateCondtions)
         {
+            //Debug.Log($"[StateMachine - Update] Checking Condition For State : {data.nameStateCondition}");
             if (data.condition.CheckCondition(currentFish.Contex))
             {
                 StateSO nextState = data.state;

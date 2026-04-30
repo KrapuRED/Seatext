@@ -13,6 +13,12 @@ public class EnemyFishTypeBox : TypingBox
 
     private void Start()
     {
+        SetWordData();
+        setTypeBoxEvent.Raise(this);
+    }
+
+    private void SetWordData()
+    {
         _wordData = WordBankManager.instance.GetRandomWordData(_wordLevel);
 
         if (_wordData == null)
@@ -22,12 +28,6 @@ public class EnemyFishTypeBox : TypingBox
         }
 
         SetTextToType(_wordData.word);
-        setTypeBoxEvent.Raise(this);
-    }
-
-    private void SetWordData()
-    {
-
     }
 
     public override void SetTextToType(string text)
@@ -45,17 +45,14 @@ public class EnemyFishTypeBox : TypingBox
         }
 
         bool isCorrectLetter = IsCorrectLetter(typedText);
-        Debug.Log($"[{gameObject.name} - CheckingText] Is Correct Letter : {isCorrectLetter}");
 
         if (isCorrectLetter)
         {
-            // Remove the correctly typed letter from the current text
             _isStillMacthing = true;
             _indexChar++;
 
             if (IsTextComplete())
             {
-                Debug.Log($"[Fish - CheckingText] Text Is Done : {currentTextToType}");
                 if (PlayerFish.playerFish.IsBeenHunted)
                 {
                    GameEvents.OnDodgeAttackFish?.Invoke(currentEnemyFish.Contex.fishEyeSight.AttackDirection);
@@ -63,8 +60,14 @@ public class EnemyFishTypeBox : TypingBox
                 else
                 {
                     setPositionPlayerEvent.OnRaise(transform);
+                    GameEvents.OnSetPositionPlayerEvent?.Invoke(transform);
                 }
-                
+
+                //reset to get new word
+                ResetTypeBox();
+                GameEvents.OnPlayerGainingSpeed.Invoke();
+                WordBankManager.instance.CheckWordByWordData(_wordData.word);
+                SetWordData();
             }
 
             // Update the UI with the remaining text
@@ -72,7 +75,6 @@ public class EnemyFishTypeBox : TypingBox
         }
         else
         {
-            Debug.Log($"[Fish - CheckingText] Wrong Letter! Typed : {typedText}, Expected : {fullText[0]}");
             _isStillMacthing = false;
         }
 

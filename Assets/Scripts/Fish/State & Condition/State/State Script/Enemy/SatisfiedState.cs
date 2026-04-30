@@ -5,7 +5,7 @@ public class SatisfiedState : EnemyStateSO
 {
     protected override void EnterState(EnemyContex contex)
     {
-        Debug.Log($"{contex.enemyFish.name} is {name}");
+        //Debug.Log($"{contex.enemyFish.name} is {name}");
     }
 
     protected override void ExcuteState(EnemyContex contex)
@@ -15,6 +15,6 @@ public class SatisfiedState : EnemyStateSO
 
     protected override void ExitState(EnemyContex contex)
     {
-        Debug.Log($"{contex.enemyFish.name} is exiting {name}");
+        //Debug.Log($"{contex.enemyFish.name} is exiting {name}");
     }
 }
