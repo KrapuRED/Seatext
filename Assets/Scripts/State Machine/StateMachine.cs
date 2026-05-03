@@ -54,7 +54,7 @@ public class StateMachine : MonoBehaviour
 
     public void ResetStateMachine()
     {
-        Debug.Log($"[StateMachine - ResetStateMachine] Reset State Machine");
+        //Debug.Log($"[StateMachine - ResetStateMachine] Reset State Machine");
         _activeState = null;
     }
 }

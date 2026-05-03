@@ -138,7 +138,7 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     public void SetPlayerFishDirection(Transform targetPosition)
     {
-        Debug.Log("[PlayerFish - SetPlayerFishDirection] Try to Move PlayerFish");
+        //Debug.Log("[PlayerFish - SetPlayerFishDirection] Try to Move PlayerFish");
         PlayerContex.RoamingPoint = targetPosition;
         this.targetPosition = targetPosition;
     }

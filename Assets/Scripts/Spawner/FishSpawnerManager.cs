@@ -122,7 +122,7 @@ public class FishSpawnerManager : SpawnerManager
     public int AddSpawnedFishData(FishSO fishData)
     {
         int index = FindSpawnedFishDataIndex();
-        Debug.Log($"[FishSpawnerManager - AddSpawnedFishData] Adding Fish Data: {fishData.fishName} at index: {index}");
+        //Debug.Log($"[FishSpawnerManager - AddSpawnedFishData] Adding Fish Data: {fishData.fishName} at index: {index}");
 
         if (index == -1)
         {

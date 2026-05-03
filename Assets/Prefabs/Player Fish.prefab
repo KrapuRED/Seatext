@@ -817,7 +817,7 @@ Transform:
   m_GameObject: {fileID: 4421710170398159637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.116, z: 0}
+  m_LocalPosition: {x: 0, y: 1.521, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891aeb9ba66fc594fbe332698823c611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerFish: {fileID: 0}
+  ownerFish: {fileID: 7998975373102525702}
   _isMouthOpen: 0
 --- !u!58 &8466225585856133553
 CircleCollider2D:
@@ -1061,9 +1061,6 @@ GameObject:
   - component: {fileID: 339882183581354877}
   - component: {fileID: 2548475851503398298}
   - component: {fileID: 7998975373102525702}
-  - component: {fileID: 7158552461435532577}
-  - component: {fileID: 5971516993862269681}
-  - component: {fileID: 5884964062621459563}
   - component: {fileID: 7194691806180533832}
   - component: {fileID: 6970934337533873492}
   m_Layer: 0
@@ -1172,59 +1169,8 @@ MonoBehaviour:
   maxHealth: 100
   _isActiveFish: 0
   _playerFishHunger: {fileID: 5304595852391326909}
-  _playerFishHealth: {fileID: 7158552461435532577}
+  _playerFishHealth: {fileID: 0}
   _stateMachine: {fileID: 3253668060543353932}
---- !u!114 &7158552461435532577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4692316933345027950}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1eb10761986d6149be2985269b1f98d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 0
-  _currentHealth: 0
---- !u!114 &5971516993862269681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4692316933345027950}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 215b425980b19df40a87d449d9fd6d35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHunger: 100
-  _currentHunger: 0
-  trashGain: 0
-  statusHungerUI: {fileID: 0}
-  statusHealthUI: {fileID: 0}
-  _playerFish: {fileID: 7998975373102525702}
---- !u!114 &5884964062621459563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4692316933345027950}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d54dd2316277c442ab9d400429fcc5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerFishType: 0
-  baseSpeed: 100
-  roamingSpeedFactor: 0.05
-  chaseSpeedFactor: 1
-  stackChaseSpeedFactor: 1
-  currentWaterStrength: 0
-  waterCurrentMultiplier: 0
 --- !u!50 &7194691806180533832
 Rigidbody2D:
   serializedVersion: 5
@@ -1611,8 +1557,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5633328465587959333}
   - {fileID: 5919187845700218362}

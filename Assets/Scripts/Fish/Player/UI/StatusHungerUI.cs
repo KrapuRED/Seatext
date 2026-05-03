@@ -7,6 +7,17 @@ public class StatusHungerUI : StatusBarUI
     [SerializeField] private Slider hungerSlider;
     [SerializeField] private Slider trashSlider;
 
+    private void OnEnable()
+    {
+        GameEvents.OnUpdateHungerBar.AddListener(UpdateStatusBar);
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnUpdateHungerBar.RemoveListener(UpdateStatusBar);
+
+    }
+
     public override void UpdateStatusBar(float currentValue, float maxValue)
     {
         hungerSlider.value  = Mathf.Abs(maxValue / 100);

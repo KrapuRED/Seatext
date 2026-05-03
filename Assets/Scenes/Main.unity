@@ -1528,7 +1528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -653.58, y: -375.00006}
+  m_AnchoredPosition: {x: -653.5801, y: -375.00006}
   m_SizeDelta: {x: -1317.18, y: -768.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782167568
@@ -1611,7 +1611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &951039323
 Transform:
   m_ObjectHideFlags: 0
@@ -3950,10 +3950,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 159991153}
     m_Modifications:
-    - target: {fileID: 320694748856772512, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
-      propertyPath: baseSpeed
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 339882183581354877, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3998,18 +3994,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Fish
       objectReference: {fileID: 0}
-    - target: {fileID: 4692316933345027950, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 7998975373102525702, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: _playerFishHealth
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5971516993862269681, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
-      propertyPath: statusHealthUI
-      value: 
-      objectReference: {fileID: 1135402056}
-    - target: {fileID: 5971516993862269681, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
-      propertyPath: statusHungerUI
-      value: 
-      objectReference: {fileID: 6057705721587213227}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

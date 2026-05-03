@@ -53,7 +53,7 @@ public class FishHunger : MonoBehaviour
 
     public void ResetHunggerBar()
     {
-        statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
+        GameEvents.OnUpdateHungerBar.Invoke(trashGain, maxHunger);
         _currentHunger = maxHunger;
     }
 }

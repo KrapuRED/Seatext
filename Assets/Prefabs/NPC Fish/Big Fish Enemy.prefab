@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 7454610653181641435}
   m_Layer: 6
   m_Name: Big Fish Enemy
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fishData: {fileID: 0}
+  _fishIndex: 0
   _fishMovement: {fileID: 3311576797285818517}
   _fishEyeSight: {fileID: 7277502308238493773}
   _fishSpeed: {fileID: 8864369757495353593}
@@ -305,7 +306,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54dd2316277c442ab9d400429fcc5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerFishType: 0
   baseSpeed: 50
+  roamingSpeedFactor: 0
+  chaseSpeedFactor: 0
+  stackChaseSpeedFactor: 0
+  currentWaterStrength: 0
+  waterCurrentMultiplier: 0
 --- !u!114 &3311576797285818517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +328,7 @@ MonoBehaviour:
   _dodgeForce: 0
   isCanMove: 1
   _fishTextRotate: {fileID: 6821151395226544016}
+  _rigidbody2D: {fileID: 0}
 --- !u!50 &7454610653181641435
 Rigidbody2D:
   serializedVersion: 5
@@ -1209,7 +1217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891aeb9ba66fc594fbe332698823c611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerFishType: 0
+  ownerFish: {fileID: 0}
+  _isMouthOpen: 0
 --- !u!58 &482790824993901939
 CircleCollider2D:
   m_ObjectHideFlags: 0

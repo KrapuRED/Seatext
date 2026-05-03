@@ -31,10 +31,16 @@ public class FishSpeed : MonoBehaviour
         baseSpeed = speed;
     }
 
+    private void SetWaterCurrent()
+    {
+
+    }
+
     public float GetFishSpeed(float speedFactor)
     {
-        float currentSpeed = (baseSpeed * speedFactor) / 10;
-        Debug.Log($"[FishSpeed - GetFishSpeed] Base Speed: {baseSpeed}, Speed Factor: {speedFactor}, Current Speed: {currentSpeed}");
+        float currentSpeed       = ((baseSpeed - currentWaterStrength) * speedFactor) / 10;
+
+        //Debug.Log($"[FishSpeed - GetFishSpeed] Base Speed: {baseSpeed}, Speed Factor: {speedFactor}, Current Speed: {currentSpeed}");
         return currentSpeed;
     }
 
