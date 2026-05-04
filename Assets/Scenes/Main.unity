@@ -1363,13 +1363,14 @@ GameObject:
   - component: {fileID: 730131001}
   - component: {fileID: 730131003}
   - component: {fileID: 730131002}
+  - component: {fileID: 730131004}
   m_Layer: 5
   m_Name: Panel - Winning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &730131001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1402,7 +1403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.88235295}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1427,6 +1428,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730131000}
   m_CullTransparentMesh: 1
+--- !u!225 &730131004
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730131000}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &734762763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,7 +1541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -653.5801, y: -375.00006}
+  m_AnchoredPosition: {x: -653.58, y: -375.00006}
   m_SizeDelta: {x: -1317.18, y: -768.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782167568
@@ -1971,7 +1984,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!224 &1017440018
 RectTransform:
@@ -3043,6 +3056,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1004413459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1823072592 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1725052337679542668, guid: 301ec9750c272164987cf0e77ead1da7, type: 3}
+  m_PrefabInstance: {fileID: 2034614967255846168}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1eb10761986d6149be2985269b1f98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1827535629
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,15 +4014,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 758610010927225451, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932829676693206862, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225792544517443105, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4692316933345027950, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_Name
       value: Player Fish
       objectReference: {fileID: 0}
+    - target: {fileID: 5115648623378554305, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970934337533873492, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786850243379741585, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7998975373102525702, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: _playerFishHealth
       value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+      objectReference: {fileID: 1823072592}
+    m_RemovedComponents:
+    - {fileID: 2548475851503398298, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
