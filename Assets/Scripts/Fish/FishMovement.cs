@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class FishMovement : MonoBehaviour
 {
+    [SerializeField] private Fish _ownerFish;
+    
     [Header("FishMovement Config")]
     [SerializeField] private float _dodgeForce;
     [SerializeField] private bool isCanMove;
@@ -18,7 +20,7 @@ public class FishMovement : MonoBehaviour
     }
 
 
-    public void MoveFish(Transform TargetPosition, float speed ,bool runAway = false)
+    public void MoveFish(Transform TargetPosition, float distance ,float speed ,bool runAway = false)
     {
         if (!isCanMove)
         {
@@ -36,6 +38,7 @@ public class FishMovement : MonoBehaviour
 
         //Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.position}, Fish Speed : {speed}");
         _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition.position, speed * Time.deltaTime));
+        _ownerFish.FishAnimation.OnHandlingMovementAnimation(distance);
     }
 
     public void Dodge(Vector2 dodgeDir)

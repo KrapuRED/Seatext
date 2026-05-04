@@ -11,7 +11,8 @@ public class RoamingState : EnemyStateSO
 
     protected override void ExcuteState(EnemyContex contex)
     {
-        contex.fishMovement.MoveFish(contex.endWaypoint, contex.fishSpeed.GetFishSpeed(0.5f));
+        float distance = Vector2.Distance(contex.enemyPosition.position, contex.endWaypoint.position);
+        contex.fishMovement.MoveFish(contex.endWaypoint, distance,contex.fishSpeed.GetFishSpeed(0.5f));
     }
 
     protected override void ExitState(EnemyContex contex)

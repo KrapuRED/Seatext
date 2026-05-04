@@ -28,7 +28,10 @@ public class AttackChargeState : EnemyStateSO
         {
             contex.fishSightVisual.Dettach();
             chargeDirection = contex.endWaypoint;
-            contex.fishMovement.MoveFish(chargeDirection, contex.fishSpeed.GetFishSpeed(1));
+            
+            float distance = Vector2.Distance(chargeDirection.position, contex.endWaypoint.position);
+            
+            contex.fishMovement.MoveFish(chargeDirection, distance,contex.fishSpeed.GetFishSpeed(1));
         }
     }
 

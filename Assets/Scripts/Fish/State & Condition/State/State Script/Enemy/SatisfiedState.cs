@@ -10,7 +10,8 @@ public class SatisfiedState : EnemyStateSO
 
     protected override void ExcuteState(EnemyContex contex)
     {
-        contex.fishMovement.MoveFish(contex.endWaypoint, contex.fishSpeed.GetFishSpeed(1), true);
+        float distance = Vector2.Distance(contex.enemyPosition.position, contex.endWaypoint.position);
+        contex.fishMovement.MoveFish(contex.endWaypoint, distance ,contex.fishSpeed.GetFishSpeed(1), true);
     }
 
     protected override void ExitState(EnemyContex contex)
