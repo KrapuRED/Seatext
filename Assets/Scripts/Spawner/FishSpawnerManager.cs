@@ -108,37 +108,55 @@ public class FishSpawnerManager : SpawnerManager
 
     private int FindSpawnedFishDataIndex()
     {
-        int index = _spawnedFishDatas.Count;
-        for (int i = 0; i < index; i++)
+        int count = _spawnedFishDatas.Count;
+        for (int i = 0; i < count; i++)
         {
             if (_spawnedFishDatas[i].fishData == null)
             {
-                index =  _spawnedFishDatas[i].fishIndex;
+                return i;
             }
         }
-        return index;
+        return count;
     }
 
-    public int AddSpawnedFishData(FishSO fishData)
+    private bool CheckSpawnedFishData(int  listIndex)
+    {
+        if (_spawnedFishDatas.Count <= 0)
+            return false;
+
+        if (listIndex >= _spawnedFishDatas.Count)
+            return false;
+            
+        return _spawnedFishDatas[listIndex].fishData == null;
+    }
+    
+    private int AddSpawnedFishData(FishSO fishData)
     {
         int index = FindSpawnedFishDataIndex();
-        //Debug.Log($"[FishSpawnerManager - AddSpawnedFishData] Adding Fish Data: {fishData.fishName} at index: {index}");
-
+        
         if (index == -1)
         {
             Debug.LogError($"[FishSpawnerManager - AddSpawnedFishData] No empty slot for spawned fish data!");
             return -1;
         }
 
-        _spawnedFishDatas.Add(
-            new spawnedFishData
-            {
-                fishData  = fishData,
-                fishIndex = index
-            });
+        if (CheckSpawnedFishData(index))
+        {
+            _spawnedFishDatas[index].fishData = fishData;
+        }
+        else
+        {
+            _spawnedFishDatas.Add(
+                new spawnedFishData
+                {
+                    fishData  = fishData,
+                    fishIndex = index
+                });
+        }
+        
         return index;
     }
-
+    
     private void RemoveSpawnedFishData(int fishIndex)
     {
         for (int i = 0; i < _spawnedFishDatas.Count; i++)

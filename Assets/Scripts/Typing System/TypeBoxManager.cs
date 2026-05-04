@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using TreeEditor;
 
 public enum TypeTypingBox
 {

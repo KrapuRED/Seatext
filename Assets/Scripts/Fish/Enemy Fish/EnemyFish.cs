@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
@@ -36,6 +37,11 @@ public class EnemyFish : Fish, IPausable, IEatable
             IntilazeFish(EndWayPoint, FishData, FishIndex);
     }
 
+    private void OnEnable()
+    {
+        GameEvents.OnEatableEntered.AddListener(HandleEating);
+    }
+
     private void OnDestroy()
     {
         GameEvents.OnEatableEntered.RemoveListener(HandleEating);
@@ -61,8 +67,6 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     public void IntilazeFish(Transform endWayPoint, FishSO data, int fishIndex)
     {
-        GameEvents.OnEatableEntered.AddListener(HandleEating);
-
         EndWayPoint = endWayPoint;
 
         _rb2d = GetComponent<Rigidbody2D>();
@@ -105,14 +109,21 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     private void HandleEating(IEatable eatable, FishType eatyingBy, int eaterFishIndex)
     {
+        Debug.Log($"[EnemyFish - HandleEating] HandleEating Been Called!");
+        
         if (FishIndex != eaterFishIndex)
+        {
+            Debug.Log($"EnemyFish - HandleEating] Index of this is {FishIndex} is eaten by {eaterFishIndex}");
             return;
+        }
 
         if (FishType == FishType.Tiny)
             return;
 
         Debug.Log($"[EnemyFish - HandleEating] I am {FishIndex}, I ate something.");
-        _foodBeenEaten++;
+        if (eatyingBy != FishType.Player)
+            _foodBeenEaten++;
+        
         eatable.Eat(eatyingBy);
     }
 
@@ -123,6 +134,7 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     public void Eat(FishType fishType)
     {
+        Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten!");
         switch (fishType)
         {
             case FishType.Player:

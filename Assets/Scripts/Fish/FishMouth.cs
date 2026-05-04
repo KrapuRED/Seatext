@@ -20,7 +20,7 @@ public class FishMouth : MonoBehaviour
 
         if (collision.TryGetComponent(out IEatable eatAble) && _isMouthOpen)
         {
-            //Debug.Log($"[FishMoth({gameObject.name}) - OnTriggerEnter2D] Detected eatable object: {collision.gameObject.name}. Invoking OnEatableEntered event.");
+            Debug.Log($"[FishMoth({gameObject.name}) - OnTriggerEnter2D] Detected eatable object: {collision.gameObject.name}. Invoking OnEatableEntered event.");
             GameEvents.OnEatableEntered.Invoke(eatAble, ownerFish.FishType, ownerFish.FishIndex);
         }
     }
