@@ -371,27 +371,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 801642014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &141559574 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5885633021385532320, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
-  m_PrefabInstance: {fileID: 668968263}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &141559582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141559574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56c4d9e648fd1264e9be8f32605b0d72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _text: {fileID: 1231940846}
-  _speedAnimation: 0.8
-  _defaultScaleAnimation: 1
-  _maxScaleAnimation: 2
 --- !u!1 &142899566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,27 +1181,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 922342290325649123, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 922342290325649123, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 922342290325649123, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 922342290325649123, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 922342290325649123, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.9999975
       objectReference: {fileID: 0}
     - target: {fileID: 922342290325649123, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.685275
       objectReference: {fileID: 0}
     - target: {fileID: 3563744844176391317, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: m_Name
@@ -1230,7 +1209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3563744844176391317, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3750865864239767321, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: _fishData
@@ -1258,7 +1237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7517993409178420708, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 1.4403999
       objectReference: {fileID: 0}
     - target: {fileID: 7580885149079457300, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: isCanMove
@@ -1311,14 +1290,11 @@ PrefabInstance:
     - target: {fileID: 8101487509660742441, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
       propertyPath: _textAnimation
       value: 
-      objectReference: {fileID: 141559582}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5885633021385532320, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 141559582}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
 --- !u!4 &687737730 stripped
 Transform:
@@ -1754,7 +1730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &951039323
 Transform:
   m_ObjectHideFlags: 0
@@ -2386,17 +2362,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1231940846 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6261191329624241802, guid: 9c9e645c6d397cc4995d037655554087, type: 3}
-  m_PrefabInstance: {fileID: 668968263}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1252777394
 GameObject:
   m_ObjectHideFlags: 0
@@ -4189,7 +4154,7 @@ PrefabInstance:
       objectReference: {fileID: 2001083391}
     - target: {fileID: 2695495758539738174, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: _rotationSpeed
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3225792544517443105, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_SortingOrder
@@ -4201,7 +4166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4692316933345027950, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5115648623378554305, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_SortingOrder
