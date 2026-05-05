@@ -7,7 +7,8 @@ public class FishMovement : MonoBehaviour
     [Header("FishMovement Config")]
     [SerializeField] private float _dodgeForce;
     [SerializeField] private bool isCanMove;
-
+    [SerializeField] private float _rotationSpeed;
+    
     [Header("Effector")]
     [SerializeField] private FishTextRotate _fishTextRotate;
 
@@ -37,8 +38,10 @@ public class FishMovement : MonoBehaviour
         RotateFish(TargetPosition);
 
         //Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.position}, Fish Speed : {speed}");
-        _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition.position, speed * Time.deltaTime));
-        _ownerFish.FishAnimation.OnHandlingMovementAnimation(distance);
+        _rigidbody2D.MovePosition(
+            Vector2.MoveTowards(transform.position, 
+                TargetPosition.position,
+            speed * Time.deltaTime));
     }
 
     public void Dodge(Vector2 dodgeDir)
@@ -50,16 +53,14 @@ public class FishMovement : MonoBehaviour
     {
         Vector2 direction = TargetPosition.position - transform.position;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        float smoothAngle = Mathf.LerpAngle(_rigidbody2D.rotation, targetAngle, _rotationSpeed * Time.deltaTime);
+        _rigidbody2D.rotation = smoothAngle;
 
-        _rigidbody2D.rotation = angle - 90f;
-
-        if (_fishTextRotate == null)
+        if (_fishTextRotate != null)
         {
-            return;
+            _fishTextRotate.KeepTextUpright();
         }
-
-        _fishTextRotate.KeepTextUpright();
     }
 
     public void SetCanMove(bool canMove)

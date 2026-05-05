@@ -109,6 +109,7 @@ public class PlayerFish : Fish, IPausable, IEatable
         }
 
         FishMovement.MoveFish(targetPosition, CheckDistanceToTarget() ,FishSpeed.GetChaseFishSpeed());
+        FishAnimation.OnHandlingMovementAnimation(CheckDistanceToTarget());
     }
 
     public void TakingDamage(float damageValue)
