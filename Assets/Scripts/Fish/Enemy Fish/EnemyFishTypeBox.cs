@@ -7,7 +7,8 @@ public class EnemyFishTypeBox : TypingBox
     [SerializeField] private WordLevel _wordLevel;
     [SerializeField] private FishTextUI fishUI;
     [SerializeField] private WordData _wordData;
-
+    [SerializeField] private TextAnimation _textAnimation;
+    
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
 
@@ -28,6 +29,7 @@ public class EnemyFishTypeBox : TypingBox
         }
 
         SetTextToType(_wordData.word);
+        _textAnimation.RefreshText(_wordData.word);
     }
 
     public override void SetTextToType(string text)
@@ -49,6 +51,7 @@ public class EnemyFishTypeBox : TypingBox
         if (isCorrectLetter)
         {
             _isStillMacthing = true;
+            _textAnimation.OnPlayChangeTextAnimation(_indexChar);
             _indexChar++;
 
             if (IsTextComplete())
@@ -91,5 +94,6 @@ public class EnemyFishTypeBox : TypingBox
     {
         _indexChar = 0;
         SetTextToType(currentTextToType);
+        _textAnimation.RefreshText(_wordData.word);
     }
 }

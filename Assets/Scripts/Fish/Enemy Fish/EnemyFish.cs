@@ -116,10 +116,7 @@ public class EnemyFish : Fish, IPausable, IEatable
             Debug.Log($"EnemyFish - HandleEating] Index of this is {FishIndex} is eaten by {eaterFishIndex}");
             return;
         }
-
-        if (FishType == FishType.Tiny)
-            return;
-
+        
         Debug.Log($"[EnemyFish - HandleEating] I am {FishIndex}, I ate something.");
         if (eatyingBy != FishType.Player)
             _foodBeenEaten++;

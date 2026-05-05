@@ -30,6 +30,7 @@ public class Fish : MonoBehaviour
     [SerializeField] private FishEyeSight _fishEyeSight;
     [SerializeField] private FishSpeed _fishSpeed;
     [SerializeField] private FishMouth _fishMouth;
+    [SerializeField] private FishAnimation _fishAnimation;
     [SerializeField] private bool _isBeenHunted;
     [SerializeField] private FishType _fishType;
 
@@ -42,6 +43,7 @@ public class Fish : MonoBehaviour
     public FishEyeSight FishEyeSight => _fishEyeSight;
     public FishSpeed    FishSpeed => _fishSpeed;
     public FishMouth FishMouth => _fishMouth;
+    public FishAnimation FishAnimation => _fishAnimation;
     public bool IsBeenHunted => _isBeenHunted;
     public FishType FishType => _fishType;
     public int FishIndex => _fishIndex;

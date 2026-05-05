@@ -302,6 +302,7 @@ MonoBehaviour:
   _fishEyeSight: {fileID: 7941774009125959354}
   _fishSpeed: {fileID: 4018757822145048964}
   _fishMouth: {fileID: 2753695722096646395}
+  _fishAnimation: {fileID: 0}
   _isBeenHunted: 0
   _fishType: 3
   mouthPosition: {fileID: 5892998546060345373}
@@ -336,6 +337,7 @@ MonoBehaviour:
   _wordData:
     word: 
     wordLevel: 0
+  _textAnimation: {fileID: 8572240212549710635}
   setPositionPlayerEvent: {fileID: 11400000, guid: b5d65512b82cc9c48b39e39f132f10e9, type: 2}
 --- !u!114 &4018757822145048964
 MonoBehaviour:
@@ -368,8 +370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0936e5991c3cfc9429d862a0990d1808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ownerFish: {fileID: 0}
   _dodgeForce: 0
   isCanMove: 1
+  _rotationSpeed: 0
   _fishTextRotate: {fileID: 51703000280857718}
   _rigidbody2D: {fileID: 0}
 --- !u!50 &2721446541668469528
@@ -743,6 +747,7 @@ GameObject:
   - component: {fileID: 2059351904317537788}
   - component: {fileID: 51703000280857718}
   - component: {fileID: 7739539328632287119}
+  - component: {fileID: 8572240212549710635}
   m_Layer: 0
   m_Name: '# === Fish Canvas === #'
   m_TagString: Untagged
@@ -873,6 +878,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridLayoutTypeBoxUI: {fileID: 5686437266886213807}
+--- !u!114 &8572240212549710635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5885633021385532320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c4d9e648fd1264e9be8f32605b0d72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 6261191329624241802}
+  _speedAnimation: 0.8
+  _defaultScaleAnimation: 1
+  _maxScaleAnimation: 2
 --- !u!1 &6678402592932431403
 GameObject:
   m_ObjectHideFlags: 0

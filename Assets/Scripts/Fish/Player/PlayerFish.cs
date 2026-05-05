@@ -104,11 +104,12 @@ public class PlayerFish : Fish, IPausable, IEatable
         if (PlayerContex.IsRoaming)
         {
             //Debug.Log($"[PlayerFish - Update] Move PlayerFish to Roaming Point");
-            FishMovement.MoveFish(targetPosition, FishSpeed.GetRoamingFishSpeed());
+            FishMovement.MoveFish(targetPosition, CheckDistanceToTarget() ,FishSpeed.GetRoamingFishSpeed());
             return;
         }
 
-        FishMovement.MoveFish(targetPosition, FishSpeed.GetChaseFishSpeed());
+        FishMovement.MoveFish(targetPosition, CheckDistanceToTarget() ,FishSpeed.GetChaseFishSpeed());
+        FishAnimation.OnHandlingMovementAnimation(CheckDistanceToTarget());
     }
 
     public void TakingDamage(float damageValue)
