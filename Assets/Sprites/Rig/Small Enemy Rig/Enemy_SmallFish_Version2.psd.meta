@@ -117,16 +117,16 @@ ScriptedImporter:
     - name: Eye
       guid: 3943070ca1a597242a066241cefd0fe3
       position: {x: 2.058731, y: -2.961914, z: 0}
-      rotation: {x: 0, y: 0, z: -0.5736964, w: -0.819068}
-      length: 8.481375
+      rotation: {x: 0, y: 0, z: -0.5736971, w: -0.8190676}
+      length: 8.481368
       parentId: -1
       color:
         serializedVersion: 2
         rgba: 4278223103
     - name: bone_8
       guid: 22357ce220c691342980b0c94b34a1e4
-      position: {x: 8.48136, y: 0.000011818948, z: 0}
-      rotation: {x: 0, y: 0, z: -0.05092199, w: 0.9987027}
+      position: {x: 8.4813595, y: 0.000017762524, z: 0}
+      rotation: {x: 0, y: 0, z: -0.050922796, w: 0.99870265}
       length: 6.238587
       parentId: 0
       color:
@@ -135,17 +135,17 @@ ScriptedImporter:
     - name: Eye
       guid: 3a2c2f24ed896ee479cf6d077efed8de
       position: {x: 51.151184, y: -3.3242188, z: 0}
-      rotation: {x: 0, y: 0, z: -0.8416231, w: -0.5400653}
-      length: 9.565168
+      rotation: {x: 0, y: 0, z: -0.8416234, w: -0.5400648}
+      length: 9.565144
       parentId: -1
       color:
         serializedVersion: 2
         rgba: 4286643968
     - name: bone_10
       guid: 19ac147423e00ea45a0539e3f3e73eec
-      position: {x: 9.565138, y: 0.000003139823, z: 0}
-      rotation: {x: 0, y: 0, z: 0.112722315, w: 0.99362653}
-      length: 5.9422197
+      position: {x: 9.56514, y: 0.0000108101085, z: 0}
+      rotation: {x: 0, y: 0, z: 0.112721786, w: 0.9936266}
+      length: 5.9422193
       parentId: 2
       color:
         serializedVersion: 2
@@ -447,17 +447,17 @@ ScriptedImporter:
     - name: Eye
       guid: 3a2c2f24ed896ee479cf6d077efed8de
       position: {x: 58.151184, y: 5.6757812, z: 0}
-      rotation: {x: 0, y: 0, z: -0.8416231, w: -0.5400653}
-      length: 9.565168
+      rotation: {x: 0, y: 0, z: -0.8416234, w: -0.5400648}
+      length: 9.565144
       parentId: -1
       color:
         serializedVersion: 2
         rgba: 4286643968
     - name: bone_10
       guid: 19ac147423e00ea45a0539e3f3e73eec
-      position: {x: 9.565144, y: 0.000013421624, z: 0}
-      rotation: {x: 0, y: 0, z: 0.112722315, w: 0.99362653}
-      length: 5.9422197
+      position: {x: 9.565149, y: 0.0000031509117, z: 0}
+      rotation: {x: 0, y: 0, z: 0.112721786, w: 0.9936266}
+      length: 5.9422193
       parentId: 0
       color:
         serializedVersion: 2
@@ -465,16 +465,16 @@ ScriptedImporter:
     - name: Eye
       guid: 3943070ca1a597242a066241cefd0fe3
       position: {x: 9.058731, y: 6.038086, z: 0}
-      rotation: {x: 0, y: 0, z: -0.5736964, w: -0.819068}
-      length: 8.481375
+      rotation: {x: 0, y: 0, z: -0.5736971, w: -0.8190676}
+      length: 8.481368
       parentId: -1
       color:
         serializedVersion: 2
         rgba: 4278223103
     - name: bone_8
       guid: 22357ce220c691342980b0c94b34a1e4
-      position: {x: 8.48137, y: 0.000014948192, z: 0}
-      rotation: {x: 0, y: 0, z: -0.05092199, w: 0.9987027}
+      position: {x: 8.481375, y: 0.0000107589785, z: 0}
+      rotation: {x: 0, y: 0, z: -0.050922796, w: 0.99870265}
       length: 6.238587
       parentId: 2
       color:
@@ -862,7 +862,7 @@ ScriptedImporter:
     spriteBone:
     - name: Tail
       guid: 6378ab7ab776c38438808c187ecde8e7
-      position: {x: 40.398743, y: -0.0000015195724, z: 0}
+      position: {x: 40.398758, y: -0.0000013827691, z: 0}
       rotation: {x: 0, y: 0, z: 0.01382472, w: 0.9999045}
       length: 38.773468
       parentId: 1
@@ -873,7 +873,7 @@ ScriptedImporter:
       guid: 297ed2c3f1c325747886df89a1f5f148
       position: {x: 23.007133, y: 0.000005548617, z: 0}
       rotation: {x: 0, y: 0, z: -0.008420192, w: 0.9999646}
-      length: 40.398735
+      length: 40.39875
       parentId: 3
       color:
         serializedVersion: 2
@@ -2003,14 +2003,14 @@ ScriptedImporter:
       guid: 297ed2c3f1c325747886df89a1f5f148
       position: {x: 23.007137, y: 0.0000006088824, z: 0}
       rotation: {x: 0, y: 0, z: -0.008420197, w: 0.99996454}
-      length: 40.39873
+      length: 40.398746
       parentId: 0
       color:
         serializedVersion: 2
         rgba: 4278255615
     - name: Tail
       guid: 6378ab7ab776c38438808c187ecde8e7
-      position: {x: 40.39874, y: -0.0000006208809, z: 0}
+      position: {x: 40.398754, y: -0.00000048407753, z: 0}
       rotation: {x: 0, y: 0, z: 0.013824725, w: 0.99990445}
       length: 38.77347
       parentId: 1
@@ -2047,16 +2047,16 @@ ScriptedImporter:
     - name: Eye
       guid: 3943070ca1a597242a066241cefd0fe3
       position: {x: 1.5912906, y: 24.07414, z: 0}
-      rotation: {x: 0, y: 0, z: -0.18010855, w: 0.98364675}
-      length: 8.481372
+      rotation: {x: 0, y: 0, z: -0.18010773, w: 0.9836469}
+      length: 8.481367
       parentId: 5
       color:
         serializedVersion: 2
         rgba: 4278223103
     - name: bone_8
       guid: 22357ce220c691342980b0c94b34a1e4
-      position: {x: 8.481362, y: 0.00000974465, z: 0}
-      rotation: {x: 0, y: 0, z: -0.05092198, w: 0.99870265}
+      position: {x: 8.481357, y: 0.000005380739, z: 0}
+      rotation: {x: 0, y: 0, z: -0.05092282, w: 0.99870265}
       length: 6.238586
       parentId: 6
       color:
@@ -2065,16 +2065,16 @@ ScriptedImporter:
     - name: Eye
       guid: 3a2c2f24ed896ee479cf6d077efed8de
       position: {x: 0.57019556, y: -25.009005, z: 0}
-      rotation: {x: 0, y: 0, z: 0.20667288, w: 0.9784101}
-      length: 9.565167
+      rotation: {x: 0, y: 0, z: 0.20667346, w: 0.97841}
+      length: 9.565142
       parentId: 5
       color:
         serializedVersion: 2
         rgba: 4286643968
     - name: bone_10
       guid: 19ac147423e00ea45a0539e3f3e73eec
-      position: {x: 9.565154, y: 0.0000070221904, z: 0}
-      rotation: {x: 0, y: 0, z: 0.11272232, w: 0.9936266}
+      position: {x: 9.565152, y: 0.000005231428, z: 0}
+      rotation: {x: 0, y: 0, z: 0.11272174, w: 0.9936266}
       length: 5.9422183
       parentId: 8
       color:
@@ -2119,13 +2119,13 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     boneReadOnly: 0
   platformSettings: []
   mosaicLayers: 1
   characterMode: 1
-  documentPivot: {x: 0.5, y: 0}
-  documentAlignment: 7
+  documentPivot: {x: 0.5, y: 0.5}
+  documentAlignment: 0
   importHiddenLayers: 0
   layerMappingOption: 2
   generatePhysicsShape: 0
