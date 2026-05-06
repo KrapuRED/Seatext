@@ -6,6 +6,7 @@ public class LevelDataSO : ScriptableObject
 {
     public string levelName;
     public string levelDescription;
+    public float durationLevelNode;
     public LevelNodeType levelType;
     public float currentFlowSpeed;
 

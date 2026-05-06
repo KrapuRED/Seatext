@@ -27,11 +27,13 @@ public class FishSpawnerManager : SpawnerManager
 
     private void OnEnable()
     {
+        GameEvents.OnEndDuration.AddListener(OnPause);
         GameEvents.OnRemoveSpawnedFishData.AddListener(RemoveSpawnedFishData);
     }
     
     private void OnDisable()
     {
+        GameEvents.OnEndDuration.RemoveListener(OnPause);
         GameEvents.OnRemoveSpawnedFishData.RemoveListener(RemoveSpawnedFishData);
     }
 

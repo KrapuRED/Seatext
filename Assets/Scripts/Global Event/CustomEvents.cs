@@ -101,6 +101,7 @@ public class GameEvents
 
     #region Game Play
     public static readonly CustomEvents OnPlayerDie = new();
+    public static readonly CustomEvents OnEndDuration = new();
     public static readonly CustomEvents<bool> OnPlayerActive = new();
     #endregion
 }

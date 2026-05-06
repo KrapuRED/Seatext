@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum WayPointPosition
 {
@@ -35,10 +37,9 @@ public class SpawnerManager : MonoBehaviour, IPausable
 
     public void OnPause()
     {
+        Debug.Log("[SpawnerManager - OnPause] OnPause");
         _isSpawning = false;
         bool isCoroutineRunning = _spawnCoroutine != null;
-
-        Debug.Log($"[{this.name} - OnPause] Is Coroutine Running : {isCoroutineRunning}");
     }
 
     public void OnResume()

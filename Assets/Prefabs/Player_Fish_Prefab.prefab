@@ -188,8 +188,55 @@ Transform:
   - {fileID: 8514180140959559430}
   - {fileID: 7061190807752556303}
   - {fileID: 3860832245964673384}
+  - {fileID: 1518535521860249535}
   m_Father: {fileID: 339882183581354877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3722418325409289159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1518535521860249535}
+  - component: {fileID: 101739699635907254}
+  m_Layer: 0
+  m_Name: Player Fish - Health
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1518535521860249535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722418325409289159}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1968422358233737315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &101739699635907254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722418325409289159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1eb10761986d6149be2985269b1f98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 0
 --- !u!1 &3815051437369342699
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +414,7 @@ GameObject:
   - component: {fileID: 7194691806180533832}
   - component: {fileID: 6970934337533873492}
   m_Layer: 0
-  m_Name: Player Fish
+  m_Name: Player_Fish_Prefab
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +465,7 @@ MonoBehaviour:
   maxHealth: 100
   _isActiveFish: 0
   _playerFishHunger: {fileID: 5304595852391326909}
-  _playerFishHealth: {fileID: 0}
+  _playerFishHealth: {fileID: 101739699635907254}
   _stateMachine: {fileID: 3253668060543353932}
 --- !u!50 &7194691806180533832
 Rigidbody2D:
@@ -585,7 +632,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5134409943420449357, guid: 48810e818c78c3e44b558901bace663f, type: 3}
       propertyPath: m_Name
-      value: GamePlay_MainCharacter_Version2
+      value: Player Fish - Rig
       objectReference: {fileID: 0}
     - target: {fileID: 6307589757895731758, guid: 48810e818c78c3e44b558901bace663f, type: 3}
       propertyPath: m_LocalPosition.x

@@ -37,6 +37,7 @@ public class LevelNode : MonoBehaviour
     public bool beenExplored { get; set; }
     public LevelNodeState levelNodeState => _levelNodeState;
     public LevelNodeType TileType => _tileType;
+    public LevelDataSO levelData => _levelData;
 
     private SpriteRenderer _spriteRenderer;
 

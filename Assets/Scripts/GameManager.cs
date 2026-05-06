@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -24,16 +25,30 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnChangeToSelectLevel.AddListener(LoadLevelSelect);
+        GameEvents.OnEndDuration.AddListener(LevelNodeDone);
     }
 
     private void OnDisable()
     {
         GameEvents.OnChangeToSelectLevel.RemoveListener(LoadLevelSelect);
+        GameEvents.OnEndDuration.RemoveListener(LevelNodeDone);
+    }
+
+    private void Start()
+    {
+        GameEvents.OnSetTimerGamePlay.Invoke(10f);
     }
 
     public void LevelNodeDone()
     {
         levelNodeDone = true;
+        //Show Survive Panel
+        PanelManager.instance.OpenPanel("panel-01");
+    }
+
+    public void LevelNodeFailed()
+    {
+        
     }
     
     public void LoadLevel(LevelNode levelNode)
@@ -41,7 +56,7 @@ public class GameManager : MonoBehaviour
         levelNodeDone = false;
         selectedLevelNode = levelNode;
         SceneController.Instance.LoadScene("Main");
-        //GameEvents.OnSetTimerGamePlay.Invoke(120);
+        GameEvents.OnSetTimerGamePlay.Invoke(selectedLevelNode.levelData.durationLevelNode);
     }
 
     public void LoadLevelSelect()

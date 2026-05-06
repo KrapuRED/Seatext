@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2795015538483852477}
   - component: {fileID: 3530514566172756003}
   m_Layer: 5
-  m_Name: '# ==== Scene & Trasition ==== # '
+  m_Name: '# ==== Scene & Trasition Canvas ==== #'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
