@@ -216,7 +216,7 @@ Transform:
   m_GameObject: {fileID: 1251050015922200359}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.89, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -259,6 +259,7 @@ MonoBehaviour:
   _fishEyeSight: {fileID: 7277502308238493773}
   _fishSpeed: {fileID: 8864369757495353593}
   _fishMouth: {fileID: 2999129236091427618}
+  _fishAnimation: {fileID: 0}
   _isBeenHunted: 0
   _fishType: 4
   mouthPosition: {fileID: 321752189633551727}
@@ -293,6 +294,7 @@ MonoBehaviour:
   _wordData:
     word: 
     wordLevel: 0
+  _textAnimation: {fileID: 0}
   setPositionPlayerEvent: {fileID: 11400000, guid: b5d65512b82cc9c48b39e39f132f10e9, type: 2}
 --- !u!114 &8864369757495353593
 MonoBehaviour:
@@ -325,8 +327,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0936e5991c3cfc9429d862a0990d1808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ownerFish: {fileID: 0}
   _dodgeForce: 0
   isCanMove: 1
+  _rotationSpeed: 0
   _fishTextRotate: {fileID: 6821151395226544016}
   _rigidbody2D: {fileID: 0}
 --- !u!50 &7454610653181641435

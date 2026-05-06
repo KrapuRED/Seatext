@@ -935,9 +935,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fishData: {fileID: 0}
+  _fishIndex: 0
   _fishMovement: {fileID: 790537203351147450}
   _fishEyeSight: {fileID: 1956725223684295917}
   _fishSpeed: {fileID: 5824866575210849353}
+  _fishMouth: {fileID: 0}
+  _fishAnimation: {fileID: 0}
   _isBeenHunted: 0
   _fishType: 2
   mouthPosition: {fileID: 0}
@@ -946,6 +949,7 @@ MonoBehaviour:
   _fishSightVisual: {fileID: 8641277444357706846}
   _enemyFishTypeBox: {fileID: 3142005586085829606}
   _fishTextRotation: {fileID: 5130641079173567095}
+  _foodBeenEaten: 0
   IntilazeFishByStart: 1
 --- !u!114 &3142005586085829606
 MonoBehaviour:
@@ -971,6 +975,7 @@ MonoBehaviour:
   _wordData:
     word: 
     wordLevel: 0
+  _textAnimation: {fileID: 0}
   setPositionPlayerEvent: {fileID: 11400000, guid: b5d65512b82cc9c48b39e39f132f10e9, type: 2}
 --- !u!114 &5824866575210849353
 MonoBehaviour:
@@ -984,7 +989,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54dd2316277c442ab9d400429fcc5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerFishType: 0
   baseSpeed: 50
+  roamingSpeedFactor: 0
+  chaseSpeedFactor: 0
+  stackChaseSpeedFactor: 0
+  currentWaterStrength: 0
+  waterCurrentMultiplier: 0
 --- !u!114 &790537203351147450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,9 +1008,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0936e5991c3cfc9429d862a0990d1808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ownerFish: {fileID: 0}
   _dodgeForce: 0
   isCanMove: 1
+  _rotationSpeed: 0
   _fishTextRotate: {fileID: 5130641079173567095}
+  _rigidbody2D: {fileID: 0}
 --- !u!50 &5475068481713366027
 Rigidbody2D:
   serializedVersion: 5
@@ -1156,6 +1170,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   dectactionTag: Player
+  limitFrame: 0
   _objectsInSights: []
   _currentObject: {fileID: 0}
 --- !u!1 &9186725627318064818
