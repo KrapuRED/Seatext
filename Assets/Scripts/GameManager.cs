@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static GameManager instance { get; private set; }
 
-    [SerializeField] private LevelNode _selectedLevelNode;
-
+    [Header("Game Level Node Settings")]
+    [SerializeField] private LevelNode selectedLevelNode;
+    [SerializeField] private bool levelNodeDone;
+    
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -29,10 +31,17 @@ public class GameManager : MonoBehaviour
         GameEvents.OnChangeToSelectLevel.RemoveListener(LoadLevelSelect);
     }
 
+    public void LevelNodeDone()
+    {
+        levelNodeDone = true;
+    }
+    
     public void LoadLevel(LevelNode levelNode)
     {
-        _selectedLevelNode = levelNode;
+        levelNodeDone = false;
+        selectedLevelNode = levelNode;
         SceneController.Instance.LoadScene("Main");
+        //GameEvents.OnSetTimerGamePlay.Invoke(120);
     }
 
     public void LoadLevelSelect()
