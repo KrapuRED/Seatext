@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,16 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float timer;
 
     [SerializeField] private bool isIdle;
+
+    private void OnEnable()
+    {
+        Keyboard.current.onTextInput += TypingText;
+    }
+
+    private void OnDisable()
+    {
+        Keyboard.current.onTextInput += TypingText;
+    }
 
     private void FixedUpdate()
     {
@@ -18,15 +29,13 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    public void TypingText(InputAction.CallbackContext context)
+    public void TypingText(char character)
     {
-        if (!context.performed) return;
-
         timer = 0f;
         isIdle = false;
         GameEvents.OnPlayerActive.Invoke(true);
 
-        string key = context.control.displayName;
+        string key = character.ToString();
         TypeBoxManager.instance.CheckTyping(key);
 
     }

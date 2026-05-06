@@ -95,6 +95,8 @@ public class GameEvents
     #region UI Events
     public static readonly CustomEvents<float, float> OnUpdateHealthBar = new();
     public static readonly CustomEvents<float, float> OnUpdateHungerBar = new();
+    public static readonly CustomEvents<float> OnSetTimerGamePlay = new();
+    public static readonly CustomEvents<float> OnUpdateTimerGamePlay = new();
     #endregion
 
     #region Game Play
