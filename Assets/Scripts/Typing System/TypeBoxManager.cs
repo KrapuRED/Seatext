@@ -118,7 +118,7 @@ public class TypeBoxManager : MonoBehaviour
         
         typeGroup.typingBoxes.Remove(typeBox);
 
-        ResetAllTypeBox();
+        //ResetAllTypeBox();
     }
 
     private void OnEnable()

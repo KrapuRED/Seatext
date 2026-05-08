@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance { get; private set; }
 
     [Header("Game Level Node Settings")]
-    [SerializeField] private LevelNode selectedLevelNode;
-    [SerializeField] private bool levelNodeDone;
+    [SerializeField] private bool _levelNodeDone;
+    [SerializeField] private LevelDataSO  _levelData;
     
     private void Awake()
     {
@@ -36,12 +36,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GameEvents.OnSetTimerGamePlay.Invoke(10f);
+        GameEvents.OnSetTimerGamePlay.Invoke(_levelData.durationLevelNode);
     }
 
-    public void LevelNodeDone()
+    private void LevelNodeDone()
     {
-        levelNodeDone = true;
+        _levelNodeDone = true;
         //Show Survive Panel
         PanelManager.instance.OpenPanel("panel-01");
     }
@@ -53,16 +53,14 @@ public class GameManager : MonoBehaviour
     
     public void LoadLevel(LevelNode levelNode)
     {
-        levelNodeDone = false;
-        selectedLevelNode = levelNode;
+        _levelData = levelNode.levelData;
+        _levelNodeDone = false;
         SceneController.Instance.LoadScene("Main");
-        GameEvents.OnSetTimerGamePlay.Invoke(selectedLevelNode.levelData.durationLevelNode);
+        GameEvents.OnSetTimerGamePlay.Invoke(_levelData.durationLevelNode);
     }
 
     public void LoadLevelSelect()
     {
         SceneController.Instance.LoadScene("LevelSelect");
     }
-
-
 }

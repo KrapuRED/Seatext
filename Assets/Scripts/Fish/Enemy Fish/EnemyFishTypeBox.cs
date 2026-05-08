@@ -69,6 +69,7 @@ public class EnemyFishTypeBox : TypingBox
                 //reset to get new word
                 ResetTypeBox();
                 GameEvents.OnPlayerGainingSpeed.Invoke();
+                currentEnemyFish.enemyContex.beenlocked =  true;
                 WordBankManager.instance.CheckWordByWordData(_wordData.word);
                 SetWordData();
             }
@@ -93,6 +94,8 @@ public class EnemyFishTypeBox : TypingBox
     public override void ResetTypeBox()
     {
         _indexChar = 0;
+        currentEnemyFish.enemyContex.beenlocked =  false;
+        
         SetTextToType(currentTextToType);
         _textAnimation.RefreshText(_wordData.word);
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class EnemyContex : FishContex
     public FishSightVisual fishSightVisual;
     public EnemyFish enemyFish;
     public int enemyFishIndex;
+    public bool beenlocked;
 }
 
 public class EnemyFish : Fish, IPausable, IEatable
@@ -26,8 +28,10 @@ public class EnemyFish : Fish, IPausable, IEatable
     [SerializeField] private bool IntilazeFishByStart;
 
     private Rigidbody2D _rb2d;
-
+    private EnemyContex _enemyContex;
+    
     public int FoodBeenEaten => _foodBeenEaten;
+    public EnemyContex enemyContex => _enemyContex;
     
     public FoodSize foodSize { get; set; }
 
@@ -97,7 +101,8 @@ public class EnemyFish : Fish, IPausable, IEatable
             FishMouth.ownerFish = this;
             FishMouth.SetMouthState(true);
         }
-
+        
+        _enemyContex = Contex as EnemyContex;
         FishSpeed.ownerFishType = FishType;
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);
@@ -132,6 +137,13 @@ public class EnemyFish : Fish, IPausable, IEatable
     public void Eat(FishType fishType)
     {
         Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten!");
+
+        if (!_enemyContex.beenlocked)
+        {
+            Debug.Log($"{this.gameObject.name} cannot eat {_enemyContex.beenlocked}");
+            return;
+        }
+        
         switch (fishType)
         {
             case FishType.Player:
