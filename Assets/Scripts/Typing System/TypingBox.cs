@@ -2,14 +2,13 @@ using UnityEngine;
                                                                                                                                                                                                             
 public class TypingBox : MonoBehaviour
 {
-    
     public string currentTextToType;
     [SerializeField] protected string fullText;
     [SerializeField] protected bool _isStillMacthing;
     [SerializeField] private TypeTypingBox _typeTypingBox;
     [SerializeField] protected int _indexChar;
     public bool IsStillMacthing => _isStillMacthing;
-    public TypeTypingBox typeTypingBox => _typeTypingBox;
+    public TypeTypingBox TypeTypingBox => _typeTypingBox;
 
     public SetTypeBoxEventSO setTypeBoxEvent;
 

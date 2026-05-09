@@ -7,7 +7,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Level Node Settings")]
     [SerializeField] private bool _levelNodeDone;
+    [SerializeField] private string _levelNodeID;
     [SerializeField] private LevelDataSO  _levelData;
+    
+    public LevelDataSO LevelDataSO => _levelData;
+    public string LevelNodeID => _levelNodeID;
+    public bool LevelDone => _levelNodeDone;
     
     private void Awake()
     {
@@ -24,19 +29,26 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        GameEvents.OnButtonTypeBoxComplete.AddListener(OnButtonComplete);
         GameEvents.OnChangeToSelectLevel.AddListener(LoadLevelSelect);
         GameEvents.OnEndDuration.AddListener(LevelNodeDone);
     }
 
     private void OnDisable()
     {
+        GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
         GameEvents.OnChangeToSelectLevel.RemoveListener(LoadLevelSelect);
         GameEvents.OnEndDuration.RemoveListener(LevelNodeDone);
     }
 
-    private void Start()
+    private void OnButtonComplete(ButtonTypeBoxContext buttonContext)
     {
-        GameEvents.OnSetTimerGamePlay.Invoke(_levelData.durationLevelNode);
+        switch (buttonContext)
+        {
+            case ButtonTypeBoxContext.DoneExploreNode:
+                LoadLevelSelect();
+                break;
+        }
     }
 
     private void LevelNodeDone()
@@ -53,10 +65,12 @@ public class GameManager : MonoBehaviour
     
     public void LoadLevel(LevelNode levelNode)
     {
-        _levelData = levelNode.levelData;
+        _levelData = levelNode.LevelDataSO;
+        _levelNodeID = levelNode.LevelNodeID;
         _levelNodeDone = false;
+        
         SceneController.Instance.LoadScene("Main");
-        GameEvents.OnSetTimerGamePlay.Invoke(_levelData.durationLevelNode);
+        
     }
 
     public void LoadLevelSelect()

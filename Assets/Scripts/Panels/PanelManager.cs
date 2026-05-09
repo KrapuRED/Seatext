@@ -15,6 +15,16 @@ public class PanelManager : MonoBehaviour
 
     public List<PanelData> panelDatas = new List<PanelData>();
 
+    private void OnEnable()
+    {
+        GameEvents.OnButtonTypeBoxComplete.AddListener(OnButtonComplete);
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
+    }
+    
     private void Awake()
     {
         if (instance == null)
@@ -23,6 +33,16 @@ public class PanelManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void OnButtonComplete(ButtonTypeBoxContext buttonContext)
+    {
+        switch (buttonContext)
+        {
+            case ButtonTypeBoxContext.ClosePanel:
+                CloseAllPanel();
+                break;
+        }
+    }
+    
     public void OpenPanel(string panelID, object data = null)
     {
         Debug.Log($"[PanelManager - OpenPanel] try opening panel : {panelID}");
@@ -30,7 +50,7 @@ public class PanelManager : MonoBehaviour
         {
             if (panelData.panel.panelID == panelID && !panelData.isActive)
             {
-                Debug.Log($"[PanelManager - OpenPanel] Open Panel : {panelData.panelName}");
+                //Debug.Log($"[PanelManager - OpenPanel] Open Panel : {panelData.panelName}");
                 TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.UI);
                 panelData.panel.SetDataToPanel(data);
                 panelData.isActive = true;
@@ -52,6 +72,15 @@ public class PanelManager : MonoBehaviour
                 panelData.panel.ClosePanel();
                 break;
             }
+        }
+    }
+
+    public void CloseAllPanel()
+    {
+        foreach (var panelData in panelDatas)
+        {
+            panelData.isActive = false;
+            panelData.panel.ClosePanel();
         }
     }
 }

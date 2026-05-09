@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,33 @@ public class SceneController : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         // Implement scene loading logic here, e.g., using UnityEngine.SceneManagement
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
+
+    IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation scene = SceneManager.LoadSceneAsync(sceneName);
+        scene.allowSceneActivation = false;
+
+        do
+        {
+            yield return null; 
+        } while (scene.progress < 0.9f);
+        
+        scene.allowSceneActivation = true;
+        yield return new WaitForEndOfFrame();
+        yield return null; 
+        yield return null; 
+     
+    
+        switch (sceneName)
+        {
+            case "Main":
+                ManagerTimer.instance.StartTimer(GameManager.instance.LevelDataSO.durationLevelNode);
+                break;
+            case "LevelSelect": 
+                LevelNodeManager.instance.SetLevelNodeBeenExplored(GameManager.instance.LevelNodeID, GameManager.instance.LevelDone);
+                break;
+        }
     }
 }

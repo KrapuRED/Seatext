@@ -13,7 +13,7 @@ public class LevelNodeTypeBox : TypingBox
     public void GetWord()
     {
         //Debug.Log("[LevelNodeTypeBox - GetWord] Get Word CALL by Level Node : " + _levelNode.name);
-        if (_levelNode.levelNodeState != LevelNodeState.Visited)
+        if (_levelNode.LevelNodeState != LevelNodeState.Explored)
         {
             _wordData = WordBankManager.instance.GetRandomWordData(_wordLevel);
             SetTextToType(_wordData.word);
@@ -37,7 +37,7 @@ public class LevelNodeTypeBox : TypingBox
 
             if (IsTextComplete())
             {
-                Debug.Log($"[LevelNodeTypeBox - CheckingText] Text Is Done : {currentTextToType}");
+                //Debug.Log($"[LevelNodeTypeBox - CheckingText] Text Is Done : {currentTextToType}");
                 _levelNode.SetPlayerHere();
                 RemoveWordData();
                 ResetTypeBox();
@@ -57,6 +57,9 @@ public class LevelNodeTypeBox : TypingBox
 
     public void RemoveWordData()
     {
+        if (_wordData == null)
+            return;
+        
         if (_wordData.word == string.Empty)
             return;
 

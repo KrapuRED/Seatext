@@ -18,6 +18,6 @@ public class PlayerIdleState : PlayerStateSO
 
     protected override void ExitState(PlayerContex contex)
     {
-        Debug.Log($"[PlayerIdleState - ExitState] Exit Idle State");
+        //Debug.Log($"[PlayerIdleState - ExitState] Exit Idle State");
     }
 }

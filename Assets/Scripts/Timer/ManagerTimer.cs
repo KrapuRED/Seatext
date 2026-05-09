@@ -34,7 +34,7 @@ public class ManagerTimer : MonoBehaviour, IPausable
         if (_isPaused)
             return;
             
-        if (_timer <= 0)
+        if (_timer < 0)
         {
             GameEvents.OnEndDuration.Invoke();
             return;

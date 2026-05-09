@@ -506,6 +506,7 @@ MonoBehaviour:
   onTextComplete:
     m_PersistentCalls:
       m_Calls: []
+  buttonTypeBoxContext: 0
 --- !u!1 &159991152
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 200569685}
   m_Layer: 0
-  m_Name: ========= Envirioment ===========
+  m_Name: ========= Envirioment ============
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2666,6 +2667,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  buttonTypeBoxContext: 0
 --- !u!1 &1244662121
 GameObject:
   m_ObjectHideFlags: 0
@@ -4334,6 +4336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f5d531260ea5d4081eff1b6c7afffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputString: 
   timerToIdle: 5
   timer: 0
   isIdle: 0
@@ -4626,7 +4629,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732004339}
   m_Layer: 0
-  m_Name: ========= UI ===============
+  m_Name: ============= UI ===============
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5235,6 +5238,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  buttonTypeBoxContext: 3
 --- !u!1001 &2046025886
 PrefabInstance:
   m_ObjectHideFlags: 0

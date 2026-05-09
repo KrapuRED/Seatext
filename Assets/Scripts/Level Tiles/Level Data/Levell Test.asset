@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254d402dca49a3349a3f8810830c0e07, type: 3}
   m_Name: Levell Test
   m_EditorClassIdentifier: 
-  levelName: Normal
+  levelName: Node Test
   levelDescription: 
-  durationLevelNode: 10
+  durationLevelNode: 30
   levelType: 3
   currentFlowSpeed: 0
   fishSpawnTable: []

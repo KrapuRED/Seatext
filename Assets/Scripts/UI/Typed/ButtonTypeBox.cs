@@ -2,11 +2,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum ButtonTypeBoxContext
+{
+    ClosePanel,
+    OpenPanel,
+    ExploreNode,
+    DoneExploreNode
+}
+
 public class ButtonTypeBox : TypingBox
 {
     public TextMeshProUGUI textUI;
     public UnityEvent onTextComplete;
-
+    [SerializeField] private ButtonTypeBoxContext buttonTypeBoxContext;
+    
     private void Start()
     {
         SetTextToType(currentTextToType);
@@ -22,7 +31,7 @@ public class ButtonTypeBox : TypingBox
     public override bool CheckingText(string typing)
     {
         bool isCorrectLetter = base.CheckingText(typing);
-        Debug.Log($"[ButtonTypeBox - CheckingText] Is Correct Letter : {isCorrectLetter}");
+        //Debug.Log($"[ButtonTypeBox - CheckingText] Is Correct Letter : {isCorrectLetter}");
         if (isCorrectLetter)
         {
             // Update the UI with the remaining text
@@ -31,8 +40,9 @@ public class ButtonTypeBox : TypingBox
 
             if (IsTextComplete())
             {
-                Debug.Log($"[ButtonTypeBox - CheckingText] Text Is Done : {currentTextToType}");
+                //Debug.Log($"[ButtonTypeBox - CheckingText] Text Is Done : {currentTextToType}");
                 onTextComplete.Invoke();
+                GameEvents.OnButtonTypeBoxComplete.Invoke(buttonTypeBoxContext);
                 ResetTypeBox();
             }
 
@@ -40,7 +50,8 @@ public class ButtonTypeBox : TypingBox
         }
         else
         {
-            Debug.Log($"[ButtonTypeBox - CheckingText] Wrong Letter! Typed : {typing}, Expected : {fullText[0]}");
+            //Debug.Log($"[ButtonTypeBox - CheckingText] Wrong Letter! Typed : {typing}, Expected : {fullText[_indexChar]}");
+            ResetTypeBox();
         }
         return isCorrectLetter;
     }

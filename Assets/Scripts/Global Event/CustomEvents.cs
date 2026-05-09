@@ -97,6 +97,8 @@ public class GameEvents
     public static readonly CustomEvents<float, float> OnUpdateHungerBar = new();
     public static readonly CustomEvents<float> OnSetTimerGamePlay = new();
     public static readonly CustomEvents<float> OnUpdateTimerGamePlay = new();
+    
+    public static readonly CustomEvents<ButtonTypeBoxContext> OnButtonTypeBoxComplete = new();
     #endregion
 
     #region Game Play

@@ -18,6 +18,12 @@ public class NodeInforamtionPanel : Panel
 
     public override void ClosePanel()
     {
+        if (_canvasGroup == null)
+        {
+            Debug.LogWarning("Canvas Group is null");
+            return;
+        }
+        
         _canvasGroup.alpha = 0;
     }
 
@@ -30,7 +36,7 @@ public class NodeInforamtionPanel : Panel
     {
         LevelDataSO levelData = data as LevelDataSO;
 
-        Debug.Log($"[NodeInforamtionPanel - SetDataToPanel] Set Data To Panel : {levelData.levelName}");
+        //Debug.Log($"[NodeInforamtionPanel - SetDataToPanel] Set Data To Panel : {levelData.levelName}");
 
         _levelNameText.text = levelData.levelName;
         _levelDescriptionText.text = levelData.levelDescription;

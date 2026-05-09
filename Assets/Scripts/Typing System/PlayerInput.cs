@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+    public string playerInputString;
     [SerializeField] private float timerToIdle;
     [SerializeField] private float timer;
 
@@ -16,7 +17,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnDisable()
     {
-        Keyboard.current.onTextInput += TypingText;
+        Keyboard.current.onTextInput -= TypingText;
     }
 
     private void FixedUpdate()
@@ -36,6 +37,8 @@ public class PlayerInput : MonoBehaviour
         GameEvents.OnPlayerActive.Invoke(true);
 
         string key = character.ToString();
+        playerInputString = key;
+        
         TypeBoxManager.instance.CheckTyping(key);
 
     }

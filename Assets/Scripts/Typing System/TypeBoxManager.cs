@@ -52,8 +52,7 @@ public class TypeBoxManager : MonoBehaviour
 
     public void CheckTyping(string typedText)
     {
-
-
+        Debug.Log(typedText);
         // This method can be overridden by derived classes to implement specific typing logic
         List<TypingBox> macthingTypeBox = new List<TypingBox>();
 
@@ -81,7 +80,7 @@ public class TypeBoxManager : MonoBehaviour
 
     private void SetActiveTypeBox(TypingBox activeTypeBox)
     {
-        var type = activeTypeBox.typeTypingBox;
+        var type = activeTypeBox.TypeTypingBox;
         var typeGroup = _activeTypingBoxs.Find(x => x.type == type);
 
         if (typeGroup == null)
