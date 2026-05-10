@@ -43,17 +43,32 @@ public class LevelNode : MonoBehaviour
     public LevelDataSO LevelDataSO => _levelDataSO;
     public string LevelNodeID => _levelNodeID;
 
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        GetCommpoentLevelNode();
         ResetToHidden();
+    }
+
+    void GetCommpoentLevelNode()
+    {
+        if (_spriteRenderer == null)
+            _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void IntiliazeLevelNode(string levelNodeID)
     {
+        Debug.Log($"{this.gameObject.name}:{_levelNodeID} is intiliazed");
+        GetCommpoentLevelNode();
+        
         _levelNodeID = levelNodeID;
+
+        if (GameStateManager.Instance.IsLevelNodeBeenExplored(_levelNodeID))
+        {
+            SetBeenExplored();
+            return;
+        }
         
         if (tileType == LevelNodeType.StartPoint)
         {
@@ -114,6 +129,8 @@ public class LevelNode : MonoBehaviour
     public void SetBeenExplored()
     {
         _levelNodeState = LevelNodeState.Explored;
+        Debug.Log($"{this.gameObject.name}:{_levelNodeID} is been explored : {_levelNodeState}");
+        
         _spriteRenderer.color = Color.grey;
         _levelNodeTextUI.SetWordTextUI("");
         _levelNodeTextUI.HideText();
@@ -126,7 +143,7 @@ public class LevelNode : MonoBehaviour
         _levelNodeTypeBox.RemoveWordData();
         _levelNodeTypeBox.ResetTypeBox();
 
-        _spriteRenderer.color = Color.white;
+        //_spriteRenderer.color = Color.white;
         _levelNodeTextUI.HideText();
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static SceneController Instance { get; private set; }
+    
+    Coroutine _loadingScene;
     private void Awake()
     {
         if (Instance == null)
@@ -21,7 +23,10 @@ public class SceneController : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         // Implement scene loading logic here, e.g., using UnityEngine.SceneManagement
-        StartCoroutine(LoadSceneAsync(sceneName));
+        if (_loadingScene != null)
+            return;
+        
+        _loadingScene =  StartCoroutine(LoadSceneAsync(sceneName));
     }
 
     IEnumerator LoadSceneAsync(string sceneName)
@@ -35,11 +40,11 @@ public class SceneController : MonoBehaviour
         } while (scene.progress < 0.9f);
         
         scene.allowSceneActivation = true;
+        
+        yield return null;
+        yield return null;
         yield return new WaitForEndOfFrame();
-        yield return null; 
-        yield return null; 
-     
-    
+        
         switch (sceneName)
         {
             case "Main":
@@ -49,5 +54,7 @@ public class SceneController : MonoBehaviour
                 LevelNodeManager.instance.SetLevelNodeBeenExplored(GameManager.instance.LevelNodeID, GameManager.instance.LevelDone);
                 break;
         }
+        
+        _loadingScene = null;
     }
 }

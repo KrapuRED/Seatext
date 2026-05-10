@@ -173,8 +173,7 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     public void SetActiveFish(bool condition)
     {
-        Debug.Log($"[PlayerFish - SetActiveFish] Player Fish is now {(condition ? "Active" : "Inactive")}");
-
+        
         PlayerContex playerContex = Contex as PlayerContex;
 
         if (condition)

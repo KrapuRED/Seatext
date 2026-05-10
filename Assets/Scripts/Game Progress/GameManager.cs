@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -70,11 +70,11 @@ public class GameManager : MonoBehaviour
         _levelNodeDone = false;
         
         SceneController.Instance.LoadScene("Main");
-        
     }
 
     public void LoadLevelSelect()
     {
+        GameStateManager.Instance.AddLevelNodeBeenExplored(_levelNodeID);
         SceneController.Instance.LoadScene("LevelSelect");
     }
 }

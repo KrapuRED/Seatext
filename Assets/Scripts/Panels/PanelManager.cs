@@ -66,7 +66,7 @@ public class PanelManager : MonoBehaviour
         {
             if (panelData.panel.panelID == panelID && panelData.isActive)
             {
-                Debug.Log($"[PanelManager - OpenPanel] Open Panel : {panelData.panelName}");
+                Debug.Log($"[PanelManager - ClosePanel] Close Panel : {panelData.panelName}");
                 TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
                 panelData.isActive = false;
                 panelData.panel.ClosePanel();

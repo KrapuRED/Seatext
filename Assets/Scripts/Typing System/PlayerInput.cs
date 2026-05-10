@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
         Keyboard.current.onTextInput += TypingText;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         Keyboard.current.onTextInput -= TypingText;
     }

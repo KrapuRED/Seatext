@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Node Test
   levelDescription: 
-  durationLevelNode: 30
+  durationLevelNode: 10
   levelType: 3
   currentFlowSpeed: 0
   fishSpawnTable: []

@@ -8,6 +8,7 @@ public class LevelNodeData
     public string    levelNodeName;
     public string    levelNodeID;
     public LevelNode levelNode;
+    public bool isExplored;
 }
 
 public class LevelNodeManager : MonoBehaviour
@@ -18,9 +19,8 @@ public class LevelNodeManager : MonoBehaviour
     [SerializeField] private Transform containerLevelNode;
     [SerializeField] private List<LevelNodeData> _levelNodeDatas = new List<LevelNodeData>();
     [SerializeField] private List<LevelNode> _nearCurrentLevelNodes = new List<LevelNode>();
-    [SerializeField] private List<LevelNode> _levelNodeBeenVisit = new List<LevelNode>();
     [SerializeField] private LevelNode _currentLevelNode;
-
+    
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -31,6 +31,7 @@ public class LevelNodeManager : MonoBehaviour
         {
             instance = this;
         }
+        
     }
 
     private void OnEnable()
@@ -42,6 +43,11 @@ public class LevelNodeManager : MonoBehaviour
     {
         GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
     }
+    
+    private void OnDestroy()
+    {
+        GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
+    }
 
     private void Start()
     {
@@ -50,7 +56,7 @@ public class LevelNodeManager : MonoBehaviour
             RegisterLevelNode(child.GetComponent<LevelNode>());
         }
     }
-    
+
     private void OnButtonComplete(ButtonTypeBoxContext buttonContext)
     {
         switch (buttonContext)
@@ -65,21 +71,22 @@ public class LevelNodeManager : MonoBehaviour
         }
     }
     
-    
     public void ExploreNodeLevel()
     {
-        Debug.Log($"[{this.name} - ExploreNodeLevel] Explore Node Level : {_currentLevelNode.name}");
-        
-        //SetLevelNodeBeenExplored(_currentLevelNode.LevelNodeID,  true);
+        //GameStateManager.Instance.UpdateLevelNodeGameProgress();
         GameManager.instance.LoadLevel(_currentLevelNode);
     }
 
-    private LevelNode FindLevelNodebyID(string levelNodeID)
+    public LevelNode FindLevelNodebyID(string levelNodeID)
     {
         foreach (var levelNodeData in _levelNodeDatas)
         {
             if (levelNodeData.levelNodeID == levelNodeID)
+            {
+                Debug.Log($"Explored Level Node = { levelNodeData.levelNode}");
                 return levelNodeData.levelNode;
+            }
+                
         }
         return null;
     }
@@ -87,25 +94,15 @@ public class LevelNodeManager : MonoBehaviour
     private int GetLevelNodeID(int currentMaxID)
     {
         int levelNodeID = currentMaxID++;
-        
         return levelNodeID;
     }
     
-    private void RegisterLevelNode(LevelNode levelNode)
+    public void RegisterLevelNode(LevelNode levelNode)
     {
-        //Debug.Log($"[{this.name} - RegisterLevelNode] Register Level Node : {levelNode.name}");
+        string levelNodeID = $"LN-{GetLevelNodeID(_levelNodeDatas.Count)}";
         
         if (levelNode.TileType == LevelNodeType.StartPoint)
-        {
             _currentLevelNode = levelNode;
-        }
-
-        if (_levelNodeDatas.Exists(x => x.levelNodeName == levelNode.name))
-        {
-            Debug.LogWarning($"[{this.name} - RegisterLevelNode] Level Node with name {levelNode.name} already exists. Skipping registration.");
-            return;
-        }
-        string levelNodeID = $"LN-{GetLevelNodeID(_levelNodeDatas.Count)}";
         
         levelNode.IntiliazeLevelNode(levelNodeID);
         
@@ -115,8 +112,12 @@ public class LevelNodeManager : MonoBehaviour
             levelNodeID = levelNodeID,
             levelNode = levelNode
         };
-
         _levelNodeDatas.Add(newLevelData);
+        
+        if (GameStateManager.Instance.IsLevelNodeGameProgressExist(levelNodeID))
+            return;
+        
+        GameStateManager.Instance.SetLevelNodeGameProgress(levelNodeID, newLevelData.levelNode.LevelNodeState);
     }
 
     public void SetNearCurrentLevelNode(LevelNode nearLevelNode)
@@ -127,36 +128,53 @@ public class LevelNodeManager : MonoBehaviour
 
     public void SelectedNextLevelNode(LevelNode levelNode)
     {
-        _currentLevelNode.SetBeenExplored();
-        _levelNodeBeenVisit.Add(_currentLevelNode);
+        GameStateManager.Instance.AddLevelNodeBeenExplored(_currentLevelNode.LevelNodeID);
+        GameStateManager.Instance.SetCurrentLevelNode(levelNode.LevelNodeID);
         
         _currentLevelNode = levelNode;
         ResetAllLevelNode(_currentLevelNode);
     }
-
+    
     public void UnSelectedNextLevelNode()
     {
-        if (_levelNodeBeenVisit.Count == 0)
-            return;
-        
         _currentLevelNode.ResetToHidden();
-        _currentLevelNode = null;
         
-        LevelNode prevNode = _levelNodeBeenVisit[_levelNodeBeenVisit.Count - 1];
-        _levelNodeBeenVisit.Remove(prevNode);
-
-        _currentLevelNode = prevNode;
+        string prevNodeID = GameStateManager.Instance.GetLastExploredNodeID();
+        GameStateManager.Instance.RemoveLevelNodeBeenExplored();
+        
+        Debug.Log($"[LevelNodeManager - UnSelectedNextLevelNode] {prevNodeID}");
+        GameStateManager.Instance.SetCurrentLevelNode(prevNodeID);
+        _currentLevelNode = FindLevelNodebyID(prevNodeID);
         _currentLevelNode.IntiliazeLevelNode(_currentLevelNode.LevelNodeID);
+    }
+
+    private void SetAllLevelNodeBeenExplored(List<string> levelNodeIDs)
+    {
+        foreach (var levelNodeID in  levelNodeIDs)
+        {
+            LevelNode exploredLevelNode = FindLevelNodebyID(levelNodeID);
+            Debug.Log("explored level node " + exploredLevelNode);
+            //exploredLevelNode.SetBeenExplored();
+        }
     }
     
     public void SetLevelNodeBeenExplored(string levelNodeID, bool explored)
     {
+        //set perv explore node
+        SetAllLevelNodeBeenExplored(GameStateManager.Instance.GetExploredNodeIDs());
+            
         LevelNode exploredLevelNode = FindLevelNodebyID(levelNodeID);
+
+        if (exploredLevelNode == null)
+        {
+            Debug.LogError($"LevelNode {exploredLevelNode} has no been assign to level node {levelNodeID}");
+            return;
+        }
         
-        exploredLevelNode.SetBeenExplored();
-        _levelNodeBeenVisit.Add(_currentLevelNode);
+        GameStateManager.Instance.AddLevelNodeBeenExplored(levelNodeID);
+        GameStateManager.Instance.UpdateLevelNodeGameProgress(levelNodeID, exploredLevelNode.LevelNodeState);
+        
         ResetAllLevelNode(exploredLevelNode);
-        
         exploredLevelNode.CheckSurroundingLevelNode();
     }
     
