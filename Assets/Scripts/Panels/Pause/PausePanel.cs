@@ -12,6 +12,11 @@ public class PausePanel : Panel
         }
     }
 
+    public override void GetPanelComponents()
+    {
+        cg = GetComponent<CanvasGroup>();
+    }
+
     public override void OpenPanel()
     {
         PauseManager.instance.SetPause(true);

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -86,6 +87,11 @@ public class PlayerFish : Fish, IPausable, IEatable
         GameEvents.OnDodgeAttackFish.RemoveListener(DodgeAttackFish);
         GameEvents.OnSetPositionPlayerEvent.AddListener(SetPlayerFishDirection);
         GameEvents.OnPlayerEating.RemoveListener(PlayerEating);
+    }
+
+    private void OnDestroy()
+    {
+        PauseManager.instance.Unregister(this);
     }
 
     private void Update()

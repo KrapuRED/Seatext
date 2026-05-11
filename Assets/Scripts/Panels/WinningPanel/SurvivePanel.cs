@@ -4,6 +4,11 @@ public class SurvivePanel : Panel
 {
     public CanvasGroup  canvasGroup;
 
+    public override void GetPanelComponents()
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+    }
+
     public override void OpenPanel()
     {
         canvasGroup.alpha = 1;

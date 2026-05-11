@@ -10,17 +10,31 @@ public class NodeInforamtionPanel : Panel
     [SerializeField] private Image _environmentImage;
 
     [SerializeField] private CanvasGroup _canvasGroup;
-
-    private void Start()
+    
+    private void OnDestroy()
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
+        Debug.Log($"[NodeInforamtionPanel] Destroyed: {gameObject.name}");
+    }
+
+    public override void GetPanelComponents()
+    {
+        if (_canvasGroup == null)
+            _canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public override void ClosePanel()
     {
+        Debug.Log($"ClosePanel called on : {gameObject.name}", this);
+
         if (_canvasGroup == null)
         {
-            Debug.LogWarning("Canvas Group is null");
+            Debug.LogWarning("CanvasGroup NULL -> Regetting");
+            _canvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        if (_canvasGroup == null)
+        {
+            Debug.LogError("CanvasGroup STILL NULL");
             return;
         }
         
@@ -29,6 +43,9 @@ public class NodeInforamtionPanel : Panel
 
     public override void OpenPanel()
     {
+        if (_canvasGroup == null)
+            _canvasGroup = GetComponent<CanvasGroup>();
+        
         _canvasGroup.alpha = 1;
     }
 

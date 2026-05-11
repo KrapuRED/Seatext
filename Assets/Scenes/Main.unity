@@ -506,6 +506,7 @@ MonoBehaviour:
   onTextComplete:
     m_PersistentCalls:
       m_Calls: []
+  panelID: panel-00
   buttonTypeBoxContext: 0
 --- !u!1 &159991152
 GameObject:
@@ -714,13 +715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfae8186929cee148a91a9368d3fbf6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelDatas:
-  - panelName: Pasue
-    isActive: 0
-    panel: {fileID: 1450173963}
-  - panelName: Survive
-    isActive: 0
-    panel: {fileID: 730131005}
+  _panelContainer: {fileID: 1533325074}
+  panelDatas: []
 --- !u!1 &335367958
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,18 +1585,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730131000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90.000305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1157253200}
   - {fileID: 391399542}
-  m_Father: {fileID: 2013037806}
+  m_Father: {fileID: 1533325074}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.0007324219, y: 0.00024414062}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &730131002
@@ -2667,6 +2663,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  panelID: panel-00
   buttonTypeBoxContext: 0
 --- !u!1 &1244662121
 GameObject:
@@ -3713,17 +3710,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450173959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 90.000305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1165707944}
   - {fileID: 142899567}
-  m_Father: {fileID: 2013037806}
+  m_Father: {fileID: 1533325074}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.0007324219, y: 0.00024414062}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1450173961
@@ -4190,7 +4187,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2013037806}
+  - {fileID: 1450173960}
+  - {fileID: 730131001}
   m_Father: {fileID: 1732004339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5129,43 +5127,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 339882183581354877, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
   m_PrefabInstance: {fileID: 6946417723860920769}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2013037805
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2013037806}
-  m_Layer: 5
-  m_Name: === Panel ===
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2013037806
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013037805}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90.000275}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 1450173960}
-  - {fileID: 730131001}
-  m_Father: {fileID: 1533325074}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0007324219, y: 0.00024414062}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2029300139
 GameObject:
   m_ObjectHideFlags: 0
@@ -5238,6 +5199,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  panelID: panel-01
   buttonTypeBoxContext: 3
 --- !u!1001 &2046025886
 PrefabInstance:

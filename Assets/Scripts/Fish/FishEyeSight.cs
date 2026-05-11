@@ -30,8 +30,7 @@ public class FishEyeSight : MonoBehaviour
 
         if (Time.frameCount % limitFrame != 0)
             return; 
-
-        Debug.Log("Update Eye Sight");
+        
         Transform eyeResult = CheckEyeSight();
 
         if (_currentObject == null)

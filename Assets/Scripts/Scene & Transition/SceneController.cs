@@ -51,7 +51,15 @@ public class SceneController : MonoBehaviour
                 ManagerTimer.instance.StartTimer(GameManager.instance.LevelDataSO.durationLevelNode);
                 break;
             case "LevelSelect": 
-                LevelNodeManager.instance.SetLevelNodeBeenExplored(GameManager.instance.LevelNodeID, GameManager.instance.LevelDone);
+                LevelNodeManager levelNodeManager = null;
+                while (levelNodeManager == null || !levelNodeManager.IsReady)
+                {
+                    levelNodeManager = FindObjectOfType<LevelNodeManager>();
+                    Debug.Log($"[SceneController] Waiting... manager={levelNodeManager != null}, ready={levelNodeManager?.IsReady}");
+                    yield return null;
+                }
+                Debug.Log("[SceneController] Firing OnSetLevelNodeBeenExplored");
+                GameEvents.OnSetLevelNodeBeenExplored.Invoke(GameManager.instance.LevelNodeID);
                 break;
         }
         

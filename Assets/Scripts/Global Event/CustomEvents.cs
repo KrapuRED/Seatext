@@ -99,11 +99,17 @@ public class GameEvents
     public static readonly CustomEvents<float> OnUpdateTimerGamePlay = new();
     
     public static readonly CustomEvents<ButtonTypeBoxContext> OnButtonTypeBoxComplete = new();
+    
+    public static readonly CustomEvents<string> OnClosePanelByID = new();
     #endregion
 
-    #region Game Play
+    #region GamePlay
     public static readonly CustomEvents OnPlayerDie = new();
     public static readonly CustomEvents OnEndDuration = new();
     public static readonly CustomEvents<bool> OnPlayerActive = new();
+    
+    public static readonly CustomEvents<LevelNode> OnSelectedNextLevelNode= new();
+    public static readonly CustomEvents<string> OnSetLevelNodeBeenExplored= new();
+    public static readonly CustomEvents<LevelNode> OnSetNearCurrentLevelNode = new();
     #endregion
 }

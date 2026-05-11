@@ -14,6 +14,7 @@ public class ButtonTypeBox : TypingBox
 {
     public TextMeshProUGUI textUI;
     public UnityEvent onTextComplete;
+    [SerializeField] private string panelID;
     [SerializeField] private ButtonTypeBoxContext buttonTypeBoxContext;
     
     private void Start()
@@ -31,7 +32,6 @@ public class ButtonTypeBox : TypingBox
     public override bool CheckingText(string typing)
     {
         bool isCorrectLetter = base.CheckingText(typing);
-        //Debug.Log($"[ButtonTypeBox - CheckingText] Is Correct Letter : {isCorrectLetter}");
         if (isCorrectLetter)
         {
             // Update the UI with the remaining text
@@ -40,8 +40,8 @@ public class ButtonTypeBox : TypingBox
 
             if (IsTextComplete())
             {
-                //Debug.Log($"[ButtonTypeBox - CheckingText] Text Is Done : {currentTextToType}");
-                onTextComplete.Invoke();
+                Debug.Log("[ButtonTypeBox - CheckingText] IsTextComplete!");
+                GameEvents.OnClosePanelByID.Invoke(panelID);
                 GameEvents.OnButtonTypeBoxComplete.Invoke(buttonTypeBoxContext);
                 ResetTypeBox();
             }

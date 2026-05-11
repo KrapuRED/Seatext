@@ -13,44 +13,68 @@ public class PanelManager : MonoBehaviour
 {
     public static PanelManager instance;
 
+    [SerializeField] private Transform _panelContainer;
     public List<PanelData> panelDatas = new List<PanelData>();
 
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+    
+        instance = this;
+        
+        panelDatas.Clear();
+        OnRegisterPanel();
+    }
+    
     private void OnEnable()
     {
-        GameEvents.OnButtonTypeBoxComplete.AddListener(OnButtonComplete);
+       GameEvents.OnClosePanelByID.AddListener(ClosePanel);
     }
 
     private void OnDisable()
     {
-        GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
+        GameEvents.OnClosePanelByID.RemoveListener(ClosePanel);
     }
     
-    private void Awake()
+    private void OnDestroy()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
+        GameEvents.OnClosePanelByID.RemoveListener(ClosePanel);
     }
 
-    private void OnButtonComplete(ButtonTypeBoxContext buttonContext)
+    public void OnRegisterPanel()
     {
-        switch (buttonContext)
+        foreach (Transform panelObject in _panelContainer)
         {
-            case ButtonTypeBoxContext.ClosePanel:
-                CloseAllPanel();
-                break;
+            Panel panel = panelObject.GetComponentInChildren<Panel>();
+            
+            if (panel == null)
+                continue;
+            
+            panel.GetPanelComponents();
+            
+            PanelData panelData = new PanelData
+            {
+                panelName =  panel.name,
+                isActive =  false,
+                panel = panel
+            };
+            
+            panelDatas.Add(panelData);
         }
     }
     
     public void OpenPanel(string panelID, object data = null)
     {
-        Debug.Log($"[PanelManager - OpenPanel] try opening panel : {panelID}");
         foreach (var panelData in panelDatas)
         {
+            if (panelData.panel == null)
+                continue;
+            
             if (panelData.panel.panelID == panelID && !panelData.isActive)
             {
-                //Debug.Log($"[PanelManager - OpenPanel] Open Panel : {panelData.panelName}");
                 TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.UI);
                 panelData.panel.SetDataToPanel(data);
                 panelData.isActive = true;
@@ -62,12 +86,16 @@ public class PanelManager : MonoBehaviour
 
     public void ClosePanel(string panelID)
     {
+        TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
+        
         foreach (var panelData in panelDatas)
         {
+            if (panelData.panel == null)
+                continue;
+            
             if (panelData.panel.panelID == panelID && panelData.isActive)
             {
-                Debug.Log($"[PanelManager - ClosePanel] Close Panel : {panelData.panelName}");
-                TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
+                //Debug.Log($"[PanelManager - ClosePanel] Close Panel : {panelData.panelName}");
                 panelData.isActive = false;
                 panelData.panel.ClosePanel();
                 break;
@@ -77,6 +105,7 @@ public class PanelManager : MonoBehaviour
 
     public void CloseAllPanel()
     {
+        TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
         foreach (var panelData in panelDatas)
         {
             panelData.isActive = false;

@@ -40,6 +40,9 @@ public class GameStateManager : MonoBehaviour
 
     public void AddLevelNodeBeenExplored(string levelNodeID)
     {
+        Debug.Log("Adding LevelNodeBeenExplored " + levelNodeID);
+        if (string.IsNullOrEmpty(levelNodeID)) return;
+        
         if (!_levelNodeBeenExplored.Contains(levelNodeID))
             _levelNodeBeenExplored.Add(levelNodeID);
     }

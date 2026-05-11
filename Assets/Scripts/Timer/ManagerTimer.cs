@@ -4,6 +4,7 @@ using UnityEngine;
 public class ManagerTimer : MonoBehaviour, IPausable
 {
     public static ManagerTimer instance {get; private set; }
+    private bool _gameStarted;
     private float _timer;
     private bool _isPaused;
     
@@ -31,6 +32,9 @@ public class ManagerTimer : MonoBehaviour, IPausable
 
     private void Update()
     {
+        if (!_gameStarted)
+            return;
+        
         if (_isPaused)
             return;
             
@@ -48,6 +52,7 @@ public class ManagerTimer : MonoBehaviour, IPausable
         Debug.Log($"StartTimer with {durationGame} seconds");    
         _timer = durationGame;
         GameEvents.OnUpdateTimerGamePlay.Invoke(_timer);
+        _gameStarted = true;
     }
 
     public void OnPause()

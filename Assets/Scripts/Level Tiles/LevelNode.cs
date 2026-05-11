@@ -48,27 +48,36 @@ public class LevelNode : MonoBehaviour
     private void Awake()
     {
         GetCommpoentLevelNode();
+        
         ResetToHidden();
     }
 
     void GetCommpoentLevelNode()
     {
-        if (_spriteRenderer == null)
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void IntiliazeLevelNode(string levelNodeID)
-    {
-        Debug.Log($"{this.gameObject.name}:{_levelNodeID} is intiliazed");
-        GetCommpoentLevelNode();
-        
+    { 
         _levelNodeID = levelNodeID;
 
+        if (_spriteRenderer == null)
+            GetCommpoentLevelNode();
+        
+        if (_spriteRenderer == null)
+        {
+            Debug.LogError($"[LevelNode] _spriteRenderer missing on {gameObject.name}");
+            return;
+        }
+        
         if (GameStateManager.Instance.IsLevelNodeBeenExplored(_levelNodeID))
         {
             SetBeenExplored();
             return;
         }
+        
+        if (tileType == LevelNodeType.EndPoint)
+            _spriteRenderer.color = Color.red;
         
         if (tileType == LevelNodeType.StartPoint)
         {
@@ -78,9 +87,6 @@ public class LevelNode : MonoBehaviour
 
             CheckSurroundingLevelNode();
         }
-
-        if (tileType == LevelNodeType.EndPoint)
-            _spriteRenderer.color = Color.red;
     }
 
     public void CheckSurroundingLevelNode()
@@ -94,7 +100,7 @@ public class LevelNode : MonoBehaviour
                 if (levelNode.LevelNodeState == LevelNodeState.Unseen)
                 {
                     //Debug.Log($"[{this.name} - CheckSurroundingLevelNode] Set Near Level Node : {levelNode.name}");
-                    LevelNodeManager.instance.SetNearCurrentLevelNode(levelNode);
+                    GameEvents.OnSetNearCurrentLevelNode.Invoke(levelNode);
                     levelNode.SetSaroundingTilesBeenSeen();
                 }
             }
@@ -110,7 +116,7 @@ public class LevelNode : MonoBehaviour
         PanelManager.instance.OpenPanel(panelID, _levelDataSO);
         
         if (_levelNodeState != LevelNodeState.Explored)
-            LevelNodeManager.instance.SelectedNextLevelNode(this);
+            GameEvents.OnSelectedNextLevelNode.Invoke(this);
     }
 
 
@@ -129,7 +135,9 @@ public class LevelNode : MonoBehaviour
     public void SetBeenExplored()
     {
         _levelNodeState = LevelNodeState.Explored;
-        Debug.Log($"{this.gameObject.name}:{_levelNodeID} is been explored : {_levelNodeState}");
+        
+        if (_spriteRenderer == null)
+            GetCommpoentLevelNode();
         
         _spriteRenderer.color = Color.grey;
         _levelNodeTextUI.SetWordTextUI("");

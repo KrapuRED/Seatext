@@ -6,6 +6,8 @@ public abstract class Panel : MonoBehaviour
     public string panelID;
     public GameObject panelGO;
 
+    public abstract void GetPanelComponents();
+    
     public abstract void OpenPanel();
 
     public abstract void ClosePanel();

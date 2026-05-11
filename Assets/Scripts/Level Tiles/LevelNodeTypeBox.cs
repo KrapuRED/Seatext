@@ -37,7 +37,6 @@ public class LevelNodeTypeBox : TypingBox
 
             if (IsTextComplete())
             {
-                //Debug.Log($"[LevelNodeTypeBox - CheckingText] Text Is Done : {currentTextToType}");
                 _levelNode.SetPlayerHere();
                 RemoveWordData();
                 ResetTypeBox();
