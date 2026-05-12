@@ -1838,6 +1838,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1035280167}
   - component: {fileID: 1035280168}
+  - component: {fileID: 1035280169}
   m_Layer: 5
   m_Name: Panel Level Node - Close
   m_TagString: Untagged
@@ -1873,9 +1874,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035280166}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527e129c3913ad746851db6e18683062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTextToType: close
+  fullText: 
+  _isStillMacthing: 0
+  _typeTypingBox: 1
+  _indexChar: 0
+  setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
+  textUI: {fileID: 1758863365}
+  onTextComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  panelID: panel-02
+  buttonTypeBoxContext: 0
+--- !u!114 &1035280169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035280166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483e2ad6c31eb634a85df20c38231d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentTextToType: close
@@ -1907,6 +1932,7 @@ GameObject:
   - component: {fileID: 1046947581}
   - component: {fileID: 1046947580}
   - component: {fileID: 1046947582}
+  - component: {fileID: 1046947583}
   m_Layer: 5
   m_Name: Content - Explore
   m_TagString: Untagged
@@ -1979,9 +2005,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046947578}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527e129c3913ad746851db6e18683062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTextToType: explore
+  fullText: 
+  _isStillMacthing: 0
+  _typeTypingBox: 1
+  _indexChar: 0
+  setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
+  textUI: {fileID: 1743311934}
+  onTextComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  panelID: 
+  buttonTypeBoxContext: 2
+--- !u!114 &1046947583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046947578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce4beb1615d36141bfc0ca2566da3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentTextToType: explore
@@ -3827,7 +3877,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containerLevelNode: {fileID: 1910084241}
   _levelNodeDatas: []
-  _nearCurrentLevelNodes: []
   _currentLevelNode: {fileID: 0}
 --- !u!1 &1909246679
 GameObject:

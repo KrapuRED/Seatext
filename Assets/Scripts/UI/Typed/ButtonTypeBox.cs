@@ -17,6 +17,9 @@ public class ButtonTypeBox : TypingBox
     [SerializeField] private string panelID;
     [SerializeField] private ButtonTypeBoxContext buttonTypeBoxContext;
     
+    public string PanelID => panelID;
+    public ButtonTypeBoxContext ButtonTypeBoxContext => buttonTypeBoxContext;
+    
     private void Start()
     {
         SetTextToType(currentTextToType);
@@ -41,8 +44,7 @@ public class ButtonTypeBox : TypingBox
             if (IsTextComplete())
             {
                 Debug.Log("[ButtonTypeBox - CheckingText] IsTextComplete!");
-                GameEvents.OnClosePanelByID.Invoke(panelID);
-                GameEvents.OnButtonTypeBoxComplete.Invoke(buttonTypeBoxContext);
+                OnInkoveEvent();
                 ResetTypeBox();
             }
 
@@ -61,5 +63,10 @@ public class ButtonTypeBox : TypingBox
         base.ResetTypeBox();
         _indexChar = 0;
         textUI.text = currentTextToType;
+    }
+
+    public virtual void OnInkoveEvent()
+    {
+       
     }
 }

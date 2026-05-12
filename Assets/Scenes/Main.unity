@@ -581,17 +581,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7706811449195803805, guid: ff7734a5779c76f4f9b404f22001f59e, type: 3}
   m_PrefabInstance: {fileID: 959992602}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &249709533 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2043027174605804679, guid: fc1b437da9f644d459393d743b911e39, type: 3}
-  m_PrefabInstance: {fileID: 384466106}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2db8e9d02fe15f4c86c5dd068aa0aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &298693847
 GameObject:
   m_ObjectHideFlags: 0
@@ -5137,6 +5126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029300140}
   - component: {fileID: 2029300141}
+  - component: {fileID: 2029300142}
   m_Layer: 5
   m_Name: Survive - Bottom Content
   m_TagString: Untagged
@@ -5172,7 +5162,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029300139}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527e129c3913ad746851db6e18683062, type: 3}
   m_Name: 
@@ -5186,19 +5176,31 @@ MonoBehaviour:
   textUI: {fileID: 1282105747}
   onTextComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 249709533}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadLevelSelect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  panelID: panel-01
+  buttonTypeBoxContext: 3
+--- !u!114 &2029300142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029300139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fd9b672d981db4c9aefe7f69c70fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTextToType: yay
+  fullText: 
+  _isStillMacthing: 0
+  _typeTypingBox: 1
+  _indexChar: 0
+  setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
+  textUI: {fileID: 1282105747}
+  onTextComplete:
+    m_PersistentCalls:
+      m_Calls: []
   panelID: panel-01
   buttonTypeBoxContext: 3
 --- !u!1001 &2046025886

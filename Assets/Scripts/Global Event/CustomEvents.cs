@@ -109,6 +109,7 @@ public class GameEvents
     public static readonly CustomEvents<bool> OnPlayerActive = new();
     
     public static readonly CustomEvents<LevelNode> OnSelectedNextLevelNode= new();
+    public static readonly CustomEvents OnSelectedPreviousLevelNode = new();
     public static readonly CustomEvents<string> OnSetLevelNodeBeenExplored= new();
     public static readonly CustomEvents<LevelNode> OnSetNearCurrentLevelNode = new();
     #endregion

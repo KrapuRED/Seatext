@@ -86,6 +86,7 @@ public class LevelNode : MonoBehaviour
             _spriteRenderer.color = Color.blue;
 
             CheckSurroundingLevelNode();
+            GameStateManager.Instance.AddLevelNodeBeenExplored(levelNodeID);
         }
     }
 
@@ -142,6 +143,8 @@ public class LevelNode : MonoBehaviour
         _spriteRenderer.color = Color.grey;
         _levelNodeTextUI.SetWordTextUI("");
         _levelNodeTextUI.HideText();
+        
+        CheckSurroundingLevelNode();
     }
 
     public void ResetToHidden()
