@@ -1,34 +1,40 @@
 fileFormatVersion: 2
-guid: 198559675af8e4045bf5114c31770b6e
+guid: aaf2daff78a163745a62fac3c72e7ae5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6895977774770858167
-    second: Coral and animals_0
+      213: -5563148448790403384
+    second: MultiObjects_CoralsandSealife_0
   - first:
-      213: 3996164371211771258
-    second: Coral and animals_1
+      213: -7383269627172479893
+    second: MultiObjects_CoralsandSealife_1
   - first:
-      213: -1097340184074024132
-    second: Coral and animals_2
+      213: -1239452802542210814
+    second: MultiObjects_CoralsandSealife_2
   - first:
-      213: 731862633487334236
-    second: Coral and animals_3
+      213: 1392270964695828662
+    second: MultiObjects_CoralsandSealife_3
   - first:
-      213: -7743307692227857605
-    second: Coral and animals_4
+      213: 7574675144206524560
+    second: MultiObjects_CoralsandSealife_4
   - first:
-      213: -1926463844450443054
-    second: Coral and animals_5
+      213: -4409411351393999855
+    second: MultiObjects_CoralsandSealife_5
   - first:
-      213: 3636408312936671565
-    second: Coral and animals_6
+      213: 1256765796648311742
+    second: MultiObjects_CoralsandSealife_6
   - first:
-      213: 7266124003548934185
-    second: Coral and animals_7
+      213: 806168839179782011
+    second: MultiObjects_CoralsandSealife_7
   - first:
-      213: -7235846195654393560
-    second: Coral and animals_8
+      213: -4313312116371319140
+    second: MultiObjects_CoralsandSealife_8
+  - first:
+      213: 4358717304477250956
+    second: MultiObjects_CoralsandSealife_9
+  - first:
+      213: -3270022403075109637
+    second: MultiObjects_CoralsandSealife_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -137,7 +143,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Coral and animals_0
+      name: MultiObjects_CoralsandSealife_0
       rect:
         serializedVersion: 2
         x: 67
@@ -152,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b8a43cef3f63bf50800000000000000
-      internalID: 6895977774770858167
+      spriteID: 8c6251de5f9bbc2b0800000000000000
+      internalID: -5563148448790403384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coral and animals_1
+      name: MultiObjects_CoralsandSealife_1
       rect:
         serializedVersion: 2
         x: 583
@@ -174,14 +180,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a7d5622b25a357730800000000000000
-      internalID: 3996164371211771258
+      spriteID: b6c147f646b598990800000000000000
+      internalID: -7383269627172479893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coral and animals_2
+      name: MultiObjects_CoralsandSealife_2
       rect:
         serializedVersion: 2
         x: 1013
@@ -196,14 +202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c3b8182aae675c0f0800000000000000
-      internalID: -1097340184074024132
+      spriteID: 201fb943e349ccee0800000000000000
+      internalID: -1239452802542210814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coral and animals_3
+      name: MultiObjects_CoralsandSealife_3
       rect:
         serializedVersion: 2
         x: 1429
@@ -218,14 +224,58 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c5bf4650039182a00800000000000000
-      internalID: 731862633487334236
+      spriteID: 6b809c9d017525310800000000000000
+      internalID: 1392270964695828662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coral and animals_4
+      name: MultiObjects_CoralsandSealife_4
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 1089
+        width: 308
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 090296b49e6ae1960800000000000000
+      internalID: 7574675144206524560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiObjects_CoralsandSealife_5
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 379
+        width: 444
+        height: 461
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 114e59becbf9ec2c0800000000000000
+      internalID: -4409411351393999855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MultiObjects_CoralsandSealife_6
       rect:
         serializedVersion: 2
         x: 2111
@@ -240,14 +290,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3375320eae3a8490800000000000000
-      internalID: -7743307692227857605
+      spriteID: ebb551b55dde07110800000000000000
+      internalID: 1256765796648311742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coral and animals_5
+      name: MultiObjects_CoralsandSealife_7
       rect:
         serializedVersion: 2
         x: 105
@@ -262,18 +312,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d0e5ee1753d345e0800000000000000
-      internalID: -1926463844450443054
+      spriteID: b77cc48b946103b00800000000000000
+      internalID: 806168839179782011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coral and animals_6
+      name: MultiObjects_CoralsandSealife_8
       rect:
         serializedVersion: 2
-        x: 668
-        y: 347
+        x: 584
+        y: 377
         width: 428
         height: 422
       alignment: 0
@@ -284,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d492ed6181e177230800000000000000
-      internalID: 3636408312936671565
+      spriteID: c969c4aab790424c0800000000000000
+      internalID: -4313312116371319140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coral and animals_7
+      name: MultiObjects_CoralsandSealife_9
       rect:
         serializedVersion: 2
         x: 2053
@@ -306,14 +356,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 920397d984576d460800000000000000
-      internalID: 7266124003548934185
+      spriteID: c85f6b18b464d7c30800000000000000
+      internalID: 4358717304477250956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coral and animals_8
+      name: MultiObjects_CoralsandSealife_10
       rect:
         serializedVersion: 2
         x: 2065
@@ -328,8 +378,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82188a2e83c159b90800000000000000
-      internalID: -7235846195654393560
+      spriteID: bfc832123fb8e92d0800000000000000
+      internalID: -3270022403075109637
       vertices: []
       indices: 
       edges: []
@@ -348,15 +398,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Coral and animals_0: 6895977774770858167
-      Coral and animals_1: 3996164371211771258
-      Coral and animals_2: -1097340184074024132
-      Coral and animals_3: 731862633487334236
-      Coral and animals_4: -7743307692227857605
-      Coral and animals_5: -1926463844450443054
-      Coral and animals_6: 3636408312936671565
-      Coral and animals_7: 7266124003548934185
-      Coral and animals_8: -7235846195654393560
+      MultiObjects_CoralsandSealife_0: -5563148448790403384
+      MultiObjects_CoralsandSealife_1: -7383269627172479893
+      MultiObjects_CoralsandSealife_10: -3270022403075109637
+      MultiObjects_CoralsandSealife_2: -1239452802542210814
+      MultiObjects_CoralsandSealife_3: 1392270964695828662
+      MultiObjects_CoralsandSealife_4: 7574675144206524560
+      MultiObjects_CoralsandSealife_5: -4409411351393999855
+      MultiObjects_CoralsandSealife_6: 1256765796648311742
+      MultiObjects_CoralsandSealife_7: 806168839179782011
+      MultiObjects_CoralsandSealife_8: -4313312116371319140
+      MultiObjects_CoralsandSealife_9: 4358717304477250956
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
