@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 3418323788622906220}
   - component: {fileID: 263997560616201461}
   - component: {fileID: 6619855779897668214}
+  - component: {fileID: 1596166963972607170}
   - component: {fileID: 350149495964052630}
   m_Layer: 7
   m_Name: Level Node
@@ -388,6 +389,7 @@ MonoBehaviour:
   _levelNodeState: 0
   _levelNodeTypeBox: {fileID: 8727858882895210407}
   _levelNodeTextUI: {fileID: 820660135497653250}
+  _levelNodeVisuals: {fileID: 1596166963972607170}
   panelID: PP-01
   _LevelNodeLayer:
     serializedVersion: 2
@@ -395,6 +397,24 @@ MonoBehaviour:
   _levelNodeRadius: 1.5
   _levelNodeCheckPoint: {fileID: 2847664563380678733}
   _spriteRenderer: {fileID: 0}
+--- !u!114 &1596166963972607170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8877310490872545632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e7bc0af3412094fa702669ef1baefd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unseenSprite: {fileID: 0}
+  _unseenColor: {r: 1, g: 1, b: 1, a: 1}
+  _seenColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _currentColor: {r: 0, g: 0, b: 1, a: 1}
+  _exploredColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _endPointColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!58 &350149495964052630
 CircleCollider2D:
   m_ObjectHideFlags: 0

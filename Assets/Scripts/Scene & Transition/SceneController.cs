@@ -43,6 +43,7 @@ public class SceneController : MonoBehaviour
         
         yield return null;
         yield return null;
+        yield return null;
         yield return new WaitForEndOfFrame();
         
         switch (sceneName)
@@ -50,15 +51,9 @@ public class SceneController : MonoBehaviour
             case "Main":
                 ManagerTimer.instance.StartTimer(GameManager.instance.LevelDataSO.durationLevelNode);
                 break;
-            case "LevelSelect": 
-                LevelNodeManager levelNodeManager = null;
-                while (levelNodeManager == null || !levelNodeManager.IsReady)
-                {
-                    levelNodeManager = FindObjectOfType<LevelNodeManager>();
-                    Debug.Log($"[SceneController] Waiting... manager={levelNodeManager != null}, ready={levelNodeManager?.IsReady}");
-                    yield return null;
-                }
-                Debug.Log("[SceneController] Firing OnSetLevelNodeBeenExplored");
+            case "LevelSelect":
+                yield return new WaitUntil(() => LevelNodeManager.Instance != null);
+
                 GameEvents.OnSetLevelNodeBeenExplored.Invoke(GameManager.instance.LevelNodeID);
                 break;
         }

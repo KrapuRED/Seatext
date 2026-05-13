@@ -51,7 +51,7 @@ public class LevelNodeTypeBox : TypingBox
 
             if (IsTextComplete())
             {
-                _levelNode.SetPlayerHere();
+                _levelNode.SelectedLevelNode();
                 RemoveWordData();
                 ResetTypeBox();
             }

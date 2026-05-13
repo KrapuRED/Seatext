@@ -30,6 +30,7 @@ public class LevelNode : MonoBehaviour
     [SerializeField] private LevelNodeState _levelNodeState;
     [SerializeField] private LevelNodeTypeBox _levelNodeTypeBox;
     [SerializeField] private LevelNodeTextUI _levelNodeTextUI;
+    [SerializeField] private LevelNodeVisuals _levelNodeVisuals; 
     [SerializeField] private string panelID;
 
     [Header("Level Node Settings")]
@@ -47,22 +48,15 @@ public class LevelNode : MonoBehaviour
 
     private void Awake()
     {
-        GetCommpoentLevelNode();
-        
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _levelNodeVisuals.InitializedLevelNodeVisuals(_spriteRenderer);
         ResetToHidden();
     }
 
-    void GetCommpoentLevelNode()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     public void IntiliazeLevelNode(string levelNodeID)
     { 
         _levelNodeID = levelNodeID;
-
-        if (_spriteRenderer == null)
-            GetCommpoentLevelNode();
         
         if (_spriteRenderer == null)
         {
@@ -70,19 +64,20 @@ public class LevelNode : MonoBehaviour
             return;
         }
         
+        if (GameStateManager.Instance.IsLevelNodeBeenExplored(_levelNodeID))
+        {
+            SetBeenExplored();
+            return;
+        }
+
         if (tileType == LevelNodeType.EndPoint)
         {
-            _spriteRenderer.color = Color.red;
+           _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
         }
         
         if (tileType == LevelNodeType.StartPoint)
         {
-            _levelNodeState = LevelNodeState.Current;
-            _levelNodeTextUI.SetWordTextUI("You");
-            _spriteRenderer.color = Color.blue;
-
-            CheckSurroundingLevelNode();
-            GameStateManager.Instance.AddLevelNodeBeenExplored(levelNodeID);
+            OnSetPlayerHere();
         }
     }
 
@@ -102,11 +97,20 @@ public class LevelNode : MonoBehaviour
         }
     }
 
-    public void SetPlayerHere()
+    public void OnSetPlayerHere()
     {
         _levelNodeState = LevelNodeState.Current;
         _levelNodeTextUI.SetWordTextUI("You");
-        _spriteRenderer.color = Color.blue;
+        _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
+
+        CheckSurroundingLevelNode();
+    }
+
+    public void SelectedLevelNode()
+    {
+        _levelNodeState = LevelNodeState.Current;
+        _levelNodeTextUI.SetWordTextUI("You");
+        _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
 
         PanelManager.instance.OpenPanel(panelID, _levelDataSO);
         
@@ -124,18 +128,15 @@ public class LevelNode : MonoBehaviour
         
         _levelNodeState = LevelNodeState.Seen;
         _levelNodeTypeBox.GetWord();
-        _spriteRenderer.color = Color.yellow;
+        _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
         _levelNodeTypeBox.setTypeBoxEvent.Raise(_levelNodeTypeBox);
     }   
 
     public void SetBeenExplored()
     {
         _levelNodeState = LevelNodeState.Explored;
-        
-        if (_spriteRenderer == null)
-            GetCommpoentLevelNode();
-        
-        _spriteRenderer.color = Color.grey;
+
+        _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
         _levelNodeTextUI.SetWordTextUI(string.Empty);
         _levelNodeTextUI.HideText();
     }

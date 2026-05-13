@@ -80,6 +80,10 @@ public class GameEvents
 {
     public static readonly CustomEvents OnChangeToSelectLevel = new ();
 
+    #region Camere Events
+    public static readonly CustomEvents<Transform> OnChangeCameraPosition = new();
+    #endregion
+
     #region Fish Events
     public static readonly CustomEvents<IEatable, FishType, int> OnEatableEntered = new ();
     public static readonly CustomEvents<int> OnRemoveSpawnedFishData = new ();
