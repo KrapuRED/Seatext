@@ -63,7 +63,9 @@ public class LevelNodeManager : MonoBehaviour
         GameEvents.OnSelectedNextLevelNode.RemoveListener(SelectedNextLevelNode);
         GameEvents.OnSetNearCurrentLevelNode.RemoveListener(SetNearCurrentLevelNode);
         GameEvents.OnSelectedPreviousLevelNode.RemoveListener(UnSelectedNextLevelNode);
-        
+
+        _currentLevelNode = null;
+        _previousLevelNode = null;
         _levelNodeDatas.Clear();
         _nearCurrentLevelNodes.Clear();
         
@@ -71,15 +73,12 @@ public class LevelNodeManager : MonoBehaviour
 
     private void Start()
     {
-        _levelNodeDatas.Clear();
-        
         foreach (Transform child in containerLevelNode)
         {
             RegisterLevelNode(child.GetComponent<LevelNode>());
         }
         
         IsReady = true;
-        
         SetAllLevelNodeBeenExplored(GameStateManager.Instance.GetExploredNodeIDs());
     }
 
@@ -97,6 +96,12 @@ public class LevelNodeManager : MonoBehaviour
     
     public void ExploreNodeLevel()
     {
+        if (_currentLevelNode == null)
+        {
+            Debug.LogWarning($"current LevelNode is null/destroyed : {_currentLevelNode}");
+            return;
+        }
+        
         GameStateManager.Instance.AddLevelNodeBeenExplored(_currentLevelNode.LevelNodeID);
         GameStateManager.Instance.SetCurrentLevelNode(_currentLevelNode.LevelNodeID);
         //GameStateManager.Instance.UpdateLevelNodeGameProgress();
@@ -107,12 +112,6 @@ public class LevelNodeManager : MonoBehaviour
     {
         foreach (var levelNodeData in _levelNodeDatas)
         {
-            if (levelNodeData.levelNode == null) 
-            {
-                Debug.LogWarning($"[FindLevelNodebyID] LevelNode ref is null/destroyed for ID: {levelNodeData.levelNodeID}");
-                continue;
-            }
-        
             if (levelNodeData.levelNodeID == levelNodeID)
             {
                 return levelNodeData.levelNode;
@@ -130,7 +129,9 @@ public class LevelNodeManager : MonoBehaviour
     public void RegisterLevelNode(LevelNode levelNode)
     {
         string levelNodeID = $"LN-{GetLevelNodeID(_levelNodeDatas.Count)}";
-        if (levelNode.TileType == LevelNodeType.StartPoint)
+        bool isLevelNodeBeenExplored = GameStateManager.Instance.IsLevelNodeBeenExplored(levelNodeID);
+        
+        if (levelNode.TileType == LevelNodeType.StartPoint && !isLevelNodeBeenExplored)
         {
             _currentLevelNode = levelNode;
             GameStateManager.Instance.SetCurrentLevelNode(levelNodeID);
@@ -205,6 +206,7 @@ public class LevelNodeManager : MonoBehaviour
             return;
         }
         
+        GameStateManager.Instance.SetCurrentLevelNode(exploredLevelNode.LevelNodeID);
         GameStateManager.Instance.AddLevelNodeBeenExplored(levelNodeID);
         GameStateManager.Instance.UpdateLevelNodeGameProgress(levelNodeID, exploredLevelNode.LevelNodeState);
         

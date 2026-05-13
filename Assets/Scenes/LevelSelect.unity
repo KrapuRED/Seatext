@@ -3878,6 +3878,7 @@ MonoBehaviour:
   containerLevelNode: {fileID: 1910084241}
   _levelNodeDatas: []
   _currentLevelNode: {fileID: 0}
+  _previousLevelNode: {fileID: 0}
 --- !u!1 &1909246679
 GameObject:
   m_ObjectHideFlags: 0

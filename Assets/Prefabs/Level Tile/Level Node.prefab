@@ -382,8 +382,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e5aa3aaf7c94d4d8e7cdcd3ba9eed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tileType: 0
-  _levelData: {fileID: 0}
+  _levelNodeID: 0
+  tileType: 0
+  _levelDataSO: {fileID: 0}
   _levelNodeState: 0
   _levelNodeTypeBox: {fileID: 8727858882895210407}
   _levelNodeTextUI: {fileID: 820660135497653250}
@@ -391,8 +392,9 @@ MonoBehaviour:
   _LevelNodeLayer:
     serializedVersion: 2
     m_Bits: 128
-  _levelNodeRadius: 2
+  _levelNodeRadius: 1.5
   _levelNodeCheckPoint: {fileID: 2847664563380678733}
+  _spriteRenderer: {fileID: 0}
 --- !u!58 &350149495964052630
 CircleCollider2D:
   m_ObjectHideFlags: 0

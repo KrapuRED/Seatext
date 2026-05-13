@@ -1,3 +1,4 @@
+using System;
 using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
@@ -10,21 +11,34 @@ public class LevelNodeTypeBox : TypingBox
     [SerializeField] private LevelNodeTextUI _textLevelNode;
     [SerializeField] private WordData _wordData;
 
+    private void OnDestroy()
+    {
+        _wordData = null;
+    }
+
     public void GetWord()
     {
-        //Debug.Log("[LevelNodeTypeBox - GetWord] Get Word CALL by Level Node : " + _levelNode.name);
-        if (_levelNode.LevelNodeState != LevelNodeState.Explored)
+        if (GameStateManager.Instance.IsLevelNodeBeenExplored(_levelNode.LevelNodeID))
         {
-            _wordData = WordBankManager.instance.GetRandomWordData(_wordLevel);
-            SetTextToType(_wordData.word);
+            Debug.Log($"[LevelNodeTypeBox - GetWord] the node {_levelNode.LevelNodeID} is been explored");
+            return;
         }
+        
+        WordData result = WordBankManager.instance.GetRandomWordData(_wordLevel);
+        _wordData = result;
+
+        if (string.IsNullOrEmpty(result.word))
+        {
+            _levelNode.ResetToHidden();
+        }
+        
+        SetTextToType(_wordData.word);
     }
 
     public override bool CheckingText(string typedText)
     {
         if (_indexChar >= fullText.Length)
         {
-            Debug.Log("Typing already complete!");
             return false;
         }
 
@@ -46,7 +60,6 @@ public class LevelNodeTypeBox : TypingBox
         }
         else
         {
-            //Debug.Log($"[Fish - CheckingText] Wrong Letter! Typed : {typedText}, Expected : {fullText[0]}");
             ResetTypeBox();
             _isStillMacthing = false;
         }
@@ -66,7 +79,7 @@ public class LevelNodeTypeBox : TypingBox
         TypeBoxManager.instance.RemoveTypeBox(this);
 
         _wordData = null;
-        currentTextToType = "";
+        currentTextToType = string.Empty;
     }
 
     public override void SetTextToType(string text)
@@ -78,6 +91,10 @@ public class LevelNodeTypeBox : TypingBox
     public override void ResetTypeBox()
     {
         _indexChar = 0;
+        
+        if (string.IsNullOrEmpty(currentTextToType))
+            return;
+        
         SetTextToType(currentTextToType);
     }
 }

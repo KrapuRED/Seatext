@@ -70,14 +70,10 @@ public class LevelNode : MonoBehaviour
             return;
         }
         
-        if (GameStateManager.Instance.IsLevelNodeBeenExplored(_levelNodeID))
-        {
-            SetBeenExplored();
-            return;
-        }
-        
         if (tileType == LevelNodeType.EndPoint)
+        {
             _spriteRenderer.color = Color.red;
+        }
         
         if (tileType == LevelNodeType.StartPoint)
         {
@@ -96,11 +92,9 @@ public class LevelNode : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            //Debug.Log("Found: " + hitCollider.name);
             if (hitCollider.TryGetComponent(out LevelNode levelNode)){
                 if (levelNode.LevelNodeState == LevelNodeState.Unseen)
                 {
-                    //Debug.Log($"[{this.name} - CheckSurroundingLevelNode] Set Near Level Node : {levelNode.name}");
                     GameEvents.OnSetNearCurrentLevelNode.Invoke(levelNode);
                     levelNode.SetSaroundingTilesBeenSeen();
                 }
@@ -120,14 +114,15 @@ public class LevelNode : MonoBehaviour
             GameEvents.OnSelectedNextLevelNode.Invoke(this);
     }
 
-
     public void SetSaroundingTilesBeenSeen()
     {
-        if (_levelNodeState == LevelNodeState.Explored)
+        if (GameStateManager.Instance.IsLevelNodeBeenExplored(_levelNodeID))
         {
+            SetBeenExplored();
             return;
         }
         
+        _levelNodeState = LevelNodeState.Seen;
         _levelNodeTypeBox.GetWord();
         _spriteRenderer.color = Color.yellow;
         _levelNodeTypeBox.setTypeBoxEvent.Raise(_levelNodeTypeBox);
@@ -141,20 +136,19 @@ public class LevelNode : MonoBehaviour
             GetCommpoentLevelNode();
         
         _spriteRenderer.color = Color.grey;
-        _levelNodeTextUI.SetWordTextUI("");
+        _levelNodeTextUI.SetWordTextUI(string.Empty);
         _levelNodeTextUI.HideText();
-        
-        CheckSurroundingLevelNode();
     }
 
     public void ResetToHidden()
     {
+        if (_levelNodeState == LevelNodeState.Explored)
+            return;
+        
         _levelNodeState = LevelNodeState.Unseen;
-
         _levelNodeTypeBox.RemoveWordData();
         _levelNodeTypeBox.ResetTypeBox();
-
-        //_spriteRenderer.color = Color.white;
+        
         _levelNodeTextUI.HideText();
     }
 }

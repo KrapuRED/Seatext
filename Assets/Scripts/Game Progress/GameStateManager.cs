@@ -26,12 +26,7 @@ public class GameStateManager : MonoBehaviour
         else 
             Destroy(this);
     }
-
-    public string GetLastExploredNodeID()
-    {
-        if (_levelNodeBeenExplored.Count == 0) return null;
-        return _levelNodeBeenExplored[_levelNodeBeenExplored.Count - 1];
-    }
+    
     
     public void SetCurrentLevelNode(string levelNodeID)
     {

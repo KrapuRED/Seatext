@@ -25,13 +25,18 @@ public class WordBankManager : MonoBehaviour
     [Header("Word Config")]
     [SerializeField] private TextAsset _wordBankText;
     [SerializeField] private List<string> _word = new List<string>();
-    [SerializeField] private List<WordData> _activeWordData = new List<WordData>();
+    private List<WordData> _activeWordData = new List<WordData>(); 
     private List<WordData> _inactiveWordData = new List<WordData>();
+    
+    private bool _wordBankInitialized = false;
 
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            _wordBankInitialized = true;
+        }
         else
             Destroy(gameObject);
 
@@ -128,10 +133,14 @@ public class WordBankManager : MonoBehaviour
 
     public WordData GetRandomWordData(WordLevel worldLevel)
     {
-        //Find the all word with the same level and get random word data from it
-        var validWords = _inactiveWordData.Where(wordData => wordData.wordLevel == worldLevel).ToList();
+        if (!_wordBankInitialized)
+        {
+            Debug.LogError("WordBankManager is NULL!");
+            return null;
+        }
 
-        //Check if there is any valid word data available for the requested level
+        var validWords = _inactiveWordData.Where(wordData => wordData.wordLevel == worldLevel).ToList();
+        
         if (validWords.Count == 0)
         {
             Debug.LogWarning("[WordBankManager - GetRandomWordData] No available words for this level!");
@@ -156,5 +165,12 @@ public class WordBankManager : MonoBehaviour
                 return;
             }
         }
+    }
+    
+    private void CheckActiveWordData()
+    {
+        Debug.Log($"[WordBankManager] _activeWordData count: {_activeWordData.Count}");
+        foreach (var wordData in _activeWordData)
+            Debug.Log($"[WordBankManager] _activeWordData word: {wordData.word} word level: {wordData.wordLevel}");
     }
 }
