@@ -49,7 +49,7 @@ public class SceneController : MonoBehaviour
         switch (sceneName)
         {
             case "Main":
-                ManagerTimer.instance.StartTimer(GameManager.instance.LevelDataSO.durationLevelNode);
+                ManagerTimer.instance.StartTimer(GameManager.instance.LevelDataSO.durationLevelDataNode);
                 break;
             case "LevelSelect":
                 yield return new WaitUntil(() => LevelNodeManager.Instance != null);

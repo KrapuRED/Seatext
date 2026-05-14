@@ -55,7 +55,7 @@ public class NodeInforamtionPanel : Panel
 
         //Debug.Log($"[NodeInforamtionPanel - SetDataToPanel] Set Data To Panel : {levelData.levelName}");
 
-        _levelNameText.text = levelData.levelName;
+        _levelNameText.text = levelData.levelDataName;
         _levelDescriptionText.text = levelData.levelDescription;
 
     }

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "LevelDataSO", menuName = "Level Data/LevelDataSO")]
 public class LevelDataSO : ScriptableObject
 {
-    public string levelName;
+    public string levelDataID;
+    public string levelDataName;
     public string levelDescription;
-    public float durationLevelNode;
-    public LevelNodeType levelType;
+    public float durationLevelDataNode;
     public float currentFlowSpeed;
 
     [Header("Fish Spawn Table Data")] 

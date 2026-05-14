@@ -7,7 +7,7 @@ public enum LevelNodeType
 {
     Normal,
     Treasure,
-    TurtleMaster,
+    TurtelMasterNode,
     StartPoint,
     EndPoint
 }
@@ -57,7 +57,7 @@ public class LevelNode : MonoBehaviour
     public void IntiliazeLevelNode(string levelNodeID)
     { 
         _levelNodeID = levelNodeID;
-        
+
         if (_spriteRenderer == null)
         {
             Debug.LogError($"[LevelNode] _spriteRenderer missing on {gameObject.name}");
@@ -70,14 +70,13 @@ public class LevelNode : MonoBehaviour
             return;
         }
 
-        if (tileType == LevelNodeType.EndPoint)
-        {
-           _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
-        }
-        
-        if (tileType == LevelNodeType.StartPoint)
+        if (LevelNodeType.StartPoint == tileType)
         {
             OnSetPlayerHere();
+        }
+        else
+        {
+            _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
         }
     }
 
@@ -112,7 +111,7 @@ public class LevelNode : MonoBehaviour
         _levelNodeTextUI.SetWordTextUI("You");
         _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
 
-        PanelManager.instance.OpenPanel(panelID, _levelDataSO);
+        PanelManager.instance.OpenPanelByID(panelID, _levelDataSO);
         
         if (_levelNodeState != LevelNodeState.Explored)
             GameEvents.OnSelectedNextLevelNode.Invoke(this);

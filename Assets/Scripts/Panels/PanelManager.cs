@@ -1,10 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+public enum PanelType
+{
+    PanelPause,
+    PanelSurvive,
+    NodePanelNormal,
+    NodePanelTreasure,
+    NodePanelTurtelMaster
+}
+
 [System.Serializable]
 public class PanelData 
 {
     public string panelName;
+    public PanelType panelType;
     public bool isActive;
     public Panel panel;
 }
@@ -65,8 +75,13 @@ public class PanelManager : MonoBehaviour
             panelDatas.Add(panelData);
         }
     }
-    
-    public void OpenPanel(string panelID, object data = null)
+
+    private void OpenPanelByTypePanel(PanelType panelType)
+    {
+        
+    }
+
+    public void OpenPanelByID(string panelID, object data = null)
     {
         foreach (var panelData in panelDatas)
         {

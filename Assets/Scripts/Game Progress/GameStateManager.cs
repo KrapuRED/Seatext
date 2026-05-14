@@ -6,7 +6,6 @@ public class LevelNodeProgress
 {
     public string levelNodeID;
     public LevelNodeState levelNodeState;
-    public LevelDataSO levelData;
 }
 
 public class GameStateManager : MonoBehaviour
@@ -93,7 +92,7 @@ public class GameStateManager : MonoBehaviour
         return _progressMap.ContainsKey(levelNodeID);
     }
 
-    public void SetLevelNodeGameProgress(string levelNodeID, LevelNodeState levelNodeState, LevelDataSO levelData)
+    public void SetLevelNodeGameProgress(string levelNodeID, LevelNodeState levelNodeState)
     {
         if (_progressMap.ContainsKey(levelNodeID))
         {
@@ -105,7 +104,6 @@ public class GameStateManager : MonoBehaviour
         {
             levelNodeID = levelNodeID,
             levelNodeState = levelNodeState,
-            levelData = levelData
         };
 
         _levelNodeGameProgress.Add(newProgress);

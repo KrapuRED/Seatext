@@ -46,6 +46,6 @@ public class PlayerInput : MonoBehaviour
     public void PuaseGame(InputAction.CallbackContext context)
     {
         if (context.performed)
-            PanelManager.instance.OpenPanel("panel-00");
+            PanelManager.instance.OpenPanelByID("panel-00");
     }
 }

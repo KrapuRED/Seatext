@@ -8,7 +8,7 @@ public class PausePanel : Panel
     {
         if (cg.alpha == 1)
         {
-            PanelManager.instance.OpenPanel(panelID);
+            PanelManager.instance.OpenPanelByID(panelID);
         }
     }
 

@@ -139,7 +139,7 @@ public class LevelNodeManager : MonoBehaviour
     public void RegisterLevelNode(LevelNode levelNode, HashSet<string> exploredIDs = null)
     {
         string levelNodeID = $"LN-{_levelNodeDatas.Count}";
-
+        
         var gameStateManager = GameStateManager.Instance;
 
         bool isBeenExplored = levelNodeID != null
@@ -163,10 +163,8 @@ public class LevelNodeManager : MonoBehaviour
         _levelNodeDatas.Add(newLevelData);
         _levelNodeMap[levelNodeID] = levelNode;
 
-        LevelDataSO levelData = null;
-
         if (gameStateManager.IsLevelNodeGameProgressExist(levelNodeID))
-            gameStateManager.SetLevelNodeGameProgress(levelNodeID, levelNode.LevelNodeState, levelData);
+            gameStateManager.SetLevelNodeGameProgress(levelNodeID, levelNode.LevelNodeState);
 
 
         levelNode.IntiliazeLevelNode(levelNodeID);
