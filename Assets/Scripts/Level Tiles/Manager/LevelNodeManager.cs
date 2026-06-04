@@ -44,19 +44,13 @@ public class LevelNodeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
         GameEvents.OnButtonTypeBoxComplete.AddListener(OnButtonComplete);
+        //GameEvents.OnSetLevelNodeBeenExplored.AddListener(SetLevelNodeBeenExplored);
         
-        GameEvents.OnSetLevelNodeBeenExplored.RemoveListener(SetLevelNodeBeenExplored);
-        GameEvents.OnSetLevelNodeBeenExplored.AddListener(SetLevelNodeBeenExplored);
-    
-        GameEvents.OnSelectedNextLevelNode.RemoveListener(SelectedNextLevelNode);
         GameEvents.OnSelectedNextLevelNode.AddListener(SelectedNextLevelNode);
-    
-        GameEvents.OnSetNearCurrentLevelNode.RemoveListener(SetNearCurrentLevelNode);
+        
         GameEvents.OnSetNearCurrentLevelNode.AddListener(SetNearCurrentLevelNode);
         
-        GameEvents.OnSelectedPreviousLevelNode.RemoveListener(UnSelectedNextLevelNode);
         GameEvents.OnSelectedPreviousLevelNode.AddListener(UnSelectedNextLevelNode);
     }
 
@@ -200,11 +194,15 @@ public class LevelNodeManager : MonoBehaviour
   
     public void SetLevelNodeBeenExplored(string levelNodeID)
     {
+        if (levelNodeID == string.Empty)
+            return;
+        
+        Debug.Log($"{levelNodeID} is been called to SetLevelNodeBeenExplored");
         LevelNode exploredLevelNode = FindLevelNodeByID(levelNodeID);
-
+        
         if (exploredLevelNode == null)
         {
-            Debug.LogWarning($"LevelNode has no been assign to level node {levelNodeID}");
+            Debug.LogWarning($"LevelNode has not been assign to level node {levelNodeID}");
             return;
         }
 
@@ -222,7 +220,7 @@ public class LevelNodeManager : MonoBehaviour
     private void OnRemoveListener()
     {
         GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
-        GameEvents.OnSetLevelNodeBeenExplored.RemoveListener(SetLevelNodeBeenExplored);
+        //GameEvents.OnSetLevelNodeBeenExplored.RemoveListener(SetLevelNodeBeenExplored);
         GameEvents.OnSelectedNextLevelNode.RemoveListener(SelectedNextLevelNode);
         GameEvents.OnSetNearCurrentLevelNode.RemoveListener(SetNearCurrentLevelNode);
         GameEvents.OnSelectedPreviousLevelNode.RemoveListener(UnSelectedNextLevelNode);
@@ -259,6 +257,10 @@ public class LevelNodeManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         IsReady = true;
+
+        // --- ADD THIS LINE ---
+        // This safely notifies listeners (like SceneController) that it's safe to process level IDs
+        GameEvents.OnLevelNodeManagerReady?.Invoke(); 
 
         if (_currentLevelNode != null)
         {

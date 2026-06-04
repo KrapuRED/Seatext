@@ -1,23 +1,36 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public static SceneController Instance { get; private set; }
+    public static SceneController instance { get; private set; }
+    
+    private string _pendingExploredNodeID = string.Empty;
     
     Coroutine _loadingScene;
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void LoadScene(string sceneName)
@@ -41,23 +54,42 @@ public class SceneController : MonoBehaviour
         
         scene.allowSceneActivation = true;
         
-        yield return null;
-        yield return null;
-        yield return null;
-        yield return new WaitForEndOfFrame();
-        
-        switch (sceneName)
-        {
-            case "Main":
-                ManagerTimer.instance.StartTimer(GameManager.instance.LevelDataSO.durationLevelDataNode);
-                break;
-            case "LevelSelect":
-                yield return new WaitUntil(() => LevelNodeManager.Instance != null);
-
-                GameEvents.OnSetLevelNodeBeenExplored.Invoke(GameManager.instance.LevelNodeID);
-                break;
-        }
         
         _loadingScene = null;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.name)
+        {
+            case "Main":
+                if (ManagerTimer.instance != null & GameManager.instance != null)
+                    ManagerTimer.instance.StartTimer(GameManager.instance.LevelDataSO.durationLevelDataNode);
+                else
+                {
+                    Debug.LogError("Main Scene managers are missing!");
+                }
+                break;
+            case "LevelSelect":
+                // 1. Cache the node ID we want to process
+                _pendingExploredNodeID = GameManager.instance.LevelNodeID;
+
+                // 2. Subscribe to the "Ready" event instead of firing blindly
+                GameEvents.OnLevelNodeManagerReady.AddListener(HandleLevelNodeManagerReady);
+                break;
+        }
+    }
+
+    private void HandleLevelNodeManagerReady()
+    {
+        // Unsubscribe immediately so it doesn't run multiple times
+        GameEvents.OnLevelNodeManagerReady.RemoveListener(HandleLevelNodeManagerReady);
+
+        // 3. Now that the manager is 100% initialized, it's safe to fire!
+        if (!string.IsNullOrEmpty(_pendingExploredNodeID))
+        {
+            GameEvents.OnSetLevelNodeBeenExplored.Invoke(_pendingExploredNodeID);
+            _pendingExploredNodeID = string.Empty; // Clear cache
+        }
     }
 }

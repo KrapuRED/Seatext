@@ -45,6 +45,8 @@ public class LevelNode : MonoBehaviour
     public string LevelNodeID => _levelNodeID;
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    
+    private bool _isBeenInitialized = false;
 
     private void Awake()
     {
@@ -57,7 +59,8 @@ public class LevelNode : MonoBehaviour
     public void IntiliazeLevelNode(string levelNodeID)
     { 
         _levelNodeID = levelNodeID;
-
+        _isBeenInitialized = true;
+        
         if (_spriteRenderer == null)
         {
             Debug.LogError($"[LevelNode] _spriteRenderer missing on {gameObject.name}");
@@ -82,12 +85,15 @@ public class LevelNode : MonoBehaviour
 
     public void CheckSurroundingLevelNode()
     {
+        if (!_isBeenInitialized)
+            return;
+        
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _levelNodeRadius, _LevelNodeLayer);
 
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.TryGetComponent(out LevelNode levelNode)){
-                if (levelNode.LevelNodeState == LevelNodeState.Unseen)
+                if (levelNode.LevelNodeState == LevelNodeState.Unseen || levelNode.LevelNodeState == LevelNodeState.Explored)
                 {
                     GameEvents.OnSetNearCurrentLevelNode.Invoke(levelNode);
                     levelNode.SetSaroundingTilesBeenSeen();
@@ -138,6 +144,8 @@ public class LevelNode : MonoBehaviour
         _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
         _levelNodeTextUI.SetWordTextUI(string.Empty);
         _levelNodeTextUI.HideText();
+        
+        
     }
 
     public void ResetToHidden()

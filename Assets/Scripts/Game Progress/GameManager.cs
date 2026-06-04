@@ -69,12 +69,12 @@ public class GameManager : MonoBehaviour
         _levelNodeID = levelNode.LevelNodeID;
         _levelNodeDone = false;
         
-        SceneController.Instance.LoadScene("Main");
+        SceneController.instance.LoadScene("Main");
     }
 
     public void LoadLevelSelect()
     {
         GameStateManager.Instance.AddLevelNodeBeenExplored(_levelNodeID);
-        SceneController.Instance.LoadScene("LevelSelect");
+        SceneController.instance.LoadScene("LevelSelect");
     }
 }

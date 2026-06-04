@@ -729,7 +729,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218255328}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -824,7 +824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: tileType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelData
@@ -833,7 +833,7 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: 43b0dd638afee654ab24b99f07d93af7, type: 2}
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (1)
@@ -1812,7 +1812,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578572639}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -2125,7 +2125,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659483225}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -2942,7 +2942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: tileType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelData
@@ -2951,7 +2951,7 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: f7ac0ae39b6162248bfa11baafc6d11d, type: 2}
+      objectReference: {fileID: 11400000, guid: 82d267bff8487c64ea56a75bce5679d8, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (2)
