@@ -2276,7 +2276,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 95
+  m_SortingOrder: 150
   m_TargetDisplay: 0
 --- !u!224 &1017440018
 RectTransform:
@@ -4144,7 +4144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wordBankText: {fileID: 4900000, guid: 12169315e08f9da46ad42473eb6d002a, type: 3}
   _word: []
-  _activeWordData: []
 --- !u!1 &1533325073
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,7 +4245,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 151
   m_TargetDisplay: 0
 --- !u!1 &1551111232
 GameObject:
