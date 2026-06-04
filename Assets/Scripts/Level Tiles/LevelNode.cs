@@ -104,6 +104,7 @@ public class LevelNode : MonoBehaviour
 
     public void OnSetPlayerHere()
     {
+        Debug.Log($"{gameObject.name} is Player Here!");
         _levelNodeState = LevelNodeState.Current;
         _levelNodeTextUI.SetWordTextUI("You");
         _levelNodeVisuals.SetVisualLevelNodeByType(tileType);

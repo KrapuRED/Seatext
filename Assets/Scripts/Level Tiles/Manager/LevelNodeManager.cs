@@ -45,7 +45,7 @@ public class LevelNodeManager : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnButtonTypeBoxComplete.AddListener(OnButtonComplete);
-        //GameEvents.OnSetLevelNodeBeenExplored.AddListener(SetLevelNodeBeenExplored);
+        GameEvents.OnSetLevelNodeBeenExplored.AddListener(SetLevelNodeBeenExplored);
         
         GameEvents.OnSelectedNextLevelNode.AddListener(SelectedNextLevelNode);
         
@@ -220,7 +220,7 @@ public class LevelNodeManager : MonoBehaviour
     private void OnRemoveListener()
     {
         GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
-        //GameEvents.OnSetLevelNodeBeenExplored.RemoveListener(SetLevelNodeBeenExplored);
+        GameEvents.OnSetLevelNodeBeenExplored.RemoveListener(SetLevelNodeBeenExplored);
         GameEvents.OnSelectedNextLevelNode.RemoveListener(SelectedNextLevelNode);
         GameEvents.OnSetNearCurrentLevelNode.RemoveListener(SetNearCurrentLevelNode);
         GameEvents.OnSelectedPreviousLevelNode.RemoveListener(UnSelectedNextLevelNode);
