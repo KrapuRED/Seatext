@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Node-Treasure-SeaCoene-5
   m_EditorClassIdentifier: 
   levelDataID: NT-00
-  levelDataName: 
+  levelDataName: Treasure
   levelDescription: 
   durationLevelDataNode: 0
-  levelDataType: 0
   currentFlowSpeed: 0
   fishSpawnTable: []

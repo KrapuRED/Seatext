@@ -62,7 +62,7 @@ public class PauseManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        PanelManager.instance.ClosePanel("panel-00");
+        PanelManager.instance.ClosePanel("Panel-00");
         isPaused = false;
         SetPause(isPaused);
     }

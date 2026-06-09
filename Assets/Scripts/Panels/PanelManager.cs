@@ -16,7 +16,7 @@ public class PanelData
     public string panelName;
     public PanelType panelType;
     public bool isActive;
-    public Panel panel;
+    public Panel Panel;
 }
 
 public class PanelManager : MonoBehaviour
@@ -69,31 +69,47 @@ public class PanelManager : MonoBehaviour
             {
                 panelName =  panel.name,
                 isActive =  false,
-                panel = panel
+                panelType = panel.panelType,
+                Panel = panel
             };
             
             panelDatas.Add(panelData);
         }
     }
 
-    private void OpenPanelByTypePanel(PanelType panelType)
+    public void OpenPanelByTypePanel(PanelType panelType, object data = null)
     {
-        
+        var panelData = panelDatas.Find(panelData => panelData.panelType == panelType)?.Panel;
+
+        Debug.Log($"[PanelManager - OpenPanelByTypePanel] Open Panel : {panelData?.name} with type {panelType}");
+
+        if (panelData == null)
+        {
+            Debug.LogError($"[PanelManager - OpenPanelByTypePanel] Panel with type {panelType} not found!");
+            return;
+        }
+
+        if (data != null)
+        {
+            panelData.SetDataToPanel(data);
+        }
+
+        panelData.OpenPanel();
     }
 
     public void OpenPanelByID(string panelID, object data = null)
     {
         foreach (var panelData in panelDatas)
         {
-            if (panelData.panel == null)
+            if (panelData.Panel == null)
                 continue;
             
-            if (panelData.panel.panelID == panelID && !panelData.isActive)
+            if (panelData.Panel.panelID == panelID && !panelData.isActive)
             {
                 TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.UI);
-                panelData.panel.SetDataToPanel(data);
+                panelData.Panel.SetDataToPanel(data);
                 panelData.isActive = true;
-                panelData.panel.OpenPanel();
+                panelData.Panel.OpenPanel();
                 break;
             }
         }
@@ -105,14 +121,14 @@ public class PanelManager : MonoBehaviour
         
         foreach (var panelData in panelDatas)
         {
-            if (panelData.panel == null)
+            if (panelData.Panel == null)
                 continue;
             
-            if (panelData.panel.panelID == panelID && panelData.isActive)
+            if (panelData.Panel.panelID == panelID && panelData.isActive)
             {
                 //Debug.Log($"[PanelManager - ClosePanel] Close Panel : {panelData.panelName}");
                 panelData.isActive = false;
-                panelData.panel.ClosePanel();
+                panelData.Panel.ClosePanel();
                 break;
             }
         }
@@ -124,7 +140,7 @@ public class PanelManager : MonoBehaviour
         foreach (var panelData in panelDatas)
         {
             panelData.isActive = false;
-            panelData.panel.ClosePanel();
+            panelData.Panel.ClosePanel();
         }
     }
 }

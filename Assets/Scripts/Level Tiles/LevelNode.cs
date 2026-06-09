@@ -30,7 +30,10 @@ public class LevelNode : MonoBehaviour
     [SerializeField] private LevelNodeState _levelNodeState;
     [SerializeField] private LevelNodeTypeBox _levelNodeTypeBox;
     [SerializeField] private LevelNodeTextUI _levelNodeTextUI;
-    [SerializeField] private LevelNodeVisuals _levelNodeVisuals; 
+    [SerializeField] private LevelNodeVisuals _levelNodeVisuals;
+
+    [Header("Panel Level Node Config")]
+    [SerializeField] private PanelType panelType; 
     [SerializeField] private string panelID;
 
     [Header("Level Node Settings")]
@@ -118,7 +121,7 @@ public class LevelNode : MonoBehaviour
         _levelNodeTextUI.SetWordTextUI("You");
         _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
 
-        PanelManager.instance.OpenPanelByID(panelID, _levelDataSO);
+        PanelManager.instance.OpenPanelByTypePanel(panelType, _levelDataSO);
         
         if (_levelNodeState != LevelNodeState.Explored)
             GameEvents.OnSelectedNextLevelNode.Invoke(this);

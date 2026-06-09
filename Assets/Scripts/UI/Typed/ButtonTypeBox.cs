@@ -67,6 +67,6 @@ public class ButtonTypeBox : TypingBox
 
     public virtual void OnInkoveEvent()
     {
-       
+       onTextComplete?.Invoke();
     }
 }
