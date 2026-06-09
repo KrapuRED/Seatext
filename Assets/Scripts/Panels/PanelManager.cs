@@ -41,17 +41,17 @@ public class PanelManager : MonoBehaviour
     
     private void OnEnable()
     {
-       GameEvents.OnClosePanelByID.AddListener(ClosePanel);
+       GameEvents.OnClosePanelByID.AddListener(ClosePanelByID);
     }
 
     private void OnDisable()
     {
-        GameEvents.OnClosePanelByID.RemoveListener(ClosePanel);
+        GameEvents.OnClosePanelByID.RemoveListener(ClosePanelByID);
     }
     
     private void OnDestroy()
     {
-        GameEvents.OnClosePanelByID.RemoveListener(ClosePanel);
+        GameEvents.OnClosePanelByID.RemoveListener(ClosePanelByID);
     }
 
     public void OnRegisterPanel()
@@ -79,9 +79,9 @@ public class PanelManager : MonoBehaviour
 
     public void OpenPanelByTypePanel(PanelType panelType, object data = null)
     {
-        var panelData = panelDatas.Find(panelData => panelData.panelType == panelType)?.Panel;
+        var panelData = panelDatas.Find(panelData => panelData.panelType == panelType);
 
-        Debug.Log($"[PanelManager - OpenPanelByTypePanel] Open Panel : {panelData?.name} with type {panelType}");
+        Debug.Log($"[PanelManager - OpenPanelByTypePanel] Open Panel : {panelData.Panel.name} with type {panelType}");
 
         if (panelData == null)
         {
@@ -91,10 +91,13 @@ public class PanelManager : MonoBehaviour
 
         if (data != null)
         {
-            panelData.SetDataToPanel(data);
+            panelData.Panel.SetDataToPanel(data);
         }
 
-        panelData.OpenPanel();
+        TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.UI);
+
+        panelData.isActive = true;
+        panelData.Panel.OpenPanel();
     }
 
     public void OpenPanelByID(string panelID, object data = null)
@@ -115,7 +118,7 @@ public class PanelManager : MonoBehaviour
         }
     }
 
-    public void ClosePanel(string panelID)
+    public void ClosePanelByID(string panelID)
     {
         TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
         
@@ -126,12 +129,27 @@ public class PanelManager : MonoBehaviour
             
             if (panelData.Panel.panelID == panelID && panelData.isActive)
             {
-                //Debug.Log($"[PanelManager - ClosePanel] Close Panel : {panelData.panelName}");
+                //Debug.Log($"[PanelManager - ClosePanelByID] Close Panel : {panelData.panelName}");
                 panelData.isActive = false;
                 panelData.Panel.ClosePanel();
                 break;
             }
         }
+    }
+
+    public void ClosePanelByPanelType(PanelType panelType)
+    {
+        var panelData = panelDatas.Find(panelData => panelData.panelType == panelType);
+
+        if (!panelData.isActive)
+        {
+            Debug.LogWarning($"[PanelManager - ClosePanelByPanelType] Panel with type {panelType} is not active!");
+            return;
+        }
+
+        TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
+        panelData.Panel.ClosePanel();
+        panelData.isActive = false;
     }
 
     public void CloseAllPanel()

@@ -819,7 +819,7 @@ PrefabInstance:
     - target: {fileID: 2043027174605804679, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: _levelData
       value: 
-      objectReference: {fileID: 11400000, guid: 82d267bff8487c64ea56a75bce5679d8, type: 2}
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 2277081961750610682, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: m_Name
       value: DDOL - Game Manager
@@ -1653,6 +1653,7 @@ MonoBehaviour:
   panelName: Survive Panel
   panelID: panel-01
   panelGO: {fileID: 730131000}
+  panelType: 1
   canvasGroup: {fileID: 730131004}
 --- !u!1 &734762763
 GameObject:
@@ -3765,6 +3766,7 @@ MonoBehaviour:
   panelName: Pause Panel
   panelID: panel-00
   panelGO: {fileID: 1450173959}
+  panelType: 0
   cg: {fileID: 1450173964}
 --- !u!225 &1450173964
 CanvasGroup:

@@ -24,7 +24,7 @@ public class NodeInforamtionPanel : Panel
 
     public override void ClosePanel()
     {
-        Debug.Log($"ClosePanel called on : {gameObject.name}", this);
+        Debug.Log($"ClosePanelByID called on : {gameObject.name}", this);
 
         if (_canvasGroup == null)
         {

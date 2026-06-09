@@ -121,6 +121,13 @@ public class LevelNode : MonoBehaviour
         _levelNodeTextUI.SetWordTextUI("You");
         _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
 
+        switch (tileType)
+        {
+            case LevelNodeType.Treasure:
+                GameEvents.OnSetLevelNodeTreasure.Invoke(this);
+                break;
+        }
+
         PanelManager.instance.OpenPanelByTypePanel(panelType, _levelDataSO);
         
         if (_levelNodeState != LevelNodeState.Explored)
@@ -134,10 +141,17 @@ public class LevelNode : MonoBehaviour
             SetBeenExplored();
             return;
         }
-        
+
         _levelNodeState = LevelNodeState.Seen;
+
+        if (tileType != LevelNodeType.Normal)
+        {
+            _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
+        }
+        else
+            _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
+
         _levelNodeTypeBox.GetWord();
-        _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
         _levelNodeTypeBox.setTypeBoxEvent.Raise(_levelNodeTypeBox);
     }   
 
