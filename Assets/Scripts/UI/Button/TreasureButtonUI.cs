@@ -40,13 +40,15 @@ public class TreasureButtonUI : MonoBehaviour
             // Marks the node as explored, moves the player here, and persists
             // to GameStateManager — all handled inside LevelNodeManager.SetLevelNodeBeenExplored
             GameEvents.OnSetLevelNodeBeenExplored.Invoke(_levelNode.LevelNodeID);
+            GameEvents.OnGetRandomTreasureItem.Invoke();
+
+            CloseTreasureButtonUI();
+
         }
         else
         {
             Debug.LogWarning("[TreasureButtonUI] _levelNode is null — call Initialize() before opening the panel.");
         }
-
-        CloseTreasureButtonUI();
     }
 
     public void OnIgnoreButtonClick()

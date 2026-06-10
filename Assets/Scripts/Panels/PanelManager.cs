@@ -7,7 +7,8 @@ public enum PanelType
     PanelSurvive,
     NodePanelNormal,
     NodePanelTreasure,
-    NodePanelTurtelMaster
+    NodePanelTurtelMaster,
+    PanelNotifiication
 }
 
 [System.Serializable]
@@ -135,6 +136,11 @@ public class PanelManager : MonoBehaviour
                 break;
             }
         }
+
+        if (!panelDatas.Exists(p => p.isActive))
+        {
+            TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
+        }
     }
 
     public void ClosePanelByPanelType(PanelType panelType)
@@ -147,9 +153,13 @@ public class PanelManager : MonoBehaviour
             return;
         }
 
-        TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
         panelData.Panel.ClosePanel();
         panelData.isActive = false;
+
+        if (!panelDatas.Exists(p => p.isActive))
+        {
+            TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.GamePlay);
+        }
     }
 
     public void CloseAllPanel()

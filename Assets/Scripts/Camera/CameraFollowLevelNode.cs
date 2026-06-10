@@ -38,6 +38,9 @@ public class CameraFollowLevelNode : MonoBehaviour
 
     private void SetCameraPosition(Transform currentLevelNodeTransform)
     {
+        if (this == null)
+            return;
+
         if (!isReady)
         {
             Debug.Log($"[CameraFollowLevelNode - SetCameraPosition] is not ready!");

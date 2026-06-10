@@ -112,6 +112,8 @@ public class LevelNode : MonoBehaviour
         _levelNodeTextUI.SetWordTextUI("You");
         _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
 
+        GameEvents.OnChangeCameraPosition.Invoke(transform);
+
         CheckSurroundingLevelNode();
     }
 

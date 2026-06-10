@@ -113,8 +113,12 @@ public class GameEvents
     public static readonly CustomEvents OnEndDuration = new();
     public static readonly CustomEvents<bool> OnPlayerActive = new();
 
+    // ================================= Currecny Manager ================================= 
+    public static readonly CustomEvents<CurrecyData> OnSetCurrency = new();
+
     // ================================= LEVEL NODE ================================= 
     public static readonly CustomEvents<LevelNode> OnSetLevelNodeTreasure = new();
+    public static readonly CustomEvents OnGetRandomTreasureItem = new();
 
     public static readonly CustomEvents<LevelNode> OnSelectedNextLevelNode= new();
     public static readonly CustomEvents OnSelectedPreviousLevelNode = new();
