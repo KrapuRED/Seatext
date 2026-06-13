@@ -15,7 +15,7 @@ public class FishHunger : MonoBehaviour
 
     public float currentHunger => _currentHunger;
 
-    private void Start()
+    public void InitializeHungerBar(float hungerBar)
     {
         _currentHunger = maxHunger;
         //statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
@@ -43,7 +43,7 @@ public class FishHunger : MonoBehaviour
         GameEvents.OnUpdateHungerBar.Invoke(currentHealth, maxHealth);
     }
 
-    public void SetTrashinHungerbar(float gainTrash)
+    public void SetTrashingHungerbar(float gainTrash)
     {
         trashGain += gainTrash;
         maxHunger -= gainTrash;

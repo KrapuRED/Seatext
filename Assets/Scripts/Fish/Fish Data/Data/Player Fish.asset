@@ -17,6 +17,7 @@ MonoBehaviour:
   fishSprite: {fileID: 0}
   fishSize: 3
   fishBehavior: 0
+  maxFishHealth: 100
   speedFish: 100
   dataStateCondtions:
   - nameStateCondition: Player Roaming Inactive State

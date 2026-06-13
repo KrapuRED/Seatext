@@ -27,6 +27,9 @@ public class FishSO : ScriptableObject
     public FoodSize fishSize;
     public FishBehavior fishBehavior;
 
+    [Header("Status Fish Config")]
+    public float maxFishHealth;
+    
     [Header("Fish Movement")]
     public float speedFish;
 

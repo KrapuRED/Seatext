@@ -19,6 +19,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     public static PlayerFish playerFish { get; private set; }
 
     [Header("Player Fish Config")]
+    [SerializeField] private PlayerDataSO _playerData;
     [SerializeField] private Transform targetPosition;
     [SerializeField] private float distanceToTarget;
     [SerializeField] private float maxHealth;
@@ -44,15 +45,16 @@ public class PlayerFish : Fish, IPausable, IEatable
         }
 
         playerFish = this;
+        
+        StatusPlayerManager.Instance.InitializedStatus(_playerData);
     }
 
     private void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
-
+        
         FishMovement.IntilizaFishMovement(_rb2d, FishData);
         PauseManager.instance.Register(this);
-        _playerFishHealth.SetFishHealth(maxHealth);
 
         Contex = new PlayerContex
         {
