@@ -768,11 +768,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 801642014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &348959192 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 234530495832871996, guid: fc1b437da9f644d459393d743b911e39, type: 3}
-  m_PrefabInstance: {fileID: 384466106}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &384466106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -831,10 +826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 234530495832871996, guid: fc1b437da9f644d459393d743b911e39, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1876925818}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc1b437da9f644d459393d743b911e39, type: 3}
 --- !u!1 &391399541
@@ -3348,12 +3340,12 @@ GameObject:
   - component: {fileID: 1303435003}
   - component: {fileID: 1303435004}
   m_Layer: 0
-  m_Name: Spawmer - Food & Trash
+  m_Name: Spawmer - Trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1303435003
 Transform:
   m_ObjectHideFlags: 0
@@ -3400,9 +3392,10 @@ MonoBehaviour:
   _continer: {fileID: 1077437399}
   _prefab: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
   _spawnInterval: 2.5
-  _isSpawning: 0
+  _isSpawning: 1
   wordLevel: 1
   IntilazeSpawnerByStart: 0
+  maxTrashAmount: 3
   _foodDataList:
   - {fileID: 11400000, guid: b3e00c2e13b14d94eb8263d970e92bb6, type: 2}
   - {fileID: 11400000, guid: c51af8db161917e4b8bd3a0f5b8f3cd0, type: 2}
@@ -4914,54 +4907,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873504669}
   m_CullTransparentMesh: 1
---- !u!1 &1876925817
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1876925818}
-  - component: {fileID: 1876925819}
-  m_Layer: 0
-  m_Name: Game Manager - Player Status Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1876925818
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876925817}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 348959192}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1876925819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876925817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2dccb8acf579f747b0c6f69e7576994, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentPlayerHealthStatus: 0
-  maxPlayerHungerStatus: 0
-  currentPLayerTrashStatus: 0
-  initialized: 0
 --- !u!1 &1895674217
 GameObject:
   m_ObjectHideFlags: 0

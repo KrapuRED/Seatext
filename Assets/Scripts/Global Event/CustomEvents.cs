@@ -95,6 +95,7 @@ public class GameEvents
     public static readonly CustomEvents<Transform> OnSetPositionPlayerEvent = new();
     public static readonly CustomEvents OnPlayerGainingSpeed = new();
     public static readonly CustomEvents OnPlayerEating = new();
+    public static readonly CustomEvents OnSaveCurrentStatus = new();
     #endregion
 
     #region UI Events

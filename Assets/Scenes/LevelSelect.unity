@@ -1069,9 +1069,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
-      propertyPath: panelType
-      value: 3
+      propertyPath: tileType
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
+      propertyPath: panelType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
+      propertyPath: _levelDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (1)
@@ -1645,52 +1653,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0000088215, y: 120}
   m_SizeDelta: {x: 569.14, y: 186.43}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &465263204
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 465263205}
-  - component: {fileID: 465263206}
-  m_Layer: 0
-  m_Name: Game Manger - Currency Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &465263205
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465263204}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 514526616}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &465263206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465263204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ada0aefdad2a545970ede76a0c461c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seaCoinValue: 0
-  adaptPoint: 0
 --- !u!1 &505506718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,11 +1718,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!4 &514526616 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 234530495832871996, guid: fc1b437da9f644d459393d743b911e39, type: 3}
-  m_PrefabInstance: {fileID: 3940499454664302100}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &525582597
 GameObject:
   m_ObjectHideFlags: 0
@@ -6927,12 +6884,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: tileType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
+      objectReference: {fileID: 11400000, guid: f7ac0ae39b6162248bfa11baafc6d11d, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (3)
@@ -9935,10 +9892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 234530495832871996, guid: fc1b437da9f644d459393d743b911e39, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 465263205}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc1b437da9f644d459393d743b911e39, type: 3}
 --- !u!1660057539 &9223372036854775807

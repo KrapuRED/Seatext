@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FishHunger : MonoBehaviour
+public class FishHunger : MonoBehaviour, ISaveStatus
 {
     [Header("Fish Status Config")]
     [SerializeField] private float maxHunger;
@@ -15,6 +15,30 @@ public class FishHunger : MonoBehaviour
 
     public float currentHunger => _currentHunger;
 
+    #region  Event
+
+    private void OnEnable()
+    {
+        GameEvents.OnSaveCurrentStatus.AddListener(SaveStatus);
+    }
+
+    private void OnDisable()
+    {
+        OnRemoveListener();
+    }
+
+    private void OnDestroy()
+    {
+        OnRemoveListener();
+    }
+
+    private void OnRemoveListener()
+    {
+        GameEvents.OnSaveCurrentStatus.RemoveListener(SaveStatus);
+    }
+
+    #endregion
+    
     public void InitializeHungerBar(float hungerBar)
     {
         _currentHunger = maxHunger;
@@ -50,10 +74,19 @@ public class FishHunger : MonoBehaviour
 
         ResetHunggerBar();
     }
-
+    
+    
     public void ResetHunggerBar()
     {
         GameEvents.OnUpdateHungerBar.Invoke(trashGain, maxHunger);
         _currentHunger = maxHunger;
+    }
+
+    public void SaveStatus()
+    {
+        if (this == null) return;
+        
+        Debug.Log("Saving Fish Health");
+        StatusPlayerManager.Instance.UpdateStatusTrash(trashGain);
     }
 }

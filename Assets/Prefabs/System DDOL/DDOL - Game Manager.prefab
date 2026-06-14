@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e43af6be9e0050428410467293f35da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelNodeGameProgress: []
+  _levelNodeBeenExplored: []
+  _currentLevelNodeID: 
 --- !u!1 &2277081961750610682
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,6 +78,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2095505925627775706}
+  - {fileID: 1867892989797573556}
+  - {fileID: 7820192549593754125}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2043027174605804679
@@ -91,5 +96,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelNodeDone: 0
   _levelNodeID: 
-  _levelData: {fileID: 0}
-  levelNodeBeenExploredIDsID: []
+  _levelData: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
+--- !u!1 &7168146593718856141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7820192549593754125}
+  - component: {fileID: 6917572963406478777}
+  m_Layer: 0
+  m_Name: Game Manager - Player Status Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7820192549593754125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7168146593718856141}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234530495832871996}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6917572963406478777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7168146593718856141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2dccb8acf579f747b0c6f69e7576994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPlayerHealthStatus: 0
+  maxPlayerHungerStatus: 0
+  currentPLayerTrashStatus: 0
+  initialized: 0
+--- !u!1 &8177310376545817269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1867892989797573556}
+  - component: {fileID: 4298665215183025223}
+  m_Layer: 0
+  m_Name: Game Manger - Currency Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1867892989797573556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177310376545817269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234530495832871996}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4298665215183025223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177310376545817269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ada0aefdad2a545970ede76a0c461c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seaCoinValue: 0
+  adaptPoint: 0

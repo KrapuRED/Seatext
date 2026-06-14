@@ -10,13 +10,13 @@ public class StatusPlayerManager : MonoBehaviour
     
     [Header("Player Trash Status")]
     [SerializeField] private float maxPlayerHungerStatus;
-    [SerializeField] private float currentPLayerTrashStatus;
+    [SerializeField] private float currentPlayerTrashStatus;
     
     [Header("Status Player Manager Config")]
     [SerializeField] private bool initialized;
     
     public float CurrentPlayerHealthStatus => currentPlayerHealthStatus;
-    public float CurrentPlayerTrashStatus => currentPLayerTrashStatus;
+    public float CurrentPlayerTrashStatus => currentPlayerTrashStatus;
     public float MaxPlayerHungerStatus => maxPlayerHungerStatus;
     
     private void Awake()
@@ -29,6 +29,9 @@ public class StatusPlayerManager : MonoBehaviour
     
     public void InitializedStatus(PlayerDataSO playerData)
     {
+        if (initialized)
+            return;
+        
         if (playerData == null)
         {
             Debug.LogError("Fish Data is null");
@@ -38,12 +41,12 @@ public class StatusPlayerManager : MonoBehaviour
         currentPlayerHealthStatus = playerData.baseFishStats.maxFishHealth;
 
         maxPlayerHungerStatus = playerData.maxHunger;
-        currentPLayerTrashStatus  = playerData.startingTrash;
+        currentPlayerTrashStatus  = playerData.startingTrash;
         
         initialized = true;
     }
 
-    public void UpdateStatus(float healthValue, float trashValue)
+    public void UpdateStatusHealth(float healthValue)
     {
         if (!initialized)
         {
@@ -52,6 +55,16 @@ public class StatusPlayerManager : MonoBehaviour
         }
         
         currentPlayerHealthStatus = healthValue;
-        currentPLayerTrashStatus = trashValue;
+    }
+    
+    public void UpdateStatusTrash(float trashValue)
+    {
+        if (!initialized)
+        {
+            Debug.LogError("Status Player Manager not been initialized");
+            return;
+        }
+        
+        currentPlayerTrashStatus = trashValue;
     }
 }

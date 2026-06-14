@@ -1,9 +1,34 @@
+using System;
 using UnityEngine;
 
-public class FishHealth : MonoBehaviour
+public class FishHealth : MonoBehaviour, ISaveStatus
 {
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _currentHealth;
+
+    #region  Event
+
+    private void OnEnable()
+    {
+        GameEvents.OnSaveCurrentStatus.AddListener(SaveStatus);
+    }
+
+    private void OnDisable()
+    {
+        OnRemoveListener();
+    }
+
+    private void OnDestroy()
+    {
+        OnRemoveListener();
+    }
+
+    private void OnRemoveListener()
+    {
+        GameEvents.OnSaveCurrentStatus.RemoveListener(SaveStatus);
+    }
+
+    #endregion
 
     public void SetFishHealth(float maxHealth)
     {
@@ -29,5 +54,13 @@ public class FishHealth : MonoBehaviour
     public bool IsDead()
     {
         return _currentHealth <= 0;
+    }
+
+    public void SaveStatus()
+    {
+        if (this == null) return;
+        
+        Debug.Log("Saving Fish Health");
+        StatusPlayerManager.Instance.UpdateStatusHealth(_currentHealth);
     }
 }

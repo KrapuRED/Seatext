@@ -98,7 +98,7 @@ public class Food : TypingBox, IEatable, IPausable
                 RemoveWord();
 
                 //call event to set this position to player fish
-                setPositionPlayerEvent.OnRaise(transform);
+                GameEvents.OnSetPositionPlayerEvent?.Invoke(transform);
             }
 
             // Update the UI with the remaining text

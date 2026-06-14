@@ -81,6 +81,9 @@ public class PlayerFish : Fish, IPausable, IEatable
         GameEvents.OnDodgeAttackFish.AddListener(DodgeAttackFish);
         GameEvents.OnSetPositionPlayerEvent.AddListener(SetPlayerFishDirection);
         GameEvents.OnPlayerEating.AddListener(PlayerEating);
+        
+        GameEvents.OnEatableEntered.AddListener(HandleEating);
+        
     }
 
     private void OnDisable()
@@ -89,6 +92,9 @@ public class PlayerFish : Fish, IPausable, IEatable
         GameEvents.OnDodgeAttackFish.RemoveListener(DodgeAttackFish);
         GameEvents.OnSetPositionPlayerEvent.AddListener(SetPlayerFishDirection);
         GameEvents.OnPlayerEating.RemoveListener(PlayerEating);
+        
+        GameEvents.OnEatableEntered.RemoveListener(HandleEating);
+        
     }
 
     private void OnDestroy()
@@ -147,7 +153,7 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     public void SetPlayerFishDirection(Transform targetPosition)
     {
-        //Debug.Log("[PlayerFish - SetPlayerFishDirection] Try to Move PlayerFish");
+        Debug.Log("[PlayerFish - SetPlayerFishDirection] Try to Move PlayerFish");
         PlayerContex.RoamingPoint = targetPosition;
         this.targetPosition = targetPosition;
     }
@@ -168,6 +174,19 @@ public class PlayerFish : Fish, IPausable, IEatable
         enabled = true;
     }
 
+    private void HandleEating(IEatable eatable, FishType eatyingBy, int eaterFishIndex)
+    {
+        Debug.Log($"[EnemyFish - HandleEating] HandleEating Been Called!");
+        
+        if (FishIndex != eaterFishIndex)
+        {
+            Debug.Log($"EnemyFish - HandleEating] Index of this is {FishIndex} is eaten by {eaterFishIndex}");
+            return;
+        }
+        
+        eatable.Eat(eatyingBy);
+    }
+    
     public void Eat(FishType fishType)
     {
         Debug.Log($"[PlayerFish - Eat] Enemy Fish {gameObject.name} has been eaten!");

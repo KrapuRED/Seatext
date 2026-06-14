@@ -4,14 +4,24 @@ using System.Collections.Generic;
 public class FoodTrashSpawnerManager : SpawnerManager
 {
     [Header("Food and Trash Spawner Config")]
+    [SerializeField] private int maxTrashAmount;
     [SerializeField] private List<DropFoodSO> _foodDataList = new List<DropFoodSO>();
 
+    private bool IsReachedMaxTrashAmount()
+    {
+        return _continer.childCount >= maxTrashAmount;
+    }
+    
     public override void Spawn()
     {
         if (!_isSpawning)
             return;
 
-        Debug.Log("[FoodTrashSpawnerManager - OnSpawningFood] Try to spawn food or trash");
+        if (IsReachedMaxTrashAmount())
+        {
+            Debug.LogWarning($"[FoodTrashSpawnerManager] Trash is reach max amount of {maxTrashAmount}!");
+            return;
+        }
 
         SpawingAreaData spawingAreaData = GetRandomSpawmPoint();
         Transform spawnPos = spawingAreaData.spawnTransform;
