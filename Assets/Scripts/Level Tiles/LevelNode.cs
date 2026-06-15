@@ -123,12 +123,7 @@ public class LevelNode : MonoBehaviour
         _levelNodeTextUI.SetWordTextUI("You");
         _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
 
-        switch (tileType)
-        {
-            case LevelNodeType.Treasure:
-                GameEvents.OnSetLevelNodeTreasure.Invoke(this);
-                break;
-        }
+        GameEvents.OnSetLevelNode.Invoke(this);
 
         PanelManager.instance.OpenPanelByTypePanel(panelType, _levelDataSO);
         

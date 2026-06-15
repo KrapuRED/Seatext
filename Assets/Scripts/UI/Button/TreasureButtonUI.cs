@@ -6,7 +6,9 @@ public class TreasureButtonUI : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnSetLevelNodeTreasure.AddListener(Initialize);
+        GameEvents.OnSetLevelNode.AddListener(Initialize);
+
+        GameEvents.OnRemoveAllLevelNodeReferences.AddListener(OnRemovedListener);
     }
 
     private void OnDisable()
@@ -21,7 +23,9 @@ public class TreasureButtonUI : MonoBehaviour
 
     private void OnRemovedListener()
     {
-        GameEvents.OnSetLevelNodeTreasure.RemoveListener(Initialize);
+        GameEvents.OnSetLevelNode.RemoveListener(Initialize);
+
+        GameEvents.OnRemoveAllLevelNodeReferences.RemoveListener(OnRemovedListener);
     }
 
     public void Initialize(LevelNode levelNode)

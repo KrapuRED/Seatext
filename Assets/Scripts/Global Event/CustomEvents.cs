@@ -118,12 +118,17 @@ public class GameEvents
     public static readonly CustomEvents<CurrecyData> OnSetCurrency = new();
 
     // ================================= LEVEL NODE ================================= 
-    public static readonly CustomEvents<LevelNode> OnSetLevelNodeTreasure = new();
+    public static readonly CustomEvents<LevelNode> OnSetLevelNode = new();
+    public static readonly CustomEvents OnRemoveAllLevelNodeReferences = new();
     public static readonly CustomEvents OnGetRandomTreasureItem = new();
 
     public static readonly CustomEvents<LevelNode> OnSelectedNextLevelNode= new();
     public static readonly CustomEvents OnSelectedPreviousLevelNode = new();
     public static readonly CustomEvents<string> OnSetLevelNodeBeenExplored= new();
     public static readonly CustomEvents<LevelNode> OnSetNearCurrentLevelNode = new();
+
+    // ================================= TYEP MANAGER ================================= 
+    public static readonly CustomEvents<object> OnSingleTypeBoxMatch = new();
+
     #endregion
 }

@@ -71,7 +71,14 @@ public class TypeBoxManager : MonoBehaviour
             }
         }
 
-        if (macthingTypeBox.Count == 0)
+        Debug.Log($"[TypeBoxManager - CheckTyping] Matching Type Box Count: {macthingTypeBox.Count}");
+
+        if (macthingTypeBox.Count == 1)
+        {
+            // Notify whoever cares about the single match
+            GameEvents.OnSingleTypeBoxMatch?.Invoke(macthingTypeBox[0]);
+        }
+        else if (macthingTypeBox.Count == 0)
         {
             ResetAllTypeBox();
         }

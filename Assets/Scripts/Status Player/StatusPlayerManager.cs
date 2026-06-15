@@ -6,8 +6,9 @@ public class StatusPlayerManager : MonoBehaviour
     public static StatusPlayerManager Instance { get; private set; }
 
     [Header("Player Health Status")]
+    [SerializeField] private float maxPlayerHealthStatus;
     [SerializeField] private float currentPlayerHealthStatus;
-    
+
     [Header("Player Trash Status")]
     [SerializeField] private float maxPlayerHungerStatus;
     [SerializeField] private float currentPlayerTrashStatus;
@@ -57,6 +58,23 @@ public class StatusPlayerManager : MonoBehaviour
         currentPlayerHealthStatus = healthValue;
     }
     
+
+    public void HealingHealth(float healPercent)
+    {
+        if (!initialized)
+        {
+            Debug.LogError("Status Player Manager not been initialized");
+            return;
+        }
+
+        float healValue = maxPlayerHealthStatus * (healPercent / 100f);
+
+        // Add heal but don't exceed max health
+        currentPlayerHealthStatus = Mathf.Min(
+            currentPlayerHealthStatus + healValue,
+            maxPlayerHealthStatus);
+    }
+
     public void UpdateStatusTrash(float trashValue)
     {
         if (!initialized)
@@ -66,5 +84,16 @@ public class StatusPlayerManager : MonoBehaviour
         }
         
         currentPlayerTrashStatus = trashValue;
+    }
+
+    public void CleanTrash()
+    {
+        if (!initialized)
+        {
+            Debug.LogError("Status Player Manager not been initialized");
+            return;
+        }
+
+        currentPlayerTrashStatus = 0 ;
     }
 }
