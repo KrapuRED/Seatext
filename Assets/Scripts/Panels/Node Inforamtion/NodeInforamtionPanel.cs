@@ -7,6 +7,7 @@ public class NodeInforamtionPanel : Panel
     [Header("Node Information Panel")]
     [SerializeField] private TextMeshProUGUI _levelNameText;
     [SerializeField] private TextMeshProUGUI _levelDescriptionText;
+    [SerializeField] private TMP_Text currentFlowText;
     [SerializeField] private Image _environmentImage;
 
     [SerializeField] private CanvasGroup _canvasGroup;
@@ -51,12 +52,22 @@ public class NodeInforamtionPanel : Panel
 
     public override void SetDataToPanel(object data)
     {
-        LevelDataSO levelData = data as LevelDataSO;
+        if (data is IPanelDisplayable displayableData)
+        {
+            _levelNameText.text = displayableData.DisplayName;
 
-        //Debug.Log($"[NodeInforamtionPanel - SetDataToPanel] Set Data To Panel : {levelData.levelName}");
+            if (_levelDescriptionText != null)
+                _levelDescriptionText.text = displayableData.DisplayDescription;
 
-        _levelNameText.text = levelData.levelDataName;
-        _levelDescriptionText.text = levelData.levelDescription;
+            if (currentFlowText != null)
+                currentFlowText.text = displayableData.DisplayFlow;
 
+            if (_environmentImage != null)
+                _environmentImage.sprite = displayableData.DisplaySprite;
+        }
+        else
+        {
+            Debug.LogError("Passed data does not implement IPanelDisplayable!");
+        }
     }
 }

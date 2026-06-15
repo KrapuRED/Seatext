@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Node-TurtelMaster-Heal
   m_EditorClassIdentifier: 
   levelDataID: NTM-00
-  levelDataName: 
-  levelDescription: 
+  levelDataName: Turtle Master
+  levelDescription: A wise presence lingers, offering aid to those who seek it.
   durationLevelDataNode: 0
-  levelDataType: 0
   currentFlowSpeed: 0
+  environmentSprite: {fileID: 0}
   fishSpawnTable: []

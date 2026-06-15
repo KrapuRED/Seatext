@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Levell Test
   m_EditorClassIdentifier: 
   levelDataID: 
-  levelDataName: 
-  levelDescription: 
+  levelDataName: FAK
+  levelDescription: Test
   durationLevelDataNode: 10
-  currentFlowSpeed: 0
+  currentFlowSpeed: 100
+  environmentSprite: {fileID: 0}
   fishSpawnTable: []

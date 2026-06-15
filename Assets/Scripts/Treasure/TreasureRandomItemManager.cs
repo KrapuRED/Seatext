@@ -4,25 +4,66 @@ using System.Collections.Generic;
 [System.Serializable]
 public enum TreasureRandomItemType
 {
-    Seacoene,
-    AdaptPoint
+    Currency,
+    Item
+}
+
+[System.Serializable]
+public enum ItemType
+{
+    FinItem,
+    Potion,
+    // add more...
+}
+
+[System.Serializable]
+public abstract class BaseRewardData
+{
+    public abstract TreasureRandomItemType RewardType { get; }
+    public abstract BaseRewardData Clone();
+}
+
+[System.Serializable]
+public class CurrencyRewardData : BaseRewardData
+{
+    public override TreasureRandomItemType RewardType => TreasureRandomItemType.Currency;
+    public CurrencyType CurrencyType;
+    public int Amount;
+
+    public override BaseRewardData Clone() => new CurrencyRewardData
+    {
+        CurrencyType = this.CurrencyType,
+        Amount = this.Amount
+    };
+}
+
+[System.Serializable]
+public class ItemRewardData : BaseRewardData
+{
+    public override TreasureRandomItemType RewardType => TreasureRandomItemType.Item;
+    public ItemType ItemType;
+    public int Quantity;
+
+    public override BaseRewardData Clone() => new ItemRewardData
+    {
+        ItemType = this.ItemType,
+        Quantity = this.Quantity
+    };
 }
 
 [System.Serializable]
 public class TreasureRandomItemConfig
 {
-    public int Amount;
-    [Range(0, 100)]
     public int Chance;
+    [SerializeReference] public BaseRewardData Reward;
 }
 
 [System.Serializable]
 public class TreasureRandomItemData
 {
     public string TreasureName;
-    public TreasureRandomItemType ItemType;
-    public int TreasureChange;
-
+    [Range(0, 100)]
+    public int TreasureChance;
     public List<TreasureRandomItemConfig> TreasureConfigs;
 }
 
@@ -67,7 +108,6 @@ public class TreasureRandomItemManager : MonoBehaviour
 
     #endregion
 
-
     private TreasureRandomItemData GetRandomTreasureData()
     {
         int roll = Random.Range(0, 100);
@@ -75,15 +115,12 @@ public class TreasureRandomItemManager : MonoBehaviour
 
         foreach (var treasureData in treasureRandomItemDataList)
         {
-            cumulativeChance += treasureData.TreasureChange;
+            cumulativeChance += treasureData.TreasureChance;
             if (roll < cumulativeChance)
-            {
                 return treasureData;
-            }
         }
 
         Debug.LogWarning($"[TreasureRandomItemManager - GetRandomTreasureData] No treasure data selected for roll: {roll}");
-
         return null;
     }
 
@@ -96,40 +133,52 @@ public class TreasureRandomItemManager : MonoBehaviour
         {
             cumulativeChance += config.Chance;
             if (roll < cumulativeChance)
-            {
                 return config;
-            }
         }
 
+        Debug.LogWarning($"[TreasureRandomItemManager - GetRandomTreasureConfig] No config selected for roll: {roll}");
         return null;
+    }
+
+    private void HandleReward(BaseRewardData reward)
+    {
+        switch (reward.RewardType)
+        {
+            case TreasureRandomItemType.Currency:
+                var currencyReward = reward as CurrencyRewardData;
+                var currencyData = new CurrecyData(currencyReward.CurrencyType, currencyReward.Amount);
+                GameEvents.OnSetCurrency.Invoke(currencyData);
+                PanelManager.instance.OpenPanelByTypePanel(PanelType.PanelNotification, currencyData);
+                break;
+
+            case TreasureRandomItemType.Item:
+                var itemReward = reward as ItemRewardData;
+                // GameEvents.OnSetItem.Invoke(itemReward);
+                // PanelManager.instance.OpenPanelByTypePanel(PanelType.PanelNotification, itemReward);
+                break;
+        }
     }
 
     public void GetRandomTreasureItem()
     {
-        if (this == null ) return; // safety check in case event fires after object is destroyed
+        if (this == null) return;
 
         var treasureData = GetRandomTreasureData();
-
         if (treasureData == null)
         {
-            Debug.LogWarning($"[TreasureRandomItemManager - GetRandomTreasureItem] No treasure data found!");
+            Debug.LogWarning("[TreasureRandomItemManager - GetRandomTreasureItem] No treasure data found!");
             return;
         }
 
         var treasureConfig = GetRandomTreasureConfig(treasureData);
-
         if (treasureConfig == null)
         {
             Debug.LogWarning($"[TreasureRandomItemManager - GetRandomTreasureItem] No treasure config found for {treasureData.TreasureName}!");
             return;
         }
 
-        var newCurrencyData = new CurrecyData(treasureData.ItemType, treasureConfig.Amount);
+        Debug.Log($"[TreasureRandomItemManager - GetRandomTreasureItem] Reward from {treasureData.TreasureName}!");
 
-        Debug.Log($"[TreasureRandomItemManager - GetRandomTreasureItem] Player received {treasureConfig.Amount} of {treasureData.ItemType} from {treasureData.TreasureName}!");
-
-        PanelManager.instance.OpenPanelByTypePanel(PanelType.PanelNotifiication, newCurrencyData);
-
-        GameEvents.OnSetCurrency.Invoke(newCurrencyData);
+        HandleReward(treasureConfig.Reward);
     }
 }

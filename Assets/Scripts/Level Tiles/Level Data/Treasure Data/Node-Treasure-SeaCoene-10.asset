@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Node-Treasure-SeaCoene-10
   m_EditorClassIdentifier: 
   levelDataID: NT-01
-  levelDataName: 
-  levelDescription: 
+  levelDataName: Treasure
+  levelDescription: The currents carry whispers of lost riches.
   durationLevelDataNode: 0
-  levelDataType: 0
   currentFlowSpeed: 0
+  environmentSprite: {fileID: 0}
   fishSpawnTable: []

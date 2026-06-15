@@ -116,6 +116,7 @@ public class GameEvents
 
     // ================================= Currecny Manager ================================= 
     public static readonly CustomEvents<CurrecyData> OnSetCurrency = new();
+    public static readonly CustomEvents<CurrecyData> OnUpdateCurrecyUI = new();
 
     // ================================= LEVEL NODE ================================= 
     public static readonly CustomEvents<LevelNode> OnSetLevelNode = new();

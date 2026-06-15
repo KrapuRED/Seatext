@@ -8,7 +8,7 @@ public enum PanelType
     NodePanelNormal,
     NodePanelTreasure,
     NodePanelTurtelMaster,
-    PanelNotifiication
+    PanelNotification
 }
 
 [System.Serializable]

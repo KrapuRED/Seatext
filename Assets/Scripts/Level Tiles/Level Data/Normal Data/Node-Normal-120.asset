@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelDataID: NN-00
   levelDataName: Normal 120
-  levelDescription: 
+  levelDescription: The currents carry both prey and peril.
   durationLevelDataNode: 120
-  levelDataType: 0
   currentFlowSpeed: 0
+  environmentSprite: {fileID: 0}
   fishSpawnTable: []

@@ -1,26 +1,41 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class CurrecyData
 {
-    public TreasureRandomItemType CurrencyType;
+    public CurrencyType currencyType;
     public int Amount;
 
-    public CurrecyData(TreasureRandomItemType itemType, int amount)
+    public CurrecyData(CurrencyType currencyType, int amount)
     {
-        CurrencyType = itemType;
+        this.currencyType = currencyType;
         Amount = amount;
     }
+
+    public CurrecyData(CurrecyData data)
+    {
+        this.currencyType = data.currencyType;
+        Amount = data.Amount;
+    }
+}
+
+[System.Serializable]
+public enum CurrencyType
+{
+    Seacoene,
+    AdaptPoint
 }
 
 public class CurrencyManager : MonoBehaviour
 {
     public static CurrencyManager instance {get; private set; }
 
-    [Header("Currency Data")] 
-    [SerializeField] private int seaCoinValue;
-    [SerializeField] private int adaptPoint;
+    [Header("Currency Data")]
+    [SerializeField] private List<CurrecyData> initialCurrencyData = new(); // set default values in Inspector
+
+    private Dictionary<CurrencyType, int> currencyValues = new();
 
     private void Awake()
     {
@@ -30,13 +45,31 @@ public class CurrencyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        InitializeCurrency();
     }
+
+    private void InitializeCurrency()
+    {
+        // Auto-register ALL enum types with 0 first
+        foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
+        {
+            currencyValues[type] = 0;
+        }
+
+        // Override with Inspector values if set
+        foreach (var currencyData in initialCurrencyData)
+        {
+            currencyValues[currencyData.currencyType] = currencyData.Amount;
+        }
+    }
+
 
     #region Event Listeners
 
     private void OnEnable()
     {
-        GameEvents.OnSetCurrency.AddListener(SetCurrency);
+        GameEvents.OnSetCurrency.AddListener(CalculateCurrency);
     }
 
     private void OnDisable()
@@ -51,31 +84,41 @@ public class CurrencyManager : MonoBehaviour
 
     private void OnRemoveListener()
     {
-        GameEvents.OnSetCurrency.RemoveListener(SetCurrency);
+        GameEvents.OnSetCurrency.RemoveListener(CalculateCurrency);
     }
 
     #endregion
+
+    private void Start()
+    {
+        // Notify UI of initial values
+        foreach (var kvp in currencyValues)
+        {
+            GameEvents.OnUpdateCurrecyUI.Invoke(new CurrecyData(kvp.Key, kvp.Value));
+        }
+    }
 
     public void UseCurrency(TreasureRandomItemType typeCurrecny)
     {
         
     }
 
-    public void SetCurrency(CurrecyData currencyData)
+    public void CalculateCurrency(CurrecyData currencyData)
     {
-        switch (currencyData.CurrencyType)
+        if (!currencyValues.ContainsKey(currencyData.currencyType))
         {
-            case TreasureRandomItemType.Seacoene:
-                seaCoinValue += currencyData.Amount;
-                break;
-
-            case TreasureRandomItemType.AdaptPoint:
-                adaptPoint += currencyData.Amount;
-                break;
-
-            default:
-                Debug.LogWarning($"[CurrencyManager - SetCurrency] Unhandled currency type: {currencyData.CurrencyType}");
-                break;
+            Debug.LogWarning($"[CurrencyManager] Unknown currency type: {currencyData.currencyType}");
+            return;
         }
+
+        currencyValues[currencyData.currencyType] += currencyData.Amount;
+
+        var updatedData = new CurrecyData(currencyData.currencyType, currencyValues[currencyData.currencyType]);
+        GameEvents.OnUpdateCurrecyUI.Invoke(updatedData);
+    }
+
+    public int GetCurrencyValue(CurrencyType type)
+    {
+        return currencyValues.TryGetValue(type, out int value) ? value : 0;
     }
 }

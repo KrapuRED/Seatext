@@ -34,6 +34,7 @@ public class LevelNodeVisuals : MonoBehaviour
     {
         _spriteRenderer.sprite = type switch
         {
+            LevelNodeType.Normal => _defaultNode,
             LevelNodeType.StartPoint => _startPointNode,
             LevelNodeType.EndPoint => _endPointNode,
             LevelNodeType.Treasure => _treasureNode,

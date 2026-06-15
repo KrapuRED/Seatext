@@ -178,6 +178,8 @@ public class LevelNode : MonoBehaviour
             return;
 
         _levelNodeVisuals.HideSelecttNodeVisual();
+        _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
+
         _levelNodeState = LevelNodeState.Unseen;
         _levelNodeTypeBox.RemoveWordData();
         _levelNodeTypeBox.ResetTypeBox();

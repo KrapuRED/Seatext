@@ -46,7 +46,7 @@ public class PanelNotifiication : Panel
     {
         var currencyData = (CurrecyData)data;
 
-        string currencyName = currencyData.CurrencyType == TreasureRandomItemType.Seacoene ? "SeaCoin" : "AdaptPoint";
+        string currencyName = currencyData.currencyType == CurrencyType.Seacoene ? "SeaCoin" : "AdaptPoint";
 
         treasureDetail.text = $"You got {currencyData.Amount} \n {currencyName}!";
     }
