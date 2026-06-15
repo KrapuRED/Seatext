@@ -18,6 +18,8 @@ public class LevelNodeTypeBox : TypingBox
 
     public void GetWord()
     {
+        Debug.Log($"[LevelNodeTypeBox - GetWord] Get word for node {_levelNode.LevelNodeID} with word level {_wordLevel}");
+
         if (GameStateManager.Instance.IsLevelNodeBeenExplored(_levelNode.LevelNodeID))
         {
             Debug.Log($"[LevelNodeTypeBox - GetWord] the node {_levelNode.LevelNodeID} is been explored");

@@ -98,6 +98,8 @@ public class LevelNode : MonoBehaviour
             if (hitCollider.TryGetComponent(out LevelNode levelNode)){
                 if (levelNode.LevelNodeState == LevelNodeState.Unseen || levelNode.LevelNodeState == LevelNodeState.Explored)
                 {
+                    Debug.Log($"[LevelNode - CheckSurroundingLevelNode] Set near current level node: {levelNode.gameObject.name}");
+
                     GameEvents.OnSetNearCurrentLevelNode.Invoke(levelNode);
                     levelNode.SetSaroundingTilesBeenSeen();
                 }
@@ -107,10 +109,11 @@ public class LevelNode : MonoBehaviour
 
     public void OnSetPlayerHere()
     {
-        Debug.Log($"{gameObject.name} is Player Here!");
         _levelNodeState = LevelNodeState.Current;
         _levelNodeTextUI.SetWordTextUI("You");
-        _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
+
+        _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
+        _levelNodeVisuals.HideSelecttNodeVisual();
 
         GameEvents.OnChangeCameraPosition.Invoke(transform);
 
@@ -141,12 +144,14 @@ public class LevelNode : MonoBehaviour
 
         _levelNodeState = LevelNodeState.Seen;
 
-        if (tileType != LevelNodeType.Normal)
+        if (tileType != LevelNodeType.Normal && _levelNodeState != LevelNodeState.Explored)
         {
             _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
         }
         else
             _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
+
+        _levelNodeVisuals.ActiveSelectNodeVisual();
 
         _levelNodeTypeBox.GetWord();
         _levelNodeTypeBox.setTypeBoxEvent.Raise(_levelNodeTypeBox);
@@ -156,18 +161,23 @@ public class LevelNode : MonoBehaviour
     {
         _levelNodeState = LevelNodeState.Explored;
 
-        _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
+        // Mirror the same pattern from SetSaroundingTilesBeenSeen
+        if (tileType != LevelNodeType.Normal && _levelNodeState != LevelNodeState.Explored)
+            _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
+        else
+            _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
+
+        _levelNodeVisuals.HideSelecttNodeVisual();
         _levelNodeTextUI.SetWordTextUI(string.Empty);
         _levelNodeTextUI.HideText();
-        
-        
     }
 
     public void ResetToHidden()
     {
         if (_levelNodeState == LevelNodeState.Explored)
             return;
-        
+
+        _levelNodeVisuals.HideSelecttNodeVisual();
         _levelNodeState = LevelNodeState.Unseen;
         _levelNodeTypeBox.RemoveWordData();
         _levelNodeTypeBox.ResetTypeBox();

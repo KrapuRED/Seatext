@@ -2,21 +2,18 @@ using UnityEngine;
 
 public class LevelNodeVisuals : MonoBehaviour
 {
-    [Header("Node State Visuals By State")]
-    [SerializeField] private Sprite _unseenSprite;
-    [SerializeField] private Color _unseenColor = Color.white;
-    [SerializeField] private Color _seenColor = Color.yellow;
-    [SerializeField] private Color _currentColor = Color.blue;
-    [SerializeField] private Color _exploredColor = Color.grey;
-    [SerializeField] private Color _endPointColor = Color.red;
 
     [Header("Node State Visuals By Type")]
-    [SerializeField] private Color _treasureNode = Color.yellow;
-    [SerializeField] private Color _turtelMasterNode = Color.magenta;
-    [SerializeField] private Color _startPointNode = Color.green;
-    [SerializeField] private Color _endPointNode = Color.red;
+    [SerializeField] private Sprite _treasureNode;
+    [SerializeField] private Sprite _turtelMasterNode;
+    [SerializeField] private Sprite _startPointNode;
+    [SerializeField] private Sprite _endPointNode;
+    [SerializeField] private Sprite _defaultNode;
 
     private SpriteRenderer _spriteRenderer;
+
+    [Header("Node State Selected Visuals By Type")]
+    [SerializeField] private GameObject _selectedNodeVisual;
 
     public void InitializedLevelNodeVisuals(SpriteRenderer spriteRender)
     {
@@ -25,25 +22,26 @@ public class LevelNodeVisuals : MonoBehaviour
 
     public void SetVisualLevelNodeByState(LevelNodeState state)
     {
-        _spriteRenderer.color = state switch
+        _spriteRenderer.sprite = state switch
         {
-            LevelNodeState.Unseen => _unseenColor,
-            LevelNodeState.Seen => _seenColor,
-            LevelNodeState.Current => _currentColor,
-            LevelNodeState.Explored => _exploredColor,
-            _ => _spriteRenderer.color
+            LevelNodeState.Current => _startPointNode,
+            LevelNodeState.Explored => _startPointNode,
+            _ => _spriteRenderer.sprite
         };
     }
 
     public void SetVisualLevelNodeByType(LevelNodeType type)
     {
-        _spriteRenderer.color = type switch
+        _spriteRenderer.sprite = type switch
         {
-            LevelNodeType.StartPoint => _currentColor,
-            LevelNodeType.EndPoint => _endPointColor,
+            LevelNodeType.StartPoint => _startPointNode,
+            LevelNodeType.EndPoint => _endPointNode,
             LevelNodeType.Treasure => _treasureNode,
             LevelNodeType.TurtelMasterNode => _turtelMasterNode,
-            _ => _spriteRenderer.color
+            _ => _spriteRenderer.sprite
         };
     }
+
+    public void ActiveSelectNodeVisual() => _selectedNodeVisual.SetActive(true);
+    public void HideSelecttNodeVisual() => _selectedNodeVisual.SetActive(false);
 }

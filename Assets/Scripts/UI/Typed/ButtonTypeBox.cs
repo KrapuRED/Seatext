@@ -22,7 +22,7 @@ public class ButtonTypeBox : TypingBox
     
     private void Start()
     {
-        Debug.Log($"[ButtonTypeBox - Start] Start ButtonTypeBox {gameObject.name}");
+        //Debug.Log($"[ButtonTypeBox - Start] Start ButtonTypeBox {gameObject.name}");
         SetTextToType(currentTextToType);
         setTypeBoxEvent.Raise(this);
     }

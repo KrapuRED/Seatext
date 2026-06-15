@@ -2158,9 +2158,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
+      propertyPath: panelType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
+      objectReference: {fileID: 11400000, guid: f7ac0ae39b6162248bfa11baafc6d11d, type: 2}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelNodeID
       value: 0
@@ -2606,7 +2610,7 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (4)
@@ -2948,7 +2952,7 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (11)
@@ -5877,7 +5881,7 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (7)
@@ -6044,7 +6048,7 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (6)
@@ -7509,6 +7513,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1910084241}
     m_Modifications:
+    - target: {fileID: 1596166963972607170, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
+      propertyPath: _startPointNode
+      value: 
+      objectReference: {fileID: -4641696000792493217, guid: 18d68eb3ce52c2641bad3f6dfa98e881, type: 3}
     - target: {fileID: 3418323788622906220, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.23
@@ -7556,6 +7564,10 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: tileType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
+      propertyPath: panelType
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
@@ -7769,6 +7781,10 @@ PrefabInstance:
       propertyPath: _tileType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
+      propertyPath: _levelDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelNodeID
       value: 0
@@ -8309,7 +8325,7 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (5)
@@ -9021,7 +9037,7 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (9)
@@ -9421,7 +9437,7 @@ PrefabInstance:
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
+      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
     - target: {fileID: 8877310490872545632, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: m_Name
       value: Level Node (12)
@@ -10019,9 +10035,13 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
+      propertyPath: panelType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
       value: 
-      objectReference: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
+      objectReference: {fileID: 11400000, guid: 43b0dd638afee654ab24b99f07d93af7, type: 2}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelNodeID
       value: 0

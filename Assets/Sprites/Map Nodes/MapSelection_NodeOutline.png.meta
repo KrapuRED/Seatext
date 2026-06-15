@@ -149,12 +149,12 @@ TextureImporter:
       name: MapSelection_NodeOutline_0
       rect:
         serializedVersion: 2
-        x: 168
-        y: 338
-        width: 50
-        height: 40
+        x: 111
+        y: 120
+        width: 290
+        height: 272
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,253 +167,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_1
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 353
-        width: 62
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b789ce785c4f1efe0800000000000000
-      internalID: -1161378099658712965
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_2
-      rect:
-        serializedVersion: 2
-        x: 294
-        y: 338
-        width: 50
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1146e992da62b9ac0800000000000000
-      internalID: -3847438931488513007
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_3
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 223
-        width: 37
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b1428d4404f554e0800000000000000
-      internalID: -1993418960724147788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_4
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 288
-        width: 42
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f7e34e41b8989d730800000000000000
-      internalID: 4024398972476210815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_5
-      rect:
-        serializedVersion: 2
-        x: 330
-        y: 288
-        width: 42
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0ffbe6ca0e4304b60800000000000000
-      internalID: 7728235100138029040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_6
-      rect:
-        serializedVersion: 2
-        x: 359
-        y: 223
-        width: 37
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 34d5b2e34d6b36f60800000000000000
-      internalID: 8026459983596707139
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_7
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 172
-        width: 42
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be4d410cc8f7c6250800000000000000
-      internalID: 5939262251089581291
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_8
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 134
-        width: 50
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a376690dd7ca56eb0800000000000000
-      internalID: -4727182577485060294
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_9
-      rect:
-        serializedVersion: 2
-        x: 294
-        y: 134
-        width: 50
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c07802a61a34fac0800000000000000
-      internalID: -3822366314848554815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_10
-      rect:
-        serializedVersion: 2
-        x: 330
-        y: 172
-        width: 42
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 396596aac1e794a40800000000000000
-      internalID: 5352948293689759379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MapSelection_NodeOutline_11
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 132
-        width: 62
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 22860325c846129b0800000000000000
-      internalID: -5106689948624328670
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 116e1c7484207f548b0b618c75f93146
     internalID: 0
     vertices: []
     indices: 
@@ -427,6 +185,8 @@ TextureImporter:
       MapSelection_NodeOutline_1: -1161378099658712965
       MapSelection_NodeOutline_10: 5352948293689759379
       MapSelection_NodeOutline_11: -5106689948624328670
+      MapSelection_NodeOutline_12: 1016429334
+      MapSelection_NodeOutline_13: 1514997099
       MapSelection_NodeOutline_2: -3847438931488513007
       MapSelection_NodeOutline_3: -1993418960724147788
       MapSelection_NodeOutline_4: 4024398972476210815

@@ -42,6 +42,7 @@ public class LevelNodeManager : MonoBehaviour
         _nearCurrentLevelNodes.Clear();
     }
 
+    #region Event Listeners
     private void OnEnable()
     {
         GameEvents.OnButtonTypeBoxComplete.AddListener(OnButtonComplete);
@@ -66,6 +67,17 @@ public class LevelNodeManager : MonoBehaviour
         _nearCurrentLevelNodes.Clear();
         
     }
+
+    private void OnRemoveListener()
+    {
+        GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
+        GameEvents.OnSetLevelNodeBeenExplored.RemoveListener(SetLevelNodeBeenExplored);
+        GameEvents.OnSelectedNextLevelNode.RemoveListener(SelectedNextLevelNode);
+        GameEvents.OnSetNearCurrentLevelNode.RemoveListener(SetNearCurrentLevelNode);
+        GameEvents.OnSelectedPreviousLevelNode.RemoveListener(UnSelectedNextLevelNode);
+    }
+
+    #endregion
 
     private void Start()
     {
@@ -115,6 +127,16 @@ public class LevelNodeManager : MonoBehaviour
         //GameStateManager.Instance.UpdateLevelNodeGameProgress();
 
         GameManager.instance.LoadLevel(_currentLevelNode);
+    }
+
+    private void CheckThisLastNode(LevelNode node)
+    {
+        Debug.Log($"[LevelNodeManager - CheckThisLastNode] Checking if node {node.LevelNodeID} is the last node to explore...");
+
+        if (node.TileType == LevelNodeType.EndPoint)
+        {
+            Debug.Log("This is the last node to explore! Triggering game win condition...");
+        }
     }
     #endregion
 
@@ -215,15 +237,9 @@ public class LevelNodeManager : MonoBehaviour
         
         ResetAllLevelNode(exploredLevelNode);
         _currentLevelNode.OnSetPlayerHere();
-    }
 
-    private void OnRemoveListener()
-    {
-        GameEvents.OnButtonTypeBoxComplete.RemoveListener(OnButtonComplete);
-        GameEvents.OnSetLevelNodeBeenExplored.RemoveListener(SetLevelNodeBeenExplored);
-        GameEvents.OnSelectedNextLevelNode.RemoveListener(SelectedNextLevelNode);
-        GameEvents.OnSetNearCurrentLevelNode.RemoveListener(SetNearCurrentLevelNode);
-        GameEvents.OnSelectedPreviousLevelNode.RemoveListener(UnSelectedNextLevelNode);
+        // Check if this the last node to explore, if so, trigger game win condition
+        CheckThisLastNode(exploredLevelNode);
     }
 
     private void ApplyExploredStates(HashSet<string> exploredIDs)
@@ -246,6 +262,8 @@ public class LevelNodeManager : MonoBehaviour
         foreach (var levelNode in _nearCurrentLevelNodes)
         {
             if (levelNode == excludeNode) continue;
+            if (levelNode.LevelNodeState == LevelNodeState.Explored ||
+                levelNode.LevelNodeState == LevelNodeState.Seen) continue; // <- skip Seen
             levelNode.ResetToHidden();
         }
         _nearCurrentLevelNodes.Clear();
