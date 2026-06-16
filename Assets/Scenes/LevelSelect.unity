@@ -1162,7 +1162,7 @@ MonoBehaviour:
   panelName: Node Panel Treasure
   panelID: panel-03
   panelGO: {fileID: 218255328}
-  panelType: 3
+  panelType: 4
   _levelNameText: {fileID: 1261339383}
   _levelDescriptionText: {fileID: 999992569}
   currentFlowText: {fileID: 0}
@@ -2533,7 +2533,7 @@ MonoBehaviour:
   panelName: Node Panel Turtel Master
   panelID: panel-04
   panelGO: {fileID: 578572639}
-  panelType: 4
+  panelType: 5
   _levelNameText: {fileID: 74644330}
   _levelDescriptionText: {fileID: 1528607749}
   currentFlowText: {fileID: 0}
@@ -2937,7 +2937,7 @@ MonoBehaviour:
   panelName: Node Panel Normal
   panelID: panel-02
   panelGO: {fileID: 659483225}
-  panelType: 2
+  panelType: 3
   _levelNameText: {fileID: 856307037}
   _levelDescriptionText: {fileID: 1924487297}
   currentFlowText: {fileID: 525582599}
@@ -6792,7 +6792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -687.34, y: -375.75}
+  m_AnchoredPosition: {x: -687.3401, y: -375.75}
   m_SizeDelta: {x: 426.34, y: 172.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1253963242

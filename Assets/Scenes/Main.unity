@@ -2559,7 +2559,7 @@ MonoBehaviour:
     spawnTransform: {fileID: 1252777395}
   _continer: {fileID: 100142063}
   _prefab: {fileID: 8488203040944214544, guid: 23b2101e03bb8bd47b50d44812252d5f, type: 3}
-  _spawnInterval: 2.5
+  _spawnInterval: 5
   _isSpawning: 1
   wordLevel: 1
   IntilazeSpawnerByStart: 0
@@ -4069,7 +4069,7 @@ MonoBehaviour:
     spawnTransform: {fileID: 12492946}
   _continer: {fileID: 1077437399}
   _prefab: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}
-  _spawnInterval: 2.5
+  _spawnInterval: 8
   _isSpawning: 1
   wordLevel: 1
   IntilazeSpawnerByStart: 0

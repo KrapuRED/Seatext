@@ -15,4 +15,4 @@ MonoBehaviour:
   foodName: Bottle Plastic
   foodID: TR-01
   foodType: 1
-  gainStatus: 20
+  gainStatus: 8

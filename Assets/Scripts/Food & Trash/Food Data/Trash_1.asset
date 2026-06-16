@@ -15,4 +15,4 @@ MonoBehaviour:
   foodName: Food Plastic
   foodID: TR-00
   foodType: 1
-  gainStatus: 10
+  gainStatus: 5
