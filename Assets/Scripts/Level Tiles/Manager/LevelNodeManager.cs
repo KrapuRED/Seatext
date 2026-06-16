@@ -27,6 +27,9 @@ public class LevelNodeManager : MonoBehaviour
     [SerializeField] private LevelNode _currentLevelNode;
     [SerializeField] private LevelNode _previousLevelNode;
 
+    [Header("refence system")]
+    [SerializeField] private LevelNodeRandomGeneratorData randomGeneratorData;
+
     public LevelNode CurrentLevelNode => _currentLevelNode;
     public bool IsReady { get; private set; }
 
@@ -182,8 +185,9 @@ public class LevelNodeManager : MonoBehaviour
         if (gameStateManager.IsLevelNodeGameProgressExist(levelNodeID))
             gameStateManager.SetLevelNodeGameProgress(levelNodeID, levelNode.LevelNodeState);
 
+        LevelDataSO randomData = randomGeneratorData.GetRandomDataLevelNode();
 
-        levelNode.IntiliazeLevelNode(levelNodeID);
+        levelNode.IntiliazeLevelNode(levelNodeID, randomData);
     }
 
     public void SetNearCurrentLevelNode(LevelNode nearLevelNode)

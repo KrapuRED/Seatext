@@ -69,7 +69,9 @@ public class CurrencyManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnSetCurrency.AddListener(CalculateCurrency);
+        GameEvents.OnShowUI.AddListener(ShowCurrency);
+
+        GameEvents.OnSetCurrency.AddListener(UpdateCurrency);
     }
 
     private void OnDisable()
@@ -84,7 +86,9 @@ public class CurrencyManager : MonoBehaviour
 
     private void OnRemoveListener()
     {
-        GameEvents.OnSetCurrency.RemoveListener(CalculateCurrency);
+        GameEvents.OnShowUI.RemoveListener(ShowCurrency);
+
+        GameEvents.OnSetCurrency.RemoveListener(UpdateCurrency);
     }
 
     #endregion
@@ -98,12 +102,46 @@ public class CurrencyManager : MonoBehaviour
         }
     }
 
-    public void UseCurrency(TreasureRandomItemType typeCurrecny)
+    private void ShowCurrency()
     {
-        
+        if (this == null) return;
+
+        int amount = currencyValues[CurrencyType.Seacoene];
+
+        var updatedData = new CurrecyData(CurrencyType.Seacoene, amount);
+        GameEvents.OnUpdateCurrecyUI.Invoke(updatedData);
     }
 
-    public void CalculateCurrency(CurrecyData currencyData)
+    public bool IsSufficientCurrecny(CurrencyType currencyType, int costValue)
+    {
+        if (!currencyValues.ContainsKey(currencyType))
+        {
+            Debug.LogWarning($"[CurrencyManager] Unknown currency type: {currencyType}");
+            return false;
+        }
+
+        int amaount = currencyValues[currencyType];
+
+        return amaount >= costValue;
+    }
+
+    public void UseCurrency(CurrencyType currencyType, int costValue)
+    {
+        if (!currencyValues.ContainsKey(currencyType))
+        {
+            Debug.LogWarning($"[CurrencyManager] Unknown currency type: {currencyType}");
+            return;
+        }
+
+        int amount = currencyValues[currencyType] -= costValue;
+
+        var updatedData = new CurrecyData(currencyType, amount);
+        GameEvents.OnUpdateCurrecyUI.Invoke(updatedData);
+
+        Debug.Log($"Amount left {currencyType} : {currencyValues[currencyType]}");
+    }
+
+    public void UpdateCurrency(CurrecyData currencyData)
     {
         if (!currencyValues.ContainsKey(currencyData.currencyType))
         {

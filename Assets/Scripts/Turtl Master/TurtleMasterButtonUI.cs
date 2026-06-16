@@ -4,7 +4,6 @@ public class TurtleMasterButtonUI : MonoBehaviour
 {
     [Header("Turtel Master Config")]
     [SerializeField] private TurtelMasterPerkSO perkData;
-    [SerializeField] private int valueCost;
 
     public TurtelMasterPerkSO PerkData => perkData;
 
@@ -16,6 +15,6 @@ public class TurtleMasterButtonUI : MonoBehaviour
             return;
         }
 
-        TurtleMasterManager.Instance.ApplyeTurtleMaster(perkData, valueCost);
+        TurtleMasterManager.Instance.ApplyeTurtleMaster(perkData);
     }
 }

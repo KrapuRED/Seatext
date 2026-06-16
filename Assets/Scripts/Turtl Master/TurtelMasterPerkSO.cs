@@ -3,10 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TurtelMasterPerkSO", menuName = "Turtel Master/TurtelMasterPerkSO")]
 public class TurtelMasterPerkSO : ScriptableObject
 {
-    public string TurtleMasterPerkName;
-    public TurtleMasterPerk TurtleMasterPerk;
+    public string TurtelMasterPerkName;
+    public TurtleMasterPerk TurtelMasterPerk;
     [TextArea(25, 50)]
-    public string TurtleMasterPerkDescription;
+    public string TurtelMasterPerkDescriptionr;
     public int percentageValue;
-
+    public int costValue;
 }

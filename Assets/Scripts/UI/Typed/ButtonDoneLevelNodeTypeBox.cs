@@ -8,5 +8,9 @@ public class ButtonDoneLevelNodeTypeBox : ButtonTypeBox
         
         //save Status Data
         GameEvents.OnSaveCurrentStatus.Invoke();
+
+        CurrecyData currency = new CurrecyData(CurrencyType.Seacoene, 1000);
+
+        CurrencyManager.instance.UpdateCurrency(currency);
     }
 }

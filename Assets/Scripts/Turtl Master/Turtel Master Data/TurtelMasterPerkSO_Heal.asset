@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b6922151200334dac71f24de154740, type: 3}
   m_Name: TurtelMasterPerkSO_Heal
   m_EditorClassIdentifier: 
-  TurtleMasterPerkName: Haal
-  TurtleMasterPerk: 1
-  TurtleMasterPerkDescription: 
+  TurtelMasterPerkName: Heal
+  TurtelMasterPerk: 1
+  TurtelMasterPerkDescriptionr: 
   percentageValue: 40
+  costValue: 50

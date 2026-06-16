@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b6922151200334dac71f24de154740, type: 3}
   m_Name: TurtelMasterPerkSO_Learning
   m_EditorClassIdentifier: 
-  TurtleMasterPerkName: 
-  TurtleMasterPerk: 3
-  TurtleMasterPerkDescription: 
+  TurtelMasterPerkName: Learn Skill
+  TurtelMasterPerk: 3
+  TurtelMasterPerkDescriptionr: 
+  percentageValue: 0
+  costValue: 30

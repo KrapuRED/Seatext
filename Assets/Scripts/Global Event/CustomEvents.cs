@@ -99,14 +99,21 @@ public class GameEvents
     #endregion
 
     #region UI Events
+    public static readonly CustomEvents OnShowUI = new();
+
     public static readonly CustomEvents<float, float> OnUpdateHealthBar = new();
     public static readonly CustomEvents<float, float> OnUpdateHungerBar = new();
     public static readonly CustomEvents<float> OnSetTimerGamePlay = new();
     public static readonly CustomEvents<float> OnUpdateTimerGamePlay = new();
     
     public static readonly CustomEvents<ButtonTypeBoxContext> OnButtonTypeBoxComplete = new();
-    
+
+    //================================= PANEL =================================
+    public static readonly CustomEvents<object> OnShowAdditionalInformationPanel = new();
+    public static readonly CustomEvents OnHideAdditionalInformationPanel = new();
+
     public static readonly CustomEvents<string> OnClosePanelByID = new();
+    
     #endregion
 
     #region GamePlay

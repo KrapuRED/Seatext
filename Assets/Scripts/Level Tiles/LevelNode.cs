@@ -59,7 +59,7 @@ public class LevelNode : MonoBehaviour
     }
 
 
-    public void IntiliazeLevelNode(string levelNodeID)
+    public void IntiliazeLevelNode(string levelNodeID, LevelDataSO levelData)
     { 
         _levelNodeID = levelNodeID;
         _isBeenInitialized = true;
@@ -82,6 +82,9 @@ public class LevelNode : MonoBehaviour
         }
         else
         {
+            if (tileType == LevelNodeType.Normal)
+                _levelDataSO = levelData;
+
             _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
         }
     }

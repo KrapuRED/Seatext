@@ -141,10 +141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2dccb8acf579f747b0c6f69e7576994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPlayerHealthStatus: 0
-  maxPlayerHungerStatus: 0
-  currentPLayerTrashStatus: 0
-  initialized: 0
+  maxPlayerHealthStatus: 100
+  currentPlayerHealthStatus: 100
+  maxPlayerHungerStatus: 100
+  currentPlayerTrashStatus: 0
+  initialized: 1
 --- !u!1 &8177310376545817269
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,5 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ada0aefdad2a545970ede76a0c461c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seaCoinValue: 0
-  adaptPoint: 0
+  initialCurrencyData:
+  - currencyType: 0
+    Amount: 100

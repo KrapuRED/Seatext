@@ -37,6 +37,9 @@ public class ManagerTimer : MonoBehaviour, IPausable
         
         if (_isPaused)
             return;
+
+        if (GameManager.instance.LevelDone)
+            return;
             
         if (_timer < 0)
         {

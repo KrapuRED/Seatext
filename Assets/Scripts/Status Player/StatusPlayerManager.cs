@@ -5,12 +5,15 @@ public class StatusPlayerManager : MonoBehaviour
 {
     public static StatusPlayerManager Instance { get; private set; }
 
+    [SerializeField] private PlayerDataSO playerData;
+
     [Header("Player Health Status")]
     [SerializeField] private float maxPlayerHealthStatus;
     [SerializeField] private float currentPlayerHealthStatus;
 
     [Header("Player Trash Status")]
     [SerializeField] private float maxPlayerHungerStatus;
+    [SerializeField] private float currentPlayerHungerStatus;
     [SerializeField] private float currentPlayerTrashStatus;
     
     [Header("Status Player Manager Config")]
@@ -27,7 +30,46 @@ public class StatusPlayerManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
-    
+
+    #region Event Subscription
+
+    private void OnEnable()
+    {
+        GameEvents.OnShowUI.AddListener(ShowStatus);
+
+    }
+
+    private void OnDisable()
+    {
+        OnRemovedListener();
+
+    }
+
+    private void OnDestroy()
+    {
+        OnRemovedListener();
+    }
+
+    private void OnRemovedListener()
+    {
+        GameEvents.OnShowUI.RemoveListener(ShowStatus);
+    }
+
+    #endregion
+
+    private void Start()
+    {
+        InitializedStatus(playerData);
+
+        ShowStatus();
+    }
+
+    private void ShowStatus()
+    {
+        GameEvents.OnUpdateHealthBar.Invoke(currentPlayerHealthStatus, maxPlayerHealthStatus);
+        GameEvents.OnUpdateHungerBar.Invoke(currentPlayerTrashStatus, currentPlayerHungerStatus);
+    }
+
     public void InitializedStatus(PlayerDataSO playerData)
     {
         if (initialized)
@@ -42,6 +84,7 @@ public class StatusPlayerManager : MonoBehaviour
         currentPlayerHealthStatus = playerData.baseFishStats.maxFishHealth;
 
         maxPlayerHungerStatus = playerData.maxHunger;
+        currentPlayerHungerStatus = maxPlayerHungerStatus;
         currentPlayerTrashStatus  = playerData.startingTrash;
         
         initialized = true;
@@ -84,6 +127,17 @@ public class StatusPlayerManager : MonoBehaviour
         }
         
         currentPlayerTrashStatus = trashValue;
+    }
+
+    public void UpdateStatusHunger(float hungerValue)
+    {
+        if (!initialized)
+        {
+            Debug.LogError("Status Player Manager not been initialized");
+            return;
+        }
+
+        currentPlayerHungerStatus = hungerValue;
     }
 
     public void CleanTrash()

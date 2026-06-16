@@ -5,6 +5,7 @@ public enum PanelType
 {
     PanelPause,
     PanelSurvive,
+    PanelDead,
     NodePanelNormal,
     NodePanelTreasure,
     NodePanelTurtelMaster,

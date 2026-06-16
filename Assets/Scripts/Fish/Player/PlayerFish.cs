@@ -131,6 +131,7 @@ public class PlayerFish : Fish, IPausable, IEatable
         if (_playerFishHealth.IsDead())
         {
             Debug.Log($"[PlayerFish - TakingDamage] PlayerFish {gameObject.name} has been killed!");
+            GameManager.instance.LevelNodeFailed();
             gameObject.SetActive(false);
             return;
         }

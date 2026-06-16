@@ -99,21 +99,28 @@ public class TurtleMasterManager : MonoBehaviour
         PanelManager.instance.ClosePanelByPanelType(PanelType.NodePanelTurtelMaster);
     }
 
-    public void ApplyeTurtleMaster(TurtelMasterPerkSO perkData, int valueCost)
+    public void ApplyeTurtleMaster(TurtelMasterPerkSO perkData)
     {
-        Debug.Log($"[Turtel Master Manager] Applying effect of {perkData.TurtleMasterPerk} with cost {valueCost}");
+        Debug.Log($"[Turtel Master Manager] Applying effect of {perkData.TurtelMasterPerk} with cost {perkData.costValue}");
 
-        switch (perkData.TurtleMasterPerk)
+        if (!CurrencyManager.instance.IsSufficientCurrecny(CurrencyType.Seacoene, perkData.costValue))
+        {
+            // Show information IsSufficientCurrecny
+            Debug.LogWarning($"Unsufficient Currecny of {CurrencyType.Seacoene}");
+            return;
+        }
+
+        switch (perkData.TurtelMasterPerk)
         {
             case TurtleMasterPerk.Heal:
                 // Heal the player
-                Debug.Log($"[Turlet Master Manager] Is Healing Player Fish with {valueCost}");
+                Debug.Log($"[Turlet Master Manager] Is Healing Player Fish with {perkData.percentageValue}%");
                 StatusPlayerManager.Instance.HealingHealth(perkData.percentageValue);
                 break;
 
             case TurtleMasterPerk.RemoveTrash:
                 // Remove Trash from the player
-                Debug.Log($"[Turlet Master Manager] Is Removing Trash Player Fish with {valueCost}");
+                Debug.Log($"[Turlet Master Manager] Is Removing Trash Player Fish with cost {perkData.costValue}");
                 StatusPlayerManager.Instance.CleanTrash();
                 break;
 
@@ -127,6 +134,7 @@ public class TurtleMasterManager : MonoBehaviour
                 break;
         }
 
+        CurrencyManager.instance.UseCurrency(CurrencyType.Seacoene, perkData.costValue);
         GameEvents.OnSetLevelNodeBeenExplored.Invoke(_levelNode.LevelNodeID);
         CloseTurtelMasterButtonUI();
     }
@@ -135,18 +143,20 @@ public class TurtleMasterManager : MonoBehaviour
     {
         Debug.Log($"[Turtel Master Manager] Showing Additional Information for {perkData}");
 
-        if (perkData.TurtleMasterPerk == TurtleMasterPerk.Ignore)
+        if (perkData.TurtelMasterPerk == TurtleMasterPerk.Ignore)
         {
             Debug.Log($"[Turtel Master Manager] This is a Ignore, No Additional Information to Show");
             HideAddtionalInfomation();
             return;
         }
 
-        Debug.Log($"[Turtel Master Manager] Showing Additional Information for {perkData.TurtleMasterPerk}");
+        GameEvents.OnShowAdditionalInformationPanel.Invoke(perkData);
+        Debug.Log($"[Turtel Master Manager] Showing Additional Information for {perkData.TurtelMasterPerk}");
     }
 
     public void HideAddtionalInfomation()
     {
         Debug.Log($"[Turtel Master Manager] Hiding Additional Information");
+        GameEvents.OnHideAdditionalInformationPanel.Invoke();
     }
 }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b6922151200334dac71f24de154740, type: 3}
   m_Name: TurtelMasterPerkSO_RemovingTrash
   m_EditorClassIdentifier: 
-  TurtleMasterPerkName: 
-  TurtleMasterPerk: 2
-  TurtleMasterPerkDescription: 
+  TurtelMasterPerkName: Cleaning Guts
+  TurtelMasterPerk: 2
+  TurtelMasterPerkDescriptionr: 
+  percentageValue: 0
+  costValue: 1000

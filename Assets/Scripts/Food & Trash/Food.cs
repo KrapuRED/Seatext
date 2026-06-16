@@ -63,7 +63,6 @@ public class Food : TypingBox, IEatable, IPausable
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        _spriteRenderer.color = Color.black;
         SetTextToType(_wordData.word);
         setTypeBoxEvent.Raise(this);
         foodSize = FoodSize.None;

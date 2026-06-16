@@ -54,13 +54,16 @@ public class GameManager : MonoBehaviour
     private void LevelNodeDone()
     {
         _levelNodeDone = true;
+
         //Show Survive Panel
         PanelManager.instance.OpenPanelByTypePanel(PanelType.PanelSurvive);
     }
 
     public void LevelNodeFailed()
     {
-        
+        _levelNodeDone = true;
+
+        PanelManager.instance.OpenPanelByTypePanel(PanelType.PanelDead);
     }
     
     public void LoadLevel(LevelNode levelNode)
