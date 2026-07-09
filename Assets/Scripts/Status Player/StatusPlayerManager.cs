@@ -18,10 +18,12 @@ public class StatusPlayerManager : MonoBehaviour
     
     [Header("Status Player Manager Config")]
     [SerializeField] private bool initialized;
-    
+   
     public float CurrentPlayerHealthStatus => currentPlayerHealthStatus;
+    public float MaxPlayerHealthStatus => maxPlayerHealthStatus;
     public float CurrentPlayerTrashStatus => currentPlayerTrashStatus;
     public float MaxPlayerHungerStatus => maxPlayerHungerStatus;
+    
     
     private void Awake()
     {
@@ -59,13 +61,19 @@ public class StatusPlayerManager : MonoBehaviour
 
     private void Start()
     {
-        InitializedStatus(playerData);
-
+        if (!initialized)
+            InitializedStatus(playerData);
+        
         ShowStatus();
     }
 
-    private void ShowStatus()
+    public void ShowStatus()
     {
+        Debug.Log($"Showing Status : \n" +
+                  $"player health   : {currentPlayerHealthStatus}\n" + 
+                  $"player hungger  : {currentPlayerHungerStatus}\n" +
+                  $"player trash    : {currentPlayerTrashStatus}");
+        
         GameEvents.OnUpdateHealthBar.Invoke(currentPlayerHealthStatus, maxPlayerHealthStatus);
         GameEvents.OnUpdateHungerBar.Invoke(currentPlayerTrashStatus, currentPlayerHungerStatus);
     }
@@ -98,6 +106,7 @@ public class StatusPlayerManager : MonoBehaviour
             return;
         }
         
+        Debug.Log("Updating Health Status");
         currentPlayerHealthStatus = healthValue;
     }
     
@@ -126,6 +135,7 @@ public class StatusPlayerManager : MonoBehaviour
             return;
         }
         
+        Debug.Log("Updating Trash Status");
         currentPlayerTrashStatus = trashValue;
     }
 
@@ -136,7 +146,8 @@ public class StatusPlayerManager : MonoBehaviour
             Debug.LogError("Status Player Manager not been initialized");
             return;
         }
-
+        
+        Debug.Log("Updating Health Status");
         currentPlayerHungerStatus = hungerValue;
     }
 

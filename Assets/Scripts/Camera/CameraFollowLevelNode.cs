@@ -56,7 +56,7 @@ public class CameraFollowLevelNode : MonoBehaviour
         Vector3 positinCam =  currentLevelNodeTransform.position;
         Vector3 positionCamOffest = new Vector3(positinCam.x + offsetCamera, positinCam.y, -10);
 
-        Debug.Log($"[CameraFollowLevelNode - SetCameraPosition] is change position to {positionCamOffest}");
+        //Debug.Log($"[CameraFollowLevelNode - SetCameraPosition] is change position to {positionCamOffest}");
         _cam.transform.position = positionCamOffest;
     }
 }

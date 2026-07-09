@@ -101,7 +101,7 @@ public class LevelNode : MonoBehaviour
             if (hitCollider.TryGetComponent(out LevelNode levelNode)){
                 if (levelNode.LevelNodeState == LevelNodeState.Unseen || levelNode.LevelNodeState == LevelNodeState.Explored)
                 {
-                    Debug.Log($"[LevelNode - CheckSurroundingLevelNode] Set near current level node: {levelNode.gameObject.name}");
+                    //Debug.Log($"[LevelNode - CheckSurroundingLevelNode] Set near current level node: {levelNode.gameObject.name}");
 
                     GameEvents.OnSetNearCurrentLevelNode.Invoke(levelNode);
                     levelNode.SetSaroundingTilesBeenSeen();

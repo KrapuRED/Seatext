@@ -25,7 +25,7 @@ public class PlayerStatusSync : MonoBehaviour
             return;
         }
         
-        _playerFishHealth.SetFishHealth(_statusPlayerManager.CurrentPlayerHealthStatus);
+        _playerFishHealth.SetFishHealth(_statusPlayerManager.CurrentPlayerHealthStatus, _statusPlayerManager.MaxPlayerHealthStatus);
     }
     
     public void HandleTrashChange()

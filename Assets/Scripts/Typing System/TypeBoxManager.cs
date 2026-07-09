@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public enum TypeTypingBox
 {
-    none,
+    None,
     UI,
     GamePlay
 }

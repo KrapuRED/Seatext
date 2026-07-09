@@ -248,7 +248,7 @@ public class LevelNodeManager : MonoBehaviour
 
     private void ApplyExploredStates(HashSet<string> exploredIDs)
     {
-        Debug.Log($"[LevelNodeManager] SetLevelNodeBeenExplored called, IsReady={IsReady}, nodeCount={_levelNodeDatas.Count}");
+        //Debug.Log($"[LevelNodeManager] SetLevelNodeBeenExplored called, IsReady={IsReady}, nodeCount={_levelNodeDatas.Count}");
         foreach (var levelNodeID in exploredIDs)
         {
             if (!_levelNodeMap.TryGetValue(levelNodeID, out LevelNode levelNode))

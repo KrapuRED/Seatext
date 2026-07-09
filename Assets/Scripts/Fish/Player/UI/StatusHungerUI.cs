@@ -14,8 +14,17 @@ public class StatusHungerUI : StatusBarUI
 
     private void OnDisable()
     {
-        GameEvents.OnUpdateHungerBar.RemoveListener(UpdateStatusBar);
+        OnRemoveListeners();
+    }
 
+    private void OnDestroy()
+    {
+        OnRemoveListeners();
+    }
+
+    private void OnRemoveListeners()
+    {
+        GameEvents.OnUpdateHealthBar.RemoveListener(UpdateStatusBar);
     }
 
     public override void UpdateStatusBar(float currentValue, float maxValue)

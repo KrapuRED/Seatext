@@ -88,7 +88,7 @@ public class SceneController : MonoBehaviour
         // 3. Now that the manager is 100% initialized, it's safe to fire!
         if (!string.IsNullOrEmpty(_pendingExploredNodeID))
         {
-            GameEvents.OnShowUI.Invoke();
+            StatusPlayerManager.Instance.ShowStatus();
             GameEvents.OnSetLevelNodeBeenExplored.Invoke(_pendingExploredNodeID);
             _pendingExploredNodeID = string.Empty; // Clear cache
         }

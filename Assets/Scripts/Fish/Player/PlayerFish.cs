@@ -104,6 +104,10 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     private void Update()
     {
+        //if done return
+        if (GameManager.instance.LevelDone)
+            return;
+        
         _playerFishHunger.Starve();
 
         if (targetPosition == null)

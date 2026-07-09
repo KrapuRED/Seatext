@@ -86,7 +86,8 @@ public class FishHunger : MonoBehaviour, ISaveStatus
     {
         if (this == null) return;
         
-        Debug.Log("Saving Fish Health");
+        Debug.Log($"Saving Fish Hungger : trash {trashGain} hunger {currentHunger}");
         StatusPlayerManager.Instance.UpdateStatusTrash(trashGain);
+        StatusPlayerManager.Instance.UpdateStatusHunger(currentHunger);
     }
 }

@@ -8151,8 +8151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataSOs:
-  - {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
   - {fileID: 11400000, guid: 82d267bff8487c64ea56a75bce5679d8, type: 2}
+  - {fileID: 11400000, guid: cd050832fb48c6c4d8704b8670e060f0, type: 2}
 --- !u!1 &1528607748
 GameObject:
   m_ObjectHideFlags: 0
@@ -11728,8 +11728,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
-      propertyPath: currentPlayerHungerStatus
+      propertyPath: maxPlayerHungerStatus
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: currentPlayerHealthStatus
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: currentPlayerHungerStatus
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

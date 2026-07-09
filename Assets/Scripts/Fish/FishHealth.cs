@@ -30,7 +30,7 @@ public class FishHealth : MonoBehaviour, ISaveStatus
 
     #endregion
 
-    public void SetFishHealth(float maxHealth)
+    public void SetFishHealth(float currentHealth ,float maxHealth)
     {
         Debug.Log($"Setting Fish Health to {maxHealth}");
         if (maxHealth <= 0)
@@ -39,7 +39,8 @@ public class FishHealth : MonoBehaviour, ISaveStatus
             return;
         }
         
-        _currentHealth =  _maxHealth = maxHealth;
+        _maxHealth = maxHealth;
+        _currentHealth = currentHealth;
         
         GameEvents.OnUpdateHealthBar.Invoke(_currentHealth, _maxHealth);
     }
@@ -60,7 +61,7 @@ public class FishHealth : MonoBehaviour, ISaveStatus
     {
         if (this == null) return;
         
-        Debug.Log("Saving Fish Health");
+        Debug.Log("Saving Fish Health : " + _currentHealth);
         StatusPlayerManager.Instance.UpdateStatusHealth(_currentHealth);
     }
 }
