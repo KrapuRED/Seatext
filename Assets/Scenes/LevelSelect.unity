@@ -1289,11 +1289,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: tileType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: panelType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6619855779897668214, guid: a2b2059a2b6104e46b9e04f98648af8b, type: 3}
       propertyPath: _levelDataSO
@@ -4968,10 +4968,10 @@ MonoBehaviour:
     panelType: 4
     isActive: 0
     Panel: {fileID: 578572640}
-  - panelName: Node Panel Turtel Master
-    panelType: 4
+  - panelName: Node Panel Notification
+    panelType: 6
     isActive: 0
-    Panel: {fileID: 578572640}
+    Panel: {fileID: 1490087547}
 --- !u!1 &992788110
 GameObject:
   m_ObjectHideFlags: 0
@@ -8023,7 +8023,7 @@ MonoBehaviour:
   panelName: Panel - Notification
   panelID: 
   panelGO: {fileID: 1490087542}
-  panelType: 5
+  panelType: 6
   treasureDetail: {fileID: 1621594001}
   _canvasGroup: {fileID: 0}
 --- !u!1001 &1493752676
