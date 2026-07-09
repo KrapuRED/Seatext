@@ -183,9 +183,9 @@ public class PlayerFish : Fish, IPausable, IEatable
     {
         Debug.Log($"[EnemyFish - HandleEating] HandleEating Been Called!");
         
-        if (FishIndex != eaterFishIndex)
+        if (FoodIndex != eaterFishIndex)
         {
-            Debug.Log($"EnemyFish - HandleEating] Index of this is {FishIndex} is eaten by {eaterFishIndex}");
+            Debug.Log($"EnemyFish - HandleEating] Index of this is {FoodIndex} is eaten by {eaterFishIndex}");
             return;
         }
         

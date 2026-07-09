@@ -5,6 +5,7 @@ public class Food : TypingBox, IEatable, IPausable
     [Header("Food Config")]
     [SerializeField] private DropFoodSO _dropFoodSO;
     [SerializeField] private bool isCanInitilizeByStart;
+    [SerializeField] private int foodIndex;
 
     [Header("Food TypingBox Config")]
     [SerializeField] private WordLevel _wordLevel;
@@ -12,9 +13,10 @@ public class Food : TypingBox, IEatable, IPausable
     [SerializeField] private WordData _wordData;
 
     [Header("Food and Trash Movement")]
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float moveSpeed;
     [SerializeField] private float limitYPosition;
-    [SerializeField] private bool _canMove;
+    [SerializeField] private bool isCanMove;
+    [SerializeField] private bool isLocked;
 
     [Header("Events")]
     [SerializeField] private SetPositionPlayerEventSO setPositionPlayerEvent;
@@ -23,6 +25,16 @@ public class Food : TypingBox, IEatable, IPausable
 
     private SpriteRenderer _spriteRenderer;
 
+    private void OnEnable()
+    {
+        GameEvents.OnEatableEntered.AddListener(HandelFoodBeenEaten);
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnEatableEntered.RemoveListener(HandelFoodBeenEaten);
+    }
+    
     private void Start()
     {
         if (isCanInitilizeByStart)
@@ -31,7 +43,7 @@ public class Food : TypingBox, IEatable, IPausable
 
     private void Update()
     {
-        if (!_canMove)
+        if (!isCanMove)
         {
             return;
         }
@@ -44,7 +56,7 @@ public class Food : TypingBox, IEatable, IPausable
             return;
         }
 
-        transform.Translate(Vector2.down * _moveSpeed * Time.deltaTime);
+        transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
     }
 
     public void InitializeFood(WordLevel wordLevel, DropFoodSO foodData)
@@ -94,6 +106,7 @@ public class Food : TypingBox, IEatable, IPausable
             if (IsTextComplete())
             {
                 Debug.Log($"[{gameObject.name} - CheckingText] Text Is Done : {currentTextToType}");
+                isLocked  = true;
                 RemoveWord();
 
                 //call event to set this position to player fish
@@ -118,11 +131,31 @@ public class Food : TypingBox, IEatable, IPausable
         SetTextToType(currentTextToType);
     }
 
+    private void HandelFoodBeenEaten(IEatable eatable, FishType eatyingBy, int eaterFishIndex)
+    {
+        if (!ReferenceEquals(eatable, this)) 
+            return; // this event isn't about me, ignore it
+
+        if (eatyingBy != FishType.Player)
+            return;
+
+        if (!isLocked)
+        {
+            Debug.Log($"{gameObject.name} not typed yet, can't be eaten.");
+            return;
+        }
+
+        eatable.Eat(eatyingBy);
+    }
+    
+    
     public void Eat(FishType fishType)
     {
         Debug.Log($"[Food - Eat] {gameObject.name} has been eaten! Food Type : {_dropFoodSO.foodType}");
-
-        if (fishType == FishType.Player)
+        
+        if (!isLocked)
+            return;
+        else
         {
             switch (_dropFoodSO.foodType)
             {
@@ -139,10 +172,10 @@ public class Food : TypingBox, IEatable, IPausable
                     Debug.Log($"[Food - Eat] Goldenpellet {gameObject.name} has been eaten! Player will gain some points.");
                     break;
             }
-        }
 
-        RemoveWord();
-        Destroy(gameObject);
+            RemoveWord();
+            Destroy(gameObject);
+        }
     }
 
     private void RemoveWord()
@@ -153,11 +186,11 @@ public class Food : TypingBox, IEatable, IPausable
 
     public void OnPause()
     {
-        _canMove = false;
+        isCanMove = false;
     }
 
     public void OnResume()
     {
-        _canMove = true;
+        isCanMove = true;
     }
 }

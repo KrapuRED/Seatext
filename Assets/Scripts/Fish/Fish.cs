@@ -25,7 +25,7 @@ public class Fish : MonoBehaviour
 {
     [Header("General Fish Config")]
     [SerializeField] private FishSO _fishData;
-    [SerializeField] private int _fishIndex;
+    [SerializeField] private int foodIndex;
     [SerializeField] private FishMovement _fishMovement;
     [SerializeField] private FishEyeSight _fishEyeSight;
     [SerializeField] private FishSpeed _fishSpeed;
@@ -46,7 +46,7 @@ public class Fish : MonoBehaviour
     public FishAnimation FishAnimation => _fishAnimation;
     public bool IsBeenHunted => _isBeenHunted;
     public FishType FishType => _fishType;
-    public int FishIndex => _fishIndex;
+    public int FoodIndex => foodIndex;
     public FishContex Contex { get;  set; }
 
     public virtual void OnEating()
@@ -57,7 +57,7 @@ public class Fish : MonoBehaviour
     public void SetFishData(FishSO data, int fishIndex)
     {
         _fishData = data;
-        _fishIndex = fishIndex;
+        foodIndex = fishIndex;
     }
 
     public virtual void SetBeenHunted(bool isBeenHunted, Fish curerntFish = null)

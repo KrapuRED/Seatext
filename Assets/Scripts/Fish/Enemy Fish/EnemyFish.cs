@@ -13,7 +13,7 @@ public class EnemyContex : FishContex
     public EnemyFishTypeBox enemyFishTypeBox;
     public FishSightVisual fishSightVisual;
     public EnemyFish enemyFish;
-    public int enemyFishIndex;
+    public int foodIndex;
     public bool beenlocked;
 }
 
@@ -24,21 +24,21 @@ public class EnemyFish : Fish, IPausable, IEatable
     [SerializeField] private FishSightVisual    _fishSightVisual;
     [SerializeField] private EnemyFishTypeBox   _enemyFishTypeBox;
     [SerializeField] private FishTextRotate     _fishTextRotation;
-    [SerializeField] private int _foodBeenEaten;
-    [SerializeField] private bool IntilazeFishByStart;
+    [SerializeField] private int foodBeenEaten;
+    [SerializeField] private bool intilazeFishByStart;
 
     private Rigidbody2D _rb2d;
     private EnemyContex _enemyContex;
     
-    public int FoodBeenEaten => _foodBeenEaten;
+    public int FoodBeenEaten => foodBeenEaten;
     public EnemyContex enemyContex => _enemyContex;
     
     public FoodSize foodSize { get; set; }
 
     private void Start()
     {
-        if (IntilazeFishByStart)
-            IntilazeFish(EndWayPoint, FishData, FishIndex);
+        if (intilazeFishByStart)
+            IntilazeFish(EndWayPoint, FishData, FoodIndex);
     }
 
     private void OnEnable()
@@ -69,25 +69,26 @@ public class EnemyFish : Fish, IPausable, IEatable
         FishMovement.SetCanMove(true);
     }
 
-    public void IntilazeFish(Transform endWayPoint, FishSO data, int fishIndex)
+    public void IntilazeFish(Transform endWayPoint, FishSO data, int foodIndex)
     {
         EndWayPoint = endWayPoint;
 
         _rb2d = GetComponent<Rigidbody2D>();
-        SetFishData(data, fishIndex);
+        SetFishData(data, foodIndex);
 
         Contex = new EnemyContex
         {
             fishObject          = gameObject,
             enemyPosition       = transform,
             endWaypoint         = EndWayPoint,
+            
             fishMovement        = FishMovement,
             enemyFishEyeSight   = FishEyeSight,
             fishMouth           = FishMouth,
             enemyFishTypeBox    = _enemyFishTypeBox,
             fishSightVisual     = _fishSightVisual,
             fishSpeed           = FishSpeed,
-            enemyFishIndex      = FishIndex,
+            foodIndex           = base.FoodIndex,
             enemyFish           = this    
         };
 
@@ -116,15 +117,15 @@ public class EnemyFish : Fish, IPausable, IEatable
     {
         Debug.Log($"[EnemyFish - HandleEating] HandleEating Been Called!");
         
-        if (FishIndex != eaterFishIndex)
+        if (FoodIndex != eaterFishIndex)
         {
-            Debug.Log($"EnemyFish - HandleEating] Index of this is {FishIndex} is eaten by {eaterFishIndex}");
+            Debug.Log($"EnemyFish - HandleEating] Index of this is {FoodIndex} is eaten by {eaterFishIndex}");
             return;
         }
         
-        Debug.Log($"[EnemyFish - HandleEating] I am {FishIndex}, I ate something.");
+        Debug.Log($"[EnemyFish - HandleEating] I am {FoodIndex}, I ate something.");
         if (eatyingBy != FishType.Player)
-            _foodBeenEaten++;
+            foodBeenEaten++;
         
         eatable.Eat(eatyingBy);
     }
@@ -152,7 +153,7 @@ public class EnemyFish : Fish, IPausable, IEatable
                 break;
 
             case FishType.Small:
-                GameEvents.OnRemoveSpawnedFishData.Invoke(FishIndex);
+                GameEvents.OnRemoveSpawnedFishData.Invoke(FoodIndex);
                 break;
         }
 

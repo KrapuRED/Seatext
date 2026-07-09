@@ -11,7 +11,7 @@ public class StateNearEndPoint : EnemyStateSO
     protected override void ExcuteState(EnemyContex contex)
     {
         contex.enemyFishTypeBox.RemoveWordFromFish();
-        GameEvents.OnRemoveSpawnedFishData.Invoke(contex.enemyFishIndex);
+        GameEvents.OnRemoveSpawnedFishData.Invoke(contex.foodIndex);
         Destroy(contex.fishObject);
     }
     protected override void ExitState(EnemyContex contex)

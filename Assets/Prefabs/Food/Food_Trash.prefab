@@ -229,14 +229,16 @@ MonoBehaviour:
   setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
   _dropFoodSO: {fileID: 11400000, guid: b3e00c2e13b14d94eb8263d970e92bb6, type: 2}
   isCanInitilizeByStart: 1
+  foodIndex: 0
   _wordLevel: 1
   _typeBoxUI: {fileID: 8767203307820056284}
   _wordData:
     word: 
     wordLevel: 0
-  _moveSpeed: 0.9
+  moveSpeed: 1
   limitYPosition: -5
-  _canMove: 1
+  isCanMove: 1
+  isLocked: 0
   setPositionPlayerEvent: {fileID: 11400000, guid: b5d65512b82cc9c48b39e39f132f10e9, type: 2}
 --- !u!61 &1682887378073600455
 BoxCollider2D:
