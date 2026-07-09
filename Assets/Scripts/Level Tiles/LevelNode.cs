@@ -91,18 +91,32 @@ public class LevelNode : MonoBehaviour
 
     public void CheckSurroundingLevelNode()
     {
+        if (GameManager.instance.IsFailed)
+        {
+            return;
+        }
+            
         if (!_isBeenInitialized)
             return;
-        
+    
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _levelNodeRadius, _LevelNodeLayer);
+
+        float detectionAngle = 150f; // 90 (half-circle) + 60 (extra into the rear)
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.TryGetComponent(out LevelNode levelNode)){
+            if (hitCollider.TryGetComponent(out LevelNode levelNode))
+            {
+                Vector2 directionToNode = (levelNode.transform.position - transform.position).normalized;
+
+                // Angle between forward direction and the node, 0-180
+                float angle = Vector2.Angle(transform.right, directionToNode);
+
+                if (angle > detectionAngle)
+                    continue; // outside the widened cone, skip it
+
                 if (levelNode.LevelNodeState == LevelNodeState.Unseen || levelNode.LevelNodeState == LevelNodeState.Explored)
                 {
-                    //Debug.Log($"[LevelNode - CheckSurroundingLevelNode] Set near current level node: {levelNode.gameObject.name}");
-
                     GameEvents.OnSetNearCurrentLevelNode.Invoke(levelNode);
                     levelNode.SetSaroundingTilesBeenSeen();
                 }

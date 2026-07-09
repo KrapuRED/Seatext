@@ -7,12 +7,14 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Level Node Settings")]
     [SerializeField] private bool _levelNodeDone;
+    [SerializeField] private bool isFailed;
     [SerializeField] private string _levelNodeID;
     [SerializeField] private LevelDataSO  _levelData;
     
     public LevelDataSO LevelDataSO => _levelData;
     public string LevelNodeID => _levelNodeID;
     public bool LevelDone => _levelNodeDone;
+    public bool IsFailed => isFailed;
     
     private void Awake()
     {
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
     public void LevelNodeFailed()
     {
         _levelNodeDone = true;
+        isFailed =  true;
 
         PanelManager.instance.OpenPanelByTypePanel(PanelType.PanelDead);
     }
