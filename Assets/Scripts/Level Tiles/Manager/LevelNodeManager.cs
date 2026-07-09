@@ -248,6 +248,12 @@ public class LevelNodeManager : MonoBehaviour
 
     private void ApplyExploredStates(HashSet<string> exploredIDs)
     {
+        if (GameManager.instance.IsFailed)
+        {
+            Debug.LogWarning(($"You lost too much health"));
+            return;
+        }
+        
         //Debug.Log($"[LevelNodeManager] SetLevelNodeBeenExplored called, IsReady={IsReady}, nodeCount={_levelNodeDatas.Count}");
         foreach (var levelNodeID in exploredIDs)
         {

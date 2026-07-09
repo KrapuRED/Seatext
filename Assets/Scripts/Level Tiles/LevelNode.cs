@@ -26,7 +26,7 @@ public class LevelNode : MonoBehaviour
     [Header("Level Node Config")]
     [SerializeField] private string _levelNodeID;
     [SerializeField] private LevelNodeType tileType;
-    [SerializeField] private LevelDataSO _levelDataSO;
+    [SerializeField] private LevelDataSO levelDataSO;
     [SerializeField] private LevelNodeState _levelNodeState;
     [SerializeField] private LevelNodeTypeBox _levelNodeTypeBox;
     [SerializeField] private LevelNodeTextUI _levelNodeTextUI;
@@ -44,7 +44,7 @@ public class LevelNode : MonoBehaviour
     
     public LevelNodeState LevelNodeState => _levelNodeState;
     public LevelNodeType TileType => tileType;
-    public LevelDataSO LevelDataSO => _levelDataSO;
+    public LevelDataSO LevelDataSO => levelDataSO;
     public string LevelNodeID => _levelNodeID;
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -82,8 +82,7 @@ public class LevelNode : MonoBehaviour
         }
         else
         {
-            if (tileType == LevelNodeType.Normal)
-                _levelDataSO = levelData;
+            levelDataSO = levelData;
 
             _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
         }
@@ -137,6 +136,19 @@ public class LevelNode : MonoBehaviour
         CheckSurroundingLevelNode();
     }
 
+    private PanelType CheckPanelTypeByTileType(LevelNodeType NodeType)
+    {
+        PanelType selectedPanelType = tileType switch
+        {
+            LevelNodeType.Normal           => PanelType.NodePanelNormal,
+            LevelNodeType.Treasure         => PanelType.NodePanelTreasure,
+            LevelNodeType.TurtelMasterNode => PanelType.NodePanelTurtelMaster,
+            _                              => PanelType.None
+        };
+        panelType = selectedPanelType;
+        return selectedPanelType;
+    }
+    
     public void SelectedLevelNode()
     {
         _levelNodeState = LevelNodeState.Current;
@@ -145,7 +157,7 @@ public class LevelNode : MonoBehaviour
 
         GameEvents.OnSetLevelNode.Invoke(this);
 
-        PanelManager.instance.OpenPanelByTypePanel(panelType, _levelDataSO);
+        PanelManager.instance.OpenPanelByTypePanel(CheckPanelTypeByTileType(tileType), levelDataSO);
         
         if (_levelNodeState != LevelNodeState.Explored)
             GameEvents.OnSelectedNextLevelNode.Invoke(this);
