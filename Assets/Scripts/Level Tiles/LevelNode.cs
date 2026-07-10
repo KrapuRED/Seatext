@@ -63,6 +63,12 @@ public class LevelNode : MonoBehaviour
     { 
         _levelNodeID = levelNodeID;
         _isBeenInitialized = true;
+
+        if (tileType == LevelNodeType.StartPoint)
+        {
+            Debug.Log("Save ID start point level node");
+            GameManager.instance.SaveStartLevelNodeID(levelNodeID);
+        }
         
         if (_spriteRenderer == null)
         {

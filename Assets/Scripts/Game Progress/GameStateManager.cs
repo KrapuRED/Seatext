@@ -122,4 +122,12 @@ public class GameStateManager : MonoBehaviour
         LevelNodeProgress levelNodeProgress = _levelNodeGameProgress.Find(x => x.levelNodeID == levelNodeID);
         levelNodeProgress.levelNodeState = levelNodeState;
     }
+
+    public void ResetLevelNodeGameProgress()
+    {
+        _levelNodeBeenExplored.Clear();
+        _levelNodeGameProgress.Clear();
+        _progressMap.Clear();
+        _exploredNodeIDs.Clear();
+    }
 }

@@ -24,12 +24,17 @@ public class StatusHungerUI : StatusBarUI
 
     private void OnRemoveListeners()
     {
-        GameEvents.OnUpdateHealthBar.RemoveListener(UpdateStatusBar);
+        GameEvents.OnUpdateHungerBar.RemoveListener(UpdateStatusBar);
     }
 
     public override void UpdateStatusBar(float currentValue, float maxValue)
     {
-        hungerSlider.value  = Mathf.Abs(maxValue / 100);
-        trashSlider.value   = Mathf.Abs(currentValue / 100);
+        float fixedMax = StatusPlayerManager.Instance.MaxPlayerHungerStatus;
+
+        if (fixedMax <= 0f)
+            return;
+
+        hungerSlider.value = Mathf.Clamp01(maxValue / fixedMax); // hunger remaining
+        trashSlider.value  = Mathf.Clamp01(currentValue / fixedMax);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -26,10 +27,10 @@ public class TypeBoxManager : MonoBehaviour
     public static TypeBoxManager instance;
 
     [SerializeField] private TypeTypingBox _currentTypingMode;
-    [SerializeField] protected List<TypingBoxByType> _activeTypingBoxs = new List<TypingBoxByType>();
+    [SerializeField] protected List<TypingBoxByType> activeTypingBoxs = new List<TypingBoxByType>();
 
     [Header("Events")]
-    [SerializeField] protected SetTypeBoxEventSO _setTypeBoxEvent;
+    [SerializeField] private SetTypeBoxEventSO setTypeBoxEvent;
 
     private void Awake()
     {
@@ -41,12 +42,39 @@ public class TypeBoxManager : MonoBehaviour
         // Initialize the dictionary with empty lists for each TypeTypingBox
         foreach (TypeTypingBox type in System.Enum.GetValues(typeof(TypeTypingBox)))
         {
-            _activeTypingBoxs.Add(new TypingBoxByType(type));
+            activeTypingBoxs.Add(new TypingBoxByType(type));
         }
+    }
+    
+    private void OnEnable()
+    {
+        setTypeBoxEvent.Register(SetActiveTypeBox);
+    }
+
+    private void OnDisable()
+    {
+        UnRegisterEvent();
+    }
+
+    private void OnDestroy()
+    {
+        UnRegisterEvent();
+    }
+
+    private void UnRegisterEvent()
+    {
+        setTypeBoxEvent.Unregister(SetActiveTypeBox);
+        
     }
 
     public void SetCurrentTypeMode(TypeTypingBox typeMod)
     {
+        if (instance == null)
+        {
+            Debug.LogWarning($"[TypeBoxManager] TypeBoxManager instance is null");
+            return;
+        }
+        
         _currentTypingMode = typeMod;
     }
 
@@ -55,13 +83,13 @@ public class TypeBoxManager : MonoBehaviour
         // This method can be overridden by derived classes to implement specific typing logic
         List<TypingBox> macthingTypeBox = new List<TypingBox>();
 
-        if (_activeTypingBoxs.Count == 0)
+        if (activeTypingBoxs.Count == 0)
         {
             return;
         }
 
         //set typebox active by type
-        var activeTypeBox = _activeTypingBoxs.Find(x => x.type == _currentTypingMode);
+        var activeTypeBox = activeTypingBoxs.Find(x => x.type == _currentTypingMode);
 
         foreach (var box in new List<TypingBox>(activeTypeBox.typingBoxes))
         {
@@ -87,12 +115,12 @@ public class TypeBoxManager : MonoBehaviour
     private void SetActiveTypeBox(TypingBox activeTypeBox)
     {
         var type = activeTypeBox.TypeTypingBox;
-        var typeGroup = _activeTypingBoxs.Find(x => x.type == type);
+        var typeGroup = activeTypingBoxs.Find(x => x.type == type);
 
         if (typeGroup == null)
         {
             typeGroup = new TypingBoxByType(type);
-            _activeTypingBoxs.Add(typeGroup);
+            activeTypingBoxs.Add(typeGroup);
         }
         
         if (!typeGroup.typingBoxes.Contains(activeTypeBox))
@@ -103,7 +131,7 @@ public class TypeBoxManager : MonoBehaviour
 
     public void ResetAllTypeBox()
     {
-        var typeGroup = _activeTypingBoxs.Find(x => x.type == _currentTypingMode);
+        var typeGroup = activeTypingBoxs.Find(x => x.type == _currentTypingMode);
 
         foreach (var typeBox in typeGroup.typingBoxes)
         {
@@ -113,7 +141,7 @@ public class TypeBoxManager : MonoBehaviour
 
     public void RemoveTypeBox(TypingBox typeBox)
     {
-        var typeGroup = _activeTypingBoxs.Find(x => x.type == _currentTypingMode);
+        var typeGroup = activeTypingBoxs.Find(x => x.type == _currentTypingMode);
 
         if (typeGroup == null)
         {
@@ -124,15 +152,5 @@ public class TypeBoxManager : MonoBehaviour
         typeGroup.typingBoxes.Remove(typeBox);
 
         //ResetAllTypeBox();
-    }
-
-    private void OnEnable()
-    {
-        _setTypeBoxEvent.Register(SetActiveTypeBox);
-    }
-
-    private void OnDisable()
-    {
-        _setTypeBoxEvent.Unregister(SetActiveTypeBox);
     }
 }

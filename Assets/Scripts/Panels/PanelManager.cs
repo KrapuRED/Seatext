@@ -10,6 +10,7 @@ public enum PanelType
     NodePanelTreasure,
     NodePanelTurtelMaster,
     PanelNotification,
+    PanelRetry,
     None
 }
 
@@ -26,9 +27,13 @@ public class PanelManager : MonoBehaviour
 {
     public static PanelManager instance;
 
-    [SerializeField] private Transform _panelContainer;
+    [SerializeField] private Transform panelContainer;
     public List<PanelData> panelDatas = new List<PanelData>();
 
+    
+    private bool _isRegistered;
+    private List<(PanelType panelType, object data)> _pendingOpenRequests = new();
+    
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -59,7 +64,7 @@ public class PanelManager : MonoBehaviour
 
     public void OnRegisterPanel()
     {
-        foreach (Transform panelObject in _panelContainer)
+        foreach (Transform panelObject in panelContainer)
         {
             Panel panel = panelObject.GetComponentInChildren<Panel>();
             
@@ -75,30 +80,46 @@ public class PanelManager : MonoBehaviour
                 panelType = panel.panelType,
                 Panel = panel
             };
-            
+
             panelDatas.Add(panelData);
-        }
+        } 
+        
+        _isRegistered = true;
+        ProcessPendingOpenRequests();
     }
 
     public void OpenPanelByTypePanel(PanelType panelType, object data = null)
     {
+        if (!_isRegistered)
+        {
+            Debug.Log($"[PanelManager - OpenPanelByTypePanel] Not registered yet, queueing request for {panelType}");
+            _pendingOpenRequests.Add((panelType, data));
+            return;
+        }
+        
         var panelData = panelDatas.Find(panelData => panelData.panelType == panelType);
-
-        Debug.Log($"[PanelManager - OpenPanelByTypePanel] Open Panel : {panelData.Panel.name} with type {panelType}");
 
         if (panelData == null)
         {
             Debug.LogError($"[PanelManager - OpenPanelByTypePanel] Panel with type {panelType} not found!");
             return;
         }
-
+        
+        Debug.Log($"[PanelManager - OpenPanelByTypePanel] Open Panel : {panelData.Panel.name} with type {panelType}");
         if (data != null)
         {
             panelData.Panel.SetDataToPanel(data);
         }
 
-        TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.UI);
-
+        if (TypeBoxManager.instance == null)
+        {
+            Debug.LogError("[PanelManager] TypeBoxManager.instance is null!");
+        }
+        else
+        {
+            TypeBoxManager.instance.SetCurrentTypeMode(TypeTypingBox.UI);
+        }
+        
         panelData.isActive = true;
         panelData.Panel.OpenPanel();
     }
@@ -171,6 +192,23 @@ public class PanelManager : MonoBehaviour
         {
             panelData.isActive = false;
             panelData.Panel.ClosePanel();
+        }
+    }
+    
+    private void ProcessPendingOpenRequests()
+    {
+        if (_pendingOpenRequests.Count == 0)
+            return;
+
+        var requests = _pendingOpenRequests;
+        _pendingOpenRequests = new List<(PanelType, object)>();
+
+        foreach (var request in requests)
+        {
+            if (request.panelType == PanelType.None)
+                continue;
+
+            OpenPanelByTypePanel(request.panelType, request.data);
         }
     }
 }

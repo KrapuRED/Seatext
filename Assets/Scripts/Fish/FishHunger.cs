@@ -69,6 +69,7 @@ public class FishHunger : MonoBehaviour, ISaveStatus
 
     public void SetTrashingHungerbar(float gainTrash)
     {
+        Debug.Log($"gainTrash: {gainTrash}");
         trashGain += gainTrash;
         maxHunger -= gainTrash;
 

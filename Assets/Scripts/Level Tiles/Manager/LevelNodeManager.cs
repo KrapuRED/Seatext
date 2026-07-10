@@ -115,6 +115,41 @@ public class LevelNodeManager : MonoBehaviour
         }
     }
 
+    private void RegisterLevelNode(LevelNode levelNode, HashSet<string> exploredIDs = null)
+    {
+        string levelNodeID = $"LN-{_levelNodeDatas.Count}";
+        
+        var gameStateManager = GameStateManager.Instance;
+
+        bool isBeenExplored = levelNodeID != null
+            ? exploredIDs.Contains(levelNodeID) 
+            : gameStateManager.IsLevelNodeBeenExplored(levelNodeID);
+
+
+        if (levelNode.TileType == LevelNodeType.StartPoint && !isBeenExplored)
+        {
+            _currentLevelNode = levelNode;
+            gameStateManager.SetCurrentLevelNode(levelNodeID);
+        }
+        
+        LevelNodeData newLevelData = new LevelNodeData
+        {
+            levelNodeName = levelNode.name,
+            levelNodeID = levelNodeID,
+            levelNode = levelNode
+        };
+
+        _levelNodeDatas.Add(newLevelData);
+        _levelNodeMap[levelNodeID] = levelNode;
+
+        if (gameStateManager.IsLevelNodeGameProgressExist(levelNodeID))
+            gameStateManager.SetLevelNodeGameProgress(levelNodeID, levelNode.LevelNodeState);
+
+        LevelDataSO randomData = randomGeneratorData.GetRandomDataLevelNode();
+
+        levelNode.IntiliazeLevelNode(levelNodeID, randomData);
+    }
+    
     #region Explore Node Level Management
     public void ExploreNodeLevel()
     {
@@ -153,41 +188,6 @@ public class LevelNodeManager : MonoBehaviour
             }
         }
         return null;
-    }
-    
-    public void RegisterLevelNode(LevelNode levelNode, HashSet<string> exploredIDs = null)
-    {
-        string levelNodeID = $"LN-{_levelNodeDatas.Count}";
-        
-        var gameStateManager = GameStateManager.Instance;
-
-        bool isBeenExplored = levelNodeID != null
-            ? exploredIDs.Contains(levelNodeID) 
-            : gameStateManager.IsLevelNodeBeenExplored(levelNodeID);
-
-
-        if (levelNode.TileType == LevelNodeType.StartPoint && !isBeenExplored)
-        {
-            _currentLevelNode = levelNode;
-            gameStateManager.SetCurrentLevelNode(levelNodeID);
-        }
-        
-        LevelNodeData newLevelData = new LevelNodeData
-        {
-            levelNodeName = levelNode.name,
-            levelNodeID = levelNodeID,
-            levelNode = levelNode
-        };
-
-        _levelNodeDatas.Add(newLevelData);
-        _levelNodeMap[levelNodeID] = levelNode;
-
-        if (gameStateManager.IsLevelNodeGameProgressExist(levelNodeID))
-            gameStateManager.SetLevelNodeGameProgress(levelNodeID, levelNode.LevelNodeState);
-
-        LevelDataSO randomData = randomGeneratorData.GetRandomDataLevelNode();
-
-        levelNode.IntiliazeLevelNode(levelNodeID, randomData);
     }
 
     public void SetNearCurrentLevelNode(LevelNode nearLevelNode)
@@ -251,6 +251,7 @@ public class LevelNodeManager : MonoBehaviour
         if (GameManager.instance.IsFailed)
         {
             Debug.LogWarning(($"You lost too much health"));
+            PanelManager.instance.OpenPanelByTypePanel(PanelType.PanelRetry);
             return;
         }
         

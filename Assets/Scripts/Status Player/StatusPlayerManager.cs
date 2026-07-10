@@ -161,4 +161,14 @@ public class StatusPlayerManager : MonoBehaviour
 
         currentPlayerTrashStatus = 0 ;
     }
+
+    public void ResetStatus()
+    {
+        if (!initialized)
+            return;
+        
+        currentPlayerHealthStatus = playerData.baseFishStats.maxFishHealth;
+        currentPlayerHungerStatus = maxPlayerHungerStatus;
+        currentPlayerTrashStatus  = playerData.startingTrash;
+    }
 }

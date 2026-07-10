@@ -830,7 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfae8186929cee148a91a9368d3fbf6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelContainer: {fileID: 1533325074}
+  panelContainer: {fileID: 1533325074}
   panelDatas: []
 --- !u!1 &321308409
 GameObject:
@@ -1560,8 +1560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentTypingMode: 2
-  _activeTypingBoxs: []
-  _setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
+  activeTypingBoxs: []
+  setTypeBoxEvent: {fileID: 11400000, guid: 8ff3e380c906d0247b97def252f5fc1b, type: 2}
 --- !u!1 &590329575
 GameObject:
   m_ObjectHideFlags: 0

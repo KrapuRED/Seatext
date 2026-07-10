@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool _levelNodeDone;
     [SerializeField] private bool isFailed;
     [SerializeField] private string _levelNodeID;
+    [SerializeField] private string startLevelNodeID;
     [SerializeField] private LevelDataSO  _levelData;
     
     public LevelDataSO LevelDataSO => _levelData;
@@ -61,6 +62,8 @@ public class GameManager : MonoBehaviour
         PanelManager.instance.OpenPanelByTypePanel(PanelType.PanelSurvive);
     }
 
+    public void SaveStartLevelNodeID(string _startLevelNodeID) => startLevelNodeID = _startLevelNodeID;
+    
     public void LevelNodeFailed()
     {
         _levelNodeDone = true;
@@ -81,6 +84,17 @@ public class GameManager : MonoBehaviour
     public void LoadLevelSelect()
     {
         GameStateManager.Instance.AddLevelNodeBeenExplored(_levelNodeID);
+        SceneController.instance.LoadScene("LevelSelect");
+    }
+
+    public void RestartGame()
+    {
+        _levelNodeID = startLevelNodeID;
+        GameStateManager.Instance.ResetLevelNodeGameProgress();
+        StatusPlayerManager.Instance.ResetStatus();
+        
+        isFailed = false;
+        
         SceneController.instance.LoadScene("LevelSelect");
     }
 }
