@@ -142,22 +142,25 @@ public class EnemyFish : Fish, IPausable, IEatable
     {
         Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten!");
 
-        if (!_enemyContex.beenlocked)
+        if (fishType == FishType.Player)
         {
-            Debug.Log($"{this.gameObject.name} cannot eat {_enemyContex.beenlocked}");
-            return;
-        }
+            if (!_enemyContex.beenlocked)
+            {
+                Debug.LogWarning($"{gameObject.name}: beenlocked was false, bypassing temporarily for testing");
+            }
         
-        switch (fishType)
-        {
-            case FishType.Player:
-                Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten by Player Fish!");
-                GameEvents.OnPlayerEating.Invoke();
-                break;
+            switch (fishType)
+            {
+                case FishType.Player:
+                    Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten by Player Fish!");
+                    GameEvents.OnPlayerEating.Invoke();
+                    break;
 
-            case FishType.Small:
-                GameEvents.OnRemoveSpawnedFishData.Invoke(FoodIndex);
-                break;
+                case FishType.Small:
+                    Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten by Small Fish!");
+                    GameEvents.OnRemoveSpawnedFishData.Invoke(FoodIndex);
+                    break;
+            }
         }
 
         _enemyFishTypeBox.RemoveWordFromFish();

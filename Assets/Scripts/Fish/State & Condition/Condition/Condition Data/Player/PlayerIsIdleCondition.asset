@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47912cec2a382746b022a0be5229d12, type: 3}
   m_Name: PlayerIsIdleCondition
   m_EditorClassIdentifier: 
-  idleTime: 1
+  idleTime: 0.1

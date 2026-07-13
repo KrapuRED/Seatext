@@ -147,12 +147,18 @@ public class Food : TypingBox, IEatable, IPausable
 
         eatable.Eat(eatyingBy);
     }
-    
-    
+
+
     public void Eat(FishType fishType)
     {
         Debug.Log($"[Food - Eat] {gameObject.name} has been eaten! Food Type : {_dropFoodSO.foodType}");
-        
+
+        if (fishType != FishType.Player)
+        {
+            RemoveWord();
+            Destroy(gameObject);
+        }
+
         if (!isLocked)
             return;
         else

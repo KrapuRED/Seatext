@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcc920648220a1438059c63149dc997, type: 3}
   m_Name: PlayerRoamingInactiveCondition
   m_EditorClassIdentifier: 
-  IdleTimeThreshold: 5
+  IdleTimeThreshold: 1

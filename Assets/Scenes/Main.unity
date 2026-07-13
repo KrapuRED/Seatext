@@ -957,8 +957,16 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: currentPlayerTrashStatus
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: currentPlayerHealthStatus
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: currentPlayerHungerStatus
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4793,7 +4801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputString: 
-  timerToIdle: 5
+  timerToIdle: 1
   timer: 0
   isIdle: 0
 --- !u!1 &1593225110
