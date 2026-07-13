@@ -21,7 +21,10 @@ public class EnemyFishTypeBox : TypingBox
     private void SetWordData()
     {
         _wordData = WordBankManager.instance.GetRandomWordData(_wordLevel);
-
+        
+        if (_textAnimation == null)
+            return;
+        
         if (_wordData == null)
         {
             Destroy(gameObject);

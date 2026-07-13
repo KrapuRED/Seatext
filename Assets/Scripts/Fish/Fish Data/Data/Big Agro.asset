@@ -17,7 +17,8 @@ MonoBehaviour:
   fishSprite: {fileID: 0}
   fishSize: 4
   fishBehavior: 2
-  speedFish: 10
+  maxFishHealth: 0
+  speedFish: 100
   dataStateCondtions:
   - nameStateCondition: Near End Point
     stateConditionID: 

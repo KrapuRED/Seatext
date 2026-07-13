@@ -465,6 +465,7 @@ MonoBehaviour:
   distanceToTarget: 1
   maxHealth: 100
   _isActiveFish: 0
+  durationInvisible: 0.5
   _playerFishHunger: {fileID: 5304595852391326909}
   _playerFishHealth: {fileID: 101739699635907254}
   _stateMachine: {fileID: 3253668060543353932}

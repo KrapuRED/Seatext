@@ -950,7 +950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: maxPlayerHealthStatus
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: maxPlayerHungerStatus
@@ -962,7 +962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: currentPlayerHealthStatus
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: currentPlayerHungerStatus
@@ -2416,20 +2416,31 @@ MonoBehaviour:
   wordLevel: 1
   IntilazeSpawnerByStart: 0
   _spawnTableDatas:
-  - fishName: Tiny Passive Fish
+  - fishName: Tiny Shrimp
     fishPrefab: {fileID: 6216361357872936819, guid: 7b3e3914ec4a66f4e92a4a0a0efc68ea, type: 3}
-    spawnChance: 70
+    spawnChance: 0
     fishDatas:
     - {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
+  - fishName: Tiny Teri
+    fishPrefab: {fileID: 3976892856433584271, guid: 8e15698b20b622041a8b51d3ce5650eb, type: 3}
+    spawnChance: 0
+    fishDatas:
+    - {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
   - fishName: Small Aggresive
     fishPrefab: {fileID: 304445558140996880, guid: 729ae7319b66654429e35f47ba54a04a, type: 3}
-    spawnChance: 28
+    spawnChance: 0
     fishDatas:
     - {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
   - fishName: 'Small Golden '
     fishPrefab: {fileID: 7017269339228373192, guid: 44122c6812476304fa1387678d98f916, type: 3}
-    spawnChance: 2
+    spawnChance: 0
     fishDatas:
+    - {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
+  - fishName: Big Fish
+    fishPrefab: {fileID: 1251050015922200359, guid: ff7734a5779c76f4f9b404f22001f59e, type: 3}
+    spawnChance: 100
+    fishDatas:
+    - {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
     - {fileID: 11400000, guid: 2c7e5121158b0fb41bd9f956c030829b, type: 2}
   _spawnedFishDatas: []
 --- !u!1001 &959992602
@@ -6609,6 +6620,26 @@ PrefabInstance:
     - target: {fileID: 4692316933345027950, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_Name
       value: Player Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970934337533873492, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8243017
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970934337533873492, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Size.y
+      value: 3.1915774
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970934337533873492, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970934337533873492, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0028149933
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970934337533873492, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.4656334
       objectReference: {fileID: 0}
     - target: {fileID: 7998975373102525702, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: _playerData

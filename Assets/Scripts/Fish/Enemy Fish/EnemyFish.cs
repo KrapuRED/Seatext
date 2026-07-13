@@ -54,7 +54,12 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        OnEating();
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            IEatable eatable =  collision.collider.GetComponent<IEatable>();
+            
+            OnEating(eatable);
+        }
     }
 
     public void OnPause()
@@ -133,9 +138,18 @@ public class EnemyFish : Fish, IPausable, IEatable
         eatable.Eat(eatyingBy);
     }
 
-    public override void OnEating()
+    public override void OnEating(IEatable eatable)
     {
-
+        if (eatable == null)
+        {
+            Debug.LogWarning($"Eating is null! in {gameObject.name}");
+            return;
+        }
+        
+        if (FishData.fishSize == FoodSize.Big)
+        {
+            eatable.Eat(FishType.Big);
+        }
     }
 
     public void Eat(FishType fishType)

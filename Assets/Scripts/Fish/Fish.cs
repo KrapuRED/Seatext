@@ -49,7 +49,7 @@ public class Fish : MonoBehaviour
     public int FoodIndex => foodIndex;
     public FishContex Contex { get;  set; }
 
-    public virtual void OnEating()
+    public virtual void OnEating(IEatable eatable)
     {
 
     }
