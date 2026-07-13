@@ -107,6 +107,7 @@ public class EnemyFish : Fish, IPausable, IEatable
         FishSpeed.ownerFishType = FishType;
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);
+        
         FishMovement.IntilizaFishMovement(_rb2d, FishData);
         foodSize = FishData.fishSize;
 

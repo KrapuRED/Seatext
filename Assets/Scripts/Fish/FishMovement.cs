@@ -33,15 +33,15 @@ public class FishMovement : MonoBehaviour
         {
             speed *= 2f;
             Debug.Log($"New speed : {speed}");
-        }
+        }   
 
         RotateFish(TargetPosition);
 
         //Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.position}, Fish Speed : {speed}");
         _rigidbody2D.MovePosition(
-            Vector2.MoveTowards(transform.position, 
+            Vector2.MoveTowards(_rigidbody2D.position, 
                 TargetPosition.position,
-            speed * Time.deltaTime));
+                speed * Time.fixedDeltaTime));
     }
 
     public void Dodge(Vector2 dodgeDir)

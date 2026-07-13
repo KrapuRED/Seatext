@@ -31,6 +31,8 @@ public class PlayerFish : Fish, IPausable, IEatable
     [SerializeField] private StateMachine _stateMachine;
 
     private Rigidbody2D _rb2d;
+    private Transform _moveTarget;
+    private float _moveSpeed;
 
     public FoodSize foodSize { get ; set ; }
     public FishHunger PlayerFishHunger => _playerFishHunger;
@@ -122,12 +124,21 @@ public class PlayerFish : Fish, IPausable, IEatable
         if (PlayerContex.IsRoaming)
         {
             //Debug.Log($"[PlayerFish - Update] Move PlayerFish to Roaming Point");
-            FishMovement.MoveFish(targetPosition, CheckDistanceToTarget() ,FishSpeed.GetRoamingFishSpeed());
+            _moveTarget = targetPosition;
+            _moveSpeed = FishSpeed.GetRoamingFishSpeed();
             return;
         }
 
         FishMovement.MoveFish(targetPosition, CheckDistanceToTarget() ,FishSpeed.GetChaseFishSpeed());
         FishAnimation.OnHandlingMovementAnimation(CheckDistanceToTarget());
+    }
+    
+    private void FixedUpdate()
+    {
+        if (_moveTarget == null)
+            return;
+
+        FishMovement.MoveFish(_moveTarget, CheckDistanceToTarget(), _moveSpeed);
     }
 
     public void TakingDamage(float damageValue)
