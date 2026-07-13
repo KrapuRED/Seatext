@@ -1,0 +1,21 @@
+using UnityEngine;
+
+public class PowerUpNode : MonoBehaviour
+{
+    [SerializeField] private BoostType boostType;
+    
+    private string _powerUpNodeID;
+    
+    public BoostType BoostType => boostType;
+    
+    public void InitializePowerUpNode(string powerUpNodeID)
+    {
+        _powerUpNodeID = powerUpNodeID;
+        Debug.Log($"{gameObject.name} : InitializePowerUpNode by {_powerUpNodeID}");
+    }
+
+    public void ConnectPowerUpNode(Transform nextPowerUpNode)
+    {
+        
+    }
+}
