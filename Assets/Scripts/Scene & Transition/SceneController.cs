@@ -64,7 +64,9 @@ public class SceneController : MonoBehaviour
         {
             case "Main":
                 if (ManagerTimer.instance != null & GameManager.instance != null)
-                    ManagerTimer.instance.StartTimer(GameManager.instance.LevelDataSO.durationLevelDataNode);
+                {
+                    GameEvents.OnMainSceneReady.AddListener(HandleMainSceneReady);
+                }
                 else
                 {
                     Debug.LogError("Main Scene managers are missing!");
@@ -89,8 +91,19 @@ public class SceneController : MonoBehaviour
         if (!string.IsNullOrEmpty(_pendingExploredNodeID))
         {
             StatusPlayerManager.Instance.ShowStatus();
+            CurrencyManager.instance.ShowCurrency();
+            
             GameEvents.OnSetLevelNodeBeenExplored.Invoke(_pendingExploredNodeID);
             _pendingExploredNodeID = string.Empty; // Clear cache
         }
+    }
+
+    private void HandleMainSceneReady()
+    {
+        GameEvents.OnMainSceneReady.RemoveListener(HandleMainSceneReady);
+        
+        StatusPlayerManager.Instance.ShowStatus();
+        CurrencyManager.instance.ShowCurrency();
+        ManagerTimer.instance.StartTimer(GameManager.instance.LevelDataSO.durationLevelDataNode);
     }
 }

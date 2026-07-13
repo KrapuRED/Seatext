@@ -108,10 +108,9 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     private void Update()
     {
-        //if done return
         if (GameManager.instance.LevelDone)
             return;
-        
+    
         _playerFishHunger.Starve();
 
         if (targetPosition == null)
@@ -119,13 +118,13 @@ public class PlayerFish : Fish, IPausable, IEatable
 
         if (PlayerContex.IsRoaming)
         {
-            //Debug.Log($"[PlayerFish - Update] Move PlayerFish to Roaming Point");
             _moveTarget = targetPosition;
             _moveSpeed = FishSpeed.GetRoamingFishSpeed();
             return;
         }
 
-        FishMovement.MoveFish(targetPosition, CheckDistanceToTarget() ,FishSpeed.GetChaseFishSpeed());
+        _moveTarget = targetPosition;
+        _moveSpeed = FishSpeed.GetChaseFishSpeed();
         FishAnimation.OnHandlingMovementAnimation(CheckDistanceToTarget());
     }
     
@@ -133,13 +132,14 @@ public class PlayerFish : Fish, IPausable, IEatable
     {
         if (_moveTarget == null)
             return;
-                
-        if (CheckDistanceToTarget() <= distanceToTarget && (!PlayerContex.IsIdle || !PlayerContex.IsRoaming))
+            
+        if (CheckDistanceToTarget() <= distanceToTarget && PlayerContex.IsIdle && !PlayerContex.IsRoaming)
         {
             targetPosition = null;
+            _moveTarget = null; // also clear this, or FixedUpdate keeps using stale target
             return;
         }
-        
+    
         FishMovement.MoveFish(_moveTarget, CheckDistanceToTarget(), _moveSpeed);
     }
 
@@ -178,6 +178,11 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     private float CheckDistanceToTarget()
     {
+        if (targetPosition == null)
+        {
+            return 0;
+        }
+        
         float distance = Vector3.Distance(transform.position, targetPosition.position);
         return distance;
     }

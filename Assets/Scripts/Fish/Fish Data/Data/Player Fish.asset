@@ -18,7 +18,7 @@ MonoBehaviour:
   fishSize: 3
   fishBehavior: 0
   maxFishHealth: 100
-  speedFish: 50
+  speedFish: 60
   dataStateCondtions:
   - nameStateCondition: Player Roaming Inactive State
     stateConditionID: PS-01

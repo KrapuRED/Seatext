@@ -102,7 +102,7 @@ public class CurrencyManager : MonoBehaviour
         }
     }
 
-    private void ShowCurrency()
+    public void ShowCurrency()
     {
         if (this == null) return;
 

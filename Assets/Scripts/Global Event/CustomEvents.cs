@@ -80,6 +80,7 @@ public class GameEvents
 {
     public static readonly CustomEvents OnChangeToSelectLevel = new ();
     public static readonly CustomEvents OnLevelNodeManagerReady = new();
+    public static readonly CustomEvents OnMainSceneReady = new();
 
     #region Camere Events
     public static readonly CustomEvents<Transform> OnChangeCameraPosition = new();

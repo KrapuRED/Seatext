@@ -80,6 +80,8 @@ Transform:
   - {fileID: 2095505925627775706}
   - {fileID: 1867892989797573556}
   - {fileID: 7820192549593754125}
+  - {fileID: 56925548632253994}
+  - {fileID: 6340719609879145747}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2043027174605804679
@@ -95,8 +97,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelNodeDone: 0
+  isFailed: 0
   _levelNodeID: 
+  startLevelNodeID: 
   _levelData: {fileID: 11400000, guid: 07ffd7b2917c64b4cb400db3f0a37b17, type: 2}
+--- !u!1 &5522889908144358836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 56925548632253994}
+  - component: {fileID: 5000720662808098959}
+  m_Layer: 0
+  m_Name: 'Game Manager - Player Booster Manager '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &56925548632253994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522889908144358836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234530495832871996}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5000720662808098959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522889908144358836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707a25c439e108a4fbadf22b2671782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpContainer: {fileID: 0}
+  speedBoost: 0
+  healthBoost: 0
+  hungerBoost: 0
 --- !u!1 &7168146593718856141
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,11 +193,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2dccb8acf579f747b0c6f69e7576994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 5c04d5d22fa4f42409f96f3a8299d544, type: 2}
   maxPlayerHealthStatus: 100
-  currentPlayerHealthStatus: 100
+  currentPlayerHealthStatus: 0
   maxPlayerHungerStatus: 100
-  currentPlayerTrashStatus: 0
-  initialized: 1
+  currentPlayerHungerStatus: 0
+  currentPlayerTrashStatus: 50
+  initialized: 0
 --- !u!1 &8177310376545817269
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,3 +247,49 @@ MonoBehaviour:
   initialCurrencyData:
   - currencyType: 0
     Amount: 100
+--- !u!1 &8525614100819675084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6340719609879145747}
+  - component: {fileID: 79417656065922919}
+  m_Layer: 0
+  m_Name: Game Manager -  Work Bank
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6340719609879145747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525614100819675084}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234530495832871996}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &79417656065922919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525614100819675084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa56422aff5626641b5bacfdd72a0af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wordBankText: {fileID: 4900000, guid: fd11250e8e0e14b40bca2192cbb0d46b, type: 3}
+  _word: []

@@ -30,6 +30,11 @@ public class ManagerTimer : MonoBehaviour, IPausable
         PauseManager.instance.Unregister(this);
     }
 
+    private void Start()
+    {
+        GameEvents.OnMainSceneReady.Invoke();
+    }
+
     private void Update()
     {
         if (!_gameStarted)
