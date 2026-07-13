@@ -105,6 +105,8 @@ public class EnemyFish : Fish, IPausable, IEatable
         
         _enemyContex = Contex as EnemyContex;
         FishSpeed.ownerFishType = FishType;
+        FishSpeed.InitiliazeFishSpeed(FishData.speedFish);
+        
         _enemyFishTypeBox.setTypeBoxEvent.Raise(_enemyFishTypeBox);
         _enemyFishTypeBox.SetTextToType(_enemyFishTypeBox.currentTextToType);
         

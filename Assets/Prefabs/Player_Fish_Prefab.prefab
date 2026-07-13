@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fishData: {fileID: 11400000, guid: 225121f13c087284f82f3bde409e8138, type: 2}
-  _fishIndex: 0
+  foodIndex: 0
   _fishMovement: {fileID: 2695495758539738174}
   _fishEyeSight: {fileID: 3167100711482963360}
   _fishSpeed: {fileID: 320694748856772512}
@@ -460,6 +460,7 @@ MonoBehaviour:
   _fishType: 1
   mouthPosition: {fileID: 0}
   eatRange: 0
+  _playerData: {fileID: 0}
   targetPosition: {fileID: 0}
   distanceToTarget: 1
   maxHealth: 100
@@ -585,7 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerFishType: 0
-  baseSpeed: 100
+  baseSpeed: 0
   roamingSpeedFactor: 0.05
   chaseSpeedFactor: 1
   stackChaseSpeedFactor: 1

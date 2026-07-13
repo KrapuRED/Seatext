@@ -18,7 +18,7 @@ MonoBehaviour:
   fishSize: 1
   fishBehavior: 3
   maxFishHealth: 0
-  speedFish: 100
+  speedFish: 55
   dataStateCondtions:
   - nameStateCondition: End Point State
     stateConditionID: 

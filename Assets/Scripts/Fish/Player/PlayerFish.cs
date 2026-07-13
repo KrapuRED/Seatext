@@ -72,6 +72,8 @@ public class PlayerFish : Fish, IPausable, IEatable
 
         FishEyeSight.isCanSee = true;
         FishSpeed.ownerFishType = FishType;
+        FishSpeed.InitiliazeFishSpeed(_playerData.baseFishStats.speedFish);
+        
         FishMouth.ownerFish = this;
         FishMouth.SetMouthState(true);
         foodSize = FishData.fishSize;
@@ -114,12 +116,6 @@ public class PlayerFish : Fish, IPausable, IEatable
 
         if (targetPosition == null)
             return;
-        
-        if (CheckDistanceToTarget() <= distanceToTarget && (!PlayerContex.IsIdle || !PlayerContex.IsRoaming))
-        {
-            targetPosition = null;
-            return;
-        }
 
         if (PlayerContex.IsRoaming)
         {
@@ -137,7 +133,13 @@ public class PlayerFish : Fish, IPausable, IEatable
     {
         if (_moveTarget == null)
             return;
-
+                
+        if (CheckDistanceToTarget() <= distanceToTarget && (!PlayerContex.IsIdle || !PlayerContex.IsRoaming))
+        {
+            targetPosition = null;
+            return;
+        }
+        
         FishMovement.MoveFish(_moveTarget, CheckDistanceToTarget(), _moveSpeed);
     }
 
