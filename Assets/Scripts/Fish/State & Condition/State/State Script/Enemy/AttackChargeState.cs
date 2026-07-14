@@ -7,7 +7,7 @@ public class AttackChargeState : EnemyStateSO
 
     protected override void EnterState(EnemyContex contex)
     {
-        Debug.Log($"{contex.enemyFish.name} is {name}");
+        contex.fishSightVisual.Attach();
         contex.fishMovement.RotateFish(contex.endWaypoint);
         contex.chargeTimer = chargeDelay;
     }
