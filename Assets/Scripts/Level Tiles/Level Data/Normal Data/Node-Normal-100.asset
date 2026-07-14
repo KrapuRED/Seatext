@@ -19,3 +19,4 @@ MonoBehaviour:
   currentFlowSpeed: 0
   environmentSprite: {fileID: 0}
   fishSpawnTable: []
+  spawnerData: {fileID: 11400000, guid: 24e4b251d6db73b45948f4408a0fe77e, type: 2}

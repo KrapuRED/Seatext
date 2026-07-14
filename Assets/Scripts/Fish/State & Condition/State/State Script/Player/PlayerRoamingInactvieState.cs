@@ -8,7 +8,6 @@ public class PlayerRoamingInactvieState : PlayerStateSO
 
     protected override void EnterState(PlayerContex contex)
     {
-        Debug.Log($"[PlayerRoamingInactvieState - EnterState] Enter Roaming Inactive State");
         contex.IsRoaming = true;
 
         contex.playerFish.SetPlayerFishDirection(WaypointManager.Instance.GetRandomRoamingPoint().spawnTransform);
@@ -16,7 +15,6 @@ public class PlayerRoamingInactvieState : PlayerStateSO
 
     protected override void ExcuteState(PlayerContex contex)
     {
-        Debug.Log($"[PlayerRoamingInactvieState - ExcuteState] Excute Roaming Inactive State");
         if(contex.RoamingPoint == null)
             return;
 

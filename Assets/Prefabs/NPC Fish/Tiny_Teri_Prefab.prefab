@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 1263286676106930364}
   - component: {fileID: 6898263408152032526}
   m_Layer: 6
-  m_Name: Tiny Shrimp - Sight Visual
+  m_Name: Tiny Teri - Sight Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 4720291183142388878}
   - component: {fileID: 122828699751748820}
   m_Layer: 6
-  m_Name: Tiny Shrimp - Speed
+  m_Name: Tiny Teri - Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fishData: {fileID: 11400000, guid: 07e8243089f18ee43a5af9fc7653d3e7, type: 2}
-  _fishIndex: 0
+  foodIndex: 0
   _fishMovement: {fileID: 3006693309012365404}
   _fishEyeSight: {fileID: 5324948949588780560}
   _fishSpeed: {fileID: 122828699751748820}
@@ -473,8 +473,8 @@ MonoBehaviour:
   _fishSightVisual: {fileID: 6898263408152032526}
   _enemyFishTypeBox: {fileID: 2086981854219159738}
   _fishTextRotation: {fileID: 8747800965288909227}
-  _foodBeenEaten: 0
-  IntilazeFishByStart: 0
+  foodBeenEaten: 0
+  intilazeFishByStart: 0
 --- !u!50 &4285365757082080078
 Rigidbody2D:
   serializedVersion: 5
@@ -559,7 +559,7 @@ GameObject:
   - component: {fileID: 3962424785649714708}
   - component: {fileID: 3006693309012365404}
   m_Layer: 6
-  m_Name: Tiny Shrimp - Movement
+  m_Name: Tiny Teri - Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -696,12 +696,12 @@ GameObject:
   - component: {fileID: 3648945778708235402}
   - component: {fileID: 5324948949588780560}
   m_Layer: 0
-  m_Name: Tiny Shrimp - EyeSight
+  m_Name: Tiny Teri - EyeSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3648945778708235402
 Transform:
   m_ObjectHideFlags: 0
@@ -750,7 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6088882083046567520}
   m_Layer: 6
-  m_Name: Tiny Shrimp - System
+  m_Name: Tiny Teri - System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -939,7 +939,7 @@ GameObject:
   - component: {fileID: 8856605345342984880}
   - component: {fileID: 3840964997057139631}
   m_Layer: 6
-  m_Name: Tiny Shrimp - State Machine
+  m_Name: Tiny Teri - State Machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1137,7 +1137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6576827813991239635}
   m_Layer: 0
-  m_Name: Eye Position
+  m_Name: Eye Sight - Eye Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 5815918724236820018}
   - component: {fileID: 2086981854219159738}
   m_Layer: 6
-  m_Name: Tiny Shrimp - TypeSystem
+  m_Name: Tiny Teri - TypeSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

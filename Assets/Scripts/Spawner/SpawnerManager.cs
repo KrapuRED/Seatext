@@ -13,25 +13,47 @@ public enum WayPointPosition
     bottom
 }
 
-public class SpawnerManager : MonoBehaviour, IPausable
+[System.Serializable]
+public class FishSpawnChannel : SpawnChannel
+{
+    public FishSpawnerType type = FishSpawnerType.Passive;
+}
+
+[System.Serializable]
+public class SpawnChannel
+{
+    public string channelName = "Channel";
+    public float spawnInterval = 5f;
+    public bool isEnabled = true;
+ 
+    [NonSerialized] public Coroutine routine;
+}
+
+public abstract class SpawnerManager<TChannel> : MonoBehaviour, IPausable
+    where TChannel : SpawnChannel
 {
     [Header("Spawner Config")]
     [SerializeField] private List<SpawingAreaData> spawnAreas = new List<SpawingAreaData>();
-    [SerializeField] protected Transform _continer;
-    [SerializeField] protected GameObject _prefab;
-    [SerializeField] protected float _spawnInterval;
-    [SerializeField] protected bool _isSpawning;
+    [SerializeField] protected Transform continerSpawning;
+    [SerializeField] protected float spawnInterval;
     [SerializeField] protected WordLevel wordLevel;
-    [SerializeField] private bool IntilazeSpawnerByStart;
+    [SerializeField] private bool isIntilazeSpawnerByStart;
 
+    [SerializeField] public List<TChannel> spawnChannels = new List<TChannel>();
+    
     private Coroutine _spawnCoroutine;
-
+    [SerializeField] protected bool _isSpawning;
+    
+    
     private void Start()
     {
         PauseManager.instance.Register(this);
-        if (IntilazeSpawnerByStart)
-            Spawn();
-
+        if (isIntilazeSpawnerByStart)
+        {
+            _isSpawning = true;
+        }
+        
+        InitializeSpawnwer(GameManager.instance.LevelDataSO.spawnerData);
         OnStartSpawing();
     }
 
@@ -39,7 +61,15 @@ public class SpawnerManager : MonoBehaviour, IPausable
     {
         Debug.Log("[SpawnerManager - OnPause] OnPause");
         _isSpawning = false;
-        bool isCoroutineRunning = _spawnCoroutine != null;
+ 
+        foreach (TChannel channel in spawnChannels)
+        {
+            if (channel.routine != null)
+            {
+                StopCoroutine(channel.routine);
+                channel.routine = null;
+            }
+        }
     }
 
     public void OnResume()
@@ -50,30 +80,38 @@ public class SpawnerManager : MonoBehaviour, IPausable
 
     public void OnStartSpawing()
     {
-        _spawnCoroutine = StartCoroutine(SpawingCoroutine());
+        Debug.Log("[SpawnerManager - OnStartSpawing] OnStartSpawing");
+        _isSpawning  = true;
+        
+        foreach (TChannel channel in spawnChannels)
+        {
+            if (!channel.isEnabled)
+                continue;
+ 
+            if (channel.routine == null)
+                channel.routine = StartCoroutine(SpawingCoroutine(channel));
+        }
     }
 
-    public virtual void Spawn()
-    {
-        Debug.Log("[SpawnerManager - Spawn] Spawning...");
-    }
+    public abstract void InitializeSpawnwer(SpawnerDataSO spawnerData);
+    
+    protected abstract void Spawn(TChannel channel);
 
     public SpawingAreaData GetRandomSpawmPoint()
     {
         int randomIndex = Random.Range(0, spawnAreas.Count);
-
-        //Debug.Log($"[FoodTrashSpawnerManager - GetRandomSpawmPoint] Random Index : {randomIndex} | Spawn Name : {spawnAreas[randomIndex].spawingAreaName}");
         SpawingAreaData aviableSpawn = spawnAreas[randomIndex];
-
         return aviableSpawn;
     }
 
-    private IEnumerator SpawingCoroutine()
+    private IEnumerator SpawingCoroutine(TChannel channel)
     {
-        while (_isSpawning)
+        while (_isSpawning && channel.isEnabled)
         {
-            yield return new WaitForSeconds(_spawnInterval);
-            Spawn();
+            yield return new WaitForSeconds(channel.spawnInterval);
+            Spawn(channel);
         }
+ 
+        channel.routine = null;
     }
 }

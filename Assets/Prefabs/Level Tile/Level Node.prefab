@@ -250,7 +250,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -563584203156416979, guid: cbe90c811a19e6b449f071841090a3bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -294,8 +294,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sample text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cbe90c811a19e6b449f071841090a3bd, type: 2}
+  m_sharedMaterial: {fileID: -563584203156416979, guid: cbe90c811a19e6b449f071841090a3bd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -473,7 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelNodeID: 0
   tileType: 1
-  _levelDataSO: {fileID: 11400000, guid: 43b0dd638afee654ab24b99f07d93af7, type: 2}
+  levelDataSO: {fileID: 0}
   _levelNodeState: 0
   _levelNodeTypeBox: {fileID: 8727858882895210407}
   _levelNodeTextUI: {fileID: 820660135497653250}

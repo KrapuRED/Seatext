@@ -12,11 +12,14 @@ public class LevelDataSO : ScriptableObject, IPanelDisplayable
     public Sprite environmentSprite;
 
     [Header("Fish Spawn Table Data")] 
-    public List<SpawnTableData> fishSpawnTable = new List<SpawnTableData>();
+    public List<FishSpawnTableData> fishSpawnTable = new List<FishSpawnTableData>();
 
     public string DisplayName => levelDataName;
     public string DisplayDescription => levelDescription;
     public string DisplayFlow => currentFlowSpeed.ToString();
 
     public Sprite DisplaySprite => environmentSprite;
+    
+    [Header("Spawner Table Data")]
+    public SpawnerDataSO  spawnerData;
 }

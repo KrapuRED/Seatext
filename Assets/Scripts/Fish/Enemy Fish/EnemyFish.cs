@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyContex : FishContex
 {
+    public FishSpawnerType EnemyFishSpawnerType;
     public Transform enemyPosition;
     public Transform endWaypoint;
 
@@ -38,7 +39,7 @@ public class EnemyFish : Fish, IPausable, IEatable
     private void Start()
     {
         if (intilazeFishByStart)
-            IntilazeFish(EndWayPoint, FishData, FoodIndex);
+            IntilazeFish(EndWayPoint, FishSpawnerType.None, FishData, FoodIndex);
     }
 
     private void OnEnable()
@@ -74,7 +75,7 @@ public class EnemyFish : Fish, IPausable, IEatable
         FishMovement.SetCanMove(true);
     }
 
-    public void IntilazeFish(Transform endWayPoint, FishSO data, int foodIndex)
+    public void IntilazeFish(Transform endWayPoint, FishSpawnerType fishSpawnerType ,FishSO data, int foodIndex)
     {
         EndWayPoint = endWayPoint;
 
@@ -83,6 +84,7 @@ public class EnemyFish : Fish, IPausable, IEatable
 
         Contex = new EnemyContex
         {
+            EnemyFishSpawnerType =  fishSpawnerType,
             fishObject          = gameObject,
             enemyPosition       = transform,
             endWaypoint         = EndWayPoint,
@@ -172,7 +174,7 @@ public class EnemyFish : Fish, IPausable, IEatable
 
                 case FishType.Small:
                     Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten by Small Fish!");
-                    GameEvents.OnRemoveSpawnedFishData.Invoke(FoodIndex);
+                    GameEvents.OnRemoveSpawnedFishData.Invoke(FishSpawnerType.Passive, FoodIndex);
                     break;
             }
         }

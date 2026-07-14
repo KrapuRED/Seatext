@@ -88,7 +88,7 @@ public class GameEvents
 
     #region Fish Events
     public static readonly CustomEvents<IEatable, FishType, int> OnEatableEntered = new ();
-    public static readonly CustomEvents<int> OnRemoveSpawnedFishData = new ();
+    public static readonly CustomEvents<FishSpawnerType, int> OnRemoveSpawnedFishData = new ();
     #endregion
 
     #region Player Fish Events
