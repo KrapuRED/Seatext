@@ -78,6 +78,11 @@ public abstract class SpawnerManager<TChannel> : MonoBehaviour, IPausable
         OnStartSpawing();
     }
 
+    private void OnDestroy()
+    {
+        spawnChannels.Clear();
+    }
+
     public void OnStartSpawing()
     {
         Debug.Log("[SpawnerManager - OnStartSpawing] OnStartSpawing");

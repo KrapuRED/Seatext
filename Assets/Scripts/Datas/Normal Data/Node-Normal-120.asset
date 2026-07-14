@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Node-Normal-120
   m_EditorClassIdentifier: 
   levelDataID: NN-00
-  levelDataName: Normal 120
+  levelDataName: Normal 140
   levelDescription: The currents carry both prey and peril.
-  durationLevelDataNode: 120
+  durationLevelDataNode: 140
   currentFlowSpeed: 0
   environmentSprite: {fileID: 0}
   difficulty: 2
-  fishSpawnTable: []
-  spawnerData: {fileID: 11400000, guid: 24e4b251d6db73b45948f4408a0fe77e, type: 2}
+  spawnerData: {fileID: 11400000, guid: 1c4f6584f2abd1d4493827e63dd3aaec, type: 2}

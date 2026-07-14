@@ -20,9 +20,6 @@ public class LevelDataSO : ScriptableObject, IPanelDisplayable
     public Sprite environmentSprite;
     public LevelDifficulty difficulty;
     
-    [Header("Fish Spawn Table Data")] 
-    public List<FishSpawnTableData> fishSpawnTable = new List<FishSpawnTableData>();
-
     public string DisplayName => levelDataName;
     public string DisplayDescription => levelDescription;
     public string DisplayFlow => currentFlowSpeed.ToString();

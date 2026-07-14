@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LevelNodeVisuals : MonoBehaviour
@@ -17,9 +18,9 @@ public class LevelNodeVisuals : MonoBehaviour
     [Header("Node State Selected Visuals By Type")]
     [SerializeField] private GameObject selectedNodeVisual;
 
-    public void InitializedLevelNodeVisuals(SpriteRenderer spriteRender)
+    private void Awake()
     {
-        _spriteRenderer = spriteRender;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void SetVisualLevelNodeByState(LevelNodeState state)
@@ -45,8 +46,11 @@ public class LevelNodeVisuals : MonoBehaviour
         };
     }
 
-    public void SetVisualLevelNodeByLevelDifficulty(LevelDifficulty difficulty)
+    public void SetVisualLevelNodeByLevelDifficulty(LevelDifficulty difficulty, LevelNodeState state)
     {
+        if (state == LevelNodeState.Unseen)
+            return;
+        
         _spriteRenderer.sprite = difficulty switch
         {
             LevelDifficulty.None => defaultNode,

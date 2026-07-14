@@ -51,13 +51,10 @@ public class LevelNode : MonoBehaviour
     
     private bool _isBeenInitialized = false;
 
-    private void Awake()
+    private void Start()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _levelNodeVisuals.InitializedLevelNodeVisuals(_spriteRenderer);
         ResetToHidden();
     }
-
 
     public void IntiliazeLevelNode(string levelNodeID, LevelDataSO levelData)
     { 
@@ -68,12 +65,6 @@ public class LevelNode : MonoBehaviour
         {
             Debug.Log("Save ID start point level node");
             GameManager.instance.SaveStartLevelNodeID(levelNodeID);
-        }
-        
-        if (_spriteRenderer == null)
-        {
-            Debug.LogError($"[LevelNode] _spriteRenderer missing on {gameObject.name}");
-            return;
         }
         
         if (GameStateManager.Instance.IsLevelNodeBeenExplored(_levelNodeID))
@@ -87,10 +78,8 @@ public class LevelNode : MonoBehaviour
         {
             OnSetPlayerHere();
         }
-        else if (tileType == LevelNodeType.Normal && levelDataSO.difficulty != LevelDifficulty.None)
-        {
-            _levelNodeVisuals.SetVisualLevelNodeByLevelDifficulty(levelDataSO.difficulty);
-        }
+        else if (tileType == LevelNodeType.Normal)
+            _levelNodeVisuals.SetVisualLevelNodeByLevelDifficulty(levelDataSO.difficulty, _levelNodeState);
         else
         {
             _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
@@ -126,7 +115,7 @@ public class LevelNode : MonoBehaviour
                 if (levelNode.LevelNodeState == LevelNodeState.Unseen || levelNode.LevelNodeState == LevelNodeState.Explored)
                 {
                     GameEvents.OnSetNearCurrentLevelNode.Invoke(levelNode);
-                    levelNode.SetSaroundingTilesBeenSeen();
+                    levelNode.SetSurroundingTilesBeenSeen();
                 }
             }
         }
@@ -172,7 +161,7 @@ public class LevelNode : MonoBehaviour
             GameEvents.OnSelectedNextLevelNode.Invoke(this);
     }
 
-    public void SetSaroundingTilesBeenSeen()
+    public void SetSurroundingTilesBeenSeen()
     {
         if (GameStateManager.Instance.IsLevelNodeBeenExplored(_levelNodeID))
         {
@@ -186,8 +175,14 @@ public class LevelNode : MonoBehaviour
         {
             _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
         }
+        else if (levelDataSO != null)
+        {
+            _levelNodeVisuals.SetVisualLevelNodeByLevelDifficulty(levelDataSO.difficulty, _levelNodeState);
+        }
         else
-            _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
+        {
+            Debug.LogWarning($"[LevelNode] {_levelNodeID} has no levelDataSO yet in SetSurroundingTilesBeenSeen — skipping difficulty visual.");
+        }
 
         _levelNodeVisuals.ActiveSelectNodeVisual();
 
