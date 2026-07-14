@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f79c5c66bd2f14458a557e28f596366, type: 3}
   m_Name: AttackChargeState
   m_EditorClassIdentifier: 
-  chargeDelay: 5
+  chargeDelay: 3.5

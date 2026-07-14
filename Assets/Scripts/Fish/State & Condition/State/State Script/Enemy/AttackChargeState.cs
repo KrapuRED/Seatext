@@ -3,35 +3,30 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AttackChargeState", menuName = "State Machine/State/AttackChargeState")]
 public class AttackChargeState : EnemyStateSO
 {
-    [SerializeField] private float chargeDelay;
-
-    private float chargeTimer;
-    private Transform chargeDirection;
+        [SerializeField] private float chargeDelay;
 
     protected override void EnterState(EnemyContex contex)
     {
         Debug.Log($"{contex.enemyFish.name} is {name}");
         contex.fishMovement.RotateFish(contex.endWaypoint);
-        chargeTimer = chargeDelay;
+        contex.chargeTimer = chargeDelay;
     }
 
     protected override void ExcuteState(EnemyContex contex)
     {
-        if (chargeTimer > 0 )
+        if (contex.chargeTimer > 0)
         {
-            chargeTimer -= Time.deltaTime;
+            contex.chargeTimer -= Time.deltaTime;
             contex.fishSightVisual.OnSightVisual(contex.endWaypoint);
-            Debug.Log("Charge in " + Mathf.Round(chargeTimer));
+            Debug.Log("Charge in " + Mathf.Round(contex.chargeTimer));
         }
 
-        if (chargeTimer <= 0)
+        if (contex.chargeTimer <= 0)
         {
             contex.fishSightVisual.Dettach();
-            chargeDirection = contex.endWaypoint;
-            
-            float distance = Vector2.Distance(chargeDirection.position, contex.endWaypoint.position);
-            
-            contex.fishMovement.MoveFish(chargeDirection, distance,contex.fishSpeed.GetFishSpeed(1));
+            contex.chargeDirection = contex.endWaypoint;
+
+            contex.fishMovement.MoveFish(contex.chargeDirection, 0f, contex.fishSpeed.GetFishSpeed(1));
         }
     }
 

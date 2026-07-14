@@ -8,7 +8,9 @@ public class EnemyContex : FishContex
     public FishSpawnerType EnemyFishSpawnerType;
     public Transform enemyPosition;
     public Transform endWaypoint;
-
+    public float chargeTimer;
+    public Transform chargeDirection;
+    
     public FishEyeSight enemyFishEyeSight;
     public FishMouth enemyFishMouth;
     public EnemyFishTypeBox enemyFishTypeBox;
@@ -157,14 +159,12 @@ public class EnemyFish : Fish, IPausable, IEatable
     public void Eat(FishType fishType)
     {
         Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten!");
-
+        
+        if (FishData.fishSize == FoodSize.Big)
+            return;
+        
         if (fishType == FishType.Player)
         {
-            if (!_enemyContex.beenlocked)
-            {
-                Debug.LogWarning($"{gameObject.name}: beenlocked was false, bypassing temporarily for testing");
-            }
-        
             switch (fishType)
             {
                 case FishType.Player:

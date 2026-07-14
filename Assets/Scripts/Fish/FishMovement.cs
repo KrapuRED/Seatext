@@ -17,7 +17,6 @@ public class FishMovement : MonoBehaviour
     public void IntilizaFishMovement(Rigidbody2D rb2d, FishSO fishData)
     {
         _rigidbody2D = rb2d;
-
     }
 
 
@@ -37,7 +36,7 @@ public class FishMovement : MonoBehaviour
 
         RotateFish(TargetPosition);
 
-        //Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.position}, Fish Speed : {speed}");
+        Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.position}, Fish Speed : {speed}");
         _rigidbody2D.MovePosition(
             Vector2.MoveTowards(_rigidbody2D.position, 
                 TargetPosition.position,

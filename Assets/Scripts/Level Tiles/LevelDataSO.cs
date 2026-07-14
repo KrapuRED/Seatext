@@ -1,6 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
+public enum LevelDifficulty
+{
+    None,
+    Normal,
+    Hard
+}
+
 [CreateAssetMenu(fileName = "LevelDataSO", menuName = "Level Data/LevelDataSO")]
 public class LevelDataSO : ScriptableObject, IPanelDisplayable
 {
@@ -10,7 +18,8 @@ public class LevelDataSO : ScriptableObject, IPanelDisplayable
     public float durationLevelDataNode;
     public float currentFlowSpeed;
     public Sprite environmentSprite;
-
+    public LevelDifficulty difficulty;
+    
     [Header("Fish Spawn Table Data")] 
     public List<FishSpawnTableData> fishSpawnTable = new List<FishSpawnTableData>();
 

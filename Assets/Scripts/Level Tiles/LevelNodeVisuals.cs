@@ -4,16 +4,18 @@ public class LevelNodeVisuals : MonoBehaviour
 {
 
     [Header("Node State Visuals By Type")]
-    [SerializeField] private Sprite _treasureNode;
-    [SerializeField] private Sprite _turtelMasterNode;
-    [SerializeField] private Sprite _startPointNode;
-    [SerializeField] private Sprite _endPointNode;
-    [SerializeField] private Sprite _defaultNode;
+    [SerializeField] private Sprite normalNode;
+    [SerializeField] private Sprite normalHardNode;
+    [SerializeField] private Sprite treasureNode;
+    [SerializeField] private Sprite turtelMasterNode;
+    [SerializeField] private Sprite startPointNode;
+    [SerializeField] private Sprite endPointNode;
+    [SerializeField] private Sprite defaultNode;
 
     private SpriteRenderer _spriteRenderer;
 
     [Header("Node State Selected Visuals By Type")]
-    [SerializeField] private GameObject _selectedNodeVisual;
+    [SerializeField] private GameObject selectedNodeVisual;
 
     public void InitializedLevelNodeVisuals(SpriteRenderer spriteRender)
     {
@@ -24,8 +26,8 @@ public class LevelNodeVisuals : MonoBehaviour
     {
         _spriteRenderer.sprite = state switch
         {
-            LevelNodeState.Current => _startPointNode,
-            LevelNodeState.Explored => _startPointNode,
+            LevelNodeState.Current => startPointNode,
+            LevelNodeState.Explored => defaultNode,
             _ => _spriteRenderer.sprite
         };
     }
@@ -34,15 +36,26 @@ public class LevelNodeVisuals : MonoBehaviour
     {
         _spriteRenderer.sprite = type switch
         {
-            LevelNodeType.Normal => _defaultNode,
-            LevelNodeType.StartPoint => _startPointNode,
-            LevelNodeType.EndPoint => _endPointNode,
-            LevelNodeType.Treasure => _treasureNode,
-            LevelNodeType.TurtelMasterNode => _turtelMasterNode,
+            LevelNodeType.Normal => defaultNode,
+            LevelNodeType.StartPoint => startPointNode,
+            LevelNodeType.EndPoint => endPointNode,
+            LevelNodeType.Treasure => treasureNode,
+            LevelNodeType.TurtelMasterNode => turtelMasterNode,
             _ => _spriteRenderer.sprite
         };
     }
 
-    public void ActiveSelectNodeVisual() => _selectedNodeVisual.SetActive(true);
-    public void HideSelecttNodeVisual() => _selectedNodeVisual.SetActive(false);
+    public void SetVisualLevelNodeByLevelDifficulty(LevelDifficulty difficulty)
+    {
+        _spriteRenderer.sprite = difficulty switch
+        {
+            LevelDifficulty.None => defaultNode,
+            LevelDifficulty.Normal => normalNode,
+            LevelDifficulty.Hard => normalHardNode,
+            _ => defaultNode
+        };
+    }
+
+    public void ActiveSelectNodeVisual() => selectedNodeVisual.SetActive(true);
+    public void HideSelecttNodeVisual() => selectedNodeVisual.SetActive(false);
 }

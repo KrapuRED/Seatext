@@ -25,7 +25,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     [SerializeField] private float maxHealth;
     [SerializeField] private bool _isActiveFish;
     [SerializeField] private float durationInvisible;
-    private bool _isInvisible;
+    [SerializeField] private bool _isInvisible;
     private float currentInvisible;
 
     [Header("Fish System")]
@@ -113,6 +113,15 @@ public class PlayerFish : Fish, IPausable, IEatable
     {
         if (GameManager.instance.LevelDone)
             return;
+        
+        if (_isInvisible && currentInvisible > 0)
+        {
+            currentInvisible -= Time.deltaTime;
+        }
+        else
+        {
+            _isInvisible = false;
+        }
     
         _playerFishHunger.Starve();
 
@@ -129,15 +138,6 @@ public class PlayerFish : Fish, IPausable, IEatable
         _moveTarget = targetPosition;
         _moveSpeed = FishSpeed.GetChaseFishSpeed();
         FishAnimation.OnHandlingMovementAnimation(CheckDistanceToTarget());
-
-        if (_isInvisible)
-        {
-            currentInvisible -= Time.deltaTime;
-        }
-        else
-        {
-            _isInvisible = false;
-        }
     }
     
     private void FixedUpdate()
@@ -162,9 +162,7 @@ public class PlayerFish : Fish, IPausable, IEatable
 
         _isInvisible = true;
         currentInvisible = durationInvisible;
-        
-        Debug.LogWarning($"{gameObject.name} is taking damage! {damageValue}");
-        
+
         if (_playerFishHealth.IsDead())
         {
             Debug.Log($"[PlayerFish - TakingDamage] PlayerFish {gameObject.name} has been killed!");

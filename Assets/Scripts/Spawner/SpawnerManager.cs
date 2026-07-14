@@ -43,18 +43,18 @@ public abstract class SpawnerManager<TChannel> : MonoBehaviour, IPausable
     
     private Coroutine _spawnCoroutine;
     [SerializeField] protected bool _isSpawning;
-    
-    
+
+
     private void Start()
     {
         PauseManager.instance.Register(this);
         if (isIntilazeSpawnerByStart)
         {
             _isSpawning = true;
+            OnStartSpawing();
         }
-        
+
         InitializeSpawnwer(GameManager.instance.LevelDataSO.spawnerData);
-        OnStartSpawing();
     }
 
     public void OnPause()

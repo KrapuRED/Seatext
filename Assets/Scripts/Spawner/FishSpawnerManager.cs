@@ -58,6 +58,8 @@ public class FishSpawnerManager : SpawnerManager<FishSpawnChannel>
         spawnChannels = spawnerData.FishSpawnChannels;
         passiveFishSpawnTableDatas = spawnerData.PassiveFishSpawnTables;
         activeFishSpawnTableDatas = spawnerData.ActiveFishSpawnTables;
+        
+        OnStartSpawing();
     }
 
     protected override void Spawn(FishSpawnChannel channel)

@@ -498,12 +498,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e7bc0af3412094fa702669ef1baefd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _treasureNode: {fileID: -6046268299638658832, guid: 33ef495798176774995b13da0569755a, type: 3}
-  _turtelMasterNode: {fileID: 920998829298326565, guid: 710d5aca95b09184c8e42de75dbd650f, type: 3}
-  _startPointNode: {fileID: -4641696000792493217, guid: 18d68eb3ce52c2641bad3f6dfa98e881, type: 3}
-  _endPointNode: {fileID: 8500735139857096737, guid: 64fd8cba3103c9643a8193a88a99aeb9, type: 3}
-  _defaultNode: {fileID: -3784827429331164461, guid: d398f209c9937ea488ea3a6b03896ddb, type: 3}
-  _selectedNodeVisual: {fileID: 1276384630836532422}
+  normalNode: {fileID: 9084849186935761193, guid: fa0d538ddefc7ed418ffba0b0882209c, type: 3}
+  normalHardNode: {fileID: -3361920443687223328, guid: 003a285d6e00da34f97a450b6dafe1ec, type: 3}
+  treasureNode: {fileID: -6046268299638658832, guid: 33ef495798176774995b13da0569755a, type: 3}
+  turtelMasterNode: {fileID: 920998829298326565, guid: 710d5aca95b09184c8e42de75dbd650f, type: 3}
+  startPointNode: {fileID: -4641696000792493217, guid: 18d68eb3ce52c2641bad3f6dfa98e881, type: 3}
+  endPointNode: {fileID: 8500735139857096737, guid: 64fd8cba3103c9643a8193a88a99aeb9, type: 3}
+  defaultNode: {fileID: -3784827429331164461, guid: d398f209c9937ea488ea3a6b03896ddb, type: 3}
+  selectedNodeVisual: {fileID: 1276384630836532422}
 --- !u!58 &350149495964052630
 CircleCollider2D:
   m_ObjectHideFlags: 0

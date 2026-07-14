@@ -96,6 +96,12 @@ public class EnemyFishTypeBox : TypingBox
 
     public override void ResetTypeBox()
     {
+        if (_textAnimation == null)
+        {
+            Debug.LogWarning($"{gameObject.name}:ResetTypeBox: textAnimation is null!");
+            return;
+        }
+        
         _indexChar = 0;
         currentEnemyFish.enemyContex.beenlocked =  false;
         

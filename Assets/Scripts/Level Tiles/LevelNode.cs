@@ -82,14 +82,17 @@ public class LevelNode : MonoBehaviour
             return;
         }
 
+        levelDataSO = levelData;
         if (LevelNodeType.StartPoint == tileType)
         {
             OnSetPlayerHere();
         }
+        else if (tileType == LevelNodeType.Normal && levelDataSO.difficulty != LevelDifficulty.None)
+        {
+            _levelNodeVisuals.SetVisualLevelNodeByLevelDifficulty(levelDataSO.difficulty);
+        }
         else
         {
-            levelDataSO = levelData;
-
             _levelNodeVisuals.SetVisualLevelNodeByType(tileType);
         }
     }

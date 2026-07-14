@@ -27,9 +27,16 @@ public class FoodTrashSpawnerManager : SpawnerManager<SpawnChannel>
         
         spawnChannels.Clear();
         trashDataLists.Clear();
+
+        if (spawnerData.TrashSpawnChannels == null || spawnerData.TrashSpawnChannels.Count == 0)
+        {
+            Debug.LogWarning("[FoodTrashSpawnerManager - Spawn] TrashSpawnChannels is NULL!");
+            return;
+        }
         
         spawnChannels = spawnerData.TrashSpawnChannels;
         trashDataLists = spawnerData.TrashTables;
+        OnStartSpawing();
     }
 
     protected override void Spawn(SpawnChannel channel)
