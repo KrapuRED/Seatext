@@ -47,6 +47,7 @@ public class FishHealth : MonoBehaviour, ISaveStatus
 
     public void OnTakeDamage(float damageValue)
     {
+        
         _currentHealth -= damageValue;
 
         GameEvents.OnUpdateHealthBar.Invoke(_currentHealth, _maxHealth);

@@ -85,7 +85,6 @@ public abstract class SpawnerManager<TChannel> : MonoBehaviour, IPausable
 
     public void OnStartSpawing()
     {
-        Debug.Log("[SpawnerManager - OnStartSpawing] OnStartSpawing");
         _isSpawning  = true;
         
         foreach (TChannel channel in spawnChannels)

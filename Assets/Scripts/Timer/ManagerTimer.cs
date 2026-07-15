@@ -57,7 +57,7 @@ public class ManagerTimer : MonoBehaviour, IPausable
 
     public void StartTimer(float durationGame)
     {
-        Debug.Log($"StartTimer with {durationGame} seconds");    
+
         _timer = durationGame;
         GameEvents.OnUpdateTimerGamePlay.Invoke(_timer);
         _gameStarted = true;

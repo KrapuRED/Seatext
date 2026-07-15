@@ -63,7 +63,6 @@ public class LevelNode : MonoBehaviour
 
         if (tileType == LevelNodeType.StartPoint)
         {
-            Debug.Log("Save ID start point level node");
             GameManager.instance.SaveStartLevelNodeID(levelNodeID);
         }
         

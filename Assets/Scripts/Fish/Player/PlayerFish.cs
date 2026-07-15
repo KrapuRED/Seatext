@@ -155,14 +155,8 @@ public class PlayerFish : Fish, IPausable, IEatable
         FishMovement.MoveFish(_moveTarget, CheckDistanceToTarget(), _moveSpeed);
     }
 
-    public void TakingDamage(float damageValue)
+    private void ApplyDamage(float damageValue)
     {
-        if (_isInvisible)
-            return;
-
-        _isInvisible = true;
-        currentInvisible = durationInvisible;
-
         if (_playerFishHealth.IsDead())
         {
             Debug.Log($"[PlayerFish - TakingDamage] PlayerFish {gameObject.name} has been killed!");
@@ -172,6 +166,25 @@ public class PlayerFish : Fish, IPausable, IEatable
         }
 
         _playerFishHealth.OnTakeDamage(damageValue);
+    }
+    
+    public void TakingDamage(float damageValue)
+    {
+        if (_isInvisible)
+            return;
+
+        _isInvisible = true;
+        currentInvisible = durationInvisible;
+        
+        ApplyDamage(damageValue);
+    }
+    
+    public void TakeStarvationDamage(float damageValue)
+    {
+        Debug.Log($"Player taking starvation damage {damageValue}");
+        
+        // No invisibility check — starvation ticks every frame regardless
+        ApplyDamage(damageValue);
     }
 
     public override void SetBeenHunted(bool isBeenHunted, Fish c)
@@ -216,8 +229,6 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     private void HandleEating(IEatable eatable, FishType eatyingBy, int eaterFishIndex)
     {
-        Debug.Log($"[EnemyFish - HandleEating] HandleEating Been Called!");
-        
         if (FoodIndex != eaterFishIndex)
         {
             Debug.Log($"EnemyFish - HandleEating] Index of this is {FoodIndex} is eaten by {eaterFishIndex}");

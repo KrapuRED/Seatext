@@ -15,11 +15,11 @@ MonoBehaviour:
   SpawnerDataName: Stage 1 - Hard
   SpawnerDataID: SDSH-00
   FishSpawnChannels:
-  - channelName: Passive Fish
+  - channelName: Passive
     spawnInterval: 2.4
     isEnabled: 1
     type: 1
-  - channelName: Active Fish
+  - channelName: Active
     spawnInterval: 30
     isEnabled: 1
     type: 2
@@ -58,7 +58,7 @@ MonoBehaviour:
   TrashSpawnChannels:
   - channelName: Trash
     spawnInterval: 30
-    isEnabled: 0
+    isEnabled: 1
   TrashTables:
   - trashName: Straw
     trashPrefab: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}

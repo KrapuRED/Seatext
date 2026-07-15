@@ -31,12 +31,10 @@ public class FishMovement : MonoBehaviour
         if (runAway)
         {
             speed *= 2f;
-            Debug.Log($"New speed : {speed}");
         }   
 
         RotateFish(TargetPosition);
 
-        Debug.Log($"[FishMovement - MoveFish] Target Position : {TargetPosition.position}, Fish Speed : {speed}");
         _rigidbody2D.MovePosition(
             Vector2.MoveTowards(_rigidbody2D.position, 
                 TargetPosition.position,

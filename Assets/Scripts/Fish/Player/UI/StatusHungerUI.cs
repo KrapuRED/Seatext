@@ -27,14 +27,18 @@ public class StatusHungerUI : StatusBarUI
         GameEvents.OnUpdateHungerBar.RemoveListener(UpdateStatusBar);
     }
 
+    
+    //loat currentValue = Trash, float maxValue = Hunger
     public override void UpdateStatusBar(float currentValue, float maxValue)
     {
         float fixedMax = StatusPlayerManager.Instance.MaxPlayerHungerStatus;
-
+        
         if (fixedMax <= 0f)
             return;
 
-        hungerSlider.value = Mathf.Clamp01(maxValue / fixedMax); // hunger remaining
-        trashSlider.value  = Mathf.Clamp01(currentValue / fixedMax);
+        Debug.Log($"trash = {currentValue} hunger = {maxValue}");
+        
+        hungerSlider.value  = Mathf.Clamp01(maxValue / fixedMax); // hunger remaining
+        trashSlider.value = Mathf.Clamp01(currentValue / fixedMax); 
     }
 }

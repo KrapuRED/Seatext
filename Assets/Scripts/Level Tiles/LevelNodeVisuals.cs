@@ -25,8 +25,6 @@ public class LevelNodeVisuals : MonoBehaviour
 
     public void SetVisualLevelNodeByState(LevelNodeState state)
     {
-        Debug.Log($"{gameObject.name}:SetVisualLevelNodeByState : {state}");
-        
         if (state == LevelNodeState.Current)
             HideSelecttNodeVisual();
         
@@ -69,8 +67,6 @@ public class LevelNodeVisuals : MonoBehaviour
 
     public void HideSelecttNodeVisual()
     {
-        Debug.Log(selectedNodeVisual.activeSelf);
-        
         selectedNodeVisual.SetActive(false);
     } 
 }

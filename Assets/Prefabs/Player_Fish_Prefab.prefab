@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1eb10761986d6149be2985269b1f98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _maxHealth: 0
   _currentHealth: 0
 --- !u!1 &3815051437369342699
 GameObject:
@@ -284,6 +284,8 @@ MonoBehaviour:
   maxHunger: 100
   _currentHunger: 0
   trashGain: 0
+  rateDrainHunger: 1.5
+  rateDrainHP: 2.5
   statusHungerUI: {fileID: 0}
   statusHealthUI: {fileID: 0}
   _playerFish: {fileID: 7998975373102525702}
@@ -411,6 +413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339882183581354877}
   - component: {fileID: 7998975373102525702}
+  - component: {fileID: 1129155899209136006}
   - component: {fileID: 7194691806180533832}
   - component: {fileID: 6970934337533873492}
   m_Layer: 0
@@ -460,15 +463,30 @@ MonoBehaviour:
   _fishType: 1
   mouthPosition: {fileID: 0}
   eatRange: 0
-  _playerData: {fileID: 0}
+  _playerData: {fileID: 11400000, guid: 5c04d5d22fa4f42409f96f3a8299d544, type: 2}
   targetPosition: {fileID: 0}
   distanceToTarget: 1
   maxHealth: 100
   _isActiveFish: 0
   durationInvisible: 0.5
+  _isInvisible: 0
   _playerFishHunger: {fileID: 5304595852391326909}
   _playerFishHealth: {fileID: 101739699635907254}
   _stateMachine: {fileID: 3253668060543353932}
+--- !u!114 &1129155899209136006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4692316933345027950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c194b91c0e9443419733e0912159ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerFishHealth: {fileID: 101739699635907254}
+  _playerFishHunger: {fileID: 5304595852391326909}
 --- !u!50 &7194691806180533832
 Rigidbody2D:
   serializedVersion: 5
@@ -503,7 +521,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4692316933345027950}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -530,7 +548,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.21133333}
+  m_Offset: {x: -0.0028149933, y: 0.4656334}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.28866667}
@@ -540,7 +558,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8243017, y: 3.1915774}
   m_EdgeRadius: 0
 --- !u!1 &5862651463704973678
 GameObject:

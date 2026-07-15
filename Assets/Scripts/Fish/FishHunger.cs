@@ -6,6 +6,8 @@ public class FishHunger : MonoBehaviour, ISaveStatus
     [SerializeField] private float maxHunger;
     [SerializeField] private float _currentHunger;
     [SerializeField] private float trashGain;
+    [SerializeField] private float rateDrainHunger;
+    [SerializeField] private float rateDrainHP;
 
     [Header("UI")]
     [SerializeField] private StatusHungerUI statusHungerUI;
@@ -13,6 +15,9 @@ public class FishHunger : MonoBehaviour, ISaveStatus
 
     [SerializeField] private PlayerFish _playerFish;
 
+    private float _damageAccum;
+    private float _debugTimer;
+    
     public float currentHunger => _currentHunger;
 
     #region  Event
@@ -41,6 +46,7 @@ public class FishHunger : MonoBehaviour, ISaveStatus
     
     public void InitializeHungerBar(float hungerBar)
     {
+        maxHunger = hungerBar;
         _currentHunger = maxHunger;
         //statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
         GameEvents.OnUpdateHungerBar.Invoke(trashGain, maxHunger);
@@ -50,29 +56,32 @@ public class FishHunger : MonoBehaviour, ISaveStatus
     {
         if (currentHunger <= 0)
         {
-            Debug.Log($"[PlayerFish - Update] PlayerFish {gameObject.name} is too hungry to move!");
-            float damageValue = Time.deltaTime;
-            _playerFish.TakingDamage(damageValue);
+            float damageThisFrame = rateDrainHP * Time.deltaTime;
+            
+            _damageAccum += damageThisFrame;
+            _debugTimer += Time.deltaTime;
+            
+            if (_debugTimer >= 1f)
+            {
+                Debug.Log($"HP lost in the last second: {_damageAccum}");
+                _playerFish.TakeStarvationDamage(_damageAccum);
+                _damageAccum = 0f;
+                _debugTimer = 0f;
+            }
             return;
         }
 
-        _currentHunger -= Time.deltaTime;
-        //statusHungerUI.UpdateStatusBar(trashGain, _currentHunger);
+        _currentHunger -= rateDrainHunger * Time.deltaTime;
         GameEvents.OnUpdateHungerBar.Invoke(trashGain, _currentHunger);
-    }
-
-    public void OnUpdateHealthBar(float currentHealth, float maxHealth)
-    {
-        //statusHealthUI.UpdateStatusBar(currentHealth, maxHealth);
-        GameEvents.OnUpdateHungerBar.Invoke(currentHealth, maxHealth);
     }
 
     public void SetTrashingHungerbar(float gainTrash)
     {
         Debug.Log($"gainTrash: {gainTrash}");
-        trashGain += gainTrash;
-        maxHunger -= gainTrash;
 
+        maxHunger -= gainTrash;
+        trashGain += gainTrash;
+        
         ResetHunggerBar();
     }
     

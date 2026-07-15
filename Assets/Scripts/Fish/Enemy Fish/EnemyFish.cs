@@ -131,7 +131,6 @@ public class EnemyFish : Fish, IPausable, IEatable
         
         if (FoodIndex != eaterFishIndex)
         {
-            Debug.Log($"EnemyFish - HandleEating] Index of this is {FoodIndex} is eaten by {eaterFishIndex}");
             return;
         }
         
@@ -158,10 +157,11 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     public void Eat(FishType fishType)
     {
-        Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten!");
-        
         if (FishData.fishSize == FoodSize.Big)
+        {
+            Debug.Log($"{gameObject.name} Eat {fishType}!");
             return;
+        }
         
         if (fishType == FishType.Player)
         {

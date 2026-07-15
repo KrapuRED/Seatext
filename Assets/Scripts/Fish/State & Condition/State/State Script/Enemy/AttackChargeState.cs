@@ -18,7 +18,6 @@ public class AttackChargeState : EnemyStateSO
         {
             contex.chargeTimer -= Time.deltaTime;
             contex.fishSightVisual.OnSightVisual(contex.endWaypoint);
-            Debug.Log("Charge in " + Mathf.Round(contex.chargeTimer));
         }
 
         if (contex.chargeTimer <= 0)

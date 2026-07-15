@@ -49,13 +49,11 @@ public class FishSpawnerManager : SpawnerManager<FishSpawnChannel>
 
     public override void InitializeSpawnwer(SpawnerDataSO spawnerData)
     {
-        Debug.Log($"[{gameObject.name}] Initializing FishSpawnerManager with {spawnerData.SpawnerDataName}");
-        
         spawnChannels.Clear();
         spawnedPassiveFishDatas.Clear();
         spawnedActiveFishDatas.Clear();
         
-        spawnChannels = spawnerData.FishSpawnChannels;
+        spawnChannels = spawnChannels = new List<FishSpawnChannel>(spawnerData.FishSpawnChannels);;
         passiveFishSpawnTableDatas = spawnerData.PassiveFishSpawnTables;
         activeFishSpawnTableDatas = spawnerData.ActiveFishSpawnTables;
         
@@ -64,8 +62,6 @@ public class FishSpawnerManager : SpawnerManager<FishSpawnChannel>
 
     protected override void Spawn(FishSpawnChannel channel)
     {
-        Debug.Log($"[{gameObject.name}] Spawning FishSpawnerManager");
-        
         List<FishSpawnTableData> tableList = GetTableList(channel.type);
         List<spawnedFishData> spawnedList = GetSpawnedList(channel.type);
  

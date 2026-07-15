@@ -69,11 +69,6 @@ public class StatusPlayerManager : MonoBehaviour
 
     public void ShowStatus()
     {
-        Debug.Log($"Showing Status : \n" +
-                  $"player health   : {currentPlayerHealthStatus}\n" + 
-                  $"player hungger  : {currentPlayerHungerStatus}\n" +
-                  $"player trash    : {currentPlayerTrashStatus}");
-        
         GameEvents.OnUpdateHealthBar.Invoke(currentPlayerHealthStatus, maxPlayerHealthStatus);
         GameEvents.OnUpdateHungerBar.Invoke(currentPlayerTrashStatus, currentPlayerHungerStatus);
     }

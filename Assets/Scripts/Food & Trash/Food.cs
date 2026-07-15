@@ -24,7 +24,8 @@ public class Food : TypingBox, IEatable, IPausable
     public FoodSize foodSize { get ; set; }
 
     private SpriteRenderer _spriteRenderer;
-
+    private bool _hasBeenEaten;
+    
     private void OnEnable()
     {
         GameEvents.OnEatableEntered.AddListener(HandelFoodBeenEaten);
@@ -90,13 +91,10 @@ public class Food : TypingBox, IEatable, IPausable
     {
         if (_indexChar >= fullText.Length)
         {
-            Debug.Log("Typing already complete!");
             return false;
         }
 
         bool isCorrectLetter = IsCorrectLetter(typing);
-        Debug.Log($"[{gameObject.name} - CheckingText] Is Correct Letter : {isCorrectLetter}");
-
         if (isCorrectLetter)
         {
             // Remove the correctly typed letter from the current text
@@ -105,7 +103,6 @@ public class Food : TypingBox, IEatable, IPausable
 
             if (IsTextComplete())
             {
-                Debug.Log($"[{gameObject.name} - CheckingText] Text Is Done : {currentTextToType}");
                 isLocked  = true;
                 RemoveWord();
 
@@ -118,7 +115,6 @@ public class Food : TypingBox, IEatable, IPausable
         }
         else
         {
-            Debug.Log($"[{gameObject.name} - CheckingText] Wrong Letter! Typed : {typing}, Expected : {fullText[0]}");
             _isStillMacthing = false;
         }
 
@@ -134,7 +130,7 @@ public class Food : TypingBox, IEatable, IPausable
     private void HandelFoodBeenEaten(IEatable eatable, FishType eatyingBy, int eaterFishIndex)
     {
         if (!ReferenceEquals(eatable, this)) 
-            return; // this event isn't about me, ignore it
+            return;
 
         if (eatyingBy != FishType.Player)
             return;
@@ -151,37 +147,41 @@ public class Food : TypingBox, IEatable, IPausable
 
     public void Eat(FishType fishType)
     {
+        if (_hasBeenEaten)
+            return; // already processed, ignore any further calls
+
+        _hasBeenEaten = true; // lock immediately, before any logic runs
+
         Debug.Log($"[Food - Eat] {gameObject.name} has been eaten! Food Type : {_dropFoodSO.foodType}");
 
         if (fishType != FishType.Player)
         {
             RemoveWord();
             Destroy(gameObject);
+            return; // <-- the missing return
         }
 
         if (!isLocked)
             return;
-        else
+
+        switch (_dropFoodSO.foodType)
         {
-            switch (_dropFoodSO.foodType)
-            {
-                case FoodType.Trash:
-                    Debug.Log($"[Food - Eat] Trash {gameObject.name} has been eaten! Player will lose health.");
-                    PlayerFish.playerFish.PlayerFishHunger.SetTrashingHungerbar(_dropFoodSO.gainStatus);
-                    break;
+            case FoodType.Trash:
+                Debug.Log($"[Food - Eat] Trash {gameObject.name} has been eaten! Player will lose health.");
+                PlayerFish.playerFish.PlayerFishHunger.SetTrashingHungerbar(_dropFoodSO.gainStatus);
+                break;
 
-                case FoodType.Pellet:
-                    Debug.Log($"[Food - Eat] Pellet {gameObject.name} has been eaten! Player will gain some points.");
-                    break;
+            case FoodType.Pellet:
+                Debug.Log($"[Food - Eat] Pellet {gameObject.name} has been eaten! Player will gain some points.");
+                break;
 
-                case FoodType.Goldenpellet:
-                    Debug.Log($"[Food - Eat] Goldenpellet {gameObject.name} has been eaten! Player will gain some points.");
-                    break;
-            }
-
-            RemoveWord();
-            Destroy(gameObject);
+            case FoodType.Goldenpellet:
+                Debug.Log($"[Food - Eat] Goldenpellet {gameObject.name} has been eaten! Player will gain some points.");
+                break;
         }
+
+        RemoveWord();
+        Destroy(gameObject);
     }
 
     private void RemoveWord()

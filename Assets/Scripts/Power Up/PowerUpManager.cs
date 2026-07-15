@@ -176,8 +176,6 @@ public class PowerUpManager : MonoBehaviour
 
             lastNodeByType[node.BoostType] = node;
             _powerUpNodes.Add(powerUpNodeID, node);
-
-            Debug.Log($"{powerUpContainer.GetChild(i).name} PowerUpNodeID: {powerUpNodeID}");
         }
     }
     

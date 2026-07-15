@@ -23,8 +23,6 @@ public class FoodTrashSpawnerManager : SpawnerManager<SpawnChannel>
 
     public override void InitializeSpawnwer(SpawnerDataSO spawnerData)
     {
-        Debug.Log($"[{gameObject.name}] Initializing FishSpawnerManager with {spawnerData.SpawnerDataName}");
-        
         spawnChannels.Clear();
         trashDataLists.Clear();
 
@@ -34,7 +32,7 @@ public class FoodTrashSpawnerManager : SpawnerManager<SpawnChannel>
             return;
         }
         
-        spawnChannels = spawnerData.TrashSpawnChannels;
+        spawnChannels  = new List<SpawnChannel>(spawnerData.TrashSpawnChannels);;
         trashDataLists = spawnerData.TrashTables;
         OnStartSpawing();
     }

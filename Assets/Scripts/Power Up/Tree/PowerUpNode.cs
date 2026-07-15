@@ -11,7 +11,6 @@ public class PowerUpNode : MonoBehaviour
     public void InitializePowerUpNode(string powerUpNodeID)
     {
         _powerUpNodeID = powerUpNodeID;
-        Debug.Log($"{gameObject.name} : InitializePowerUpNode by {_powerUpNodeID}");
     }
 
     public void ConnectPowerUpNode(Transform nextPowerUpNode)
