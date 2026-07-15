@@ -25,6 +25,11 @@ public class LevelNodeVisuals : MonoBehaviour
 
     public void SetVisualLevelNodeByState(LevelNodeState state)
     {
+        Debug.Log($"{gameObject.name}:SetVisualLevelNodeByState : {state}");
+        
+        if (state == LevelNodeState.Current)
+            HideSelecttNodeVisual();
+        
         _spriteRenderer.sprite = state switch
         {
             LevelNodeState.Current => startPointNode,
@@ -61,5 +66,11 @@ public class LevelNodeVisuals : MonoBehaviour
     }
 
     public void ActiveSelectNodeVisual() => selectedNodeVisual.SetActive(true);
-    public void HideSelecttNodeVisual() => selectedNodeVisual.SetActive(false);
+
+    public void HideSelecttNodeVisual()
+    {
+        Debug.Log(selectedNodeVisual.activeSelf);
+        
+        selectedNodeVisual.SetActive(false);
+    } 
 }

@@ -98,9 +98,7 @@ public class TypeBoxManager : MonoBehaviour
                 macthingTypeBox.Add(box);
             }
         }
-
-        Debug.Log($"[TypeBoxManager - CheckTyping] Matching Type Box Count: {macthingTypeBox.Count}");
-
+        
         if (macthingTypeBox.Count == 1)
         {
             // Notify whoever cares about the single match

@@ -125,10 +125,9 @@ public class LevelNode : MonoBehaviour
     {
         _levelNodeState = LevelNodeState.Current;
         _levelNodeTextUI.SetWordTextUI("You");
-
+        
         _levelNodeVisuals.SetVisualLevelNodeByState(_levelNodeState);
-        _levelNodeVisuals.HideSelecttNodeVisual();
-
+        
         GameEvents.OnChangeCameraPosition.Invoke(transform);
 
         CheckSurroundingLevelNode();

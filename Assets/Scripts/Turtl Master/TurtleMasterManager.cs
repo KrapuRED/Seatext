@@ -79,7 +79,7 @@ public class TurtleMasterManager : MonoBehaviour
         TurtleMasterButtonUI turtleMasterButtonUI = typingBox.GetComponent<TurtleMasterButtonUI>();
         if (turtleMasterButtonUI == null)
         {
-            Debug.Log($"[Turtel Master Manager] TurtleMasterButtonUI Component is Missing, Please Check the Config of the Button");
+            //Debug.Log($"[Turtel Master Manager] TurtleMasterButtonUI Component is Missing, Please Check the Config of the Button");
             return;
         }
 
