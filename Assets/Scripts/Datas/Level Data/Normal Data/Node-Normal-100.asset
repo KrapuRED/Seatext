@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 254d402dca49a3349a3f8810830c0e07, type: 3}
-  m_Name: Node-Normal-120
+  m_Name: Node-Normal-100
   m_EditorClassIdentifier: 
-  levelDataID: NN-00
-  levelDataName: Normal 140
+  levelDataID: NN-01
+  levelDataName: Normal 120
   levelDescription: The currents carry both prey and peril.
-  durationLevelDataNode: 140
+  durationLevelDataNode: 120
   currentFlowSpeed: 0
-  environmentSprite: {fileID: 0}
-  difficulty: 2
-  spawnerData: {fileID: 11400000, guid: 1c4f6584f2abd1d4493827e63dd3aaec, type: 2}
+  iconSprite: {fileID: -6578288342453176512, guid: 30d6bd969d89b6742863c9d1120a0e70, type: 3}
+  environmentSprite: {fileID: -307284182958334418, guid: cb7976d83d1c07e42a86b24425132826, type: 3}
+  difficulty: 1
+  spawnerData: {fileID: 11400000, guid: 5835b4ce427466644be7c6333a212ed8, type: 2}

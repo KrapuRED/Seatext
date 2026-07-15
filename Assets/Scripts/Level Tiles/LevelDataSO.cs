@@ -17,6 +17,7 @@ public class LevelDataSO : ScriptableObject, IPanelDisplayable
     public string levelDescription;
     public float durationLevelDataNode;
     public float currentFlowSpeed;
+    public Sprite iconSprite;
     public Sprite environmentSprite;
     public LevelDifficulty difficulty;
     
@@ -24,7 +25,8 @@ public class LevelDataSO : ScriptableObject, IPanelDisplayable
     public string DisplayDescription => levelDescription;
     public string DisplayFlow => currentFlowSpeed.ToString();
 
-    public Sprite DisplaySprite => environmentSprite;
+    public Sprite DisplayEnviSprite => environmentSprite;
+    public Sprite DisplayIconSprite => iconSprite;
     
     [Header("Spawner Table Data")]
     public SpawnerDataSO  spawnerData;

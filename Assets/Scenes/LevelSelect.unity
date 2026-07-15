@@ -3369,10 +3369,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3019566869777774446, guid: d89a2ab5c2164be4ea201ea92bb25b0e, type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3231640000166423206, guid: d89a2ab5c2164be4ea201ea92bb25b0e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3536,10 +3532,6 @@ PrefabInstance:
     - target: {fileID: 7372337796560924715, guid: d89a2ab5c2164be4ea201ea92bb25b0e, type: 3}
       propertyPath: m_Name
       value: Panel - Level Node Turtel Master
-      objectReference: {fileID: 0}
-    - target: {fileID: 7372337796560924715, guid: d89a2ab5c2164be4ea201ea92bb25b0e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7829028317176764543, guid: d89a2ab5c2164be4ea201ea92bb25b0e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3781,10 +3773,6 @@ PrefabInstance:
     - target: {fileID: 9090101304451790721, guid: 8b43a71011bc9d041b147a550cdd6da8, type: 3}
       propertyPath: m_Name
       value: Panel - Level Node Treasure
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090101304451790721, guid: 8b43a71011bc9d041b147a550cdd6da8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9094841480885239805, guid: 8b43a71011bc9d041b147a550cdd6da8, type: 3}
       propertyPath: m_AnchorMax.y

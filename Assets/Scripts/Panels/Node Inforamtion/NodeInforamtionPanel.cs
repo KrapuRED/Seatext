@@ -8,7 +8,8 @@ public class NodeInforamtionPanel : Panel
     [SerializeField] private TextMeshProUGUI _levelNameText;
     [SerializeField] private TextMeshProUGUI _levelDescriptionText;
     [SerializeField] private TMP_Text currentFlowText;
-    [SerializeField] private Image _environmentImage;
+    [SerializeField] private Image environmentImage;
+    [SerializeField] private Image iconImage;
 
     [SerializeField] private CanvasGroup _canvasGroup;
     
@@ -62,8 +63,11 @@ public class NodeInforamtionPanel : Panel
             if (currentFlowText != null)
                 currentFlowText.text = displayableData.DisplayFlow;
 
-            if (_environmentImage != null)
-                _environmentImage.sprite = displayableData.DisplaySprite;
+            if (environmentImage != null)
+                environmentImage.sprite = displayableData.DisplayEnviSprite;
+            
+            if (iconImage != null)
+                iconImage.sprite = displayableData.DisplayIconSprite;
         }
         else
         {

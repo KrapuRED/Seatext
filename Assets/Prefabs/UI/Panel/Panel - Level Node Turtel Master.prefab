@@ -2101,7 +2101,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7372337796560924715}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -2124,7 +2124,8 @@ MonoBehaviour:
   _levelNameText: {fileID: 4740377172918531431}
   _levelDescriptionText: {fileID: 3021229433472100488}
   currentFlowText: {fileID: 0}
-  _environmentImage: {fileID: 0}
+  environmentImage: {fileID: 4830711729046314420}
+  iconImage: {fileID: 7743700420883659039}
   _canvasGroup: {fileID: 0}
 --- !u!1 &8105488771083355202
 GameObject:

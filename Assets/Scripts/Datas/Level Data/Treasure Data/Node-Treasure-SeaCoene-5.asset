@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 254d402dca49a3349a3f8810830c0e07, type: 3}
-  m_Name: Node-TurtelMaster-CleanTrash
+  m_Name: Node-Treasure-SeaCoene-5
   m_EditorClassIdentifier: 
-  levelDataID: NTM-01
-  levelDataName: Turtle Master
-  levelDescription: A wise presence lingers, offering aid to those who seek it.
+  levelDataID: NT-00
+  levelDataName: Treasure
+  levelDescription: The currents carry whispers of lost riches.
   durationLevelDataNode: 0
   currentFlowSpeed: 0
-  environmentSprite: {fileID: 0}
-  fishSpawnTable: []
+  iconSprite: {fileID: 7861949743535115012, guid: 587f4083443d565458837d481ec73e04, type: 3}
+  environmentSprite: {fileID: -321277119687913124, guid: a77993a512a80574b91cb70fd9b5a1d5, type: 3}
+  difficulty: 0
+  spawnerData: {fileID: 0}

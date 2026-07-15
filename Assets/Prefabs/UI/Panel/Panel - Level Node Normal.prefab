@@ -1532,7 +1532,8 @@ MonoBehaviour:
   _levelNameText: {fileID: 241482013213963967}
   _levelDescriptionText: {fileID: 2900780083291107485}
   currentFlowText: {fileID: 692109460811234673}
-  _environmentImage: {fileID: 3943751787510537498}
+  environmentImage: {fileID: 3943751787510537498}
+  iconImage: {fileID: 8298800373634259757}
   _canvasGroup: {fileID: 0}
 --- !u!1 &7206691591935309028
 GameObject:
