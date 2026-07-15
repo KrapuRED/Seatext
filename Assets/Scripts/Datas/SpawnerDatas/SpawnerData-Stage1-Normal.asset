@@ -14,15 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnerDataName: Stage 1 - Normal
   SpawnerDataID: SDSN-00
-  FishSpawnChannels:
-  - channelName: Passive Fish
-    spawnInterval: 2
-    isEnabled: 1
-    type: 1
-  - channelName: Active Fish
-    spawnInterval: 40
-    isEnabled: 1
-    type: 2
+  FishSpawnChannels: []
   PassiveFishSpawnTables:
   - fishName: Shrip
     type: 1

@@ -10,7 +10,7 @@ public class PanelPowerUps : Panel
         if (_canvasGroup == null) 
             _canvasGroup = GetComponent<CanvasGroup>();
     }
-
+    
     public override void SetDataToPanel(object data)
     {
         throw new System.NotImplementedException();

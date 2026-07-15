@@ -4,7 +4,7 @@ public class PowerUpNode : MonoBehaviour
 {
     [SerializeField] private BoostType boostType;
     
-    private string _powerUpNodeID;
+    [SerializeField] private string _powerUpNodeID;
     
     public BoostType BoostType => boostType;
     

@@ -8,6 +8,7 @@ using Debug = UnityEngine.Debug;
 public enum BoostType
 {
     None,
+    All,
     Speed,
     Health,
     Hunger
@@ -16,8 +17,9 @@ public enum BoostType
 [System.Serializable]
 public class PowerUpNodeData
 {
-    public string powerUpNodeID;
-    
+    public string powerUpNodeName;
+    public BoostType boostType;
+    public List<PowerUpSO> powerUpNodes = new();
 }
 
 public class PowerUpManager : MonoBehaviour
@@ -25,17 +27,18 @@ public class PowerUpManager : MonoBehaviour
     public static PowerUpManager instance {get; private set;}
     
     [Header("PowerUp Settings")]
-    [SerializeField] private Transform powerUpContainer;
-    private List<PowerUpNode>  _powerUpNodes = new();
+    [SerializeField] private List<PowerUpNodeData> activePowerUpDatas = new ();
     
     [Header("PowerUp Active")]
     [SerializeField] private float speedBoost;  // increase speed
     [SerializeField] private float healthBoost; // increase maxHealth
     [SerializeField] private float hungerBoost; // decrease hunger
     
-    private HashSet<string> _speedPowerUpNodeIDs;
-    private HashSet<string> _healthPowerUpNodeIDs;
-    private HashSet<string> _hungerPowerUpNodeIDs;
+    [Header("TEST")]
+    public List<PowerUpSO> TEST_PowerUpDatas = new();
+    
+    private Dictionary<string, PowerUpNode> _powerUpNodes = new();
+    private Dictionary<BoostType, int> _typeCounters = new();
     
     private void Awake()
     {
@@ -47,58 +50,202 @@ public class PowerUpManager : MonoBehaviour
 
     private void Start()
     {
+        activePowerUpDatas.Clear();
+        
+        //IntializePowerUps();
+        InitializeActivePowerUpSlots();
 
-        IntializePowerUps();
+        foreach (var powerUp in TEST_PowerUpDatas )
+        {
+            AddPowerUp(powerUp);
+        }
+    }
+
+    private void InitializeActivePowerUpSlots()
+    {
+        foreach (BoostType type in Enum.GetValues(typeof(BoostType)))
+        {
+            if (type == BoostType.None)
+                continue;
+
+            activePowerUpDatas.Add(new PowerUpNodeData
+            {
+                powerUpNodeName = type.ToString(),
+                boostType = type,
+                powerUpNodes = new List<PowerUpSO>()
+            });
+        }
     }
 
     private string GetPowerUpNodeID(int intialID, BoostType boostType)
     {
         string newID =string.Empty;
         
+        if (!_typeCounters.ContainsKey(boostType))
+            _typeCounters[boostType] = 0;
+
+        int index = _typeCounters[boostType];
+        _typeCounters[boostType]++;
+        
         string boostID = boostType switch
         {
+            BoostType.All => "All",
             BoostType.Health => "HP",
             BoostType.Hunger => "HG",
             BoostType.Speed => "SP",
-            _ => intialID.ToString()
+            _ => "NONE"
         };
         
-        newID = $"{boostID}_{intialID}";
+        newID = $"{boostID}_{index}";
         
         return newID;
     }
-    
-    private void IntializePowerUps()
+
+    private string GetBoostPrefix(BoostType boostType)
     {
+        return boostType switch
+        {
+            BoostType.All    => "All",
+            BoostType.Health => "HP",
+            BoostType.Hunger => "HG",
+            BoostType.Speed  => "SP",
+            _ => "NONE"
+        };
+    }
+    
+    private void ReIntializePowerUps(Transform powerUpContainer)
+    {
+        Dictionary<BoostType, int> localCounters = new();
+
         for (int i = 0; i < powerUpContainer.childCount; i++)
         {
             PowerUpNode node = powerUpContainer.GetChild(i).GetComponent<PowerUpNode>();
-            
-            string powerUpNodeID = GetPowerUpNodeID(i, node.BoostType);
-            
-            Debug.Log($"{powerUpContainer.GetChild(i).name} PowerUpNodeID: {powerUpNodeID}");
-            //_powerUpNodes.Add(node);
-        }
 
+            if (node == null)
+                continue;
+
+            if (!localCounters.ContainsKey(node.BoostType))
+                localCounters[node.BoostType] = 0;
+
+            int index = localCounters[node.BoostType];
+            localCounters[node.BoostType]++;
+
+            string powerUpNodeID = $"{GetBoostPrefix(node.BoostType)}_{index}";
+
+            if (_powerUpNodes.ContainsKey(powerUpNodeID))
+            {
+                // Same ID as before — just point it at the new instance
+                _powerUpNodes[powerUpNodeID] = node;
+            }
+            else
+            {
+                // Container has more nodes than last time — treat as new
+                _powerUpNodes.Add(powerUpNodeID, node);
+            }
+
+            node.InitializePowerUpNode(powerUpNodeID);
+
+            Debug.Log($"Re-initialized {powerUpContainer.GetChild(i).name} PowerUpNodeID: {powerUpNodeID}");
+        }
     }
     
-    public void AddPowerUp(BoostType boostType, float addPowerUp)
+    public void IntializePowerUps(Transform powerUpContainer)
     {
-        switch (boostType)
+        if (_powerUpNodes.Count > 0)
         {
-            case BoostType.Speed:
-                speedBoost += addPowerUp;
-                break;
-            case  BoostType.Health:
-                healthBoost += addPowerUp;
-                break;
-            case BoostType.Hunger:
-                hungerBoost += addPowerUp;
-                break;
-            
-            default:
-                Debug.LogWarning($"Warning cannot find boost for {boostType}");
-                break;
+            ReIntializePowerUps(powerUpContainer);
+            return;
         }
+        
+        PowerUpNode previousOfType = null;
+        Dictionary<BoostType, PowerUpNode> lastNodeByType = new();
+
+        for (int i = 0; i < powerUpContainer.childCount; i++)
+        {
+            PowerUpNode node = powerUpContainer.GetChild(i).GetComponent<PowerUpNode>();
+
+            if (node == null)
+                continue;
+
+            string powerUpNodeID = GetPowerUpNodeID(i, node.BoostType);
+
+            // Chain: this node's prerequisite is the last node of the same type
+            lastNodeByType.TryGetValue(node.BoostType, out previousOfType);
+
+            node.InitializePowerUpNode(powerUpNodeID);
+
+            lastNodeByType[node.BoostType] = node;
+            _powerUpNodes.Add(powerUpNodeID, node);
+
+            Debug.Log($"{powerUpContainer.GetChild(i).name} PowerUpNodeID: {powerUpNodeID}");
+        }
+    }
+    
+    public void AddPowerUp(PowerUpSO powerUpData)
+    {
+        if (powerUpData == null)
+        {
+            Debug.LogWarning("[PowerUpManager] AddPowerUp called with null PowerUpSO");
+            return;
+        }
+
+        if (powerUpData.powerUpBoostType == BoostType.All)
+        {
+            // 1) Applies to all stats — add to the "All" bucket
+            var allData = activePowerUpDatas.Find(d => d.boostType == BoostType.All);
+            allData?.powerUpNodes.Add(powerUpData);
+        }
+        else
+        {
+            // 2) Add to the specific matching boost type bucket
+            var matchingData = activePowerUpDatas.Find(d => d.boostType == powerUpData.powerUpBoostType);
+
+            if (matchingData == null)
+            {
+                Debug.LogWarning($"[PowerUpManager] No active slot found for {powerUpData.powerUpBoostType}");
+                return;
+            }
+
+            matchingData.powerUpNodes.Add(powerUpData);
+        }
+
+        // 3) Recalculate totals
+        RecalculateBoosts();
+    }
+
+    private void RecalculateBoosts()
+    {
+        speedBoost = 0f;
+        healthBoost = 0f;
+        hungerBoost = 0f;
+
+        var allBoosts = activePowerUpDatas.Find(d => d.boostType == BoostType.All);
+        float allBonus = allBoosts != null ? SumBoostValues(allBoosts.powerUpNodes) : 0f;
+
+        foreach (var data in activePowerUpDatas)
+        {
+            float sum = SumBoostValues(data.powerUpNodes) + allBonus;
+
+            switch (data.boostType)
+            {
+                case BoostType.Speed:
+                    speedBoost = sum;
+                    break;
+                case BoostType.Health:
+                    healthBoost = sum;
+                    break;
+                case BoostType.Hunger:
+                    hungerBoost = sum;
+                    break;
+            }
+        }
+    }
+
+    private float SumBoostValues(List<PowerUpSO> powerUps)
+    {
+        float total = 0f;
+        foreach (var p in powerUps)
+            total += p.valuePowerUp; // <-- assumption, see below
+        return total;
     }
 }
