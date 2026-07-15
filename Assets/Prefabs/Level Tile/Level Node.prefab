@@ -485,7 +485,7 @@ MonoBehaviour:
     m_Bits: 128
   _levelNodeRadius: 1.5
   _levelNodeCheckPoint: {fileID: 2847664563380678733}
-  _spriteRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 263997560616201461}
 --- !u!114 &1596166963972607170
 MonoBehaviour:
   m_ObjectHideFlags: 0

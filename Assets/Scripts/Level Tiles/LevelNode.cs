@@ -180,7 +180,7 @@ public class LevelNode : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"[LevelNode] {_levelNodeID} has no levelDataSO yet in SetSurroundingTilesBeenSeen — skipping difficulty visual.");
+            Debug.Log($"[LevelNode] {_levelNodeID} has no levelDataSO yet in SetSurroundingTilesBeenSeen — skipping difficulty visual.");
         }
 
         _levelNodeVisuals.ActiveSelectNodeVisual();
