@@ -1,10 +1,17 @@
+using System;
 using UnityEngine;
 
 public class PanelPowerUps : Panel
 {
     
     private CanvasGroup  _canvasGroup;
-    
+
+    private void Start()
+    {
+        if (_canvasGroup.alpha == 1)
+            PanelManager.instance.OpenPanelByTypePanel(this.panelType);
+    }
+
     public override void GetPanelComponents()
     {
         if (_canvasGroup == null) 
@@ -13,7 +20,7 @@ public class PanelPowerUps : Panel
     
     public override void SetDataToPanel(object data)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void OpenPanel()
@@ -21,7 +28,7 @@ public class PanelPowerUps : Panel
         if (_canvasGroup == null)
             GetPanelComponents();
         
-        throw new System.NotImplementedException();
+        _canvasGroup.alpha = 1;
     }
 
     public override void ClosePanel()
@@ -29,6 +36,11 @@ public class PanelPowerUps : Panel
         if (_canvasGroup == null)
             GetPanelComponents();
         
-        throw new System.NotImplementedException();
+        _canvasGroup.alpha = 0;
+    }
+    
+    public void ClosingPanel()
+    {
+        PanelManager.instance.ClosePanelByPanelType(this.panelType);
     }
 }

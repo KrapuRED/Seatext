@@ -108,6 +108,8 @@ public class GameEvents
     public static readonly CustomEvents<float> OnUpdateTimerGamePlay = new();
     
     public static readonly CustomEvents<ButtonTypeBoxContext> OnButtonTypeBoxComplete = new();
+    
+    public static readonly CustomEvents OnUpdatePowerUpNode = new();
 
     //================================= PANEL =================================
     public static readonly CustomEvents<object> OnShowAdditionalInformationPanel = new();

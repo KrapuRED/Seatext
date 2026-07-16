@@ -43,7 +43,7 @@ public class FishSpeed : MonoBehaviour
         if (_powerUpManager.SpeedBoost <= 0)
             return fishSpeed;
         
-        float newFishSpeed = fishSpeed * _powerUpManager.SpeedBoost;
+        float newFishSpeed = fishSpeed + _powerUpManager.SpeedBoost / 100f;
         Debug.Log($"Player get boost speed: {_powerUpManager.SpeedBoost}% -> {newFishSpeed}");
         
         return newFishSpeed;

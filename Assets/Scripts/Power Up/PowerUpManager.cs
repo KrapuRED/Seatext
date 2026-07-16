@@ -19,7 +19,7 @@ public class PowerUpNodeData
 {
     public string powerUpNodeName;
     public BoostType boostType;
-    public List<PowerUpSO> powerUpNodes = new();
+    public List<PowerUpSO> powerUpDatas = new();
 }
 
 public class PowerUpManager : MonoBehaviour
@@ -40,6 +40,7 @@ public class PowerUpManager : MonoBehaviour
     private Dictionary<string, PowerUpNode> _powerUpNodes = new();
     private Dictionary<BoostType, int> _typeCounters = new();
     private StatusPlayerManager _statusPlayerManager;
+    private HashSet<string> _unlockedPowerUpIDs = new();
     
     public float SpeedBoost => speedBoost;
     public float HealthBoost => healthBoost;
@@ -58,8 +59,7 @@ public class PowerUpManager : MonoBehaviour
     private void Start()
     {
         activePowerUpDatas.Clear();
-        
-        //IntializePowerUps();
+
         InitializeActivePowerUpSlots();
 
         foreach (var powerUp in TEST_PowerUpDatas )
@@ -79,7 +79,7 @@ public class PowerUpManager : MonoBehaviour
             {
                 powerUpNodeName = type.ToString(),
                 boostType = type,
-                powerUpNodes = new List<PowerUpSO>()
+                powerUpDatas = new List<PowerUpSO>()
             });
         }
     }
@@ -215,7 +215,7 @@ public class PowerUpManager : MonoBehaviour
         {
             // 1) Applies to all stats — add to the "All" bucket
             var allData = activePowerUpDatas.Find(d => d.boostType == BoostType.All);
-            allData?.powerUpNodes.Add(powerUpData);
+            allData?.powerUpDatas.Add(powerUpData);
         }
         else
         {
@@ -228,7 +228,7 @@ public class PowerUpManager : MonoBehaviour
                 return;
             }
 
-            matchingData.powerUpNodes.Add(powerUpData);
+            matchingData.powerUpDatas.Add(powerUpData);
         }
 
         // 3) Recalculate totals
@@ -246,11 +246,11 @@ public class PowerUpManager : MonoBehaviour
         hungerBoost = 0f;
 
         var allBoosts = activePowerUpDatas.Find(d => d.boostType == BoostType.All);
-        float allBonus = allBoosts != null ? SumBoostValues(allBoosts.powerUpNodes) : 0f;
+        float allBonus = allBoosts != null ? SumBoostValues(allBoosts.powerUpDatas) : 0f;
 
         foreach (var data in activePowerUpDatas)
         {
-            float sum = SumBoostValues(data.powerUpNodes) + allBonus;
+            float sum = SumBoostValues(data.powerUpDatas) + allBonus;
 
             switch (data.boostType)
             {
@@ -273,5 +273,25 @@ public class PowerUpManager : MonoBehaviour
         foreach (var p in powerUps)
             total += p.valuePowerUp; // <-- assumption, see below
         return total;
+    }
+
+    public bool PowerUpExists(string powerUpID)
+    {
+        return _unlockedPowerUpIDs.Contains(powerUpID);
+    }
+    
+    public void UnlockPowerUpNode(string powerUpID, PowerUpSO powerUpData)
+    {
+        if (_unlockedPowerUpIDs.Contains(powerUpID))
+        {
+            Debug.LogWarning($"[PowerUpManager] {powerUpID} is already unlocked.");
+            return;
+        }
+        
+        _unlockedPowerUpIDs.Add(powerUpID);
+        AddPowerUp(powerUpData);
+        
+        //Update all Power Up UI
+        GameEvents.OnUpdatePowerUpNode.Invoke();
     }
 }

@@ -1,39 +1,27 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
-public enum ButtonTypeBoxContext
+public class PowerUpTypeBox : TypingBox
 {
-    ClosePanel,
-    OpenPanel,
-    ExploreNode,
-    DoneExploreNode
-}
-
-public class ButtonTypeBox : TypingBox
-{
+    public PowerUpNode ownerNode;
+    
     public TextMeshProUGUI textUI;
     public UnityEvent onTextComplete;
-    [SerializeField] private string panelID;
-    [SerializeField] private ButtonTypeBoxContext buttonTypeBoxContext;
     
-    public string PanelID => panelID;
-    public ButtonTypeBoxContext ButtonTypeBoxContext => buttonTypeBoxContext;
-    
-    private void Start()
-    {
-        SetTextToType(currentTextToType);
-        setTypeBoxEvent.Raise(this);
-    }
-
     public override void SetTextToType(string text)
     {
+        setTypeBoxEvent.Raise(this);
+        
         base.SetTextToType(text);
         textUI.text = currentTextToType;
     }
 
     public override bool CheckingText(string typing)
     {
+        if (!ownerNode.CanBuy)
+            return false;
+        
         bool isCorrectLetter = base.CheckingText(typing);
         if (isCorrectLetter)
         {
@@ -64,6 +52,6 @@ public class ButtonTypeBox : TypingBox
 
     public virtual void OnInkoveEvent()
     {
-       onTextComplete?.Invoke();
+        onTextComplete?.Invoke();
     }
 }

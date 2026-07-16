@@ -132,7 +132,7 @@ public class CurrencyManager : MonoBehaviour
             Debug.LogWarning($"[CurrencyManager] Unknown currency type: {currencyType}");
             return;
         }
-
+        
         int amount = currencyValues[currencyType] -= costValue;
 
         var updatedData = new CurrecyData(currencyType, amount);
