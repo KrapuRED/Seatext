@@ -16,7 +16,8 @@ MonoBehaviour:
   levelDataName: FAK
   levelDescription: Test
   durationLevelDataNode: 150
-  currentFlowSpeed: 0
+  currentFlowSpeed: 15
+  iconSprite: {fileID: 0}
   environmentSprite: {fileID: 0}
   difficulty: 0
-  spawnerData: {fileID: 11400000, guid: 1c4f6584f2abd1d4493827e63dd3aaec, type: 2}
+  spawnerData: {fileID: 11400000, guid: 24e4b251d6db73b45948f4408a0fe77e, type: 2}

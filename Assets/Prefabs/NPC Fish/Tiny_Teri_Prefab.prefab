@@ -404,11 +404,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerFishType: 0
   baseSpeed: 50
+  slowSpeed: 0.5
+  someMaxSpeed: 1000
   roamingSpeedFactor: 0
   chaseSpeedFactor: 0
   stackChaseSpeedFactor: 0
   currentWaterStrength: 0
-  waterCurrentMultiplier: 0
 --- !u!1 &3976892856433584271
 GameObject:
   m_ObjectHideFlags: 0

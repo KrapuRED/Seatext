@@ -5,7 +5,7 @@ public class FishHealth : MonoBehaviour, ISaveStatus
 {
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _currentHealth;
-
+    
     #region  Event
 
     private void OnEnable()
@@ -29,7 +29,7 @@ public class FishHealth : MonoBehaviour, ISaveStatus
     }
 
     #endregion
-
+    
     public void SetFishHealth(float currentHealth ,float maxHealth)
     {
         Debug.Log($"Setting Fish Health to {maxHealth}");

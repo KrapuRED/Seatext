@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fishData: {fileID: 0}
-  _fishIndex: 0
+  foodIndex: 0
   _fishMovement: {fileID: 6971522759114470532}
   _fishEyeSight: {fileID: 4829145161064734900}
   _fishSpeed: {fileID: 2739545123306705274}
@@ -80,8 +80,8 @@ MonoBehaviour:
   _fishSightVisual: {fileID: 6637556204044258552}
   _enemyFishTypeBox: {fileID: 6300414353192568959}
   _fishTextRotation: {fileID: 2374450767974184275}
-  _foodBeenEaten: 0
-  IntilazeFishByStart: 0
+  foodBeenEaten: 0
+  intilazeFishByStart: 0
 --- !u!50 &7473799602237088142
 Rigidbody2D:
   serializedVersion: 5
@@ -968,11 +968,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerFishType: 0
   baseSpeed: 50
+  slowSpeed: 0.5
+  someMaxSpeed: 1000
   roamingSpeedFactor: 0
   chaseSpeedFactor: 0
   stackChaseSpeedFactor: 0
   currentWaterStrength: 0
-  waterCurrentMultiplier: 0
 --- !u!1 &5159351248183832417
 GameObject:
   m_ObjectHideFlags: 0

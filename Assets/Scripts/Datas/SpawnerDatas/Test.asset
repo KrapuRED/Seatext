@@ -16,11 +16,11 @@ MonoBehaviour:
   SpawnerDataID: TSD-00
   FishSpawnChannels:
   - channelName: Passive Fish
-    spawnInterval: 1
+    spawnInterval: 2.5
     isEnabled: 1
     type: 1
   - channelName: Active
-    spawnInterval: 2
+    spawnInterval: 60
     isEnabled: 1
     type: 2
   PassiveFishSpawnTables:
@@ -58,7 +58,7 @@ MonoBehaviour:
   TrashSpawnChannels:
   - channelName: Straw
     spawnInterval: 0.7
-    isEnabled: 1
+    isEnabled: 0
   TrashTables:
   - trashName: Straw
     trashPrefab: {fileID: 2118618728440923955, guid: e20cbd14895dc8e4e9cd2f6ee0e08ca6, type: 3}

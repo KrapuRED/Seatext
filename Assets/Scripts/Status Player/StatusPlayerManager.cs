@@ -31,6 +31,9 @@ public class StatusPlayerManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+        
+        if (!initialized)
+            InitializedStatus(playerData);
     }
 
     #region Event Subscription
@@ -61,9 +64,6 @@ public class StatusPlayerManager : MonoBehaviour
 
     private void Start()
     {
-        if (!initialized)
-            InitializedStatus(playerData);
-        
         ShowStatus();
     }
 
@@ -84,6 +84,7 @@ public class StatusPlayerManager : MonoBehaviour
             return;
         }
 
+        maxPlayerHealthStatus = playerData.baseFishStats.maxFishHealth;
         currentPlayerHealthStatus = playerData.baseFishStats.maxFishHealth;
 
         maxPlayerHungerStatus = playerData.maxHunger;
@@ -91,6 +92,39 @@ public class StatusPlayerManager : MonoBehaviour
         currentPlayerTrashStatus  = playerData.startingTrash;
         
         initialized = true;
+    }
+    
+    public void UpgradeMaxHealth(float amount)
+    {
+        if (!initialized)
+        {
+            Debug.LogError("Status Player Manager not been initialized");
+            return;
+        }
+        
+        float newMaxHealthStatus =  playerData.baseFishStats.maxFishHealth + amount;
+        maxPlayerHealthStatus = newMaxHealthStatus;
+        
+        currentPlayerHealthStatus = Mathf.Min(currentPlayerHealthStatus + amount, maxPlayerHealthStatus);
+
+        ShowStatus(); // updates the UI bar
+    }
+    
+    public void UpgradeMaxHunger(float amount)
+    {
+        if (!initialized)
+        {
+            Debug.LogError("Status Player Manager not been initialized");
+            return;
+        }
+        
+        float newMaxHungerStatus = playerData.maxHunger + amount;
+        
+        maxPlayerHungerStatus = newMaxHungerStatus;
+        
+        currentPlayerHungerStatus = Mathf.Min(currentPlayerHungerStatus + amount, maxPlayerHungerStatus);
+        
+        ShowStatus(); // updates the UI bar
     }
 
     public void UpdateStatusHealth(float healthValue)
@@ -101,7 +135,6 @@ public class StatusPlayerManager : MonoBehaviour
             return;
         }
         
-        Debug.Log("Updating Health Status");
         currentPlayerHealthStatus = healthValue;
     }
     
@@ -120,6 +153,8 @@ public class StatusPlayerManager : MonoBehaviour
         currentPlayerHealthStatus = Mathf.Min(
             currentPlayerHealthStatus + healValue,
             maxPlayerHealthStatus);
+
+        UpdateStatusHealth(currentPlayerHealthStatus);
     }
 
     public void UpdateStatusTrash(float trashValue)
@@ -141,8 +176,7 @@ public class StatusPlayerManager : MonoBehaviour
             Debug.LogError("Status Player Manager not been initialized");
             return;
         }
-        
-        Debug.Log("Updating Health Status");
+
         currentPlayerHungerStatus = hungerValue;
     }
 

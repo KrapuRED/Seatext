@@ -39,6 +39,11 @@ public class PowerUpManager : MonoBehaviour
     
     private Dictionary<string, PowerUpNode> _powerUpNodes = new();
     private Dictionary<BoostType, int> _typeCounters = new();
+    private StatusPlayerManager _statusPlayerManager;
+    
+    public float SpeedBoost => speedBoost;
+    public float HealthBoost => healthBoost;
+    public float HungerBoost => hungerBoost;
     
     private void Awake()
     {
@@ -46,6 +51,8 @@ public class PowerUpManager : MonoBehaviour
             instance = this;
         else 
             Destroy(gameObject);
+
+        _statusPlayerManager = StatusPlayerManager.Instance;
     }
 
     private void Start()
@@ -178,6 +185,23 @@ public class PowerUpManager : MonoBehaviour
             _powerUpNodes.Add(powerUpNodeID, node);
         }
     }
+
+    private void ApplyBooster(BoostType boostType)
+    {
+        switch (boostType)
+        {
+            case BoostType.Health:
+                _statusPlayerManager.UpgradeMaxHealth(healthBoost);
+                break;
+            case BoostType.Hunger:
+                _statusPlayerManager.UpgradeMaxHunger(hungerBoost);
+                break;
+            case BoostType.All:
+                _statusPlayerManager.UpgradeMaxHealth(healthBoost);
+                _statusPlayerManager.UpgradeMaxHunger(hungerBoost);
+                break;
+        }
+    }
     
     public void AddPowerUp(PowerUpSO powerUpData)
     {
@@ -209,6 +233,10 @@ public class PowerUpManager : MonoBehaviour
 
         // 3) Recalculate totals
         RecalculateBoosts();
+        
+        // 4) Applay to status
+        ApplyBooster(powerUpData.powerUpBoostType);
+            
     }
 
     private void RecalculateBoosts()
@@ -236,7 +264,7 @@ public class PowerUpManager : MonoBehaviour
                     hungerBoost = sum;
                     break;
             }
-        }
+        } 
     }
 
     private float SumBoostValues(List<PowerUpSO> powerUps)

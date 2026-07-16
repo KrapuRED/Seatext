@@ -13,11 +13,11 @@ public class PlayerStatusSync : MonoBehaviour
     {
         _statusPlayerManager = StatusPlayerManager.Instance;
         
-        HandleHealthChange();
-        HandleTrashChange();
+        HandleSyncHealth();
+        HandleSyncTrash();
     }
 
-    public void HandleHealthChange()
+    public void HandleSyncHealth()
     {
         if (_playerFishHealth == null)
         {
@@ -28,7 +28,7 @@ public class PlayerStatusSync : MonoBehaviour
         _playerFishHealth.SetFishHealth(_statusPlayerManager.CurrentPlayerHealthStatus, _statusPlayerManager.MaxPlayerHealthStatus);
     }
     
-    public void HandleTrashChange()
+    public void HandleSyncTrash()
     {
         if (_playerFishHunger == null)
         {

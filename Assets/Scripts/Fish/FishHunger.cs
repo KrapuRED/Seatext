@@ -1,4 +1,5 @@
-using UnityEngine;
+ using System;
+ using UnityEngine;
 
 public class FishHunger : MonoBehaviour, ISaveStatus
 {
@@ -17,8 +18,14 @@ public class FishHunger : MonoBehaviour, ISaveStatus
 
     private float _damageAccum;
     private float _debugTimer;
+    private PowerUpManager _powerUpManager;
     
     public float currentHunger => _currentHunger;
+
+    private void Start()
+    {
+        _powerUpManager = PowerUpManager.instance;
+    }
 
     #region  Event
 
@@ -48,10 +55,10 @@ public class FishHunger : MonoBehaviour, ISaveStatus
     {
         maxHunger = hungerBar;
         _currentHunger = maxHunger;
-        //statusHungerUI.UpdateStatusBar(trashGain, maxHunger);
+
         GameEvents.OnUpdateHungerBar.Invoke(trashGain, maxHunger);
     }
-
+    
     public void Starve()
     {
         if (currentHunger <= 0)
@@ -63,7 +70,6 @@ public class FishHunger : MonoBehaviour, ISaveStatus
             
             if (_debugTimer >= 1f)
             {
-                Debug.Log($"HP lost in the last second: {_damageAccum}");
                 _playerFish.TakeStarvationDamage(_damageAccum);
                 _damageAccum = 0f;
                 _debugTimer = 0f;
@@ -77,8 +83,6 @@ public class FishHunger : MonoBehaviour, ISaveStatus
 
     public void SetTrashingHungerbar(float gainTrash)
     {
-        Debug.Log($"gainTrash: {gainTrash}");
-
         maxHunger -= gainTrash;
         trashGain += gainTrash;
         

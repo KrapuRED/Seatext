@@ -933,21 +933,45 @@ PrefabInstance:
       propertyPath: m_Name
       value: DDOL - Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 5000720662808098959, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: TEST_PowerUpDatas.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000720662808098959, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: 'TEST_PowerUpDatas.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d5c5ab533a790084291f02cf2e85589a, type: 2}
+    - target: {fileID: 5000720662808098959, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: 'TEST_PowerUpDatas.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b4f46d60c28e03042a399bfa408373a2, type: 2}
+    - target: {fileID: 5000720662808098959, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: 'TEST_PowerUpDatas.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c3fd700d9b4a574080fd2ff0ff3c144, type: 2}
+    - target: {fileID: 5000720662808098959, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: 'TEST_PowerUpDatas.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d310546b08ac65145ada77702dae652e, type: 2}
+    - target: {fileID: 5000720662808098959, guid: fc1b437da9f644d459393d743b911e39, type: 3}
+      propertyPath: 'TEST_PowerUpDatas.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ec88d80269b9e940810cda44c672100, type: 2}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: playerData
       value: 
       objectReference: {fileID: 11400000, guid: 5c04d5d22fa4f42409f96f3a8299d544, type: 2}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: initialized
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: maxPlayerHealthStatus
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: maxPlayerHungerStatus
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: currentPlayerTrashStatus
@@ -955,7 +979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: currentPlayerHealthStatus
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6917572963406478777, guid: fc1b437da9f644d459393d743b911e39, type: 3}
       propertyPath: currentPlayerHungerStatus
@@ -5871,7 +5895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3972855778810304323, guid: 8b58dd8c1dc372d4e9c96ea95807244e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.00012207031
+      value: -0.00024414062
       objectReference: {fileID: 0}
     - target: {fileID: 3972855778810304323, guid: 8b58dd8c1dc372d4e9c96ea95807244e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6010,6 +6034,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 159991153}
     m_Modifications:
+    - target: {fileID: 320694748856772512, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 320694748856772512, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
+      propertyPath: someMaxSpeed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 339882183581354877, guid: 1359deb33777f3d4a9d334c072015096, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -35,8 +35,6 @@ public class StatusHungerUI : StatusBarUI
         
         if (fixedMax <= 0f)
             return;
-
-        Debug.Log($"trash = {currentValue} hunger = {maxValue}");
         
         hungerSlider.value  = Mathf.Clamp01(maxValue / fixedMax); // hunger remaining
         trashSlider.value = Mathf.Clamp01(currentValue / fixedMax); 
