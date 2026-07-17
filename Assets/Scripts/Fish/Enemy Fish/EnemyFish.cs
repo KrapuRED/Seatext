@@ -47,14 +47,23 @@ public class EnemyFish : Fish, IPausable, IEatable
     private void OnEnable()
     {
         GameEvents.OnEatableEntered.AddListener(HandleEating);
+        GameEvents.OnApplyingSkillEffect.AddListener(HandleSkillEffect);
+        
     }
 
     private void OnDestroy()
     {
-        GameEvents.OnEatableEntered.RemoveListener(HandleEating);
-        PauseManager.instance.Unregister(this);
+        OnRemoveListener();
     }
 
+    private void OnRemoveListener()
+    {
+        GameEvents.OnEatableEntered.RemoveListener(HandleEating);
+        PauseManager.instance.Unregister(this);
+        
+        GameEvents.OnApplyingSkillEffect.RemoveListener(HandleSkillEffect);
+    }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -181,5 +190,25 @@ public class EnemyFish : Fish, IPausable, IEatable
 
         _enemyFishTypeBox.RemoveWordFromFish();
         Destroy(gameObject);
+    }
+
+    public override void HandleSkillEffect(bool isSkillActive, 
+        AreaSkillEffectType? areaSkillEffectType,
+        FishSkillEffectType? fishSkillEffect,
+        float effectValue)
+    {
+        if (isBeenEffected)
+            return;
+
+        if (isSkillActive == false)
+        {
+            isBeenEffected = false;
+            return;
+        }
+        
+        isBeenEffected = true; 
+
+        if (fishSkillEffect == FishSkillEffectType.Movement)
+            FishSpeed.ReduceFishSpeed(isSkillActive, effectValue);
     }
 }

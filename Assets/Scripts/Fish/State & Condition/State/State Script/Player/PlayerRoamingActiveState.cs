@@ -1,13 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerRoamingActiveState", menuName = "State Machine/Player/Condition/RoamingActiveState")]
+[CreateAssetMenu(fileName = "PlayerRoamingActiveState", menuName = "State Machine/Player/State/RoamingActiveState")]
 
 public class PlayerRoamingActiveState : PlayerStateSO
 {
     protected override void EnterState(PlayerContex contex)
     {
         Debug.Log($"[PlayerRoamingActiveState - EnterState] Enter Roaming Active State");
-        contex.CanEatFish = true;
+        contex.IsBerserk = true;
     }
 
     protected override void ExcuteState(PlayerContex contex)

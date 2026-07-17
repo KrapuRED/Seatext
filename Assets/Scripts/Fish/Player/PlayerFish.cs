@@ -11,7 +11,7 @@ public class PlayerContex : FishContex
     public bool IsActiveFish;
     public bool IsIdle;
     public bool IsRoaming;
-    public bool CanEatFish;
+    public bool IsBerserk;
 }
 
 public class PlayerFish : Fish, IPausable, IEatable
@@ -25,7 +25,7 @@ public class PlayerFish : Fish, IPausable, IEatable
     [SerializeField] private float maxHealth;
     [SerializeField] private bool _isActiveFish;
     [SerializeField] private float durationInvisible;
-    [SerializeField] private bool _isInvisible;
+    [SerializeField] private bool isImmune;
     private float currentInvisible;
 
     [Header("Fish System")]
@@ -36,6 +36,9 @@ public class PlayerFish : Fish, IPausable, IEatable
     private Rigidbody2D _rb2d;
     private Transform _moveTarget;
     private float _moveSpeed;
+    
+    private int foodEatenDuringBerserk;
+    [SerializeField] private bool isBerserk;
 
     public FoodSize foodSize { get ; set ; }
     public FishHunger PlayerFishHunger => _playerFishHunger;
@@ -90,37 +93,44 @@ public class PlayerFish : Fish, IPausable, IEatable
         GameEvents.OnPlayerEating.AddListener(PlayerEating);
         
         GameEvents.OnEatableEntered.AddListener(HandleEating);
-        
+        GameEvents.OnApplyingSkillEffect.AddListener(HandleSkillEffect);
     }
 
     private void OnDisable()
     {
+        OnRemoveListener();
+    }
+
+    private void OnDestroy()
+    {
+       OnRemoveListener();
+    }
+
+    private void OnRemoveListener()
+    {
+        PauseManager.instance.Unregister(this);
         GameEvents.OnPlayerActive.RemoveListener(SetActiveFish);
-        GameEvents.OnDodgeAttackFish.RemoveListener(DodgeAttackFish);
+
         GameEvents.OnSetPositionPlayerEvent.AddListener(SetPlayerFishDirection);
         GameEvents.OnPlayerEating.RemoveListener(PlayerEating);
         
         GameEvents.OnEatableEntered.RemoveListener(HandleEating);
         
+        GameEvents.OnApplyingSkillEffect.RemoveListener(HandleSkillEffect);
     }
-
-    private void OnDestroy()
-    {
-        PauseManager.instance.Unregister(this);
-    }
-
+    
     private void Update()
     {
         if (GameManager.instance.LevelDone)
             return;
         
-        if (_isInvisible && currentInvisible > 0)
+        if (isImmune && currentInvisible > 0)
         {
             currentInvisible -= Time.deltaTime;
         }
         else
         {
-            _isInvisible = false;
+            isImmune = false;
         }
     
         _playerFishHunger.Starve();
@@ -170,10 +180,10 @@ public class PlayerFish : Fish, IPausable, IEatable
     
     public void TakingDamage(float damageValue)
     {
-        if (_isInvisible)
+        if (isImmune)
             return;
 
-        _isInvisible = true;
+        isImmune = true;
         currentInvisible = durationInvisible;
         
         ApplyDamage(damageValue);
@@ -204,6 +214,11 @@ public class PlayerFish : Fish, IPausable, IEatable
     {
         PlayerContex.RoamingPoint = targetPosition;
         this.targetPosition = targetPosition;
+    }
+
+    public void SetTargetPosition(Transform targetFoodPosition)
+    {
+        targetPosition = targetFoodPosition;
     }
 
     private float CheckDistanceToTarget()
@@ -251,6 +266,8 @@ public class PlayerFish : Fish, IPausable, IEatable
 
     public void SetActiveFish(bool condition)
     {
+        if (isBerserk)
+            return;
         
         PlayerContex playerContex = Contex as PlayerContex;
 
@@ -274,5 +291,85 @@ public class PlayerFish : Fish, IPausable, IEatable
         Debug.Log("[PlayerFish - PlayerEating] Player Fish is Eating!");
         FishSpeed.ResetStackChaseSpeed();
         _playerFishHunger.ResetHunggerBar();
+    }
+
+    private void StartBerserk()
+    {
+        //Change the behavior of the player fish and boost 100% movement
+        isBerserk = true;
+        isImmune = true;
+        foodEatenDuringBerserk = 0;
+        
+        FishSpeed.IncreaseFishSpeed(isBerserk, 100f);
+        
+        PlayerContex.IsRoaming = false;
+        PlayerContex.IsIdle = false;
+        PlayerContex.IsBerserk = true;
+        
+        Debug.Log("[PlayerFish] Berserk started - immune, auto-chasing food");
+    }
+
+    private void EndBerserk()
+    {
+        Debug.Log("[PlayerFish] Berserk ended");
+        
+        isBerserk = false;
+        isImmune = false;
+        PlayerContex.IsBerserk = false;
+        
+        FishSpeed.IncreaseFishSpeed(isBerserk, 0);
+        
+        var skillData = FishSkillManager.Instance.UseFishSkillData; // however you expose it
+        if (foodEatenDuringBerserk < skillData.effectRequired)
+        {
+            float hpLoss = StatusPlayerManager.Instance.MaxPlayerHealthStatus * (skillData.effectValue / 100f);
+            TakingDamage(hpLoss);
+            Debug.Log($"[PlayerFish] Berserk ended - only ate {foodEatenDuringBerserk}, losing {skillData.effectValue}% HP");
+        }
+        
+        _stateMachine.ResetStateMachine();
+    }
+    
+    public override void HandleSkillEffect(bool isSkillActive, AreaSkillEffectType? areaSkillEffectType,
+        FishSkillEffectType? fishSkillEffect,
+        float effectValue)
+    {
+        if (!isSkillActive)
+        {
+            Debug.Log("Try to Inactive skill effect");
+            
+            isBeenEffected = false;
+
+            if (fishSkillEffect == FishSkillEffectType.Movement)
+                FishSpeed.IncreaseFishSpeed(isSkillActive, effectValue);
+
+            EndBerserk();
+            
+            return;
+        }
+        
+        if (isBeenEffected)
+            return;
+        
+        Debug.Log("[PlayerFish - HandleSkillEffect] PlayerFish HandleSkillEffect");
+        if (areaSkillEffectType == AreaSkillEffectType.Around)
+        {
+            Debug.Log("[PlayerFish - HandleSkillEffect] PlayerFish HandleSkillEffect not effected");
+            return;
+        }
+        
+        isBeenEffected = true;
+
+        switch (fishSkillEffect)
+        {
+            case FishSkillEffectType.Movement:
+                FishSpeed.IncreaseFishSpeed(isSkillActive, effectValue);
+                break;
+            case FishSkillEffectType.Berserk:
+                StartBerserk();
+                break;
+            
+        }
+        
     }
 }

@@ -311,11 +311,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerFishType: 0
   baseSpeed: 100
+  slowSpeed: 0.5
+  someMaxSpeed: 0
   roamingSpeedFactor: 0
   chaseSpeedFactor: 0
   stackChaseSpeedFactor: 0
   currentWaterStrength: 0
-  waterCurrentMultiplier: 0
 --- !u!114 &3311576797285818517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +334,7 @@ MonoBehaviour:
   isCanMove: 1
   _rotationSpeed: 5
   _fishTextRotate: {fileID: 6821151395226544016}
-  _rigidbody2D: {fileID: 0}
+  _rigidbody2D: {fileID: 7454610653181641435}
 --- !u!50 &7454610653181641435
 Rigidbody2D:
   serializedVersion: 5

@@ -189,6 +189,7 @@ Transform:
   - {fileID: 7061190807752556303}
   - {fileID: 3860832245964673384}
   - {fileID: 1518535521860249535}
+  - {fileID: 164089423588057131}
   m_Father: {fileID: 339882183581354877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3722418325409289159
@@ -463,6 +464,7 @@ MonoBehaviour:
   _fishType: 1
   mouthPosition: {fileID: 0}
   eatRange: 0
+  isBeenEffected: 0
   _playerData: {fileID: 11400000, guid: 5c04d5d22fa4f42409f96f3a8299d544, type: 2}
   targetPosition: {fileID: 0}
   distanceToTarget: 1
@@ -560,6 +562,54 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.8243017, y: 3.1915774}
   m_EdgeRadius: 0
+--- !u!1 &4843806625274843206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164089423588057131}
+  - component: {fileID: 1918534327379444028}
+  m_Layer: 0
+  m_Name: Player FIsh - Skill Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &164089423588057131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843806625274843206}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1968422358233737315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1918534327379444028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843806625274843206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09db912685d05c458c242045e51016b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishSkillData: {fileID: 0}
+  isActive: 0
+  isReady: 1
+  fishSkillUI: {fileID: 0}
 --- !u!1 &5862651463704973678
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,11 +656,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerFishType: 0
   baseSpeed: 0
+  slowSpeed: 0.5
+  someMaxSpeed: 1000
   roamingSpeedFactor: 0.05
   chaseSpeedFactor: 1
   stackChaseSpeedFactor: 1
+  reduceFishSpeedFactor: 0
+  increaseFishSpeedFactor: 0
+  isBeenReduce: 0
+  isBeenIncrease: 0
   currentWaterStrength: 0
-  waterCurrentMultiplier: 0
 --- !u!1 &9036370392552053603
 GameObject:
   m_ObjectHideFlags: 0

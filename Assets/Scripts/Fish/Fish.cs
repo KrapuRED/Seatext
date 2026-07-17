@@ -49,6 +49,8 @@ public class Fish : MonoBehaviour
     public int FoodIndex => foodIndex;
     public FishContex Contex { get;  set; }
 
+    [SerializeField] protected bool isBeenEffected;
+
     public virtual void OnEating(IEatable eatable)
     {
 
@@ -68,5 +70,22 @@ public class Fish : MonoBehaviour
     public virtual void DodgeAttackFish(Vector2 attackDirection)
     {
         Debug.Log($"[{gameObject.name} - DodgeEnemy] Try to Dodge Enemy Attack!");
+    }
+    
+    public virtual void HandleSkillEffect(bool isSkillActive, 
+        AreaSkillEffectType? areaSkillEffectType,
+        FishSkillEffectType? fishSkillEffect,
+        float effectValue )
+    {
+        if (isBeenEffected)
+            return;
+        
+        if (areaSkillEffectType == AreaSkillEffectType.Player)
+        {
+            Debug.Log($"{gameObject.name} dont know the player area effect");
+            return;
+        }
+        
+        Debug.Log($"{gameObject.name} get effected skill type: {areaSkillEffectType} effectValue: {effectValue}");
     }
 }

@@ -17,7 +17,7 @@ public class PlayerIsIdleCondition :  PlayerConditionSO
         else
         {
             idleTimer += Time.deltaTime;
-            if (idleTimer >= idleTime)
+            if (idleTimer >= idleTime && !contex.IsBerserk)
             {
                 return true;
             }

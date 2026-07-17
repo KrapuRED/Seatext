@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a8b124e6adbb94a8530a79a78d8e9b, type: 3}
+  m_Name: Skill_Speed_Burst
+  m_EditorClassIdentifier: 
+  fishSkillName: Speed Burst
+  fishSkillDescription: 
+  fishSkillIcon: {fileID: 4513895799472539141, guid: 053081249faf4274f9bb2bf52dd53c47, type: 3}
+  areaSkillEffectType: 1
+  fishSkillEffectType: 1
+  effectValue: 50
+  effectRequired: 0
+  effectDuration: 10
+  effectCooldown: 20

@@ -74,6 +74,24 @@ public class CustomEvents<T1, T2, T3>
         _action += listener;
     }
 }
+
+public class CustomEvents<T1, T2, T3, T4>
+{
+    private event Action<T1, T2, T3, T4> _action = delegate { };
+    public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4)
+    {
+        _action?.Invoke(arg1, arg2, arg3, arg4);
+    }
+    
+    public void AddListener(Action<T1, T2, T3, T4> listener)
+    {
+        _action += listener;
+    }
+    public void RemoveListener(Action<T1, T2, T3, T4> listener)
+    {
+        _action += listener;
+    }
+}
 #endregion
 
 public class GameEvents
@@ -89,6 +107,9 @@ public class GameEvents
     #region Fish Events
     public static readonly CustomEvents<IEatable, FishType, int> OnEatableEntered = new ();
     public static readonly CustomEvents<FishSpawnerType, int> OnRemoveSpawnedFishData = new ();
+    
+    public static readonly CustomEvents<bool, AreaSkillEffectType?, FishSkillEffectType?, float> OnApplyingSkillEffect = new();
+    public static readonly CustomEvents OnStopApplyingSkillEffect = new();
     #endregion
 
     #region Player Fish Events

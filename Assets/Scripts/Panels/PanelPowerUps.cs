@@ -5,13 +5,7 @@ public class PanelPowerUps : Panel
 {
     
     private CanvasGroup  _canvasGroup;
-
-    private void Start()
-    {
-        if (_canvasGroup.alpha == 1)
-            PanelManager.instance.OpenPanelByTypePanel(this.panelType);
-    }
-
+    
     public override void GetPanelComponents()
     {
         if (_canvasGroup == null) 
@@ -38,8 +32,13 @@ public class PanelPowerUps : Panel
         
         _canvasGroup.alpha = 0;
     }
+
+    public void OpenPowerUpPanel()
+    {
+        PanelManager.instance.OpenPanelByTypePanel(this.panelType);
+    }
     
-    public void ClosingPanel()
+    public void ClosingPowerUpPanel()
     {
         PanelManager.instance.ClosePanelByPanelType(this.panelType);
     }

@@ -163,6 +163,10 @@ MonoBehaviour:
   roamingSpeedFactor: 0
   chaseSpeedFactor: 0
   stackChaseSpeedFactor: 0
+  reduceFishSpeedFactor: 0
+  increaseFishSpeedFactor: 0
+  isBeenReduce: 0
+  isBeenIncrease: 0
   currentWaterStrength: 0
 --- !u!1 &3031162233591335380
 GameObject:
@@ -711,7 +715,7 @@ GameObject:
   - component: {fileID: 6105236386068638874}
   m_Layer: 6
   m_Name: Small_Golden_Fish_Enemy_Prefab
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -772,6 +776,7 @@ MonoBehaviour:
   _fishType: 3
   mouthPosition: {fileID: 0}
   eatRange: 0.25
+  isBeenEffected: 0
   EndWayPoint: {fileID: 0}
   _fishSightVisual: {fileID: 2579901361505924435}
   _enemyFishTypeBox: {fileID: 7476305847091900642}

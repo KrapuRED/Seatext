@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6254066467232086318}
   m_Layer: 6
   m_Name: Small_Fish_Enemy_Prefab
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,6 +76,7 @@ MonoBehaviour:
   _fishType: 3
   mouthPosition: {fileID: 7533440776397180289}
   eatRange: 0.25
+  isBeenEffected: 0
   EndWayPoint: {fileID: 0}
   _fishSightVisual: {fileID: 6637556204044258552}
   _enemyFishTypeBox: {fileID: 6300414353192568959}
@@ -747,7 +748,7 @@ MonoBehaviour:
   isCanMove: 1
   _rotationSpeed: 5
   _fishTextRotate: {fileID: 2374450767974184275}
-  _rigidbody2D: {fileID: 0}
+  _rigidbody2D: {fileID: 7473799602237088142}
 --- !u!1 &3389349749819933400
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +974,10 @@ MonoBehaviour:
   roamingSpeedFactor: 0
   chaseSpeedFactor: 0
   stackChaseSpeedFactor: 0
+  reduceFishSpeedFactor: 0
+  increaseFishSpeedFactor: 0
+  isBeenReduce: 0
+  isBeenIncrease: 0
   currentWaterStrength: 0
 --- !u!1 &5159351248183832417
 GameObject:

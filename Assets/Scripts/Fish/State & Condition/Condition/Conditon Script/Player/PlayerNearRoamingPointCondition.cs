@@ -15,7 +15,7 @@ public class PlayerNearRoamingPointCondition : PlayerConditionSO
 
         Debug.Log($"[PlayerNearRoamingPointCondition - CheckCondition] Distance to Roaming Point: {distance}");
 
-        if (distance <= distanceToRoamingPoint)
+        if (distance <= distanceToRoamingPoint && !contex.IsBerserk)
             return true;
 
         return false;

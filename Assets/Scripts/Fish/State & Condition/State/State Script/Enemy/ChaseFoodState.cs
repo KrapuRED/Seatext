@@ -19,8 +19,8 @@ public class ChaseFoodState : EnemyStateSO
         
         if (foodPosition == null && foodPosition.CompareTag("Player"))
             return;
-
-            contex.fishMovement.MoveFish(foodPosition, distanceToEat ,contex.fishSpeed.GetFishSpeed(1));
+        
+        contex.fishMovement.MoveFish(foodPosition, distanceToEat ,contex.fishSpeed.GetFishSpeed(1));
     }
     protected override void ExitState(EnemyContex contex)
     {

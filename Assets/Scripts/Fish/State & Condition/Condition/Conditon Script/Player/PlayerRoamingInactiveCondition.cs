@@ -18,7 +18,7 @@ public class PlayerRoamingInactiveCondition : PlayerConditionSO
 
         timer += Time.deltaTime;
 
-        if (timer >= IdleTimeThreshold)
+        if (timer >= IdleTimeThreshold && !contex.IsBerserk)
         {
             //Debug.Log("[PlayerRoamingInactiveCondition - CheckCondition] Player has been idle for too long, transitioning to Roaming Inactive State");
             return true;

@@ -47,24 +47,23 @@ public class FishEyeSight : MonoBehaviour
 
     private Transform CheckEyeSight()
     {
-        //Direction Eye Facing
         Vector2 directionEye = EyePosition.up;
-        OnDrawEyeSight(directionEye);
+
         _objectsInSights = Physics2D.OverlapCircleAll(transform.position, viewDistance, visionLayerMask).ToList();
 
         foreach (Collider2D targetCollider in _objectsInSights)
         {
+            if (!string.IsNullOrEmpty(dectactionTag) && !targetCollider.CompareTag(dectactionTag))
+                continue; // <-- this filter was missing before
+
             Transform target = targetCollider.transform;
-            Vector2 distanceTotarget = (target.position - EyePosition.position).normalized;
+            Vector2 dirToTarget = (target.position - EyePosition.position).normalized;
 
-            if (Vector2.Angle(directionEye, distanceTotarget) < viewAngle / 2)
+            if (Vector2.Angle(directionEye, dirToTarget) < viewAngle / 2)
             {
-                RaycastHit2D hit = Physics2D.Raycast(EyePosition.position, distanceTotarget, viewDistance, visionLayerMask);
-
+                RaycastHit2D hit = Physics2D.Raycast(EyePosition.position, dirToTarget, viewDistance, visionLayerMask);
                 if (hit.collider != null)
-                {
                     return target;
-                }
             }
         }
 
@@ -82,6 +81,37 @@ public class FishEyeSight : MonoBehaviour
             currentFish.SetBeenHunted(hunted, currentFish);
         }
     }
+    
+    public Transform GetNearestObjectWithTag(string tag)
+    {
+        if (EyePosition == null)
+            return null;
+
+        Collider2D[] candidates = Physics2D.OverlapCircleAll(transform.position, viewDistance, visionLayerMask);
+
+        Transform nearest = null;
+        float nearestDist = float.MaxValue;
+        Vector2 directionEye = EyePosition.up;
+
+        foreach (var col in candidates)
+        {
+            if (!col.CompareTag(tag))
+                continue;
+
+            Vector2 dirToTarget = (col.transform.position - EyePosition.position).normalized;
+            if (Vector2.Angle(directionEye, dirToTarget) >= viewAngle / 2)
+                continue;
+
+            float dist = Vector2.Distance(transform.position, col.transform.position);
+            if (dist < nearestDist)
+            {
+                nearestDist = dist;
+                nearest = col.transform;
+            }
+        }
+
+        return nearest;
+    }
 
     private void OnDrawGizmos()
     {
@@ -89,6 +119,7 @@ public class FishEyeSight : MonoBehaviour
             return;
 
         Vector2 directionEye = EyePosition.up;
+        OnDrawEyeSight(directionEye);
     }
 
     public void OnDrawEyeSight(Vector2 directionEye)

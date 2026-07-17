@@ -49,7 +49,7 @@ public class StateMachine : MonoBehaviour
         }
 
         if (_activeState != null)
-        _activeState.ExcuteState(currentFish.Contex);
+            _activeState.ExcuteState(currentFish.Contex);
     }
 
     public void ResetStateMachine()

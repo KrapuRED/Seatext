@@ -20,6 +20,10 @@ MonoBehaviour:
   maxFishHealth: 100
   speedFish: 20
   dataStateCondtions:
+  - nameStateCondition: Player Berserk State
+    stateConditionID: PS-02
+    state: {fileID: 11400000, guid: ee48bfbd5b4e4f64ba3d413179047f59, type: 2}
+    condition: {fileID: 11400000, guid: a792fa4b7cd840c4cb30f0d5141046ca, type: 2}
   - nameStateCondition: Player Roaming Inactive State
     stateConditionID: PS-01
     state: {fileID: 11400000, guid: 95a81338bc9fb13459fbd6a81b8f68aa, type: 2}
