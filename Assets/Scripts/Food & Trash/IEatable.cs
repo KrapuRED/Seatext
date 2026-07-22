@@ -4,5 +4,5 @@ public interface IEatable
 {
     public FoodSize foodSize { get; set; }
 
-    public void Eat(FishType fishType);
+    public void GetEatenBy(FishType fishType);
 }

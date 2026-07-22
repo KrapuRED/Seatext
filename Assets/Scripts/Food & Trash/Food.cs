@@ -141,18 +141,18 @@ public class Food : TypingBox, IEatable, IPausable
             return;
         }
 
-        eatable.Eat(eatyingBy);
+        eatable.GetEatenBy(eatyingBy);
     }
 
 
-    public void Eat(FishType fishType)
+    public void GetEatenBy(FishType fishType)
     {
         if (_hasBeenEaten)
             return; // already processed, ignore any further calls
 
         _hasBeenEaten = true; // lock immediately, before any logic runs
 
-        Debug.Log($"[Food - Eat] {gameObject.name} has been eaten! Food Type : {_dropFoodSO.foodType}");
+        Debug.Log($"[Food - GetEatenBy] {gameObject.name} has been eaten! Food Type : {_dropFoodSO.foodType}");
 
         if (fishType != FishType.Player)
         {
@@ -167,16 +167,16 @@ public class Food : TypingBox, IEatable, IPausable
         switch (_dropFoodSO.foodType)
         {
             case FoodType.Trash:
-                Debug.Log($"[Food - Eat] Trash {gameObject.name} has been eaten! Player will lose health.");
+                Debug.Log($"[Food - GetEatenBy] Trash {gameObject.name} has been eaten! Player will lose health.");
                 PlayerFish.playerFish.PlayerFishHunger.SetTrashingHungerbar(_dropFoodSO.gainStatus);
                 break;
 
             case FoodType.Pellet:
-                Debug.Log($"[Food - Eat] Pellet {gameObject.name} has been eaten! Player will gain some points.");
+                Debug.Log($"[Food - GetEatenBy] Pellet {gameObject.name} has been eaten! Player will gain some points.");
                 break;
 
             case FoodType.Goldenpellet:
-                Debug.Log($"[Food - Eat] Goldenpellet {gameObject.name} has been eaten! Player will gain some points.");
+                Debug.Log($"[Food - GetEatenBy] Goldenpellet {gameObject.name} has been eaten! Player will gain some points.");
                 break;
         }
 

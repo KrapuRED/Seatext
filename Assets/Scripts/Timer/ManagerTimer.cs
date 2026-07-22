@@ -1,9 +1,23 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public class CounterTime
+{
+    public string counterTimeName;
+    public float maxTimmer;
+    public float currnetTimer;
+    public bool isPassMaxTime;
+}
 
 public class ManagerTimer : MonoBehaviour, IPausable
 {
     public static ManagerTimer instance {get; private set; }
+    
+    [SerializeField] private List<CounterTime> counterTimeDatas = new();
+    
     private bool _gameStarted;
     private float _timer;
     private bool _isPaused;
@@ -45,7 +59,9 @@ public class ManagerTimer : MonoBehaviour, IPausable
 
         if (GameManager.instance.LevelDone)
             return;
-            
+        
+        UpdateCounterTime();
+        
         if (_timer < 0)
         {
             GameEvents.OnEndDuration.Invoke();
@@ -63,6 +79,44 @@ public class ManagerTimer : MonoBehaviour, IPausable
         _gameStarted = true;
     }
 
+    private void UpdateCounterTime()
+    {
+        foreach (var counterTime in counterTimeDatas)
+        {
+            if (counterTime.currnetTimer >= counterTime.maxTimmer)
+            {
+                counterTime.isPassMaxTime = true;
+            }
+            else
+            {
+                counterTime.currnetTimer += Time.deltaTime;
+            }
+        }
+    }
+
+    public bool CheckCounterTime(string counterName)
+    { 
+        CounterTime data = counterTimeDatas.FirstOrDefault(x => x.counterTimeName == counterName);
+        
+        if (data == null)
+            return false;
+        
+        return data.isPassMaxTime;
+    }
+    
+    public void AssignCounterTime(string counterName,  float durationGame)
+    {
+        CounterTime counterTime = new CounterTime
+        {
+            counterTimeName = counterName,
+            maxTimmer = durationGame,
+            currnetTimer = 0,
+            isPassMaxTime = false
+        };
+        
+        counterTimeDatas.Add(counterTime);
+    }
+    
     public void OnPause()
     {
         _isPaused = true;

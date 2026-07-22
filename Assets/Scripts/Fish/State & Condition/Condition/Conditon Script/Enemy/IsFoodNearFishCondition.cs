@@ -14,7 +14,7 @@ public class IsFoodNearFishCondition : EnemyConditionSO
         if (target != null)
         {
             float distance = Vector2.Distance(contex.enemyFish.transform.position, target.position);
-            //Debug.Log($"[IsFoodNearFishCondition - CheckCondition] Distance To Target : {distance} | Distance To Eat : {distanceToEat}");
+            //Debug.Log($"[IsFoodNearFishCondition - CheckCondition] Distance To Target : {distance} | Distance To GetEatenBy : {distanceToEat}");
             if (target.TryGetComponent(out IEatable food) && distance <= distanceToEat)
             {
                 if (food.foodSize < contex.enemyFish.foodSize)

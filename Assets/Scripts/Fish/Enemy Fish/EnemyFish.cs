@@ -32,6 +32,7 @@ public class EnemyFish : Fish, IPausable, IEatable
 
     private Rigidbody2D _rb2d;
     private EnemyContex _enemyContex;
+    private bool _hasBeenEaten = false;
     
     public int FoodBeenEaten => foodBeenEaten;
     public EnemyContex enemyContex => _enemyContex;
@@ -147,7 +148,7 @@ public class EnemyFish : Fish, IPausable, IEatable
         if (eatyingBy != FishType.Player)
             foodBeenEaten++;
         
-        eatable.Eat(eatyingBy);
+        eatable.GetEatenBy(eatyingBy);
     }
 
     public override void OnEating(IEatable eatable)
@@ -160,30 +161,34 @@ public class EnemyFish : Fish, IPausable, IEatable
         
         if (FishData.fishSize == FoodSize.Big)
         {
-            eatable.Eat(FishType.Big);
+            eatable.GetEatenBy(FishType.Big);
         }
     }
 
-    public void Eat(FishType fishType)
+    public void GetEatenBy(FishType fishType)
     {
+        if (_hasBeenEaten) return;
+
         if (FishData.fishSize == FoodSize.Big)
         {
-            Debug.Log($"{gameObject.name} Eat {fishType}!");
+            Debug.Log($"{gameObject.name} GetEatenBy {fishType}!");
             return;
         }
+
+        _hasBeenEaten = true;
         
         if (fishType == FishType.Player)
         {
             switch (fishType)
             {
                 case FishType.Player:
-                    Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten by Player Fish!");
+                    Debug.Log($"[IEatable EnemyFish - GetEatenBy] {gameObject.name} has been eaten by Player Fish!");
                     ObjectiveManager.Instance.UpdateObjective(this.FishType);
                     GameEvents.OnPlayerEating.Invoke();
                     break;
 
                 case FishType.Small:
-                    Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten by Small Fish!");
+                    Debug.Log($"[IEatable EnemyFish - GetEatenBy] {gameObject.name} has been eaten by Small Fish!");
                     GameEvents.OnRemoveSpawnedFishData.Invoke(FishSpawnerType.Passive, FoodIndex);
                     break;
             }

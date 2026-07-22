@@ -16,7 +16,7 @@ MonoBehaviour:
   SpawnerDataID: TSD-00
   FishSpawnChannels:
   - channelName: Passive Fish
-    spawnInterval: 2.5
+    spawnInterval: 1
     isEnabled: 1
     type: 1
   - channelName: Active

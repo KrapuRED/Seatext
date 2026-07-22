@@ -250,12 +250,12 @@ public class PlayerFish : Fish, IPausable, IEatable
             return;
         }
         
-        eatable.Eat(eatyingBy);
+        eatable.GetEatenBy(eatyingBy);
     }
     
-    public void Eat(FishType fishType)
+    public void GetEatenBy(FishType fishType)
     {
-        Debug.Log($"[PlayerFish - Eat] Enemy Fish {gameObject.name} has been eaten!");
+        Debug.Log($"[PlayerFish - GetEatenBy] Enemy Fish {gameObject.name} has been eaten!");
         switch (fishType)
         {
             case FishType.Big:

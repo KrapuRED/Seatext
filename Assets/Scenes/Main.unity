@@ -4863,6 +4863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b74f78dc9cd1804c9147ca3ec8d434b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  counterTimeDatas: []
 --- !u!1 &1484008668
 GameObject:
   m_ObjectHideFlags: 0
@@ -5876,10 +5877,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec6f228f685cbc4ead51efe816afbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  counterName: objective
   objectiveDatas:
+  - nameObjective: Eat Tiny Fish
+    obnjectData: {fileID: 11400000, guid: 445de8d1197e3004da1c239499af0a89, type: 2}
+    changeRate: 40
   - nameObjective: Eat Shrip
     obnjectData: {fileID: 11400000, guid: c965134b7e7455c4c88e5d19ab641a96, type: 2}
-    changeRate: 80
+    changeRate: 40
   - nameObjective: Eat Small Fosh
     obnjectData: {fileID: 11400000, guid: c2ff7c4a5ddd08a47b1e8b0f499a7daa, type: 2}
     changeRate: 20

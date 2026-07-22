@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 [System.Serializable]
 public class ObjectiveData
 {
-    public string nameObjective;
+    public string nameObjective; 
     public ObjectiveDataSO obnjectData;
     [Range(0, 100)] public int changeRate;
 }
@@ -14,13 +14,14 @@ public class ObjectiveData
 public class ObjectiveManager : MonoBehaviour
 {
     public static ObjectiveManager Instance {get; private set;}
-    
+
+    [SerializeField] private string counterName;
     [SerializeField] private List<ObjectiveData> objectiveDatas = new();
     [SerializeField] private int countObjectives;
     
     [Header("References")]
     [SerializeField] private ObjectiveConfigUI objectiveConfigUI;
-
+    
     private ObjectiveData _currentObjectiveData;
 
     private void Awake()
@@ -45,6 +46,8 @@ public class ObjectiveManager : MonoBehaviour
         
         objectiveConfigUI.InitialazeObjectiveUI(_currentObjectiveData.obnjectData.objectiveName);
         objectiveConfigUI.UpdateObjectiveUI(countObjectives, _currentObjectiveData.obnjectData.countObjectives);
+        
+        ManagerTimer.instance.AssignCounterTime(counterName, _currentObjectiveData.obnjectData.timerObjetive);
     }
 
     private ObjectiveData GetRandomObjective()
@@ -69,9 +72,15 @@ public class ObjectiveManager : MonoBehaviour
             return;
         
         countObjectives++;
+        bool stillActive = ManagerTimer.instance.CheckCounterTime(counterName);
 
         if (countObjectives >= objectiveDatas.Count)
         {
+            if (stillActive)
+                Debug.Log("Objective is Done but over time");
+            else
+                Debug.Log("Objective is Done but not over time");
+            
             Debug.Log($"Objective Count: {countObjectives}, {_currentObjectiveData.obnjectData.name} is done!");
             return;
         }

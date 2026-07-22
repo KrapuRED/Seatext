@@ -15,4 +15,4 @@ MonoBehaviour:
   objectiveName: Eat 10 Shrip
   timerObjetive: 30
   countObjectives: 10
-  fishType: 2
+  fishType: 5
