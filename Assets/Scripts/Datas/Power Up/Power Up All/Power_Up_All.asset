@@ -18,3 +18,6 @@ MonoBehaviour:
   powerUpCost: 100
   powerUpBoostType: 1
   valuePowerUp: 10
+  lockIcon: {fileID: -4570936801663685823, guid: 0a9e2643d734bb64b86fd7a77fb52d6e, type: 3}
+  selectedIcon: {fileID: -6657079571142852109, guid: 2bbead01b173c8d44b49091e5548dfaf, type: 3}
+  unlockIcon: {fileID: 8845984412001627255, guid: 12dc1b6e1f05e2e488a672e44348ffe2, type: 3}

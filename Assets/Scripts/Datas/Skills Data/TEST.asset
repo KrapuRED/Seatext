@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishSkillName: Ultra Instinct
   fishSkillDescription: 
-  fishSkillIcon: {fileID: 4513895799472539141, guid: 053081249faf4274f9bb2bf52dd53c47, type: 3}
+  fishSkillIcon: {fileID: 1503314340338446913, guid: 9787ac397251fa44b8cc16e27bc65145, type: 3}
   areaSkillEffectType: 2
   fishSkillEffectType: 1
   effectValue: 50
+  effectRequired: 0
   effectDuration: 20
   effectCooldown: 50

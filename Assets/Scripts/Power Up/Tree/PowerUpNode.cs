@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 
@@ -10,6 +11,7 @@ public class PowerUpNode : MonoBehaviour
     [SerializeField] private string _powerUpNodeID;
     
     [Header("System Power Up")]
+    [SerializeField] private Image powerUpIcon;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private PowerUpTypeBox powerUpTypeBox;
 
@@ -24,6 +26,11 @@ public class PowerUpNode : MonoBehaviour
     
     public BoostType BoostType => boostType;
     public bool CanBuy => canBuy;
+
+    private void Start()
+    {
+        powerUpIcon.sprite = powerUpSO.lockIcon;
+    }
 
     #region Event
 
@@ -132,7 +139,10 @@ public class PowerUpNode : MonoBehaviour
         if (canvasGroup != null)
         {
             if (!isUnlock)
+            {
                 canvasGroup.alpha = canBuy ? 1f : 0f;
+                powerUpIcon.sprite = canBuy ? powerUpSO.selectedIcon :  powerUpSO.lockIcon;
+            }
             else
                 canvasGroup.alpha = 0f;
         }
@@ -166,6 +176,7 @@ public class PowerUpNode : MonoBehaviour
         CurrencyManager.instance.UseCurrency(powerUpSO.currencyType, powerUpSO.powerUpCost);
         
         isUnlock = true;
+        powerUpIcon.sprite = powerUpSO.unlockIcon;
         PowerUpManager.instance.UnlockPowerUpNode(_powerUpNodeID, powerUpSO);
 
         canvasGroup.alpha = 0;

@@ -15,6 +15,15 @@ public enum BoostType
 }
 
 [System.Serializable]
+public enum DirectionNode
+{
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+[System.Serializable]
 public class PowerUpNodeData
 {
     public string powerUpNodeName;
@@ -293,5 +302,12 @@ public class PowerUpManager : MonoBehaviour
         
         //Update all Power Up UI
         GameEvents.OnUpdatePowerUpNode.Invoke();
+    }
+
+    public void MovePowerUpNode(DirectionNode direction)
+    {
+        Debug.Log($"Moving to {direction}");
+        
+        // How we can move inside tree
     }
 }

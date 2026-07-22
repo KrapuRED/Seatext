@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishSkillName: Speed Burst
   fishSkillDescription: 
-  fishSkillIcon: {fileID: 4513895799472539141, guid: 053081249faf4274f9bb2bf52dd53c47, type: 3}
+  fishSkillIcon: {fileID: -2841232125268729417, guid: 0cb420c4b1db60544a5476838c8ce1ad, type: 3}
   areaSkillEffectType: 1
   fishSkillEffectType: 1
   effectValue: 50

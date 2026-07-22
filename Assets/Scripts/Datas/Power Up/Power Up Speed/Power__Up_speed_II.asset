@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpName: Speed II
   powerUpDescription: Increase Speed stats by +10.
+  currencyType: 0
   powerUpCost: 300
   powerUpBoostType: 2
   valuePowerUp: 10
+  lockIcon: {fileID: -7755347814431340212, guid: 5291fc2d3cc97fe4487cfac732dac290, type: 3}
+  selectedIcon: {fileID: -5775881553290145128, guid: 26d4b60fa911fd2438ccc78babdf07f4, type: 3}
+  unlockIcon: {fileID: -4618739740609639466, guid: 97ea022a992346445ae76c40d797cae7, type: 3}

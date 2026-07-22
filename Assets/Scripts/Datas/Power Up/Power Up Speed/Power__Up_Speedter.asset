@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpName: Speedster I
   powerUpDescription: Increase Speed stats by 20%.
+  currencyType: 0
   powerUpCost: 3200
   powerUpBoostType: 2
   valuePowerUp: 20
+  lockIcon: {fileID: 4004406321916707138, guid: 0f164136b0c67df4c95d639e672c98cf, type: 3}
+  selectedIcon: {fileID: -2467443164802697349, guid: 25d3a904455bc4c4a90ff6fb401b2797, type: 3}
+  unlockIcon: {fileID: 3908965424501410592, guid: d9e1b7ec402b5cb4d82f996d619c2508, type: 3}

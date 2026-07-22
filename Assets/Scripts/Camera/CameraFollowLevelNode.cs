@@ -13,7 +13,7 @@ public class CameraFollowLevelNode : MonoBehaviour
 
     private void Awake()
     {
-        _cam = GetComponent<Camera>();
+        _cam = Camera.main;
         isReady = _cam != null;
     }
     
@@ -36,7 +36,7 @@ public class CameraFollowLevelNode : MonoBehaviour
     }
     #endregion
 
-    private void SetCameraPosition(Transform currentLevelNodeTransform)
+    private void SetCameraPosition(Transform currentNodeTransform)
     {
         if (this == null)
             return;
@@ -53,7 +53,7 @@ public class CameraFollowLevelNode : MonoBehaviour
             return;
         }
 
-        Vector3 positinCam =  currentLevelNodeTransform.position;
+        Vector3 positinCam =  currentNodeTransform.position;
         Vector3 positionCamOffest = new Vector3(positinCam.x + offsetCamera, positinCam.y, -10);
 
         //Debug.Log($"[CameraFollowLevelNode - SetCameraPosition] is change position to {positionCamOffest}");

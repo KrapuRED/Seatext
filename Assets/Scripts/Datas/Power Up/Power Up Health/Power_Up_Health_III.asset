@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpName: Health III
   powerUpDescription: Increase Health stats by +10.
+  currencyType: 0
   powerUpCost: 700
   powerUpBoostType: 3
   valuePowerUp: 10
+  lockIcon: {fileID: 5609153527606845141, guid: ab71b0b5dff983d468a6c933ad4176b3, type: 3}
+  selectedIcon: {fileID: 1873434021670240267, guid: f7aa408eefeb58d4a8e06bb48e084059, type: 3}
+  unlockIcon: {fileID: 7223337044084234824, guid: 5d34df5c12862fb4cbffff6ba9770926, type: 3}

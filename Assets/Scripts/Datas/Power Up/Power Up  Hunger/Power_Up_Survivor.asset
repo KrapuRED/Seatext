@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpName: Survivor I
   powerUpDescription: Increase Speed stats by 20%.
+  currencyType: 0
   powerUpCost: 3200
   powerUpBoostType: 4
   valuePowerUp: 20
+  lockIcon: {fileID: 998235561148858922, guid: baf6f675451b00e41ad3a5db20df8656, type: 3}
+  selectedIcon: {fileID: -3229130295615462775, guid: 3f11b51055859564098a571e06e3d2d7, type: 3}
+  unlockIcon: {fileID: -3229130295615462775, guid: 3f11b51055859564098a571e06e3d2d7, type: 3}

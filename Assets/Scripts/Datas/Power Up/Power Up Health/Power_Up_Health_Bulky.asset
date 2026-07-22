@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpName: Bulky I
   powerUpDescription: Increase Health stats by 20%.
+  currencyType: 0
   powerUpCost: 100
   powerUpBoostType: 3
   valuePowerUp: 20
+  lockIcon: {fileID: 8637497747554739513, guid: 6f42b9aacddc0c04fa28c5f2972ebb5f, type: 3}
+  selectedIcon: {fileID: 573937912821116847, guid: 02d918e84ef5df24491826815f68e058, type: 3}
+  unlockIcon: {fileID: 6732590074083313764, guid: 7e64dc62d75df6744be35a885dc0e1e3, type: 3}

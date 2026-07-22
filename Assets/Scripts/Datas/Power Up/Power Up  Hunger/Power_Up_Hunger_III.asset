@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpName: Hunger III
   powerUpDescription: Increase Speed stats by +10.
+  currencyType: 0
   powerUpCost: 700
   powerUpBoostType: 4
   valuePowerUp: 10
+  lockIcon: {fileID: 1167601745038480386, guid: 205bd0b88109efb48b675fb218e7dec0, type: 3}
+  selectedIcon: {fileID: -5457242523780333516, guid: 36008a801d20904499bb961575e2bfe8, type: 3}
+  unlockIcon: {fileID: -6363229806320347053, guid: 86411a56697bf384da2368fafac4f532, type: 3}

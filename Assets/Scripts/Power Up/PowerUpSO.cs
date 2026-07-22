@@ -11,4 +11,9 @@ public class PowerUpSO : ScriptableObject
     
     public BoostType powerUpBoostType;
     public int valuePowerUp; 
+    
+    [Header("Icon Sprite")]
+    public Sprite lockIcon;
+    public Sprite selectedIcon;
+    public Sprite unlockIcon;
 }
