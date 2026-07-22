@@ -6,7 +6,8 @@ public enum FishType
     Player,
     Tiny,
     Small,
-    Big
+    Big,
+    Shrimp
 }
 
 [System.Serializable]

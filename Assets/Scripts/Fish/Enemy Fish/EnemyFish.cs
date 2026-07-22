@@ -178,6 +178,7 @@ public class EnemyFish : Fish, IPausable, IEatable
             {
                 case FishType.Player:
                     Debug.Log($"[IEatable EnemyFish - Eat] {gameObject.name} has been eaten by Player Fish!");
+                    ObjectiveManager.Instance.UpdateObjective(this.FishType);
                     GameEvents.OnPlayerEating.Invoke();
                     break;
 
