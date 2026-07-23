@@ -71,9 +71,13 @@ public class EnemyFishTypeBox : TypingBox
 
                 //reset to get new word
                 ResetTypeBox();
+                
+                ComboManager.instance.StartComboTyping();
+                
                 GameEvents.OnPlayerGainingSpeed.Invoke();
                 currentEnemyFish.enemyContex.beenlocked =  true;
                 WordBankManager.instance.CheckWordByWordData(_wordData.word);
+                
                 SetWordData();
             }
 
