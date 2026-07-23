@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d9f9473c79534d14dade3c99726e0b89
+guid: 45f4b9ffce7e13f4f8faed948d6e860d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4750654284094947408
-    second: UI_MainStat_0
+      213: -8275596079842212452
+    second: UI_UpgradeConfirmationPanel_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_MainStat_0
+      name: UI_UpgradeConfirmationPanel_0
       rect:
         serializedVersion: 2
-        x: 955
-        y: 501
-        width: 651
-        height: 575
+        x: 867
+        y: 344
+        width: 813
+        height: 861
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 050ca2eb6e6bde140800000000000000
-      internalID: 4750654284094947408
+      spriteID: c95c36c163d272d80800000000000000
+      internalID: -8275596079842212452
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_MainStat_0: 4750654284094947408
+      UI_UpgradeConfirmationPanel_0: -8275596079842212452
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
