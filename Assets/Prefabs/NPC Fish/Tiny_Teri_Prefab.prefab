@@ -409,6 +409,10 @@ MonoBehaviour:
   roamingSpeedFactor: 0
   chaseSpeedFactor: 0
   stackChaseSpeedFactor: 0
+  reduceFishSpeedFactor: 0
+  increaseFishSpeedFactor: 0
+  isBeenReduce: 0
+  isBeenIncrease: 0
   currentWaterStrength: 0
 --- !u!1 &3976892856433584271
 GameObject:
@@ -470,12 +474,14 @@ MonoBehaviour:
   _fishType: 2
   mouthPosition: {fileID: 0}
   eatRange: 0.25
+  isBeenEffected: 0
   EndWayPoint: {fileID: 0}
   _fishSightVisual: {fileID: 6898263408152032526}
   _enemyFishTypeBox: {fileID: 2086981854219159738}
   _fishTextRotation: {fileID: 8747800965288909227}
   foodBeenEaten: 0
   intilazeFishByStart: 0
+  scoreValue: 100
 --- !u!50 &4285365757082080078
 Rigidbody2D:
   serializedVersion: 5

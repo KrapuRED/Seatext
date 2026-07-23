@@ -96,6 +96,9 @@ public class ManagerTimer : MonoBehaviour, IPausable
 
     public bool CheckCounterTime(string counterName)
     { 
+        if (counterTimeDatas.Count <= 0)
+            return false;
+        
         CounterTime data = counterTimeDatas.FirstOrDefault(x => x.counterTimeName == counterName);
         
         if (data == null)
@@ -104,8 +107,18 @@ public class ManagerTimer : MonoBehaviour, IPausable
         return data.isPassMaxTime;
     }
     
-    public void AssignCounterTime(string counterName,  float durationGame)
+    public void AssignCounterTime(string counterName, float durationGame)
     {
+        //if there counterTime with the counterName Reset
+        CounterTime data = counterTimeDatas.FirstOrDefault(x => x.counterTimeName == counterName);
+        if (data != null)
+        {
+            data.isPassMaxTime = false;
+            data.currnetTimer = 0;
+            
+            return;
+        }
+        
         CounterTime counterTime = new CounterTime
         {
             counterTimeName = counterName,

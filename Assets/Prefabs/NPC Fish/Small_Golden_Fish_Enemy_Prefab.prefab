@@ -783,6 +783,7 @@ MonoBehaviour:
   _fishTextRotation: {fileID: 2507853121661457989}
   foodBeenEaten: 0
   intilazeFishByStart: 0
+  scoreValue: 100
 --- !u!50 &144822156019989062
 Rigidbody2D:
   serializedVersion: 5

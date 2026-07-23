@@ -29,7 +29,8 @@ public class EnemyFish : Fish, IPausable, IEatable
     [SerializeField] private FishTextRotate     _fishTextRotation;
     [SerializeField] private int foodBeenEaten;
     [SerializeField] private bool intilazeFishByStart;
-
+    [SerializeField] private int scoreValue;
+    
     private Rigidbody2D _rb2d;
     private EnemyContex _enemyContex;
     private bool _hasBeenEaten = false;
@@ -183,7 +184,14 @@ public class EnemyFish : Fish, IPausable, IEatable
             {
                 case FishType.Player:
                     Debug.Log($"[IEatable EnemyFish - GetEatenBy] {gameObject.name} has been eaten by Player Fish!");
+                   
                     ObjectiveManager.Instance.UpdateObjective(this.FishType);
+                    
+                    ComboManager.instance.StartComboEating();
+                    ComboManager.instance.ShowMultiplierEatingUI(this.transform);
+                    
+                    ScoreManager.Instance.UpdateScore(scoreValue);
+                    
                     GameEvents.OnPlayerEating.Invoke();
                     break;
 
